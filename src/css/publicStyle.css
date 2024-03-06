@@ -6,6 +6,12 @@
 :root {
   --text-color: #333; /* Default text color */
   --bg-color: #fff; /* Default background color */
+  --primary-color: #50489E; /* Default primary color */
+  --bahaa : tomato ; 
+  --gray : #F3F5F5 ;
+  
+
+
 }
 
 /* Dark mode */

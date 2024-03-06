@@ -1,19 +1,21 @@
-import NavBar from "@/modules/layout/navBar/NavBar"
-import "../src/css/publicStyle.css"
 
+import "../src/css/publicStyle.css"
+import { appWithTranslation } from "next-i18next";
 import React from 'react'
+
+import NavBar from "@/modules/layout/navBar/NavBar"
 import Footer from "@/modules/layout/footer/Footer"
 
 const MyApp = ({ Component, pageProps }) => {
 
     
   return (
-    <div >
+    <div>
       <NavBar/>
-      <Component {...pageProps} />
+        <Component {...pageProps} />
       <Footer/>
     </div>
   )
 }
 
-export default MyApp
+export default  appWithTranslation(MyApp)
