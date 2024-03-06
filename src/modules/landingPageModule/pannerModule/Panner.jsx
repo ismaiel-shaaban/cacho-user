@@ -1,8 +1,8 @@
 import React from 'react'
-
+import { strings } from '@/utilis/Localization';
 const Panner = () => {
   return (
-    <div>Panner</div>
+    <div>{strings.hello}</div>
   )
 }
 

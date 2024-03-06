@@ -1,14 +1,17 @@
 
 import "../src/css/publicStyle.css"
-import { appWithTranslation } from "next-i18next";
-import React from 'react'
-
+import React, { useEffect, useState } from 'react'
+import { strings } from '@/utilis/Localization';
 import NavBar from "@/modules/layout/navBar/NavBar"
 import Footer from "@/modules/layout/footer/Footer"
 
 const MyApp = ({ Component, pageProps }) => {
-
-    
+  const [, setLanguageChanged] = useState(false);
+  useEffect(() => {
+    const savedLang = localStorage.getItem('lang');
+    strings.setLanguage(savedLang || 'en');
+    setLanguageChanged(prevState => !prevState);
+  }, []);
   return (
     <div>
       <NavBar/>
@@ -18,4 +21,4 @@ const MyApp = ({ Component, pageProps }) => {
   )
 }
 
-export default  appWithTranslation(MyApp)
+export default  MyApp

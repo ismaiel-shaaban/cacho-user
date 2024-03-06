@@ -1,7 +1,9 @@
+import { strings } from '@/utilis/Localization';
 import { useState, useEffect } from 'react';
-import { useTranslation } from "next-i18next";
+
 const NavBar = () => {
   const [isDarkMode, setIsDarkMode] = useState(false);
+
 
   useEffect(() => {
     const savedDarkMode = localStorage.getItem('darkMode');
@@ -20,10 +22,21 @@ const NavBar = () => {
     document.documentElement.style.setProperty('--text-color', darkMode ? '#fff' : '#333');
     document.documentElement.style.setProperty('--bg-color', darkMode ? '#333' : '#fff');
   };
-  const { t } = useTranslation();
+  const toggleLanguage = (language) => {
+    localStorage.setItem('lang', language);
+    strings.setLanguage(language);
+    window.location.reload(); // Reload the page to apply the new language
+  };
+
   return (
-    <div className="w-full flex justify-around">
-      <div className='text-primary w-[100%] bg-gray-100 px-[100px] '>{t('Welcome to React')}</div>
+    <>
+  
+      
+      <div className="w-full flex justify-around">
+      
+      <div className='text-primary w-[100%] bg-gray-100 px-[100px] '>{strings.hello}</div>
+      <button onClick={() => toggleLanguage('ar')}>Arabic</button>
+      <button onClick={() => toggleLanguage('en')}>English</button>
 
 
       {/* <div onClick={toggleDarkMode}>
@@ -34,6 +47,9 @@ const NavBar = () => {
         </span>
       </div> */}
     </div>
+      
+    </>
+   
   );
 };
 
