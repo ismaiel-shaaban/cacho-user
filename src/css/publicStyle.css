@@ -1,0 +1,22 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+:root {
+  --text-color: #333; /* Default text color */
+  --bg-color: #fff; /* Default background color */
+}
+
+/* Dark mode */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --text-color: #fff;
+    --bg-color: #333;
+  }
+}
+
+
+body{
+  background-color: var( --bg-color);
+}
