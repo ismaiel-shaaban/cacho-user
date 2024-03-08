@@ -40,7 +40,7 @@ const Panner = () => {
                             <h3 className="text-white font-[500] text-2xl mb-2">Olympic Store</h3>
                             <Link href="#"
                                 className="flex justify-center items-center gap-1 bg-white w-fit px-2 rounded-md">
-                                vieww
+                                view
                                 <span className="text-white bg-black rounded-md">
                                     <GoArrowUpRight size={18} />
                                 </span>
