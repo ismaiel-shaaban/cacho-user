@@ -4,25 +4,36 @@
 
 
 :root {
-  --text-color: #333; /* Default text color */
-  --bg-color: #fff; /* Default background color */
-  --primary-color: #50489E; /* Default primary color */
-  --bahaa : tomato ; 
-  --gray : #F3F5F5 ;
-  
+    --text-color: #333; /* Default text color */
+    --bg-color: #fff; /* Default background color */
+    --primary-color: #50489E; /* Default primary color */
+    --bahaa: tomato;
+    --gray: #F3F5F5;
 
 
 }
 
 /* Dark mode */
 @media (prefers-color-scheme: dark) {
-  :root {
-    --text-color: #fff;
-    --bg-color: #333;
-  }
+    :root {
+        --text-color: #fff;
+        --bg-color: #333;
+    }
 }
 
 
-body{
-  background-color: var( --gray);
+body {
+    background-color: var(--gray);
+}
+
+.panner .swiper-pagination .swiper-pagination-bullet {
+    width: 16px ;
+    height: 5px ;
+    border-radius: 30px;
+    transition: .3s;
+}
+
+.panner .swiper-pagination .swiper-pagination-bullet.swiper-pagination-bullet-active {
+    width: 40px ;
+    background-color: #fff !important;
 }
