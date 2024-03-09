@@ -7,10 +7,10 @@
     --text-color: #333; /* Default text color */
     --bg-color: #fff; /* Default background color */
     --primary-color: #50489E; /* Default primary color */
-    --bahaa: tomato;
     --gray: #F3F5F5;
-
-
+    --rate-color: #AD732E;
+    --gray-2: #8E8E93;
+    --red: #C32B43;
 }
 
 /* Dark mode */
@@ -27,13 +27,13 @@ body {
 }
 
 .panner .swiper-pagination .swiper-pagination-bullet {
-    width: 16px ;
-    height: 5px ;
+    width: 16px;
+    height: 5px;
     border-radius: 30px;
     transition: .3s;
 }
 
 .panner .swiper-pagination .swiper-pagination-bullet.swiper-pagination-bullet-active {
-    width: 40px ;
+    width: 40px;
     background-color: #fff !important;
 }

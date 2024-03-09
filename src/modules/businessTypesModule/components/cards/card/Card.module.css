@@ -1,0 +1,12 @@
+.card:hover > div {
+    height: 67px;
+}
+
+.card > div > h2 {
+    transition: font-size 0.3s;
+}
+
+.card:hover > div > h2 {
+    font-size: 16px;
+    transition: font-size;
+}

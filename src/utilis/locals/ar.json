@@ -1,4 +1,5 @@
 {
-    "hello" : "أهلا بالعالم",
-    "searchPlaceholder" : "ما الذي تبحث عنه؟"
+  "hello": "أهلا بالعالم",
+  "searchPlaceholder": "ما الذي تبحث عنه؟",
+  "details": "تفاصيل"
 }
