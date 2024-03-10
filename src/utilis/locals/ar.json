@@ -1,5 +1,12 @@
 {
   "hello": "أهلا بالعالم",
   "searchPlaceholder": "ما الذي تبحث عنه؟",
-  "details": "تفاصيل"
+  "details": "تفاصيل",
+  "by": "بواسطة",
+  "HotOffers": "عروض ساخنة",
+  "BusinessTypes": "أنواع الأعمال",
+  "viewAll": "عرض الكل",
+  "off": "خصم",
+  "egp":"جنيه" ,
+  "Nearest" : "الأقرب"
 }

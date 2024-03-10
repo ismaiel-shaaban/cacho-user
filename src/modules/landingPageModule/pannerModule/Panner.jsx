@@ -6,8 +6,8 @@ import {GoArrowUpRight} from "react-icons/go";
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
-import classes from './Panner.module.css'
 import {FaArrowLeftLong, FaArrowRightLong} from "react-icons/fa6";
+import classes from './Panner.module.css'
 
 const Panner = ({data}) => {
     return (<section className="panner container mx-auto px-4 mt-[20px]">
@@ -29,9 +29,7 @@ const Panner = ({data}) => {
                     <div
                         className="relative h-[calc(100dvh-84px)] w-full"
                     >
-                        <Image alt="panner" src={item.image}
-
-                               priority={true}
+                        <Image alt="panner" src={item.image} priority={true}
                                className="block h-[calc(100dvh-84px)] w-100 object-cover rounded-md"/>
                         <div
                             className="absolute md:top-unit-28 md:right-unit-20 right-unit-10 top-unit-14 transform text-center ">

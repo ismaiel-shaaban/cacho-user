@@ -1,5 +1,12 @@
 {
   "hello": "Hello, World!",
   "searchPlaceholder": "What are you looking for?",
-  "details": "Details"
+  "details": "Details",
+  "by": "by",
+  "HotOffers": "Hot Offers",
+  "BusinessTypes": "Business Types",
+  "viewAll": "view all",
+  "off": "OFF",
+  "egp": "EGP",
+  "Nearest" : "Nearest"
 }

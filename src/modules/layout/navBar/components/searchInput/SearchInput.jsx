@@ -24,6 +24,7 @@ const searchInput = () => {
                     classNames={{
                         trigger: "bg-white w-fit justify-center gap-2",
                         value: "!overflow-visible",
+                        label: "!overflow-visible",
                         innerWrapper: "me-3",
                     }}
                     startContent={<HiOutlineSquares2X2 size={30} />}

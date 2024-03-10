@@ -1,6 +1,7 @@
 import BusinessTypes from "@/modules/landingPageModule/businessTypes/businessTypes";
 import Panner from "@/modules/landingPageModule/pannerModule/Panner";
 import HotOffers from "@/modules/landingPageModule/hotOffers/HotOffers";
+import Nearest from "@/modules/landingPageModule/nearest/Nearest";
 import pannerPic from '../public/panner/img-1.jpg'
 import pannerPic2 from '../public/panner/img-2.jpg'
 import business_1 from '../public/BusinessTypes/img-1.jpg'
@@ -13,6 +14,10 @@ import business_7 from '../public/BusinessTypes/img-7.jpg'
 import business_8 from '../public/BusinessTypes/img-8.jpg'
 import product_1 from '../public/product/img-1.jpg'
 import product_2 from '../public/product/img-2.jpeg'
+import store_1 from '../public/Nearest/img-1.jpg'
+import store_2 from '../public/Nearest/img-2.jpg'
+import store_3 from '../public/Nearest/img-3.jpg'
+import store_4 from '../public/Nearest/img-4.jpg'
 
 const data = [
     {
@@ -101,10 +106,10 @@ const businessData = [
 const offersData = [
     {
         id: 1,
-        discount: "50%",
+        type: "New",
         image: product_1,
         marketName: "Market Name",
-        title: "Product Title",
+        title: "Product Title Product Title",
         price: "100",
         oldPrice: "200",
         link: "#",
@@ -196,6 +201,52 @@ const offersData = [
         ratingCount: "100"
     }
 ]
+const storesData = [
+    {
+        id:1,
+        storeName: "Store Name",
+        storeImage: store_1,
+        storeLogo: pannerPic2,
+        category: ["shoes", "clothes"],
+        rating: "4.5",
+        ratingCount: "100",
+        status: "Open Now",
+        storeLink: "#"
+    },
+    {
+        id:2,
+        storeName: "Store Name",
+        storeImage: store_2,
+        storeLogo: pannerPic2,
+        category: ["shoes", "clothes"],
+        rating: "4.5",
+        ratingCount: "100",
+        status: "Open Now",
+        storeLink: "#"
+    },
+    {
+        id:3,
+        storeName: "Store Name",
+        storeImage: store_3,
+        storeLogo: pannerPic2,
+        category: ["shoes", "clothes"],
+        rating: "4.5",
+        ratingCount: "100",
+        status: "Open Now",
+        storeLink: "#"
+    },
+    {
+        id:4,
+        storeName: "Store Name",
+        storeImage: store_4,
+        storeLogo: pannerPic2,
+        category: ["shoes", "clothes"],
+        rating: "4.5",
+        ratingCount: "100",
+        status: "Closed",
+        storeLink: "#"
+    }
+]
 
 
 export default function Home({data, businessData}) {
@@ -205,6 +256,7 @@ export default function Home({data, businessData}) {
             <Panner data={data}/>
             <BusinessTypes businessData={businessData}/>
             <HotOffers offersData={offersData}/>
+            <Nearest storesData={storesData}/>
         </>
     )
 }
@@ -214,7 +266,8 @@ export async function getServerSideProps() {
         props: {
             data,
             businessData,
-            offersData
+            offersData,
+            storesData
         }
     }
 }

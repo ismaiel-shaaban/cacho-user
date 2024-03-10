@@ -1,26 +1,27 @@
-import Image from "next/image";
-import {useEffect, useState} from "react";
-import {Swiper, SwiperSlide} from "swiper/react";
-import {Autoplay, FreeMode} from 'swiper/modules';
-import 'swiper/css';
-import 'swiper/css/pagination';
+import { useEffect, useState } from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, FreeMode } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/pagination";
 import Card from "@/modules/businessTypesModule/components/cards/card/Card";
 import SectionTitle from "@/modules/landingPageModule/components/sectionTitle/SectionTitle";
+import { strings } from "@/utilis/Localization";
 
+const BusinessTypes = ({ businessData }) => {
+    const [data, setData] = useState([]);
 
-const BusinessTypes = ({businessData}) => {
-    const [data, setData] = useState([])
     useEffect(() => {
         if (businessData) {
-            setData(businessData)
+            setData(businessData);
         }
-    }, [businessData])
+    }, [businessData]);
+
     return (
         <section className="business-types container mx-auto px-4 mt-[30px]">
-            <SectionTitle title="Business Types" link="#"/>
+            <SectionTitle title={strings.BusinessTypes} link="#" />
             <div className="w-100 mt-[25px]">
                 <Swiper
-                    modules={[Autoplay ,FreeMode]}
+                    modules={[Autoplay, FreeMode]}
                     slidesPerView={7}
                     freeMode={true}
                     spaceBetween={20}
@@ -45,15 +46,15 @@ const BusinessTypes = ({businessData}) => {
                         },
                     }}
                 >
-                    {data.map((item) => {
-                        return <SwiperSlide key={item.id}>
-                            <Card title={item.title} image={item.image}/>
+                    {data.map((item) => (
+                        <SwiperSlide key={item.id}>
+                            <Card title={item.title} image={item.image} />
                         </SwiperSlide>
-                    })}
+                    ))}
                 </Swiper>
             </div>
         </section>
-    )
-}
+    );
+};
 
-export default BusinessTypes
+export default BusinessTypes;
