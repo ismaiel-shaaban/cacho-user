@@ -12,7 +12,7 @@ const SpecialOffers = ({specialOffersData}) => {
                 <div className="rounded-md overflow-hidden md:h-auto h-[calc(570px/2)]">
                     <Image src={specialOffersData[0].image} alt={"Special Offers"} className="object-cover w-full h-full" />
                 </div>
-                <div className="flex flex-col md:grid md:grid-rows-2 h-[570px] gap-3">
+                <div className="flex flex-col md:grid md:grid-rows-2 md:h-[570px] gap-3">
                     <div className="rounded-md overflow-hidden">
                         <Image src={specialOffersData[1].image} alt={"Special Offers"} className="object-cover w-full h-full" />
                     </div>
