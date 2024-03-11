@@ -2,6 +2,9 @@ import BusinessTypes from "@/modules/landingPageModule/businessTypes/businessTyp
 import Panner from "@/modules/landingPageModule/pannerModule/Panner";
 import HotOffers from "@/modules/landingPageModule/hotOffers/HotOffers";
 import Nearest from "@/modules/landingPageModule/nearest/Nearest";
+import BannerJoin from "@/modules/landingPageModule/bannerJoin/BannerJoin";
+import New from "@/modules/landingPageModule/new/New";
+import SpecialOffers from "@/modules/landingPageModule/specialOffers/SpecialOffers";
 import pannerPic from '../public/panner/img-1.jpg'
 import pannerPic2 from '../public/panner/img-2.jpg'
 import business_1 from '../public/BusinessTypes/img-1.jpg'
@@ -18,6 +21,9 @@ import store_1 from '../public/Nearest/img-1.jpg'
 import store_2 from '../public/Nearest/img-2.jpg'
 import store_3 from '../public/Nearest/img-3.jpg'
 import store_4 from '../public/Nearest/img-4.jpg'
+import offer_1 from '../public/offers/img-1.jpg'
+import offer_2 from '../public/offers/img-2.jpg'
+import offer_3 from '../public/offers/img-3.jpg'
 
 const data = [
     {
@@ -247,9 +253,120 @@ const storesData = [
         storeLink: "#"
     }
 ]
+const newData = [
+    {
+        id: 1,
+        type: "New",
+        image: product_1,
+        marketName: "Market Name",
+        title: "Product Title Product Title",
+        price: "100",
+        oldPrice: "200",
+        link: "#",
+        rating: "4.5",
+        ratingCount: "100"
+    },
+    {
+        id: 1,
+        type: "New",
+        image: product_2,
+        marketName: "Market Name",
+        title: "Product Title Product Title",
+        price: "100",
+        oldPrice: "200",
+        link: "#",
+        rating: "4.5",
+        ratingCount: "100"
+    },
+    {
+        id: 1,
+        type: "New",
+        image: product_1,
+        marketName: "Market Name",
+        title: "Product Title Product Title",
+        price: "100",
+        oldPrice: "200",
+        link: "#",
+        rating: "4.5",
+        ratingCount: "100"
+    },
+    {
+        id: 1,
+        type: "New",
+        image: product_2,
+        marketName: "Market Name",
+        title: "Product Title Product Title",
+        price: "100",
+        oldPrice: "200",
+        link: "#",
+        rating: "4.5",
+        ratingCount: "100"
+    },
+    {
+        id: 1,
+        type: "New",
+        image: product_1,
+        marketName: "Market Name",
+        title: "Product Title Product Title",
+        price: "100",
+        oldPrice: "200",
+        link: "#",
+        rating: "4.5",
+        ratingCount: "100"
+    },
+    {
+        id: 1,
+        type: "New",
+        image: product_2,
+        marketName: "Market Name",
+        title: "Product Title Product Title",
+        price: "100",
+        oldPrice: "200",
+        link: "#",
+        rating: "4.5",
+        ratingCount: "100"
+    },
+    {
+        id: 1,
+        type: "New",
+        image: product_1,
+        marketName: "Market Name",
+        title: "Product Title Product Title",
+        price: "100",
+        oldPrice: "200",
+        link: "#",
+        rating: "4.5",
+        ratingCount: "100"
+    },
+    {
+        id: 1,
+        type: "New",
+        image: product_2,
+        marketName: "Market Name",
+        title: "Product Title Product Title",
+        price: "100",
+        oldPrice: "200",
+        link: "#",
+        rating: "4.5",
+        ratingCount: "100"
+    }
+]
+const specialOffersData = [
+    {
+        id: 1,
+        image: offer_1,
+    },
+    {
+        id: 2,
+        image: offer_2,
+    },
+    {
+        id: 3,
+        image: offer_3,
+    }
+]
 
-
-export default function Home({data, businessData}) {
+export default function Home({data, businessData ,newData ,offersData ,storesData}) {
 
     return (
         <>
@@ -257,6 +374,9 @@ export default function Home({data, businessData}) {
             <BusinessTypes businessData={businessData}/>
             <HotOffers offersData={offersData}/>
             <Nearest storesData={storesData}/>
+            <BannerJoin/>
+            <New newData={newData}/>
+            <SpecialOffers specialOffersData={specialOffersData}/>
         </>
     )
 }
@@ -267,7 +387,9 @@ export async function getServerSideProps() {
             data,
             businessData,
             offersData,
-            storesData
+            storesData,
+            newData,
+            specialOffersData
         }
     }
 }

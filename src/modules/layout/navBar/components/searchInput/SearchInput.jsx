@@ -19,6 +19,7 @@ const searchInput = () => {
             endContent={<FiSearch size={30} />}
             startContent={
                 <Select
+                    dir={"ltr"}
                     defaultSelectedKeys={["1"]}
                     className="w-fit"
                     classNames={{

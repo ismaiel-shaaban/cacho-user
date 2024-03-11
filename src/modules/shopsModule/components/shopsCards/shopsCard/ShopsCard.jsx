@@ -5,7 +5,7 @@ import Link from "next/link";
 import BookMark from "@/utilis/Icons/BookMark";
 import Rating from "@/components/sheared/rateing/Rating";
 
-const NearestCard = ({ store }) => {
+const ShopsCard = ({ store }) => {
     const { storeName, storeImage, storeLogo, storeLink, category, rating, ratingCount, status } = store;
     const statusColor = status === "Open Now" ? "bg-[--green]" : "bg-[--red]";
 
@@ -44,4 +44,4 @@ const NearestCard = ({ store }) => {
     );
 };
 
-export default NearestCard;
+export default ShopsCard;

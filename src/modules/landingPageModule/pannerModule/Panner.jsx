@@ -10,7 +10,7 @@ import {FaArrowLeftLong, FaArrowRightLong} from "react-icons/fa6";
 import classes from './Panner.module.css'
 
 const Panner = ({data}) => {
-    return (<section className="panner container mx-auto px-4 mt-[20px]">
+    return (<section className="panner container mt-[20px]">
 
         <Swiper
             modules={[Navigation, Pagination , Autoplay]}

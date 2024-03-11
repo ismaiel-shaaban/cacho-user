@@ -7,7 +7,7 @@ import NavBar from "@/modules/layout/navBar/NavBar"
 import Footer from "@/modules/layout/footer/Footer"
 
 const cairo = Cairo({
-    weight: ["400", "500","600", "800", "900"],
+    weight: ["400", "500","600","700", "800", "900"],
     subsets: ["latin"],
     display: 'swap',
 })

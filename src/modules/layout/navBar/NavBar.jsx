@@ -8,6 +8,7 @@ import UserInfo from "@/modules/layout/navBar/components/userInfo/UserInfo";
 import SearchInput from "@/modules/layout/navBar/components/searchInput/SearchInput";
 import {MessagesIcon} from "@/utilis/Icons/MessagesIcon";
 import SelectLang from "@/modules/layout/navBar/components/selectLang/SelectLang";
+import Logo from "@/modules/layout/navBar/components/logo";
 
 const NavBar = () => {
     const [isDarkMode, setIsDarkMode] = useState(false);
@@ -33,17 +34,19 @@ const NavBar = () => {
         document.documentElement.style.setProperty('--bg-color', darkMode ? '#333' : '#fff');
     };
 
-    return (<Navbar onMenuOpenChange={setIsMenuOpen} maxWidth='2xl' aria-label="Main navigation"
+    return (<Navbar onMenuOpenChange={setIsMenuOpen} className="w-full p-0"
+                    classNames={{base: "" ,wrapper:"!container justify-between"}}
+                    aria-label="Main navigation"
                     dir={strings.getLanguage() === "ar" ? "rtl" : "ltr"}>
         <NavbarContent justify="start">
             <NavbarItem>
-                <h2 className="text-[--primary-color] text-[20px] font-[800]">CACHOO</h2>
+                <Logo/>
             </NavbarItem>
-            <NavbarItem className="grow min-w-full hidden sm:flex">
+            <NavbarItem className="grow min-w-full hidden md:flex">
                 <SearchInput/>
             </NavbarItem>
         </NavbarContent>
-        <NavbarContent className="hidden sm:flex" justify="end">
+        <NavbarContent className="hidden md:flex" justify="end">
             <NavbarItem>
                 <SelectLang/>
             </NavbarItem>
@@ -60,11 +63,10 @@ const NavBar = () => {
                 <UserInfo/>
             </NavbarItem>
         </NavbarContent>
-        <NavbarContent className="flex sm:hidden" justify="end">
+        <NavbarContent className="flex md:hidden" justify="end">
             <NavbarItem>
                 <NavbarMenuToggle
                     aria-label={isMenuOpen ? "Close menu" : "Open menu"}
-                    className="sm:hidden"
                 />
             </NavbarItem>
         </NavbarContent>

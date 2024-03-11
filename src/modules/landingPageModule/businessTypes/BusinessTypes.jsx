@@ -17,7 +17,7 @@ const BusinessTypes = ({ businessData }) => {
     }, [businessData]);
 
     return (
-        <section className="business-types container mx-auto px-4 mt-[30px]">
+        <section className="business-types container mt-[30px]">
             <SectionTitle title={strings.BusinessTypes} link="#" />
             <div className="w-100 mt-[25px]">
                 <Swiper
