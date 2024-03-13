@@ -3,11 +3,11 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, FreeMode } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
-import Card from "@/modules/businessTypesModule/components/cards/card/Card";
+import Card from "@/modules/categoriesModule/components/cards/card/Card";
 import SectionTitle from "@/modules/landingPageModule/components/sectionTitle/SectionTitle";
 import { strings } from "@/utilis/Localization";
 
-const BusinessTypes = ({ businessData }) => {
+const Categories = ({ businessData }) => {
     const [data, setData] = useState([]);
 
     useEffect(() => {
@@ -18,7 +18,7 @@ const BusinessTypes = ({ businessData }) => {
 
     return (
         <section className="business-types container mt-[30px]">
-            <SectionTitle title={strings.BusinessTypes} link="#" />
+            <SectionTitle title={strings.Categories} link="/Categories" />
             <div className="w-100 mt-[25px]">
                 <Swiper
                     modules={[Autoplay, FreeMode]}
@@ -57,4 +57,4 @@ const BusinessTypes = ({ businessData }) => {
     );
 };
 
-export default BusinessTypes;
+export default Categories;

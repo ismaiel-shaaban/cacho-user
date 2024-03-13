@@ -1,4 +1,4 @@
-import BusinessTypes from "@/modules/landingPageModule/businessTypes/businessTypes";
+import Categories from "@/modules/landingPageModule/categories/Categories";
 import Panner from "@/modules/landingPageModule/pannerModule/Panner";
 import HotOffers from "@/modules/landingPageModule/hotOffers/HotOffers";
 import Nearest from "@/modules/landingPageModule/nearest/Nearest";
@@ -371,7 +371,7 @@ export default function Home({data, businessData ,newData ,offersData ,storesDat
     return (
         <>
             <Panner data={data}/>
-            <BusinessTypes businessData={businessData}/>
+            <Categories businessData={businessData}/>
             <HotOffers offersData={offersData}/>
             <Nearest storesData={storesData}/>
             <BannerJoin/>

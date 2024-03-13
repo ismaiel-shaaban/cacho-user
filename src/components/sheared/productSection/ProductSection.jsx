@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import ProductCard from "@/components/sheared/productCard/ProductCard";
 import SectionTitle from "@/modules/landingPageModule/components/sectionTitle/SectionTitle";
+import CardsLayout from "@/components/sheared/cardsLayout/CardsLayout";
 
 const ProductSection = ({ title, data , link}) => {
     const [products, setProducts] = useState([]);
@@ -17,11 +18,11 @@ const ProductSection = ({ title, data , link}) => {
         <section className="container mt-[30px]">
             <SectionTitle title={title} link={link} />
             <div>
-                <div className="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 md:gap-[20px] gap-2 mt-[40px]">
+                <CardsLayout>
                     {products.map((product ,index) => (
                         <ProductCard key={index} product={product} />
                     ))}
-                </div>
+                </CardsLayout>
             </div>
         </section>
     );
