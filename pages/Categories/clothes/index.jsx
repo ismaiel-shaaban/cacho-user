@@ -1,16 +1,16 @@
 import Link from "next/link";
-import ShopsCard from "@/modules/shopsModule/components/shopsCards/shopsCard/ShopsCard";
-import {BreadcrumbItem, Breadcrumbs, Select, SelectItem} from "@nextui-org/react";
-import {Checkbox} from "@nextui-org/checkbox";
+import ClothesCategory from "@/modules/categoriesModule/clothesCategory/ClothesCategory";
+import {BreadcrumbItem, Breadcrumbs} from "@nextui-org/react";
+import {strings} from "@/utilis/Localization";
 import store_1 from "../../../public/Nearest/img-1.jpg";
 import pannerPic2 from "../../../public/panner/img-2.jpg";
 import store_2 from "../../../public/Nearest/img-2.jpg";
 import store_3 from "../../../public/Nearest/img-3.jpg";
 import store_4 from "../../../public/Nearest/img-4.jpg";
-import ClothesCategory from "@/modules/categoriesModule/clothesCategory/ClothesCategory";
 
 
-const storesData = [{
+const storesData = [
+    {
     id: 1,
     storeName: "Store Name",
     storeImage: store_1,
@@ -57,9 +57,10 @@ const Clothes = ({storesData}) => {
             <Breadcrumbs
                 className="mt-4"
                 aria-label="Breadcrumb"
+                dir={strings.getLanguage() === "ar" ? "rtl" : "ltr"}
             >
-                <BreadcrumbItem><Link href="/">Home</Link></BreadcrumbItem>
-                <BreadcrumbItem>Clothes</BreadcrumbItem>
+                <BreadcrumbItem><Link href="/">{strings.Home}</Link></BreadcrumbItem>
+                <BreadcrumbItem>{strings.Stores}</BreadcrumbItem>
             </Breadcrumbs>
            <ClothesCategory storesData={storesData}/>
         </main>

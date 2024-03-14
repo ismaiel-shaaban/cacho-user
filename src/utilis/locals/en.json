@@ -10,5 +10,21 @@
   "egp": "EGP",
   "Nearest" : "Nearest",
   "New" : "New",
-  "SpecialOffers": "Special Offers"
+  "SpecialOffers": "Special Offers",
+  "Home": "Home",
+  "Stores": "Stores",
+  "Filter": "Filter",
+  "Location": "Location",
+  "results": "results",
+  "Reset": "Reset",
+  "Category": "Category",
+  "Type": "Type",
+  "Old" : "Old",
+  "Select": "Select",
+  "Subscribe": "Subscribe",
+  "EnterYourEmail": "Enter your email",
+  "SubscribeNow": "Subscribe Now",
+  "CopyRight": "© 2019 Lift Media. All rights reserved.",
+  "PrivacyPolicy": "Privacy Policy",
+  "TermsOfUse": "Terms of Use"
 }

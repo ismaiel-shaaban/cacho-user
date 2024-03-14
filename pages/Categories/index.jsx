@@ -10,6 +10,7 @@ import business_7 from "../../public/BusinessTypes/img-7.jpg";
 import business_8 from "../../public/BusinessTypes/img-8.jpg";
 import {BreadcrumbItem, Breadcrumbs} from "@nextui-org/react";
 import Link from "next/link";
+import {strings} from "@/utilis/Localization";
 
 const businessData = [
   {
@@ -64,9 +65,10 @@ const Categories = ({businessData}) => {
               separator: "px-2",
               item: "data-[current=true]:text-[--primary-color] text-[16px] font-[500]",
             }}
+            dir={strings.getLanguage() === "ar" ? "rtl" : "ltr"}
         >
-          <BreadcrumbItem><Link href={"/"}>Home</Link> </BreadcrumbItem>
-          <BreadcrumbItem className="text-[--primary-color]">Categories</BreadcrumbItem>
+          <BreadcrumbItem><Link href={"/"}>{strings.Home}</Link> </BreadcrumbItem>
+          <BreadcrumbItem className="text-[--primary-color]">{strings.Categories}</BreadcrumbItem>
         </Breadcrumbs>
         <Cards businessData={businessData}/>
       </main>

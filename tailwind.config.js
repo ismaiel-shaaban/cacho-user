@@ -26,12 +26,12 @@ module.exports = {
       },
          // Define custom utility classes
          textColor: theme => ({
-          'primary': `var(--primary-color)`,
+          // 'primary': `var(--primary-color)`,
           'primary-100': `var(--bahaa)` , 
           'secondary': `var(--text-color-secondary)`, // This class will take color from --text-color-secondary root variable
         }),
         backgroundColor: theme => ({
-          'primary': `var(--bg-color)`, // This class will take color from --bg-color-primary root variable
+          // 'primary': `var(--bg-color)`, // This class will take color from --bg-color-primary root variable
           'secondary': `var(--bg-color-secondary)`, // This class will take color from --bg-color-secondary root variable
         }),
     },

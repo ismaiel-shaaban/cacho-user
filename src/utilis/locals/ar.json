@@ -10,5 +10,21 @@
   "egp":"جنيه" ,
   "Nearest" : "الأقرب",
   "New" : "الأحدث",
-  "SpecialOffers": "عروض خاصة"
+  "SpecialOffers": "عروض خاصة",
+  "Stores": "المتاجر",
+  "Home": "الرئيسية",
+  "Filter": "فلتر",
+  "Location": "الموقع",
+  "results": "نتائج",
+  "Reset": "إعادة تعيين",
+  "Category": "الفئة",
+  "Type": "النوع",
+  "Old" : "الأقدم",
+  "Select": "اختر",
+  "Subscribe": "اشترك",
+  "EnterYourEmail": "أدخل بريدك الإلكتروني",
+  "SubscribeNow": "اشترك الآن",
+  "CopyRight":" جميع الحقوق محفوظة Lift Media 2019 ©",
+  "PrivacyPolicy": "سياسة الخصوصية",
+  "TermsOfUse": "شروط الاستخدام"
 }
