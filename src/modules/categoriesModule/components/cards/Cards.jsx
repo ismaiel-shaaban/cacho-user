@@ -1,6 +1,5 @@
 import {useEffect, useState} from 'react'
 import Card from "@/modules/categoriesModule/components/cards/card/Card";
-import CardsLayout from "@/components/sheared/cardsLayout/CardsLayout";
 
 const Cards = ({businessData}) => {
     const [data, setData] = useState([]);
@@ -11,15 +10,10 @@ const Cards = ({businessData}) => {
     }, []);
     if (!data) return <div>Loading...</div>;
     return (
-        <div>
-            <CardsLayout>
-                {data.map((item) => (
-                        <Card key={item.id} title={item.title} image={item.image}/>
-                    )
-                )}
-            </CardsLayout>
-        </div>
-    )
+        <div
+            className={`grid lg:grid-cols-5 md:grid-cols-4 sm:grid-cols-3 md:gap-[20px] gap-2 mt-[34px]`}>
+            {data.map((item) => (<Card key={item.id} title={item.title} image={item.image}/>))}
+        </div>)
 }
 
 export default Cards

@@ -8,6 +8,8 @@ import business_5 from "../../public/BusinessTypes/img-5.jpg";
 import business_6 from "../../public/BusinessTypes/img-6.jpg";
 import business_7 from "../../public/BusinessTypes/img-7.jpg";
 import business_8 from "../../public/BusinessTypes/img-8.jpg";
+import {BreadcrumbItem, Breadcrumbs} from "@nextui-org/react";
+import Link from "next/link";
 
 const businessData = [
   {
@@ -55,6 +57,17 @@ const businessData = [
 const Categories = ({businessData}) => {
   return (
       <main className="container">
+        <Breadcrumbs
+            className="mt-4"
+            separator="/"
+            itemClasses={{
+              separator: "px-2",
+              item: "data-[current=true]:text-[--primary-color] text-[16px] font-[500]",
+            }}
+        >
+          <BreadcrumbItem><Link href={"/"}>Home</Link> </BreadcrumbItem>
+          <BreadcrumbItem className="text-[--primary-color]">Categories</BreadcrumbItem>
+        </Breadcrumbs>
         <Cards businessData={businessData}/>
       </main>
   )
