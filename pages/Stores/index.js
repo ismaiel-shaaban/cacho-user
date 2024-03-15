@@ -11,7 +11,7 @@ const storesData = [
         storeName: "Store Name",
         storeImage: store_1,
         storeLogo: pannerPic2,
-        category: ["shoes", "clothes"],
+        category: ["shoes"],
         rating: "4.5",
         ratingCount: "100",
         status: "Open Now",
@@ -21,7 +21,7 @@ const storesData = [
         storeName: "Store Name",
         storeImage: store_2,
         storeLogo: pannerPic2,
-        category: ["shoes", "clothes"],
+        category: ["restaurant"],
         rating: "4.5",
         ratingCount: "100",
         status: "Open Now",
@@ -31,7 +31,7 @@ const storesData = [
         storeName: "Store Name",
         storeImage: store_3,
         storeLogo: pannerPic2,
-        category: ["shoes", "clothes"],
+        category: [ "clothes"],
         rating: "4.5",
         ratingCount: "100",
         status: "Open Now",
@@ -41,26 +41,109 @@ const storesData = [
         storeName: "Store Name",
         storeImage: store_4,
         storeLogo: pannerPic2,
-        category: ["shoes", "clothes"],
+        category: ["spa"],
         rating: "4.5",
         ratingCount: "100",
         status: "Closed",
         storeLink: "#"
-    }]
-const Stores = ({storesData}) => {
+    },
+    {
+        id: 5,
+        storeName: "Store Name",
+        storeImage: store_4,
+        storeLogo: pannerPic2,
+        category: ["salon"],
+        rating: "4.5",
+        ratingCount: "100",
+        status: "Closed",
+        storeLink: "#"
+    },
+    {
+        id: 6,
+        storeName: "Store Name",
+        storeImage: store_4,
+        storeLogo: pannerPic2,
+        category: ["cafe"],
+        rating: "4.5",
+        ratingCount: "100",
+        status: "Closed",
+        storeLink: "#"
+    },
+    {
+        id: 7,
+        storeName: "Store Name",
+        storeImage: store_4,
+        storeLogo: pannerPic2,
+        category: ["gym"],
+        rating: "4.5",
+        ratingCount: "100",
+        status: "Closed",
+        storeLink: "#"
+    },
+    {
+        id: 8,
+        storeName: "Store Name",
+        storeImage: store_4,
+        storeLogo: pannerPic2,
+        category: ["bakery"],
+        rating: "4.5",
+        ratingCount: "100",
+        status: "Closed",
+        storeLink: "#"
+    },
+    {
+        id: 9,
+        storeName: "Store Name",
+        storeImage: store_4,
+        storeLogo: pannerPic2,
+        category: ["bar"],
+        rating: "4.5",
+        ratingCount: "100",
+        status: "Closed",
+        storeLink: "#"
+    },
+    {
+        id: 10,
+        storeName: "Store Name",
+        storeImage: store_4,
+        storeLogo: pannerPic2,
+        category: ["hotel"],
+        rating: "4.5",
+        ratingCount: "100",
+        status: "Closed",
+        storeLink: "#"
+    },
+    {
+        id: 11,
+        storeName: "Store Name",
+        storeImage: store_4,
+        storeLogo: pannerPic2,
+        category: ["hotel"],
+        rating: "4.5",
+        ratingCount: "100",
+        status: "Closed",
+        storeLink: "#"
+    }
+    ]
+const Stores = ({filterData ,query}) => {
+    console.log(query)
+    console.log(filterData)
     return(
         <section className="container">
-        <StoresCards storesData={storesData}/>
+        <StoresCards storesData={filterData}/>
         </section>
     )
 }
 
 export default Stores
 
-export async function getServerSideProps() {
+export async function getServerSideProps(context) {
+    const {query} = context;
+    const filterData = storesData.filter((store) => store.category.find((cat) => cat === query.filter));
     return {
         props: {
-            storesData,
+            filterData,
+            query
         }
     }
 }

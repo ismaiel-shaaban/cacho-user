@@ -2,10 +2,10 @@ import {
     Button, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, useDisclosure
 } from "@nextui-org/react";
 import {useEffect, useState} from "react";
-import SidebarShopsContent from "@/modules/categoriesModule/components/saidbarShops/SidebarShopsContent";
+import SidebarStoresContent from "@/modules/storesModule/components/saidbarStores/SidebarStoresContent";
 import {strings} from "@/utilis/Localization";
 
-const SidebarShopsFilter = () => {
+const SidebarStoresFilter = () => {
     const {isOpen, onOpen, onOpenChange} = useDisclosure();
     const [showSidebar, setShowSidebar] = useState(false);
 
@@ -18,7 +18,7 @@ const SidebarShopsFilter = () => {
         return () => window.removeEventListener("resize", handleResize);
     }, []);
     return (<>
-        {showSidebar && <SidebarShopsContent/>}
+        {showSidebar && <SidebarStoresContent/>}
         {!showSidebar && <>
             <Button onPress={onOpen} variant={"shadow"} color={"primary"} className="mt-3">Filter</Button>
             <Modal isOpen={isOpen} onOpenChange={onOpenChange} placement={"center"}>
@@ -26,7 +26,7 @@ const SidebarShopsFilter = () => {
                     {(onClose) => (<>
                         <ModalHeader className="flex flex-col gap-1">{strings.Filter}</ModalHeader>
                         <ModalBody>
-                            <SidebarShopsContent/>
+                            <SidebarStoresContent/>
                         </ModalBody>
                         <ModalFooter>
                             <Button color="danger" variant="light" onPress={onClose}>
@@ -40,4 +40,4 @@ const SidebarShopsFilter = () => {
     </>)
 }
 
-export default SidebarShopsFilter
+export default SidebarStoresFilter

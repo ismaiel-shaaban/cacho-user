@@ -12,7 +12,7 @@ const Cards = ({businessData}) => {
     return (
         <div
             className={`grid lg:grid-cols-5 md:grid-cols-4 sm:grid-cols-3 md:gap-[20px] gap-2 mt-[34px]`}>
-            {data.map((item) => (<Card key={item.id} title={item.title} image={item.image}/>))}
+            {data.map((item) => (<Card key={item.id} title={item.title} image={item.image} type={item.type}/>))}
         </div>)
 }
 

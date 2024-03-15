@@ -2,7 +2,7 @@ import {Chip, Select, SelectItem} from "@nextui-org/react";
 import {Checkbox} from "@nextui-org/checkbox";
 import {strings} from "@/utilis/Localization";
 
-const SidebarShopsContent = () => {
+const SidebarStoresContent = () => {
     return (<div className="md:col-span-3 mt-[40px]" dir={strings.getLanguage() === "ar" ? "rtl" : "ltr"}>
         <div>
             <div className="flex items-center justify-between">
@@ -60,4 +60,4 @@ const SidebarShopsContent = () => {
     </div>)
 }
 
-export default SidebarShopsContent
+export default SidebarStoresContent

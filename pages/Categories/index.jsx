@@ -17,41 +17,49 @@ const businessData = [
     id: 1,
     image: business_1,
     title: "Restaurant",
+    type: "restaurant"
   },
   {
     id: 2,
     image: business_2,
     title: "Cafe",
+    type: "cafe"
   },
   {
     id: 3,
     image: business_3,
     title: "Gym",
+    type: "gym"
   },
   {
     id: 4,
     image: business_4,
     title: "Salon",
+    type: "salon"
   },
   {
     id: 5,
     image: business_5,
     title: "Spa",
+    type: "spa"
   },
   {
     id: 6,
     image: business_6,
     title: "Bakery",
+    type: "bakery"
   },
   {
     id: 7,
     image: business_7,
     title: "Bar",
+    type: "bar"
   },
   {
     id: 8,
     image: business_8,
     title: "Hotel",
+    type: "hotel"
   }
 ]
 
