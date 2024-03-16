@@ -1,7 +1,8 @@
-import StoreModule from "@/modules/storeModule/StoreModule";
+import StoreModule from "@/modules/storesModule/storeModule/StoreModule";
+import store_1 from "../../public/panner/img-2.jpg";
 import product_1 from "../../public/product/img-1.jpg";
 import product_2 from "../../public/product/img-2.jpeg";
-import image_1 from "../../public/storeImage/img-1.png";
+import image_1 from "../../public/storeImage/img-5.png";
 import image_2 from "../../public/storeImage/img-2.png";
 import image_3 from "../../public/storeImage/img-3.png";
 import image_4 from "../../public/storeImage/img-4.png";
@@ -19,6 +20,7 @@ const storesData = [
     {
         id: 1,
         storeName: "Pizza Hut",
+        storeImage: store_1,
         videoLink: bg,
         rate: 4.5,
         reviews: 100,
@@ -277,6 +279,7 @@ const storesData = [
     {
         id: 2,
         storeName: "NTC",
+        storeImage: store_1,
         videoLink: bg,
         rate: 3,
         reviews: 320,
@@ -535,6 +538,7 @@ const storesData = [
     {
         id: 3,
         storeName: "Store Name",
+        storeImage: store_1,
         videoLink: bg,
         rate: 4.5,
         reviews: 100,
@@ -793,6 +797,7 @@ const storesData = [
     {
         id: 4,
         storeName: "Pizza Hut",
+        storeImage: store_1,
         videoLink: bg,
         rate: 4.5,
         reviews: 100,
@@ -1051,6 +1056,7 @@ const storesData = [
     {
         id: 5,
         storeName: "Pizza Hut",
+        storeImage: store_1,
         videoLink: bg,
         rate: 4.5,
         reviews: 100,
@@ -1309,6 +1315,7 @@ const storesData = [
     {
         id: 6,
         storeName: "Pizza Hut",
+        storeImage: store_1,
         videoLink: bg,
         rate: 4.5,
         reviews: 100,
@@ -1567,6 +1574,7 @@ const storesData = [
     {
         id: 7,
         storeName: "Pizza Hut",
+        storeImage: store_1,
         videoLink: bg,
         rate: 4.5,
         reviews: 100,
@@ -1825,6 +1833,7 @@ const storesData = [
     {
         id: 8,
         storeName: "Pizza Hut",
+        storeImage: store_1,
         videoLink: bg,
         rate: 4.5,
         reviews: 100,

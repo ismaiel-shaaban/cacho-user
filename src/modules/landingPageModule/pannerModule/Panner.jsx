@@ -8,6 +8,7 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import {FaArrowLeftLong, FaArrowRightLong} from "react-icons/fa6";
 import classes from './Panner.module.css'
+import StoreImage from "@/components/sheared/storeImage/StoreImage";
 
 const Panner = ({data}) => {
     return (<section className="panner container mt-[20px]">
@@ -39,8 +40,7 @@ const Panner = ({data}) => {
                         </div>
                         <div
                             className="absolute bottom-unit-28 left-unit-10 transform text-center flex items-center justify-center gap-3">
-                            <Image src={item.storeImage} alt="img-2"
-                                   className="block w-[80px] object-cover h-[80px] rounded-md overflow-hidden"/>
+                            <StoreImage image={item.storeImage} alt="storeImage"/>
                             <div>
                                 <h3 className="text-white font-[500] text-2xl mb-2">{item.storeName}</h3>
                                 <Link href={item.StoreLink}

@@ -4,6 +4,7 @@ import { StarIcon } from "@/utilis/Icons/StarIcon";
 import Link from "next/link";
 import BookMark from "@/utilis/Icons/BookMark";
 import Rating from "@/components/sheared/rateing/Rating";
+import StoreImage from "@/components/sheared/storeImage/StoreImage";
 
 const StoresCard = ({ store }) => {
     const { storeName, storeImage, storeLogo, storeLink, category, rating, ratingCount, status ,id } = store;
@@ -30,7 +31,7 @@ const StoresCard = ({ store }) => {
                 </div>
                 <div className="p-[15px] flex items-center gap-3">
                     <Link href={`/Stores/${id}`}>
-                        <Image src={storeLogo} alt={storeName} className="block w-[80px] object-cover h-[80px] rounded-md overflow-hidden" />
+                        <StoreImage image={storeLogo} alt={storeName}/>
                     </Link>
                     <div>
                         <h3 className="text-md font-medium mb-[10px] leading-7">

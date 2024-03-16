@@ -139,7 +139,7 @@ export default Stores
 
 export async function getServerSideProps(context) {
     const {query} = context;
-    const filterData = storesData.filter((store) => store.category.find((cat) => cat === query.filter));
+    const filterData = storesData.filter((store) => store.category.find((cat) => cat === query.filter || storesData));
     return {
         props: {
             filterData,
