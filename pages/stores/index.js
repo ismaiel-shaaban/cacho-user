@@ -126,8 +126,7 @@ const storesData = [
     }
     ]
 const Stores = ({filterData ,query}) => {
-    console.log(query)
-    console.log(filterData)
+
     return(
         <section className="container">
         <StoresCards storesData={filterData}/>
@@ -138,12 +137,17 @@ const Stores = ({filterData ,query}) => {
 export default Stores
 
 export async function getServerSideProps(context) {
-    const {query} = context;
-    const filterData = storesData.filter((store) => store.category.find((cat) => cat === query.filter || storesData));
+    const { query } = context;
+    let filterData = storesData;
+
+    if (query && query.filter) {
+        filterData = storesData.filter((store) => store.category.includes(query.filter));
+    }
+
     return {
         props: {
             filterData,
             query
         }
-    }
+    };
 }

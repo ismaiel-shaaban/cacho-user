@@ -13,7 +13,7 @@ const SectionTitle = ({title, link, select}) => {
 
     return (<div className="section-title flex items-center justify-between" dir={lang === "ar" ? "rtl" : "ltr"}>
             <div className="flex items-center">
-                <h2 className="font-[600] text-[32px] text-[#000] whitespace-nowrap">{title}</h2>
+                <h2 className="text-[32px] text-[--primary-color] whitespace-nowrap font-bold">{title}</h2>
                 {select && <Select variant={"underlined"} dir={"ltr"}
                                    defaultSelectedKeys={["1"]}
                                    classNames={{

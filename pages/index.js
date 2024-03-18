@@ -24,372 +24,256 @@ import store_4 from '../public/Nearest/img-4.jpg'
 import offer_1 from '../public/offers/img-1.jpg'
 import offer_2 from '../public/offers/img-2.jpg'
 import offer_3 from '../public/offers/img-3.jpg'
+import {useEffect} from "react";
 
-const data = [
-    {
-        id: 1,
-        discount: "50%",
-        image: pannerPic,
-        storeName: "Store Name",
-        storeImage: pannerPic2,
-        StoreLink: "#"
-    },
-    {
-        id: 2,
-        discount: "70%",
-        image: pannerPic,
-        storeName: "Store Name",
-        storeImage: pannerPic2,
-        StoreLink: "#"
-    },
-    {
-        id: 3,
-        discount: "30%",
-        image: pannerPic,
-        storeName: "Store Name",
-        storeImage: pannerPic2,
-        StoreLink: "#"
-    },
-    {
-        id: 4,
-        discount: "40%",
-        image: pannerPic,
-        storeName: "Store Name",
-        storeImage: pannerPic2,
-        StoreLink: "#"
-    },
-    {
-        id: 5,
-        discount: "60%",
-        image: pannerPic,
-        storeName: "Store Name",
-        storeImage: pannerPic2,
-        StoreLink: "#"
-    }
-]
-const businessData = [
-    {
-        id: 1,
-        image: business_1,
-        title: "Restaurant",
-    },
-    {
-        id: 2,
-        image: business_2,
-        title: "Cafe",
-    },
-    {
-        id: 3,
-        image: business_3,
-        title: "Gym",
-    },
-    {
-        id: 4,
-        image: business_4,
-        title: "Salon",
-    },
-    {
-        id: 5,
-        image: business_5,
-        title: "Spa",
-    },
-    {
-        id: 6,
-        image: business_6,
-        title: "Bakery",
-    },
-    {
-        id: 7,
-        image: business_7,
-        title: "Bar",
-    },
-    {
-        id: 8,
-        image: business_8,
-        title: "Hotel",
-    }
-]
-const offersData = [
-    {
-        id: 1,
-        type: "New",
-        image: product_1,
-        marketName: "Market Name",
-        title: "Product Title Product Title",
-        price: "100",
-        oldPrice: "200",
-        link: "#",
-        rating: "4.5",
-        ratingCount: "100"
-    },
-    {
-        id: 2,
-        discount: "50%",
-        image: product_2,
-        marketName: "Market Name",
-        title: "Product Title",
-        price: "100",
-        oldPrice: "200",
-        link: "#",
-        rating: "4.5",
-        ratingCount: "100"
-    },
-    {
-        id: 3,
-        discount: "50%",
-        image: product_1,
-        marketName: "Market Name",
-        title: "Product Title",
-        price: "100",
-        oldPrice: "200",
-        link: "#",
-        rating: "4.5",
-        ratingCount: "100"
-    },
-    {
-        id: 4,
-        discount: "50%",
-        image: product_2,
-        marketName: "Market Name",
-        title: "Product Title",
-        price: "100",
-        oldPrice: "200",
-        link: "#",
-        rating: "4.5",
-        ratingCount: "100"
-    },
-    {
-        id: 5,
-        discount: "50%",
-        image: product_1,
-        marketName: "Market Name",
-        title: "Product Title",
-        price: "100",
-        oldPrice: "200",
-        link: "#",
-        rating: "4.5",
-        ratingCount: "100"
-    },
-    {
-        id: 6,
-        discount: "50%",
-        image: product_2,
-        marketName: "Market Name",
-        title: "Product Title",
-        price: "100",
-        oldPrice: "200",
-        link: "#",
-        rating: "4.5",
-        ratingCount: "100"
-    },
-    {
-        id: 7,
-        discount: "50%",
-        image: product_1,
-        marketName: "Market Name",
-        title: "Product Title",
-        price: "100",
-        oldPrice: "200",
-        link: "#",
-        rating: "4.5",
-        ratingCount: "100"
-    },
-    {
-        id: 8,
-        discount: "50%",
-        image: product_2,
-        marketName: "Market Name",
-        title: "Product Title",
-        price: "100",
-        oldPrice: "200",
-        link: "#",
-        rating: "4.5",
-        ratingCount: "100"
-    }
-]
-const storesData = [
-    {
-        id:1,
-        storeName: "Store Name",
-        storeImage: store_1,
-        storeLogo: pannerPic2,
-        category: ["shoes", "clothes"],
-        rating: "4.5",
-        ratingCount: "100",
-        status: "Open Now",
-        storeLink: "#"
-    },
-    {
-        id:2,
-        storeName: "Store Name",
-        storeImage: store_2,
-        storeLogo: pannerPic2,
-        category: ["shoes", "clothes"],
-        rating: "4.5",
-        ratingCount: "100",
-        status: "Open Now",
-        storeLink: "#"
-    },
-    {
-        id:3,
-        storeName: "Store Name",
-        storeImage: store_3,
-        storeLogo: pannerPic2,
-        category: ["shoes", "clothes"],
-        rating: "4.5",
-        ratingCount: "100",
-        status: "Open Now",
-        storeLink: "#"
-    },
-    {
-        id:4,
-        storeName: "Store Name",
-        storeImage: store_4,
-        storeLogo: pannerPic2,
-        category: ["shoes", "clothes"],
-        rating: "4.5",
-        ratingCount: "100",
-        status: "Closed",
-        storeLink: "#"
-    }
-]
-const newData = [
-    {
-        id: 1,
-        type: "New",
-        image: product_1,
-        marketName: "Market Name",
-        title: "Product Title Product Title",
-        price: "100",
-        oldPrice: "200",
-        link: "#",
-        rating: "4.5",
-        ratingCount: "100"
-    },
-    {
-        id: 1,
-        type: "New",
-        image: product_2,
-        marketName: "Market Name",
-        title: "Product Title Product Title",
-        price: "100",
-        oldPrice: "200",
-        link: "#",
-        rating: "4.5",
-        ratingCount: "100"
-    },
-    {
-        id: 1,
-        type: "New",
-        image: product_1,
-        marketName: "Market Name",
-        title: "Product Title Product Title",
-        price: "100",
-        oldPrice: "200",
-        link: "#",
-        rating: "4.5",
-        ratingCount: "100"
-    },
-    {
-        id: 1,
-        type: "New",
-        image: product_2,
-        marketName: "Market Name",
-        title: "Product Title Product Title",
-        price: "100",
-        oldPrice: "200",
-        link: "#",
-        rating: "4.5",
-        ratingCount: "100"
-    },
-    {
-        id: 1,
-        type: "New",
-        image: product_1,
-        marketName: "Market Name",
-        title: "Product Title Product Title",
-        price: "100",
-        oldPrice: "200",
-        link: "#",
-        rating: "4.5",
-        ratingCount: "100"
-    },
-    {
-        id: 1,
-        type: "New",
-        image: product_2,
-        marketName: "Market Name",
-        title: "Product Title Product Title",
-        price: "100",
-        oldPrice: "200",
-        link: "#",
-        rating: "4.5",
-        ratingCount: "100"
-    },
-    {
-        id: 1,
-        type: "New",
-        image: product_1,
-        marketName: "Market Name",
-        title: "Product Title Product Title",
-        price: "100",
-        oldPrice: "200",
-        link: "#",
-        rating: "4.5",
-        ratingCount: "100"
-    },
-    {
-        id: 1,
-        type: "New",
-        image: product_2,
-        marketName: "Market Name",
-        title: "Product Title Product Title",
-        price: "100",
-        oldPrice: "200",
-        link: "#",
-        rating: "4.5",
-        ratingCount: "100"
-    }
-]
-const specialOffersData = [
-    {
-        id: 1,
-        image: offer_1,
-    },
-    {
-        id: 2,
-        image: offer_2,
-    },
-    {
-        id: 3,
-        image: offer_3,
-    }
-]
+// const data = [
+//     {
+//         id: 1,
+//         discount: "50%",
+//         image: pannerPic,
+//         storeName: "Store Name",
+//         storeImage: pannerPic2,
+//         StoreLink: "#"
+//     },
+//     {
+//         id: 2,
+//         discount: "70%",
+//         image: pannerPic,
+//         storeName: "Store Name",
+//         storeImage: pannerPic2,
+//         StoreLink: "#"
+//     },
+//     {
+//         id: 3,
+//         discount: "30%",
+//         image: pannerPic,
+//         storeName: "Store Name",
+//         storeImage: pannerPic2,
+//         StoreLink: "#"
+//     },
+//     {
+//         id: 4,
+//         discount: "40%",
+//         image: pannerPic,
+//         storeName: "Store Name",
+//         storeImage: pannerPic2,
+//         StoreLink: "#"
+//     },
+//     {
+//         id: 5,
+//         discount: "60%",
+//         image: pannerPic,
+//         storeName: "Store Name",
+//         storeImage: pannerPic2,
+//         StoreLink: "#"
+//     }
+// ]
+// const businessData = [
+//     {
+//         id: 1,
+//         image: business_1,
+//         title: "Restaurant",
+//         type: "restaurant"
+//     },
+//     {
+//         id: 2,
+//         image: business_2,
+//         title: "Cafe",
+//         type: "cafe"
+//     },
+//     {
+//         id: 3,
+//         image: business_3,
+//         title: "Gym",
+//         type: "gym"
+//     },
+//     {
+//         id: 4,
+//         image: business_4,
+//         title: "Salon",
+//         type: "salon"
+//     },
+//     {
+//         id: 5,
+//         image: business_5,
+//         title: "Spa",
+//         type: "spa"
+//     },
+//     {
+//         id: 6,
+//         image: business_6,
+//         title: "Bakery",
+//         type: "bakery"
+//     },
+//     {
+//         id: 7,
+//         image: business_7,
+//         title: "Bar",
+//         type: "bar"
+//     },
+//     {
+//         id: 8,
+//         image: business_8,
+//         title: "Hotel",
+//         type: "hotel"
+//     }
+// ]
+//
+// const storesData = [
+//     {
+//         id:1,
+//         storeName: "Store Name",
+//         storeImage: store_1,
+//         storeLogo: pannerPic2,
+//         category: ["shoes", "clothes"],
+//         rating: "4.5",
+//         ratingCount: "100",
+//         status: "Open Now",
+//         storeLink: "#"
+//     },
+//     {
+//         id:2,
+//         storeName: "Store Name",
+//         storeImage: store_2,
+//         storeLogo: pannerPic2,
+//         category: ["shoes", "clothes"],
+//         rating: "4.5",
+//         ratingCount: "100",
+//         status: "Open Now",
+//         storeLink: "#"
+//     },
+//     {
+//         id:3,
+//         storeName: "Store Name",
+//         storeImage: store_3,
+//         storeLogo: pannerPic2,
+//         category: ["shoes", "clothes"],
+//         rating: "4.5",
+//         ratingCount: "100",
+//         status: "Open Now",
+//         storeLink: "#"
+//     },
+//     {
+//         id:4,
+//         storeName: "Store Name",
+//         storeImage: store_4,
+//         storeLogo: pannerPic2,
+//         category: ["shoes", "clothes"],
+//         rating: "4.5",
+//         ratingCount: "100",
+//         status: "Closed",
+//         storeLink: "#"
+//     }
+// ]
+// const newData = [
+//     {
+//         id: 1,
+//         type: "New",
+//         image: product_1,
+//         marketName: "Market Name",
+//         title: "Product Title Product Title",
+//         price: "100",
+//         oldPrice: "200",
+//         link: "#",
+//         rating: "4.5",
+//         ratingCount: "100"
+//     },
+//     {
+//         id: 1,
+//         type: "New",
+//         image: product_2,
+//         marketName: "Market Name",
+//         title: "Product Title Product Title",
+//         price: "100",
+//         oldPrice: "200",
+//         link: "#",
+//         rating: "4.5",
+//         ratingCount: "100"
+//     },
+//     {
+//         id: 1,
+//         type: "New",
+//         image: product_1,
+//         marketName: "Market Name",
+//         title: "Product Title Product Title",
+//         price: "100",
+//         oldPrice: "200",
+//         link: "#",
+//         rating: "4.5",
+//         ratingCount: "100"
+//     },
+//     {
+//         id: 1,
+//         type: "New",
+//         image: product_2,
+//         marketName: "Market Name",
+//         title: "Product Title Product Title",
+//         price: "100",
+//         oldPrice: "200",
+//         link: "#",
+//         rating: "4.5",
+//         ratingCount: "100"
+//     },
+//     {
+//         id: 1,
+//         type: "New",
+//         image: product_1,
+//         marketName: "Market Name",
+//         title: "Product Title Product Title",
+//         price: "100",
+//         oldPrice: "200",
+//         link: "#",
+//         rating: "4.5",
+//         ratingCount: "100"
+//     },
+//     {
+//         id: 1,
+//         type: "New",
+//         image: product_2,
+//         marketName: "Market Name",
+//         title: "Product Title Product Title",
+//         price: "100",
+//         oldPrice: "200",
+//         link: "#",
+//         rating: "4.5",
+//         ratingCount: "100"
+//     },
+//     {
+//         id: 1,
+//         type: "New",
+//         image: product_1,
+//         marketName: "Market Name",
+//         title: "Product Title Product Title",
+//         price: "100",
+//         oldPrice: "200",
+//         link: "#",
+//         rating: "4.5",
+//         ratingCount: "100"
+//     },
+//     {
+//         id: 1,
+//         type: "New",
+//         image: product_2,
+//         marketName: "Market Name",
+//         title: "Product Title Product Title",
+//         price: "100",
+//         oldPrice: "200",
+//         link: "#",
+//         rating: "4.5",
+//         ratingCount: "100"
+//     }
+// ]
 
-export default function Home({data, businessData ,newData ,offersData ,storesData}) {
-
+export default function Home() {
     return (
         <>
-            <Panner data={data}/>
-            <Categories businessData={businessData}/>
-            <HotOffers offersData={offersData}/>
-            <Nearest storesData={storesData}/>
-            <BannerJoin/>
-            <New newData={newData}/>
-            <SpecialOffers specialOffersData={specialOffersData}/>
+            {/*<Panner/>*/}
+            <Categories/>
+            {/*<HotOffers />*/}
+            {/*<Nearest/>*/}
+            {/*<BannerJoin/>*/}
+            {/*<New />*/}
+            {/*<SpecialOffers />*/}
         </>
     )
-}
-
-export async function getServerSideProps() {
-    return {
-        props: {
-            data,
-            businessData,
-            offersData,
-            storesData,
-            newData,
-            specialOffersData
-        }
-    }
 }

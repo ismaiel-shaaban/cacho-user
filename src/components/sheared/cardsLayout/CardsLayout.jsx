@@ -1,21 +1,8 @@
-import {usePathname} from "next/navigation";
-
 const CardsLayout = ({children}) => {
-    const path = usePathname()
-    let lg = "4"
-    let md = "3"
-    let sm = "2"
-    let gap = "20"
-    if (path === '/Categories') {
-        lg = "5"
-        md = "4"
-        sm = "3"
-    }
-    console.log(lg, md, sm, gap)
     return (
         <>
             <div
-                className={`grid lg:grid-cols-${lg} md:grid-cols-${md} sm:grid-cols-${sm} md:gap-${gap} gap-2 mt-[40px]`}>
+                className={`grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 md:gap-[24px] gap-2 mt-[40px]`}>
                 {children}
             </div>
         </>

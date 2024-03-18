@@ -25,9 +25,13 @@ const MyApp = ({Component, pageProps}) => {
                     font-family: ${cairo.style.fontFamily};
                 }
             `}</style>
-            <NavBar/>
+            {
+                Component.name !== "Login" ? <NavBar/> : null
+            }
             <Component {...pageProps} />
-            <Footer/>
+            {
+                Component.name !== "Login" ? <Footer/> : null
+            }
         </NextUIProvider>
     )
 }

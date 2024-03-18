@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import useSWR from "swr";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, FreeMode } from "swiper/modules";
 import "swiper/css";
@@ -6,15 +6,21 @@ import "swiper/css/pagination";
 import Card from "@/modules/categoriesModule/components/cards/card/Card";
 import SectionTitle from "@/modules/landingPageModule/components/sectionTitle/SectionTitle";
 import { strings } from "@/utilis/Localization";
+import {useEffect, useState} from "react";
 
-const Categories = ({ businessData }) => {
-    const [data, setData] = useState([]);
+const fetcher = (...args) => fetch(...args).then(res => res.json());
+const Categories = () => {
+    const [categories, setCategories] = useState([]);
+    const { data, error } = useSWR("https://caco-dev.mimusoft.com/api/customer/business-types", fetcher);
 
     useEffect(() => {
-        if (businessData) {
-            setData(businessData);
+        if (data) {
+            setCategories(data);
         }
-    }, [businessData]);
+    }, []);
+
+    if (error) return <div>Error loading categories...</div>;
+    if (!data) return <div>Loading categories...</div>;
 
     return (
         <section className="business-types container mt-[30px]">
@@ -46,9 +52,9 @@ const Categories = ({ businessData }) => {
                         },
                     }}
                 >
-                    {data.map((item) => (
+                    {categories.map((item) => (
                         <SwiperSlide key={item.id}>
-                            <Card title={item.title} image={item.image} />
+                            <Card title={item.title} image={item.image} type={item.type} />
                         </SwiperSlide>
                     ))}
                 </Swiper>

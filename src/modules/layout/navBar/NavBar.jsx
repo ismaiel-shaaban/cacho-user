@@ -1,6 +1,7 @@
 import {strings} from '@/utilis/Localization';
 import {useState, useEffect} from 'react';
 import {
+    Button,
     Divider, Navbar, NavbarContent, NavbarItem, NavbarMenu, NavbarMenuItem, NavbarMenuToggle,
 } from "@nextui-org/react";
 import BookMark from "@/utilis/Icons/BookMark";
@@ -9,11 +10,12 @@ import SearchInput from "@/modules/layout/navBar/components/searchInput/SearchIn
 import {MessagesIcon} from "@/utilis/Icons/MessagesIcon";
 import SelectLang from "@/modules/layout/navBar/components/selectLang/SelectLang";
 import Logo from "@/modules/layout/navBar/components/logo";
+import Link from "next/link";
 
 const NavBar = () => {
     const [isDarkMode, setIsDarkMode] = useState(false);
-
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [isLogin, setIsLogin] = useState(false);
 
     useEffect(() => {
         const savedDarkMode = localStorage.getItem('darkMode');
@@ -50,18 +52,30 @@ const NavBar = () => {
             <NavbarItem>
                 <SelectLang/>
             </NavbarItem>
-            <NavbarItem>
-                <MessagesIcon/>
-            </NavbarItem>
-            <NavbarItem>
-                <BookMark/>
-            </NavbarItem>
-            <NavbarItem>
-                <Divider orientation="vertical" className="w-[1px] h-[44px]"/>
-            </NavbarItem>
-            <NavbarItem>
-                <UserInfo/>
-            </NavbarItem>
+            {isLogin ?
+                <>
+                    <NavbarItem>
+                        <MessagesIcon/>
+                    </NavbarItem>
+                    <NavbarItem>
+                        <BookMark/>
+                    </NavbarItem>
+                    <NavbarItem>
+                        <Divider orientation="vertical" className="w-[1px] h-[44px]"/>
+                    </NavbarItem>
+                    <NavbarItem>
+                        <UserInfo/>
+                    </NavbarItem>
+                </> :
+                <>
+                    <NavbarItem>
+                        <Link href={"/login"} className="text-[--primary-color]">{strings.LogIn}</Link>
+                    </NavbarItem>
+                    <NavbarItem>
+                        <Button className="bg-[--primary-color] text-white" as={Link} href={"/register"}>{strings.Register}</Button>
+                    </NavbarItem>
+                </>
+                }
         </NavbarContent>
         <NavbarContent className="flex md:hidden" justify="end">
             <NavbarItem>

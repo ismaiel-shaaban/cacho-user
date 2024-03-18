@@ -1,6 +1,8 @@
 import {Dropdown, DropdownItem, DropdownMenu, DropdownTrigger, User} from "@nextui-org/react";
 import {EditProfileIcon} from "@/utilis/Icons/EditProfileIcon";
 import {LogoutIcon} from "@/utilis/Icons/LogoutIcon";
+import LockIcon from "@/utilis/Icons/LockIcon";
+import ChangeLocationIcon from "@/utilis/Icons/ChangeLocationIcon";
 
 const UserInfo = () => {
     return (
@@ -18,10 +20,22 @@ const UserInfo = () => {
                 />
             </DropdownTrigger>
             <DropdownMenu aria-label="User Actions" variant="flat">
-                <DropdownItem key="settings">
+                <DropdownItem key="Edit Profile">
                     <div className="flex items-center justify-start gap-2">
                         <span><EditProfileIcon/></span>
-                        <span>Settings</span>
+                        <span>Edit Profile</span>
+                    </div>
+                </DropdownItem>
+                <DropdownItem key="Change Password">
+                    <div className="flex items-center justify-start gap-2">
+                        <span><LockIcon/></span>
+                        <span>Change Password</span>
+                    </div>
+                </DropdownItem>
+                <DropdownItem key="Change location">
+                    <div className="flex items-center justify-start gap-2">
+                        <span><ChangeLocationIcon/></span>
+                        <span>Change location</span>
                     </div>
                 </DropdownItem>
                 <DropdownItem key="logout" color="danger">
