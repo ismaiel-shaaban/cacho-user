@@ -39,3 +39,13 @@ body {
     width: 40px;
     background-color: #fff !important;
 }
+
+.product-slide .mySwiper .swiper-slide {
+    opacity: 0.4;
+    transition: opacity 0.3s ease;
+}
+
+.product-slide  .mySwiper .swiper-slide-thumb-active {
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
