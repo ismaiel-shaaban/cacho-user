@@ -15,9 +15,10 @@ const Categories = () => {
 
     useEffect(() => {
         if (data) {
-            setCategories(data);
+            setCategories(data.response.data );
+            console.log(data);
         }
-    }, []);
+    }, [data]);
 
     if (error) return <div>Error loading categories...</div>;
     if (!data) return <div>Loading categories...</div>;
@@ -53,8 +54,8 @@ const Categories = () => {
                     }}
                 >
                     {categories.map((item) => (
-                        <SwiperSlide key={item.id}>
-                            <Card title={item.title} image={item.image} type={item.type} />
+                        <SwiperSlide key={item.uuid  }>
+                            <Card title={item.name} image={item.image} type={item.type} />
                         </SwiperSlide>
                     ))}
                 </Swiper>
