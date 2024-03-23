@@ -15,9 +15,10 @@ const StoreTabs = ({ aboutUs,products,reviews,offers }) => {
             <Tabs aria-label="Store Data" variant={"bordered"}
                   classNames={{
                       base: "bg-[#AD732E1A] rounded-md",
-                      tabList: "shadow-none border-none",
-                      tabContent: "group-data-[selected=true]:text-white text-[--gray-2] px-[30px] py-[10px] w-full",
+                      tabList: "shadow-none border-none flex-wrap w-fit justify-center items-center",
+                      tabContent: "group-data-[selected=true]:text-white text-[--gray-2] px-[30px] py-[10px] w-full text-[18px] font-[500]",
                       cursor: "group-data-[selected=true]:bg-[--rate-color] rounded-md w-full",
+                      tab:"w-fit",
                   }}
             >
                 <Tab key={"About Us"} title={"About Us"}>
@@ -33,7 +34,7 @@ const StoreTabs = ({ aboutUs,products,reviews,offers }) => {
                     <Reviews reviews={reviews}/>
                 </Tab>
             </Tabs>
-            <div className="absolute top-0 right-0 me-2 mt-3 rounded-md flex gap-2 md:gap-[23px]">
+            <div className="absolute top-0 right-0 me-2 mt-3 rounded-md gap-2 md:gap-[23px] hidden md:flex">
                 <span className="p-[15px] border-2 w-[54px] h-[54px] rounded-md flex items-center justify-center">
                     <SaveIcon/>
                 </span>

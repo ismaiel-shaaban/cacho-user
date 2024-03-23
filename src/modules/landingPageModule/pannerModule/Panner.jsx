@@ -15,7 +15,7 @@ const Panner = ({data}) => {
 
         <Swiper
             modules={[Navigation, Pagination , Autoplay]}
-            pagination={{clickable: true, el: '.swiper-pagination', type: 'bullets'}}
+            pagination={{clickable: true, el: '.swiper-paginationPage', type: 'bullets'}}
             navigation={{
                 nextEl: '.swiper-next', prevEl: '.swiper-prev'
             }}
@@ -58,7 +58,7 @@ const Panner = ({data}) => {
 
             {/*<SliderBtns/>*/}
             <div className="absolute bottom-0 left-0 w-100 z-10 flex items-center justify-between px-10 mb-3 w-full">
-                <div className={`swiper-pagination ${classes["swiper-pagination"]}`}></div>
+                <div className={`swiper-pagination ${classes["swiper-paginationPage"]}`}></div>
                 <span className="text-white flex items-center justify-center gap-10">
                     <div
                         className={`swiper-prev ${classes["swiper-prev"]} border rounded-full !w-[40px] h-[40px] flex items-center justify-center cursor-pointer`}><FaArrowLeftLong

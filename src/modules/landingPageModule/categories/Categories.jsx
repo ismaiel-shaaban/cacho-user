@@ -16,7 +16,7 @@ const Categories = () => {
     useEffect(() => {
         if (data) {
             setCategories(data.response.data );
-            console.log(data);
+            console.log(data.response.data);
         }
     }, [data]);
 
@@ -25,7 +25,7 @@ const Categories = () => {
 
     return (
         <section className="business-types container mt-[30px]">
-            <SectionTitle title={strings.Categories} link="/Categories" />
+            <SectionTitle title={strings.businessTypes} link="/categories" />
             <div className="w-100 mt-[25px]">
                 <Swiper
                     modules={[Autoplay, FreeMode]}
@@ -54,8 +54,8 @@ const Categories = () => {
                     }}
                 >
                     {categories.map((item) => (
-                        <SwiperSlide key={item.uuid  }>
-                            <Card title={item.name} image={item.image} type={item.type} />
+                        <SwiperSlide key={item.uuid}>
+                            <Card item={item} />
                         </SwiperSlide>
                     ))}
                 </Swiper>

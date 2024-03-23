@@ -1,8 +1,22 @@
 import {Chip, Select, SelectItem} from "@nextui-org/react";
 import {Checkbox} from "@nextui-org/checkbox";
 import {strings} from "@/utilis/Localization";
+import {useState} from "react";
+import {useRouter} from "next/router";
 
-const SidebarStoresContent = () => {
+const SidebarStoresContent = ({categoriesData}) => {
+    const router = useRouter();
+    const filter = router.query.filter;
+    const [values, setValues] = useState(new Set([`${filter}`]));
+
+    const handleSelectionChange = (e) => {
+        setValues(new Set(e.target.value.split(",")));
+        // Update the URL query parameter to reflect the new filter
+        router.push({
+            pathname: router.pathname, query: {...router.query, filter: e.target.value},
+        });
+    }
+
     return (<div className="md:col-span-3 mt-[40px]" dir={strings.getLanguage() === "ar" ? "rtl" : "ltr"}>
         <div>
             <div className="flex items-center justify-between">
@@ -39,12 +53,14 @@ const SidebarStoresContent = () => {
                 </div>
                 <h4 className="text-[12px] mt-[15px] text-[--label-color] mb-3">{strings.Category}</h4>
                 <div>
-                    <Select variant={"flat"} label={strings.Select} dir={"ltr"} size={"sm"} classNames={{
+                    <Select variant={"flat"} label={strings.Select}
+                            selectedKeys={values}
+                            onChange={handleSelectionChange}
+                            dir={"ltr"} size={"sm"} classNames={{
                         trigger: 'bg-white'
                     }}>
-                        <SelectItem key="Food" value="Food">Food</SelectItem>
-                        <SelectItem key="Clothes" value="Clothes">Clothes</SelectItem>
-                        <SelectItem key="Shoes" value="Shoes">Shoes</SelectItem>
+                        {categoriesData.map((item) => (
+                            <SelectItem key={item.uuid} value={item.uuid}>{item.name}</SelectItem>))}
                     </Select>
                 </div>
                 <h4 className="text-[12px] mt-[15px] text-[--label-color]">{strings.Type}</h4>

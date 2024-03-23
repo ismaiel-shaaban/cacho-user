@@ -269,7 +269,7 @@ export default function Home() {
         <>
             {/*<Panner/>*/}
             <Categories/>
-            {/*<HotOffers />*/}
+            <HotOffers />
             {/*<Nearest/>*/}
             {/*<BannerJoin/>*/}
             {/*<New />*/}

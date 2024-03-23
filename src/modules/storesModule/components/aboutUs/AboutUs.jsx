@@ -60,8 +60,8 @@ const AboutUs = ({aboutUs}) => {
                 }}
             >
                 {aboutUs.images.map((image, index) => (
-                    <SwiperSlide>
-                        <div key={index} className="">
+                    <SwiperSlide key={index}>
+                        <div>
                             <Image src={image} key={index} alt={aboutUs.storeName} className="object-cover w-full h-full"/>
                         </div>
                     </SwiperSlide>
