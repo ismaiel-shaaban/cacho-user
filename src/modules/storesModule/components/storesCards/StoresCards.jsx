@@ -15,7 +15,6 @@ const StoresCards = () => {
     const {data, error, isLoading} = useStoresData(filter, page);
     const {data : categoriesData} = useCategoriesData();
 
-    console.log(data)
     const handlePageChange = (page) => {
         // Update the URL query parameter to reflect the new page
         router.push({

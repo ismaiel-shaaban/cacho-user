@@ -7,52 +7,17 @@ import {Pagination} from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 import 'swiper/css/navigation';
+import ReviewCard from "@/components/sheared/reviewCard/ReviewCard";
+import {useRouter} from "next/router";
+import useSWR from "swr";
 
+const fetcher = (url) => fetch(url).then(res => res.json())
 const ProductReviews = () => {
-    const reviews = [
-        {
-            id: 1,
-            user: "John Doe",
-            rating: 5,
-            date: "2021-12-12",
-            description:"faksmdfpasomdfklams;elfm AOPEFKZ MOPEKFC Loplwkefl;maef "
-        },
-        {
-            id: 2,
-            user: "Jane Doe",
-            rating: 4,
-            date: "2021-12-12",
-            description:"faksmdfpasomdfklams;elfm AOPEFKZ MOPEKFC Loplwkefl;maef "
-        },
-        {
-            id: 3,
-            user: "John Doe",
-            rating: 5,
-            date: "2021-12-12",
-            description:"faksmdfpasomdfklams;elfm AOPEFKZ MOPEKFC Loplwkefl;maef "
-        },
-        {
-            id: 4,
-            user: "Jane Doe",
-            rating: 4,
-            date: "2021-12-12",
-            description:"faksmdfpasomdfklams;elfm AOPEFKZ MOPEKFC Loplwkefl;maef "
-        },
-        {
-            id: 5,
-            user: "John Doe",
-            rating: 5,
-            date: "2021-12-12",
-            description:"faksmdfpasomdfklams;elfm AOPEFKZ MOPEKFC Loplwkefl;maef "
-        },
-        {
-            id: 6,
-            user: "Jane Doe",
-            rating: 4,
-            date: "2021-12-12",
-            description:"faksmdfpasomdfklams;elfm AOPEFKZ MOPEKFC Loplwkefl;maef "
-        },
-    ]
+    const router = useRouter()
+    const {id} = router.query
+    const {data ,error , isLoading} = useSWR(`https://caco-dev.mimusoft.com/api/customer/products/${id}/reviews`,fetcher)
+    if(isLoading) return <div><Swiper/></div>
+    if(error) return <div>Error</div>
     return (
         <div className="md:col-span-1 col-span-2">
             <h2>Reviews <Rating ratingCount={7} rating={4}/></h2>
@@ -64,32 +29,10 @@ const ProductReviews = () => {
                     mousewheel={true}
                     className="mySwiper h-[422px] lg:!h-[440px]  mt-3"
                 >
-                    {reviews.map(review => (
+                    {data?.response?.data.map(review => (
                         <SwiperSlide key={review.id}>
-                            <Card classNames={{
-                                base: "shadow-none rounded-md",
-                            }}>
-                                <CardBody>
-                                    <div className="flex items-center justify-between">
-                                        <ReactStars
-                                            count={5}
-                                            value={review.rating}
-                                            emptyIcon={<StarGrayIcon/>}
-                                            fullIcon={<StarGrayIcon/>}
-                                            isHalf={false}
-                                            edit={false}
-                                            size={24}
-                                            activeColor="#ffd700"
-                                        />
-                                        <p className="text-[--gray-2]">{review.date}</p>
-                                    </div>
-
-                                    <h3 className="text-[16px] font[600]">{review.user}</h3>
-                                    <p className="text-[--gray-2]">{review.description}</p>
-                                </CardBody>
-                            </Card>
+                            <ReviewCard review={review}/>
                         </SwiperSlide>
-
                     ))}
                 </Swiper>
         </div>

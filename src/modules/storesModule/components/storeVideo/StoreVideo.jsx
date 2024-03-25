@@ -1,13 +1,11 @@
-import Image from "next/image";
 
 const StoreVideo = ({video}) => {
-    console.log(video)
     return (
-        <div className="">
-            <Image src={video} alt={"store Video"}
-                   className="w-full object-cover"
-            />
-        </div>
+        <>
+            {video ?<div className="">
+                <video src={video} className="w-full object-cover" autoPlay={true}/>
+            </div> : null}
+        </>
     );
 }
 

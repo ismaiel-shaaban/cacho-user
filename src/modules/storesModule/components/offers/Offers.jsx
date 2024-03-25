@@ -1,20 +1,29 @@
-import {strings} from "@/utilis/Localization";
-import SidebarProducts from "@/components/sheared/sidebarProducts/SidebarProducts";
-import ProductCard from "@/components/sheared/productCard/ProductCard";
+import {useRouter} from "next/router";
+import {useStoreOffersData} from "@/modules/storesModule/hooks/getStoreOffers";
+import {Spinner, Tab, Tabs} from "@nextui-org/react";
+import ProductOfferTab from "@/modules/storesModule/components/offers/productOfferTab/ProductOfferTab";
 
-const Offers = ({offers})=>{
+const Offers = ()=>{
+    const router = useRouter();
+    const {id} = router.query;
+    const {data, error, isLoading} = useStoreOffersData(id);
+    if (isLoading) return <div><Spinner/></div>;
+    if (error) return <div>Error</div>;
     return(
-        <div className="md:grid md:grid-cols-12 gap-[40px]" dir={strings.getLanguage() === "ar" ? "rtl" : "ltr"}>
-            <SidebarProducts/>
-            <div
-                className="grid col-span-12 h-fit md:col-span-9 grid-cols-1 lg:grid-cols-3 sm:grid-cols-2 md:gap-[20px] gap-2 mt-[34px]">
-                {
-                    offers.map((product, index) => (
-                        <ProductCard key={index} product={product}/>
-                    ))
-                }
-            </div>
-        </div>
+        <Tabs variant={"light"} fullWidth={true} className={"mt-5"} classNames={{
+            tabContent: "group-data-[selected=true]:text-white text-[--gray-2] text-[18px] font-[500]",
+            tab:"bg-[--gray-in] w-fit rounded-md px-[12px] py-[6px]",
+            cursor: "group-data-[selected=true]:bg-[--primary-color] rounded-md w-full",
+            tabList: "gap-[20px]",
+        }}>
+            {
+                data?.response?.data.map((offer) => (
+                    <Tab key={offer.uuid} title={offer.title}>
+                        <ProductOfferTab offerId={offer.uuid} />
+                    </Tab>
+                ))
+            }
+        </Tabs>
     )
 }
 

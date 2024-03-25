@@ -2,8 +2,8 @@ import useSWR from "swr";
 
 const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
-export const useStoreData = (id) => {
-    const url = id && `https://caco-dev.mimusoft.com/api/customer/businesses/${id}?with=categories`;
+export const useStoreOffersData = (id) => {
+    const url = id && `https://caco-dev.mimusoft.com/api/customer/businesses/${id}/offers`;
 
     const { data, error, isLoading } = useSWR(url, fetcher, {
         revalidateOnFocus: false,

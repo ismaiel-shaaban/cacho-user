@@ -9,29 +9,8 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
-const slides = [{
-    id: 1, image: product_1
-}, {
-    id: 2, image: product_2
-}, {
-    id: 3, image: product_1
-}, {
-    id: 4, image: product_2
-}, {
-    id: 5, image: product_1
-}, {
-    id: 6, image: product_2
-}, {
-    id: 7, image: product_1
-}, {
-    id: 8, image: product_2
-}, {
-    id: 9, image: product_1
-}, {
-    id: 10, image: product_2
-}]
-
-const ProductSlider = () => {
+const ProductSlider = ({slides}) => {
+    console.log("ProductSlider -> slides", slides)
     const [thumbsSwiper, setThumbsSwiper] = useState(null);
     return (<div className="product-slide">
         <Swiper
@@ -47,14 +26,12 @@ const ProductSlider = () => {
             modules={[FreeMode, Navigation, Thumbs]}
             className="mySwiper2"
         >
-            {slides.map((slide) => (<SwiperSlide key={slide.id}>
+            {slides.map((slide ,index) => (<SwiperSlide key={index}>
                 <div className="h-[435px] w-[387px] rounded-[10px] overflow-hidden">
-                    <Image
-                        src={slide.image}
+                    <img
+                        src={slide}
                         alt="Image Alt Text"
-                        layout="fill"
-                        objectFit="cover"
-                        className=" rounded-[10px]"
+                        className="object-cover rounded-[10px]"
                     />
                 </div>
             </SwiperSlide>))}
@@ -80,13 +57,11 @@ const ProductSlider = () => {
             modules={[FreeMode, Navigation, Thumbs]}
             className={`mySwiper mt-2`}
         >
-            {slides.map((slide) => (<SwiperSlide key={slide.id}>
+            {slides.map((slide , index) => (<SwiperSlide key={index}>
                 <div className="h-[103px] w-[97px]">
-                    <Image
-                        src={slide.image}
+                    <img
+                        src={slide}
                         alt="Image Alt Text"
-                        layout="fill"
-                        objectFit="cover"
                         className="object-cover rounded-[10px]"
                     />
                 </div>

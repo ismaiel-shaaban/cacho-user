@@ -12,28 +12,28 @@ const AboutUs = ({aboutUs}) => {
     return (<div>
         <div className="flex items-end gap-2 md:gap-[40px]">
             <div className="flex gap-2">
-                <Image src={aboutUs.storeImage} alt={aboutUs.storeName}
+                <img src={aboutUs.image} alt={aboutUs.title}
                        className="block w-[60px] object-cover h-[60px] rounded-md overflow-hidden"/>
                 <span className="flex flex-col justify-between">
-                    <span className="text-[20px] font-[500]">{aboutUs.storeName}</span>
-                    <Rating rate={aboutUs.rate} ratingCount={aboutUs.reviews}/>
+                    <span className="text-[20px] font-[500]">{aboutUs.title}</span>
+                    <Rating rate={aboutUs.rating} ratingCount={aboutUs.reviewsCount}/>
                 </span>
 
             </div>
             <div className="flex items-center gap-[20px]">
-                <Chip color={aboutUs.status === "Open" ? "success" : "danger"}
+                <Chip color={aboutUs.status === "active" ? "success" : "danger"}
                       classNames={{base: "text-white"}}
-                      endContent={aboutUs.status === "Open" ? <GoDotFill/> : null}>{aboutUs.status}</Chip>
+                      endContent={aboutUs.status === "active" ? <GoDotFill/> : null}>{aboutUs.status}</Chip>
                 <Chip variant="bordered" classNames={{
                     base: "border-[--primary-color] text-[--primary-color]"
-                }}>{aboutUs.open}</Chip>
+                }}>{aboutUs.workingDays}</Chip>
             </div>
         </div>
         <div>
             <h3 className="text-[20px] font-[600] my-[20px]">Images
-                <span className="text-[14px] font-[400]"> ({aboutUs.images.length})</span>
+                <span className="text-[14px] font-[400]"> ({aboutUs.images && aboutUs.images.length})</span>
             </h3>
-            <Swiper
+            {aboutUs.images &&  <Swiper
                 modules={[Autoplay, FreeMode]}
                 slidesPerView={7}
                 freeMode={true}
@@ -62,19 +62,20 @@ const AboutUs = ({aboutUs}) => {
                 {aboutUs.images.map((image, index) => (
                     <SwiperSlide key={index}>
                         <div>
-                            <Image src={image} key={index} alt={aboutUs.storeName} className="object-cover w-full h-full"/>
+                            <img src={image} alt={aboutUs.title}
+                                   className="object-cover w-full h-full"/>
                         </div>
                     </SwiperSlide>
                 ))}
-            </Swiper>
+            </Swiper>}
         </div>
         <div>
             <h3 className="text-[20px] font-[600] mb-[10px] mt-[24px]">Description</h3>
-            <p className="text-[18px] font-[500]">{aboutUs.description}</p>
+            <p className="text-[18px] font-[500]">{aboutUs.about}</p>
         </div>
         <div>
             <h3 className="text-[20px] font-[600] mb-[10px] mt-[24px]">Location</h3>
-            <p className="text-[18px] font-[500] text-[--primary-color] flex gap-3">{aboutUs.storeLocation} <span><LocationIcon/></span></p>
+            <p className="text-[18px] font-[500] text-[--primary-color] flex gap-3">{aboutUs.address} <span><LocationIcon/></span></p>
         </div>
     </div>)
 }
