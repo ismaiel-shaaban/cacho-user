@@ -1,13 +1,26 @@
-import {Button, Input} from "@nextui-org/react";
-import Link from "next/link";
-import {FaArrowRight} from "react-icons/fa";
-import bannerImage from "../../../public/bannerJoin/img-1.png";
 import Image from "next/image";
+import Link from "next/link";
+import {useState} from "react";
+import {Button, Input} from "@nextui-org/react";
+import {EyeSlashFilledIcon} from "@/utilis/Icons/EyeSlashFilledIcon";
+import {FaArrowRight} from "react-icons/fa";
+import {EyeFilledIcon} from "@/utilis/Icons/EyeFilledIcon";
 import LogoImage from "../../../public/logo.svg";
+import bannerImage from "../../../public/bannerJoin/img-1.png";
 import classes from "./LoginModule.module.css";
+import InputPhone from "@/components/sheared/inputPhone/InputPhone";
+import InputPassword from "@/components/sheared/inputPassword/InputPassword";
 
 
 const LoginModule = () => {
+    const [phone, setPhone] = useState({
+        value: "", isValid: false
+    });
+
+    const [password, setPassword] = useState({
+        value: "", isValid: false
+    })
+
     return (<div className="grid grid-cols-1 md:grid-cols-2">
         <div>
             <div
@@ -31,19 +44,24 @@ const LoginModule = () => {
                 <div className="text-[3rem] font-bold mb-[30px] text-black w-[200px]">
                     <Image src={LogoImage} alt={"Cachoo"}/>
                 </div>
-                <span className="text-[20px] text-[#3F3D4D] font-[700] my-10 place-self-start">Welcome back!</span>
+                <span className="text-[24px] text-[#3F3D4D] font-[600] my-10 place-self-start">Welcome back!</span>
                 <form className="w-full ">
                     <div className="mb-[20px]">
-                        <Input size={"lg"} placeholder="Email" type="email" id="email" label={"Email"} name="email"
-                               labelPlacement={"outside"}/>
+                        <InputPhone
+                            onPhoneChange={(value, isValid) => setPhone({value, isValid})}
+                        />
                     </div>
                     <div className="mt-[45px]">
-                        <Input size={"lg"} placeholder="Password" type="password" id="password" name="password"
-                               label={"Password"} labelPlacement={"outside"}/>
-                        <Link href={"#"} className="mt-[10px] text-[--rate-color] text-end w-full block text-[14px]">Forgot Password?</Link>
+                        <InputPassword onPasswordChange={(value, isValid) => setPassword({value, isValid})}/>
+                        <Link href={"/forget-password"} className="mt-[10px] text-[--rate-color] text-end w-full block text-[14px]">Forgot
+                            Password?</Link>
                     </div>
                     <Button
-                        className="w-full rounded-md text-white text-[20px] leading-6 tracking-wide font-[700] bg-[--primary-color] flex items-center mt-[24px]">Login</Button>
+                        className="w-full rounded-md text-white text-[20px] leading-6 tracking-wide font-[700] bg-[--primary-color] flex items-center mt-[24px]"
+                        isDisabled={!phone.isValid || !password.isValid}
+                    >
+                        Login
+                    </Button>
                 </form>
             </div>
         </div>

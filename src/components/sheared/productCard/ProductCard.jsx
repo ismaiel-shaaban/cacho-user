@@ -49,11 +49,11 @@ const ProductCard = ({product}) => {
                     <h3 className="text-md font-medium mb-[10px] leading-7">{name}</h3>
                     <div className="flex justify-between items-center">
                         <div className="flex gap-2 items-center">
-                            <span className="font-[600] text-[20px]">{price}<span
+                            <span className="font-[600] text-[20px]">{priceAfterDiscount}<span
                                 className="text-[10px] text-gray-400 font-normal leading-5">{strings.egp}</span>
                             </span>
                             {priceAfterDiscount && <span className="font-[600] text-[20px] text-gray-400">
-                                         <span className="line-through">{priceAfterDiscount}</span>
+                                         <span className="line-through">{price}</span>
                                 <span
                                     className="text-[10px] text-gray-400 font-normal leading-5 no-underline">{strings.egp}</span>
                              </span>}

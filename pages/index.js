@@ -271,7 +271,7 @@ export default function Home() {
             <Categories/>
             <HotOffers />
             {/*<Nearest/>*/}
-            {/*<BannerJoin/>*/}
+            <BannerJoin/>
             {/*<New />*/}
             {/*<SpecialOffers />*/}
         </>

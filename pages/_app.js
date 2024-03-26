@@ -26,14 +26,15 @@ const MyApp = ({Component, pageProps}) => {
                 }
             `}</style>
             {
-                Component.name !== "Login" ? <NavBar/> : null
+                Component.name !== "Login" && Component.name !== "ForgetPasswordPage" ? <NavBar/> : null
             }
             <Component {...pageProps} />
             {
-                Component.name !== "Login" ? <Footer/> : null
+                Component.name !== "Login" && Component.name !== "ForgetPasswordPage" ? <Footer/> : null
             }
         </NextUIProvider>
-    )
+    );
+
 }
 
 export default MyApp
