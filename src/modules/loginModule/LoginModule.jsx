@@ -52,7 +52,7 @@ const LoginModule = () => {
                         />
                     </div>
                     <div className="mt-[45px]">
-                        <InputPassword onPasswordChange={(value, isValid) => setPassword({value, isValid})}/>
+                        <InputPassword label={"Password"} placeholder={"Password"} onPasswordChange={(value, isValid) => setPassword({value, isValid})}/>
                         <Link href={"/forget-password"} className="mt-[10px] text-[--rate-color] text-end w-full block text-[14px]">Forgot
                             Password?</Link>
                     </div>

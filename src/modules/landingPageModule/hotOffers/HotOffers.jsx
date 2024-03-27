@@ -1,26 +1,20 @@
 import {strings} from "@/utilis/Localization";
-import ProductSection from "@/components/sheared/productSection/ProductSection";
-import {useEffect, useState} from "react";
-import useSWR from "swr";
+import SectionTitle from "@/modules/landingPageModule/components/sectionTitle/SectionTitle";
+import HotOfferList from "@/modules/landingPageModule/hotOffers/components/hotOfferList/HotOfferList";
+import useGetOffersData from "@/hooks/getoffersData";
+import {Spinner} from "@nextui-org/react";
 
 
-const fetcher = (...args) => fetch(...args).then(res => res.json());
 const HotOffers = () => {
-    const [offersData, setOffersData] = useState([]);
-    const { data, error } = useSWR("https://caco-dev.mimusoft.com/api/customer/offers", fetcher);
+    const {data , error , isLoading} = useGetOffersData();
 
-    useEffect(() => {
-        if (data) {
-            setOffersData(data.response.data );
-            // console.log(data.response.data);
-        }
-    }, [data]);
-
-    if (error) return <div>Error loading categories...</div>;
-    if (!data) return <div>Loading categories...</div>;
-    return <div>Loading categories...</div>;
+    if (isLoading) return <p><Spinner/></p>;
+    if (error) return <p>Error</p>;
     return (
-        <ProductSection title={strings.HotOffers} data={offersData} link={"#"} />
+        <section className="container mx-auto mt-[50px]">
+            <SectionTitle title={strings.HotOffers} link="/offers"/>
+            <HotOfferList hotOffers={data.response.data} count={8}/>
+        </section>
     );
 }
 

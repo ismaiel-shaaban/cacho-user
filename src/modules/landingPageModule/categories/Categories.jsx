@@ -11,7 +11,7 @@ import {useEffect, useState} from "react";
 const fetcher = (...args) => fetch(...args).then(res => res.json());
 const Categories = () => {
     const [categories, setCategories] = useState([]);
-    const { data, error } = useSWR("https://caco-dev.mimusoft.com/api/customer/business-types", fetcher);
+    const { data, error , isLoading} = useSWR("https://caco-dev.mimusoft.com/api/customer/business-types", fetcher);
 
     useEffect(() => {
         if (data) {
@@ -20,8 +20,9 @@ const Categories = () => {
         }
     }, [data]);
 
-    if (error) return <div>Error loading categories...</div>;
-    if (!data) return <div>Loading categories...</div>;
+    if (isLoading) return <p>Loading...</p>;
+    if (error) return <p>Error</p>;
+
 
     return (
         <section className="business-types container mt-[30px]">

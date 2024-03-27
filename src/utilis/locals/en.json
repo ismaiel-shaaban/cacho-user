@@ -43,5 +43,7 @@
   "Max": "Max",
   "LogIn": "Login",
   "Register": "Sign Up Now",
-  "businessTypes": "Business Types"
+  "businessTypes": "Business Types",
+  "from": "From",
+  "to": "To"
 }

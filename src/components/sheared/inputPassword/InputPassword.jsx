@@ -3,7 +3,7 @@ import {EyeFilledIcon} from "@/utilis/Icons/EyeFilledIcon";
 import {Input} from "@nextui-org/react";
 import {useState} from "react";
 
-const InputPassword = ({  onPasswordChange }) => {
+const InputPassword = ({  onPasswordChange , label , placeholder}) => {
     const [isVisible, setIsVisible] = useState(false);
     const toggleVisibility = () => setIsVisible(!isVisible);
 
@@ -13,10 +13,10 @@ const InputPassword = ({  onPasswordChange }) => {
         onPasswordChange(value, isValid);
     }
     return (
-        <Input isRequired={true} size={"lg"} placeholder="Password"
-               type={isVisible ? "text" : "password"} id="password"
+        <Input isRequired={true} size={"lg"} placeholder={placeholder}
+               type={isVisible ? "text" : "password"}
                name="password" onChange={handleValidation}
-               label={"Password"} labelPlacement={"outside"} classNames={{label: "!text-[--gray-2]"}}
+               label={label} labelPlacement={"outside"} classNames={{label: "!text-[--gray-2]"}}
                endContent={<button className="focus:outline-none" type="button"
                                    onClick={toggleVisibility}>
                    {isVisible ? (<EyeSlashFilledIcon

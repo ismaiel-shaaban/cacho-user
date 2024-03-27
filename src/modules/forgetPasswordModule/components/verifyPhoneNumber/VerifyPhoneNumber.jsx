@@ -5,16 +5,26 @@ import EmailImage from "../../../../../public/Email-1.svg";
 import {Button, Input} from "@nextui-org/react";
 import CodeVerifyInputs from "@/components/sheared/codeVerifyInputs/CodeVerifyInputs";
 
-const VerifyPhoneNumber = ({phone, isValidPhone}) => {
-    const [code, setCode] = useState(Array.from({ length: 6 }, () => ""));
+const VerifyPhoneNumber = ({phone, isValidPhone ,setIsCodeValid}) => {
+    const [code, setCode] = useState(Array.from({length: 6}, () => ""));
+    const [verificationCode, setVerificationCode] = useState("");
     useEffect(() => {
         if (isValidPhone) {
-            // Phone number is valid, you can proceed with verification
             console.log("Phone number is valid:", phone);
         }
     }, [phone, isValidPhone]);
 
-    console.log("Code:", code)
+    useEffect(() => {
+        setVerificationCode(code.join(""));
+    }, [code]);
+
+    const handleVerify = () => {
+        if (verificationCode.length === 6 ) {
+            setIsCodeValid(true);
+        } else {
+            setIsCodeValid(false);
+        }
+    }
 
 
     return (<div>
@@ -30,8 +40,9 @@ const VerifyPhoneNumber = ({phone, isValidPhone}) => {
         </div>
         <div className="flex justify-center">
             <form className="mt-8">
-                <CodeVerifyInputs setCode={setCode} />
-                <Button size={"lg"} className="w-full bg-[--primary-color] text-white mt-8">Verify</Button>
+                <CodeVerifyInputs setCode={setCode}/>
+                <Button size={"lg"} isDisabled={verificationCode.length !== 6} onClick={handleVerify}
+                        className="w-full bg-[--primary-color] text-white mt-8">Verify</Button>
             </form>
         </div>
     </div>);
