@@ -8,7 +8,7 @@ import {Spinner} from "@nextui-org/react";
 const HotOffers = () => {
     const {data , error , isLoading} = useGetOffersData();
 
-    if (isLoading) return <p><Spinner/></p>;
+    if (isLoading) return <Spinner/>;
     if (error) return <p>Error</p>;
     return (
         <section className="container mx-auto mt-[50px]">

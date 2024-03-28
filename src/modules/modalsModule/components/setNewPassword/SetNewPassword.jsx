@@ -16,7 +16,7 @@ const SetNewPassword = () => {
     }, [ password, confirmPassword]);
 
     return (
-        <div className="h-[calc(100vh-64px)] pt-14 px-[20px] md:pt-[75px] md:px-[95px] bg-white">
+        <div className="pt-14 px-[20px] pb-6">
             <div className="flex justify-center">
                 <h2 className="text-2xl font-medium">Set a New Password</h2>
             </div>

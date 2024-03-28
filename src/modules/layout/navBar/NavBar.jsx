@@ -72,7 +72,7 @@ const NavBar = () => {
                         <Link href={"/login"} className="text-[--primary-color]">{strings.LogIn}</Link>
                     </NavbarItem>
                     <NavbarItem>
-                        <Button className="bg-[--primary-color] text-white" as={Link} href={"/register"}>{strings.Register}</Button>
+                        <Button className="bg-[--primary-color] text-white" as={Link} href={"/signup"}>{strings.Register}</Button>
                     </NavbarItem>
                 </>
                 }

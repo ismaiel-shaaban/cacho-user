@@ -1,6 +1,6 @@
 import Image from "next/image";
 import {useEffect, useState} from "react";
-import ForgetHeader from "@/modules/forgetPasswordModule/components/forgetHeader/ForgetHeader";
+import ForgetHeader from "@/modules/modalsModule/components/forgetHeader/ForgetHeader";
 import EmailImage from "../../../../../public/Email-1.svg";
 import {Button, Input} from "@nextui-org/react";
 import CodeVerifyInputs from "@/components/sheared/codeVerifyInputs/CodeVerifyInputs";
@@ -28,7 +28,7 @@ const VerifyPhoneNumber = ({phone, isValidPhone ,setIsCodeValid}) => {
 
 
     return (<div>
-        <div className="flex justify-between">
+        <div className="flex justify-between w-2/3 sm:w-full p-9">
             <div>
                 <ForgetHeader/>
                 <p className="text-[--primary-color]">+20 {phone}</p>

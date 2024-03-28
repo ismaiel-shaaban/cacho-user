@@ -1,7 +1,7 @@
 import InputPhone from "@/components/sheared/inputPhone/InputPhone";
 import {useState} from "react";
 import {Button} from "@nextui-org/react";
-import ForgetHeader from "@/modules/forgetPasswordModule/components/forgetHeader/ForgetHeader";
+import ForgetHeader from "@/modules/modalsModule/components/forgetHeader/ForgetHeader";
 
 const EnterPhoneNumber = ({onPhoneChange}) => {
     const [phone, setPhone] = useState({
@@ -17,7 +17,7 @@ const EnterPhoneNumber = ({onPhoneChange}) => {
         setPhone({value, isValid});
     };
 
-    return (<div className="flex flex-col gap-[34px] md:w-1/2 sm:w-2/3">
+    return (<div className="flex flex-col gap-[34px] w-full sm:w-2/3 p-9 dd">
         <ForgetHeader/>
         <div>
             <InputPhone onPhoneChange={handlePhoneChange}/>

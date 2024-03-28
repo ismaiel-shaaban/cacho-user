@@ -1,12 +1,12 @@
-import ForgetPasswordModule from "@/modules/forgetPasswordModule/ForgetPasswordModule";
+import SignupModule from "@/modules/signupModule/SignupModule";
 import {Navbar, NavbarBrand} from "@nextui-org/react";
 import Link from "next/link";
 import Image from "next/image";
-import LogoImage from "../../public/logo.svg";
+import LogoImage from "../../public/logo-2.svg";
 
-const ForgetPasswordPage = () => {
+const SignupPage = () => {
     return (
-        <section>
+        <>
             <Navbar position={"static"} maxWidth={"2xl"} >
                 <NavbarBrand>
                     <Link href={"/"} >
@@ -14,9 +14,9 @@ const ForgetPasswordPage = () => {
                     </Link>
                 </NavbarBrand>
             </Navbar>
-        <ForgetPasswordModule/>
-        </section>
-    );
+        <SignupModule/>
+        </>
+    )
 }
 
-export default ForgetPasswordPage;
+export default SignupPage
