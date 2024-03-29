@@ -10,6 +10,7 @@ import bannerImage from "../../../public/bannerJoin/img-1.png";
 import cameraImage from "../../../public/camera1.svg";
 import classes from "./SignupModule.module.css";
 import ConfirmPhoneModal from "@/modules/modalsModule/ConfirmPhoneModal";
+import ImageUpload from "@/components/sheared/imageUpload/ImageUpload";
 
 const SignupModule = () => {
     const {isOpen, onOpen, onOpenChange} = useDisclosure();
@@ -21,10 +22,8 @@ const SignupModule = () => {
         userImage: null,
     });
 
-    const handleFileChange = (e) => {
-        setFormData({
-            ...formData, userImage: URL.createObjectURL(e.target.files[0]),
-        });
+    const handleImageChange = (file) => {
+        setFormData({ ...formData, userImage: file });
     };
 
     const handleChange = (key, value) => {
@@ -72,23 +71,7 @@ const SignupModule = () => {
                         </div>
                         <div className="w-full">
                             <div className="flex justify-center mb-[49px]">
-                                <input type="file" className="hidden" id="userImage" onChange={handleFileChange}/>
-                                <label htmlFor="userImage"
-                                       className="w-[100px] h-[100px] rounded-full bg-[#E5E5E5] flex justify-center items-center cursor-pointer sm:w-[150px] sm:h-[150px]">
-                                    {formData.userImage ? (
-                                        <img
-                                            src={formData.userImage}
-                                            className="w-full h-full rounded-full object-cover"
-                                            alt={"User Image"}
-                                        />
-                                    ) : (
-                                        <Image
-                                            src={cameraImage}
-                                            className="w-[50px] h-[50px] sm:w-[95px] sm:h-[95px]"
-                                            alt={"Camera Icon"}
-                                        />
-                                    )}
-                                </label>
+                                <ImageUpload defaultImage={cameraImage} onChange={handleImageChange} />
                             </div>
                             <div className="mt-4 w-full grid grid-cols-1 gap-3 sm:grid-cols-2">
                                 <Input

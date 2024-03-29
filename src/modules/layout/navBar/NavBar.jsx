@@ -15,7 +15,7 @@ import Link from "next/link";
 const NavBar = () => {
     const [isDarkMode, setIsDarkMode] = useState(false);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
-    const [isLogin, setIsLogin] = useState(false);
+    const [isLogin, setIsLogin] = useState(true);
 
     useEffect(() => {
         const savedDarkMode = localStorage.getItem('darkMode');
