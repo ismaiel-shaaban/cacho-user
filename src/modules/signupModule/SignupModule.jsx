@@ -11,9 +11,17 @@ import cameraImage from "../../../public/camera1.svg";
 import classes from "./SignupModule.module.css";
 import ConfirmPhoneModal from "@/modules/modalsModule/ConfirmPhoneModal";
 import ImageUpload from "@/components/sheared/imageUpload/ImageUpload";
+import {loginUser} from "@/modules/loginModule/loginUser";
+import {setCookie} from "cookies-next";
+import {useRouter} from "next/router";
+import {signupUser} from "@/modules/signupModule/signupUser";
 
 const SignupModule = () => {
     const {isOpen, onOpen, onOpenChange} = useDisclosure();
+    const router = useRouter();
+    const [isLoading, setIsLoading] = useState(false);
+    const [error, setError] = useState(null);
+
     const [formData, setFormData] = useState({
         name: "",
         phone: {value: "", isValid: false},
@@ -32,12 +40,24 @@ const SignupModule = () => {
         });
     };
 
-    // Function to check if the form is valid
-
-    const handleSubmit = (e) => {
+    const handleSignUp = async (e) => {
         e.preventDefault();
-        // Handle form submission
+        try {
+            setIsLoading(true);
+            const user = await signupUser(formData.name, formData.phone.value, formData.password.value, formData.confirmPassword.value);
+            setIsLoading(false)
+            const {token} = user
+            setCookie("token", token);
+            if (token  && token !== "") {
+                await router.push('/')
+            }
+        } catch (error) {
+            setError(error.message);
+            setIsLoading(false)
+            console.error("Login failed:", error.message);
+        }
     };
+
 
     return (<div className="grid grid-cols-1 md:grid-cols-2">
         <div>
@@ -60,7 +80,7 @@ const SignupModule = () => {
             </div>
         </div>
         <div>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSignUp}>
                 <div className="h-[calc(100dvh-64px)] bg-white flex flex-col justify-center items-center px-8 md:px-[57px]">
                     <div className="flex flex-col items-center justify-evenly w-full h-full py-8">
                         <div className="flex justify-between w-full">
@@ -102,7 +122,8 @@ const SignupModule = () => {
                             <Button
                                 isDisabled={!formData.phone.isValid || !formData.password.isValid || !formData.confirmPassword.isValid || formData.name.length < 3}
                                 className="w-full bg-[#095FAC] text-white"
-                                onPress={onOpen}
+                                isLoading={isLoading}
+                                // onPress={onOpen}
                                 size="lg" type="submit">
                                 Sign Up
                             </Button>
@@ -111,6 +132,9 @@ const SignupModule = () => {
                     </div>
                 </div>
             </form>
+            {
+                error && <div className="text-[14px] text-red-500 mt-[10px]">{error}</div>
+            }
         </div>
     </div>);
 };

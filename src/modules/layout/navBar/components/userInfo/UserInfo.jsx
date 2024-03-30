@@ -1,18 +1,51 @@
-import {useState} from "react";
+import {useEffect, useState} from "react";
+import {useRouter} from "next/router";
+import {deleteCookie, getCookie} from "cookies-next";
 import {Dropdown, DropdownItem, DropdownMenu, DropdownTrigger, useDisclosure, User} from "@nextui-org/react";
 import {LogoutIcon} from "@/utilis/Icons/LogoutIcon";
 import EditProfile from "@/modules/layout/navBar/components/userInfo/EditProfile";
 import ChangePassword from "@/modules/layout/navBar/components/userInfo/ChangePassword";
 import ChangeLocation from "@/modules/layout/navBar/components/userInfo/ChangeLocation";
 import UserModal from "@/modules/modalsModule/UserModal";
+import UserImageDefault from "../../../../../../public/userImageDefult.svg";
 
-const UserInfo = () => {
+const UserInfo = ({name ,location ,image}) => {
+    const router = useRouter();
     const [modalContent, setModalContent] = useState(null);
     const {isOpen, onOpen, onOpenChange} = useDisclosure();
+    const [userLocation, setUserLocation] = useState(null);
+    console.log(location)
+    useEffect(() => {
+        if (location) {
+            const locationParts = location.split(",");
+            const extractedLocation = `${locationParts[1]},${locationParts[2].split(" ")[0]}`;
+            setUserLocation(extractedLocation);
+        }
+    }, [location]);
     const handleActionClick = (action) => {
         setModalContent(action);
         onOpen();
     };
+
+    const handelLogout = async () => {
+        const tokenData = getCookie('token')
+        try {
+            const response = await fetch('https://caco-dev.mimusoft.com/api/customer/auth/logout', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${tokenData}`
+                },
+            });
+            if (!response.ok) {
+                throw new Error('Logout failed');
+            }
+            deleteCookie("token");
+            router.reload()
+        } catch (error) {
+            console.error('Error:', error.message);
+        }
+    }
 
     return (
         <>
@@ -21,12 +54,15 @@ const UserInfo = () => {
                     <User
                         as="button"
                         avatarProps={{
-                            isBordered: true,
-                            src: "https://i.pravatar.cc/150?u=a042581f4e29026024d",
+                            src: `${image ? image : UserImageDefault}`,
                         }}
                         className="transition-transform"
-                        description="@tonyreichert"
-                        name="Tony Reichert"
+                        description={userLocation}
+                        name={`Hi, ${name}`}
+                        classNames={{
+                            description: "text-[14px] font-medium text-[--primary-color]",
+                            name: "text-[12px] font-[400] text-[--gray-2]",
+                        }}
                     />
                 </DropdownTrigger>
                 <DropdownMenu aria-label="User Actions" variant="flat">
@@ -45,7 +81,7 @@ const UserInfo = () => {
                             () => handleActionClick("Change Location")
                         }/>
                     </DropdownItem>
-                    <DropdownItem key="logout" color="danger">
+                    <DropdownItem onClick={handelLogout} key="logout" color="danger">
                         <div className="flex items-center justify-start gap-2">
                             <span><LogoutIcon/></span>
                             <span>Logout</span>

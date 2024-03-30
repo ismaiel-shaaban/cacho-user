@@ -1,7 +1,8 @@
+import { useState } from "react";
+import {useRouter} from "next/router";
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
-import {Button, Input, useDisclosure} from "@nextui-org/react";
+import {Button, useDisclosure} from "@nextui-org/react";
 import { FaArrowRight } from "react-icons/fa";
 import LogoImage from "../../../public/logo.svg";
 import bannerImage from "../../../public/bannerJoin/img-1.png";
@@ -9,11 +10,34 @@ import classes from "./LoginModule.module.css";
 import InputPhone from "@/components/sheared/inputPhone/InputPhone";
 import InputPassword from "@/components/sheared/inputPassword/InputPassword";
 import ForgetPasswordModal from "@/modules/modalsModule/ForgetPasswordModal";
+import {loginUser} from "@/modules/loginModule/loginUser";
+import {setCookie} from "cookies-next";
 
 const LoginModule = () => {
+    const router = useRouter()
     const {isOpen, onOpen, onOpenChange} = useDisclosure();
     const [phone, setPhone] = useState({ value: "", isValid: false });
-    const [password, setPassword] = useState({ value: "", isValid: false });
+    const [password, setPassword] = useState({ value: "", isValid: false })
+    const [isLoading, setIsLoading] = useState(false);
+    const [error, setError] = useState(null);
+
+    const handleLogin = async (e) => {
+        e.preventDefault();
+        try {
+            setIsLoading(true);
+            const user = await loginUser("+2"+phone.value, password.value);
+            setIsLoading(false)
+            const {token} = user
+            // Set token in a cookie
+            setCookie("token", token);
+            if (token  && token !== "") {
+                await router.push('/')
+            }
+        } catch (error) {
+            setError(error.message);
+            console.error("Login failed:", error.message);
+        }
+    };
 
     return (
         <div className="grid grid-cols-1 md:grid-cols-2">
@@ -38,7 +62,7 @@ const LoginModule = () => {
                         <Image src={LogoImage} alt={"Cachoo"} />
                     </div>
                     <span className="text-[24px] text-[#3F3D4D] font-[600] my-10 place-self-start">Welcome back!</span>
-                    <form className="w-full ">
+                    <form className="w-full"  onSubmit={handleLogin}>
                         <div className="mb-[20px]">
                             <InputPhone onPhoneChange={(value, isValid) => setPhone({ value, isValid })} />
                         </div>
@@ -52,9 +76,14 @@ const LoginModule = () => {
                         <Button
                             className="w-full rounded-md text-white text-[20px] leading-6 tracking-wide font-[700] bg-[--primary-color] flex items-center mt-[24px]"
                             isDisabled={!phone.isValid || !password.isValid}
+                            isLoading={isLoading}
+                            type={"submit"}
                         >
                             Login
                         </Button>
+                        {
+                            error && <div className="text-[14px] text-red-500 mt-[10px]">{error}</div>
+                        }
                     </form>
                 </div>
             </div>
