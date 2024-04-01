@@ -35,6 +35,7 @@ const LoginModule = () => {
             }
         } catch (error) {
             setError(error.message);
+            setIsLoading(false);
             console.error("Login failed:", error.message);
         }
     };

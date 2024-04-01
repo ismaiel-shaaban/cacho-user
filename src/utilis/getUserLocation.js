@@ -16,7 +16,10 @@ export const fetchLocation = async (language) => {
             .slice(0, 8)
             .join(',')
             .toString();
-
+        // set location in local storage
+        localStorage.setItem('location', location);
+        location && localStorage.setItem('latitude', position.coords.latitude);
+        location && localStorage.setItem('longitude', position.coords.longitude);
         return { location, latitude: position.coords.latitude, longitude: position.coords.longitude };
     } else {
         throw new Error('Please enable location permission');

@@ -11,10 +11,9 @@ import UserImageDefault from "../../../../../../public/userImageDefult.svg";
 
 const UserInfo = ({name ,location ,image}) => {
     const router = useRouter();
-    const [modalContent, setModalContent] = useState(null);
     const {isOpen, onOpen, onOpenChange} = useDisclosure();
+    const [modalContent, setModalContent] = useState(null);
     const [userLocation, setUserLocation] = useState(null);
-    console.log(location)
     useEffect(() => {
         if (location) {
             const locationParts = location.split(",");
