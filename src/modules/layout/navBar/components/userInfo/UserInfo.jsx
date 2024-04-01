@@ -1,4 +1,4 @@
-import {useEffect, useState} from "react";
+import {useState} from "react";
 import {useRouter} from "next/router";
 import {deleteCookie, getCookie} from "cookies-next";
 import {Dropdown, DropdownItem, DropdownMenu, DropdownTrigger, useDisclosure, User} from "@nextui-org/react";
@@ -9,18 +9,13 @@ import ChangeLocation from "@/modules/layout/navBar/components/userInfo/ChangeLo
 import UserModal from "@/modules/modalsModule/UserModal";
 import UserImageDefault from "../../../../../../public/userImageDefult.svg";
 
-const UserInfo = ({name ,location ,image}) => {
+const UserInfo = ({name, image}) => {
     const router = useRouter();
     const {isOpen, onOpen, onOpenChange} = useDisclosure();
     const [modalContent, setModalContent] = useState(null);
-    const [userLocation, setUserLocation] = useState(null);
-    useEffect(() => {
-        if (location) {
-            const locationParts = location.split(",");
-            const extractedLocation = `${locationParts[1]},${locationParts[2].split(" ")[0]}`;
-            setUserLocation(extractedLocation);
-        }
-    }, [location]);
+    const [userLocation, setUserLocation] = useState("");
+
+
     const handleActionClick = (action) => {
         setModalContent(action);
         onOpen();
@@ -53,7 +48,7 @@ const UserInfo = ({name ,location ,image}) => {
                     <User
                         as="button"
                         avatarProps={{
-                            src: `${image ? image : UserImageDefault}`,
+                            src: "https://avatars.githubusercontent.com/u/30373425?v=4",
                         }}
                         className="transition-transform"
                         description={userLocation}
@@ -88,7 +83,9 @@ const UserInfo = ({name ,location ,image}) => {
                     </DropdownItem>
                 </DropdownMenu>
             </Dropdown>
-            <UserModal isOpen={isOpen} onOpenChange={onOpenChange} modalContent={modalContent}/>
+            <UserModal isOpen={isOpen} onOpenChange={onOpenChange} modalContent={modalContent} passLocation={
+                (location) => setUserLocation(location)
+            }/>
         </>
     );
 }

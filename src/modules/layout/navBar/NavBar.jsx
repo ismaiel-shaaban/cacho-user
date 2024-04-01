@@ -1,5 +1,5 @@
 import {strings} from '@/utilis/Localization';
-import {useEffect, useMemo, useState} from 'react';
+import {useEffect, useState} from 'react';
 import {
     Button, Divider, Navbar, NavbarContent, NavbarItem, NavbarMenu, NavbarMenuItem, NavbarMenuToggle,
 } from "@nextui-org/react";
@@ -11,9 +11,7 @@ import SelectLang from "@/modules/layout/navBar/components/selectLang/SelectLang
 import Logo from "@/modules/layout/navBar/components/logo";
 import Link from "next/link";
 import {getCookie} from "cookies-next";
-import {fetchLocation} from "@/utilis/getUserLocation";
 import useSWR from "swr";
-import {useUserLocation} from "@/utilis/context/UserLocationContext";
 
 
 const NavBar = () => {
@@ -22,16 +20,13 @@ const NavBar = () => {
     const [isLogin, setIsLogin] = useState(false);
     const [userData, setUserData] = useState({});
     const [token, setToken] = useState("");
-    const [userLocation, setUserLocation] = useState(null);
 
     const {data, isLoading} = useSWR(token && 'https://caco-dev.mimusoft.com/api/customer/profile', async (url) => {
         const res = await fetch(url, {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token}`
+            method: 'GET', headers: {
+                'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`
             },
-        } );
+        });
         if (!res.ok) {
             throw new Error(`Error fetching user data: Server responded with status ${res.status}`);
         }
@@ -45,7 +40,7 @@ const NavBar = () => {
 
     useEffect(() => {
         const tokenData = getCookie('token');
-        if (tokenData !== null) {
+        if (tokenData !== null && tokenData !== "" && tokenData !== undefined) {
             setToken(tokenData);
             setIsLogin(true);
         }
@@ -57,9 +52,6 @@ const NavBar = () => {
         updateCssVariables(savedDarkMode === 'true');
     }, []);
 
-    useEffect(() => {
-        fetchLocation(strings.getLanguage() || "en").then((data) => setUserLocation(data?.location));
-    }, [strings.getLanguage()]);
 
     const toggleDarkMode = () => {
         const newDarkMode = !isDarkMode;
@@ -91,18 +83,20 @@ const NavBar = () => {
             </NavbarItem>
             {isLogin ? <>
                 <NavbarItem>
-                    <MessagesIcon/>
+                    <Link href={"/chat"}>
+                        <MessagesIcon/>
+                    </Link>
                 </NavbarItem>
                 <NavbarItem>
-                    <BookMark/>
+                    <Link href={"/saved"}>
+                        <BookMark/>
+                    </Link>
                 </NavbarItem>
                 <NavbarItem>
                     <Divider orientation="vertical" className="w-[1px] h-[44px]"/>
                 </NavbarItem>
                 <NavbarItem>
-                    {
-                        isLoading ? "Loading..." : <UserInfo name={userData.name} location={userLocation} image={userData.image}/>
-                    }
+                    {isLoading ? "Loading..." : <UserInfo name={userData.name} image={userData.image}/>}
                 </NavbarItem>
             </> : <>
                 <NavbarItem>
@@ -127,15 +121,16 @@ const NavBar = () => {
             </NavbarMenuItem>
             <div className="flex justify-around gap-3 flex-wrap">
                 <NavbarMenuItem>
-                    <MessagesIcon/>
+                    <Link href={"/chat"}>
+                        <MessagesIcon/>
+                    </Link> </NavbarMenuItem>
+                <NavbarMenuItem>
+                    <Link href={"/saved"}>
+                        <BookMark/>
+                    </Link>
                 </NavbarMenuItem>
                 <NavbarMenuItem>
-                    <BookMark/>
-                </NavbarMenuItem>
-                <NavbarMenuItem>
-                    {
-                        isLoading ? "Loading..." : <UserInfo name={userData.name} location={userLocation} image={userData.image}/>
-                    }
+                    {isLoading ? "Loading..." : <UserInfo name={userData.name} image={userData.image}/>}
                 </NavbarMenuItem>
             </div>
         </NavbarMenu>

@@ -23,21 +23,21 @@ const Footer = () => {
         <div className="py-10">
             <div className="flex items-center flex-wrap justify-center md:justify-between gap-5">
                 <div className="flex gap-5">
-                    <Link href="#" className="font-[400] text-lg">{strings.HotOffers}</Link>
-                    <Link href="#" className="font-[400] text-lg">{strings.Nearest}</Link>
-                    <Link href="#" className="font-[400] text-lg">{strings.New}</Link>
+                    <Link href="/" className="font-[400] text-lg">{strings.HotOffers}</Link>
+                    <Link href="/" className="font-[400] text-lg">{strings.Nearest}</Link>
+                    <Link href="/" className="font-[400] text-lg">{strings.New}</Link>
                 </div>
                 <div className="flex gap-5">
-                    <Link href="#">
+                    <Link href="/">
                         <IoLogoFacebook size={24} />
                     </Link>
-                    <Link href="#">
+                    <Link href="/">
                         <IoLogoTwitter size={24} />
                     </Link>
-                    <Link href="#">
+                    <Link href="/">
                         <IoLogoVimeo size={24} />
                     </Link>
-                    <Link href="#">
+                    <Link href="/">
                         <FaYoutube size={24} />
                     </Link>
                 </div>
@@ -50,8 +50,8 @@ const Footer = () => {
             <Logo />
             </div>
             <p className="text-end flex gap-3 md:justify-end font-[400] text-[14px]">
-                <Link href="#">{strings.PrivacyPolicy}</Link>
-                <Link href="#">{strings.TermsOfUse}</Link>
+                <Link href="/">{strings.PrivacyPolicy}</Link>
+                <Link href="/">{strings.TermsOfUse}</Link>
             </p>
         </div>
     </footer>

@@ -1,7 +1,10 @@
 import {GoogleMap, Marker, useJsApiLoader} from "@react-google-maps/api";
 import {memo, useCallback, useEffect, useState} from "react";
+import {fetchLocation} from "@/utilis/getUserLocation";
+import {strings} from "@/utilis/Localization";
 
-const ChangeLocationContent = () => {
+const ChangeLocationContent = ({onLocationChange}) => {
+    const [userLocation, setUserLocation] = useState("");
     const {isLoaded} = useJsApiLoader({
         id: 'google-map-script', googleMapsApiKey: "AIzaSyBhs9awrQC82lygPiy4Cq91xyX9s3WUjUI",
     })
@@ -28,31 +31,28 @@ const ChangeLocationContent = () => {
             localStorage.setItem('longitude', center.lng);
     }, [center]);
 
-    const handleBoundsChanged = useCallback(() => {
-        if (map) {
-            const bounds = map.getBounds();
-            const center = bounds.getCenter();
-            console.log("center", center.lat(), center.lng())
-            setCenter({
-                lat: center.lat(),
-                lng: center.lng(),
-            });
-        }
-    }, [map]);
+    useEffect(() => {
+        fetchLocation(strings.getLanguage() || "en").then((data) => {
+            setUserLocation(data?.location);
+            onLocationChange(data?.location); // Call the prop callback
+        });
+    }, [center]);
 
     return (<div>
             {isLoaded ? (<GoogleMap
                 id="marker-example"
-                zoom={9}
+                zoom={8}
                 mapContainerStyle={{height: "400px", width: "100%"}}
                 onLoad={onLoad}
                 onUnmount={onUnmount}
                 center={center}
-                onDragEnd={
-                    handleBoundsChanged
-                }
             >
-                <Marker position={center}/>
+                <Marker position={center}
+                        draggable={true}
+                        onDragEnd={(e) => {
+                            setCenter({lat: e.latLng.lat(), lng: e.latLng.lng()})
+                        }}
+                />
             </GoogleMap>) : null}
         </div>
 

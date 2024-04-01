@@ -27,6 +27,31 @@
 
 body {
     background-color: var(--gray);
+    --sb-track-color: #ffffff;
+    --sb-thumb-color: #50489e;
+    --sb-size: 14px;
+}
+
+body::-webkit-scrollbar , *::-webkit-scrollbar {
+    width: var(--sb-size)
+}
+
+body::-webkit-scrollbar-track {
+    background: var(--sb-track-color);
+    border-radius: 11px;
+}
+
+body::-webkit-scrollbar-thumb {
+    background: var(--sb-thumb-color);
+    border-radius: 11px;
+    border: 3px solid #ffffff;
+}
+
+@supports not selector(::-webkit-scrollbar) {
+    body {
+        scrollbar-color: var(--sb-thumb-color)
+        var(--sb-track-color);
+    }
 }
 
 .panner .swiper-pagination .swiper-pagination-bullet {

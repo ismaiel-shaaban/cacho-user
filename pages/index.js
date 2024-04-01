@@ -8,7 +8,7 @@ import NewStores from "@/modules/landingPageModule/new/New";
 export default function Home() {
     return (
         <>
-            {/*<Panner/>*/}
+            <Panner/>
             <Categories/>
             <HotOffers />
             {/*<Nearest/>*/}
