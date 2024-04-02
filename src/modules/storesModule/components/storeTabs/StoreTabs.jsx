@@ -1,4 +1,4 @@
-import {Tab, Tabs} from "@nextui-org/react";
+import {Spinner, Tab, Tabs} from "@nextui-org/react";
 import AboutUs from "@/modules/storesModule/components/aboutUs/AboutUs";
 import Products from "@/modules/storesModule/components/products/Products";
 import Offers from "@/modules/storesModule/components/offers/Offers";
@@ -10,7 +10,7 @@ import SendIcon from "@/utilis/Icons/SendIcon";
 
 const StoreTabs = ({mainData, aboutUs,categories}) => {
 
-    if (mainData === null) return <div>Loading...</div>;
+    if (mainData === null) return <Spinner />;
     return(
         <div className="my-[20px] relative">
             <Tabs aria-label="Store Data" variant={"bordered"}
@@ -20,6 +20,7 @@ const StoreTabs = ({mainData, aboutUs,categories}) => {
                       tabContent: "group-data-[selected=true]:text-white text-[--gray-2] px-[30px] py-[10px] w-full text-[18px] font-[500]",
                       cursor: "group-data-[selected=true]:bg-[--rate-color] rounded-md w-full",
                       tab:"w-fit",
+                      panel:"mt-[20px]"
                   }}
             >
                 <Tab key={"AboutUs"} title={"About Us"}>
@@ -35,7 +36,7 @@ const StoreTabs = ({mainData, aboutUs,categories}) => {
                     <Reviews/>
                 </Tab>
             </Tabs>
-            <div className="absolute top-0 right-0 me-2 mt-3 rounded-md gap-2 md:gap-[23px] hidden md:flex">
+            <div className="absolute top-0 right-0 me-2 mt-3 rounded-md gap-2 md:gap-2 hidden md:flex">
                 <span className="p-[15px] border-2 w-[54px] h-[54px] rounded-md flex items-center justify-center">
                     <SaveIcon/>
                 </span>

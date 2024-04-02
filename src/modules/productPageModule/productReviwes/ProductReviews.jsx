@@ -1,9 +1,8 @@
-import {Card, CardBody} from "@nextui-org/react";
+import {Card, CardBody, Spinner} from "@nextui-org/react";
 import Rating from "@/components/sheared/rateing/Rating";
 import ReactStars from "react-rating-stars-component/dist/react-stars";
 import StarGrayIcon from "@/utilis/Icons/StarGrayIcon";
 import {Swiper, SwiperSlide} from "swiper/react";
-import {Pagination} from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 import 'swiper/css/navigation';
@@ -16,11 +15,12 @@ const ProductReviews = () => {
     const router = useRouter()
     const {id} = router.query
     const {data ,error , isLoading} = useSWR(`https://caco-dev.mimusoft.com/api/customer/products/${id}/reviews`,fetcher)
-    if(isLoading) return <div><Swiper/></div>
+    const reviewCount = data?.response?.data.length
+    if(isLoading) return <Spinner/>
     if(error) return <div>Error</div>
     return (
         <div className="md:col-span-1 col-span-2">
-            <h2>Reviews <Rating ratingCount={7} rating={4}/></h2>
+            <h2>Reviews <Rating ratingCount={reviewCount} rating={4}/></h2>
                 <Swiper
                     direction={'vertical'}
                     autoHeight={true}

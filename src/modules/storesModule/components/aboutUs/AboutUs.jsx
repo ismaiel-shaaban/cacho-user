@@ -16,7 +16,7 @@ const AboutUs = ({aboutUs}) => {
                        className="block w-[60px] object-cover h-[60px] rounded-md overflow-hidden"/>
                 <span className="flex flex-col justify-between">
                     <span className="text-[20px] font-[500]">{aboutUs.title}</span>
-                    <Rating rate={aboutUs.rating} ratingCount={aboutUs.reviewsCount}/>
+                    <Rating rating={aboutUs.rating} ratingCount={aboutUs.reviewsCount}/>
                 </span>
 
             </div>

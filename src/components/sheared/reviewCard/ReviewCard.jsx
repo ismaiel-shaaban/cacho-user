@@ -22,8 +22,8 @@ const ReviewCard = ({ review }) => {
                     <p className="text-[--gray-2]">{review.date}</p>
                 </div>
 
-                <h3 className="text-[16px] font[600]">{review.user}</h3>
-                <p className="text-[--gray-2]">{review.description}</p>
+                <h3 className="text-[16px] font[600]">{review.isAnonymous === true && "Anonymous"}</h3>
+                <p className="text-[--gray-2]">{review.comment}</p>
             </CardBody>
         </Card>
     )

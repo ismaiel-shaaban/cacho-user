@@ -47,7 +47,7 @@ const Panner = () => {
                         {/*</div>*/}
                         <div
                             className="absolute bottom-unit-28 left-unit-10 transform text-center flex items-center justify-center gap-3">
-                            <StoreImage image={item.business.image} alt="storeImage"/>
+                            <StoreImage image={item.business.logo} alt="storeImage"/>
                             <div>
                                 <h3 className="text-white font-[500] text-2xl mb-2">{item.business.title}</h3>
                                 <Link href={"/Stores/" + item.business.uuid}
@@ -64,9 +64,9 @@ const Panner = () => {
             })}
 
             {/*<SliderBtns/>*/}
-            <div className="absolute bottom-0 left-0 w-100 z-10 flex items-center justify-between px-10 mb-3 w-full">
-                <div className={`swiper-pagination ${classes["swiper-paginationPage"]}`}></div>
-                <span className="text-white flex items-center justify-center gap-10">
+            <div className="absolute bottom-0 left-0 w-100 z-10 flex items-center px-10 mb-3 w-full">
+                <div className={`swiper-pagination flex gap-2 swiper-paginationPage ${classes["swiper-paginationPage"]}`}></div>
+                <span className="text-white flex items-center justify-end gap-10 w-full">
                     <div
                         className={`swiper-prev ${classes["swiper-prev"]} border rounded-full !w-[40px] h-[40px] flex items-center justify-center cursor-pointer`}><FaArrowLeftLong
                         size={25}/></div>

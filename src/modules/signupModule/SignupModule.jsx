@@ -44,7 +44,7 @@ const SignupModule = () => {
         e.preventDefault();
         try {
             setIsLoading(true);
-            const user = await signupUser(formData.name, formData.phone.value, formData.password.value, formData.confirmPassword.value);
+            const user = await signupUser(formData.name, "+2"+formData.phone.value, formData.password.value, formData.confirmPassword.value);
             setIsLoading(false)
             const {token} = user
             setCookie("token", token);

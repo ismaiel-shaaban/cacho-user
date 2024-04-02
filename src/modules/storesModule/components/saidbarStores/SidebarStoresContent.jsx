@@ -3,12 +3,13 @@ import {Checkbox} from "@nextui-org/checkbox";
 import {strings} from "@/utilis/Localization";
 import {useState} from "react";
 import {useRouter} from "next/router";
+import {useCategoriesData} from "@/modules/categoriesModule/hooks/getCategories";
 
-const SidebarStoresContent = ({categoriesData}) => {
+const SidebarStoresContent = () => {
     const router = useRouter();
     const filter = router.query.filter;
     const [values, setValues] = useState(new Set([`${filter}`]));
-
+    const {data : categoriesData , isLoading} = useCategoriesData();
     const handleSelectionChange = (e) => {
         setValues(new Set(e.target.value.split(",")));
         // Update the URL query parameter to reflect the new filter
@@ -56,10 +57,11 @@ const SidebarStoresContent = ({categoriesData}) => {
                     <Select variant={"flat"} label={strings.Select}
                             selectedKeys={values}
                             onChange={handleSelectionChange}
+                            isLoading={isLoading}
                             dir={"ltr"} size={"sm"} classNames={{
                         trigger: 'bg-white'
                     }}>
-                        {categoriesData.map((item) => (
+                        {categoriesData?.response?.data.map((item) => (
                             <SelectItem key={item.uuid} value={item.uuid}>{item.name}</SelectItem>))}
                     </Select>
                 </div>

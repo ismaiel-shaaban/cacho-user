@@ -51,7 +51,7 @@ const UserInfo = ({name, image}) => {
                             src: "https://avatars.githubusercontent.com/u/30373425?v=4",
                         }}
                         className="transition-transform"
-                        description={userLocation}
+                        description={userLocation.split(",")[0]}
                         name={`Hi, ${name}`}
                         classNames={{
                             description: "text-[14px] font-medium text-[--primary-color]",

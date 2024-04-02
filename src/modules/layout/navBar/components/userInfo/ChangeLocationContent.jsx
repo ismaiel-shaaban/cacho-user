@@ -41,7 +41,7 @@ const ChangeLocationContent = ({onLocationChange}) => {
     return (<div>
             {isLoaded ? (<GoogleMap
                 id="marker-example"
-                zoom={8}
+                zoom={4}
                 mapContainerStyle={{height: "400px", width: "100%"}}
                 onLoad={onLoad}
                 onUnmount={onUnmount}

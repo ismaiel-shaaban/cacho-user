@@ -7,16 +7,11 @@ export const fetchLocation = async (language) => {
             navigator.geolocation.getCurrentPosition(resolve, reject);
         });
 
-        if (parseFloat(latitude) !== parseFloat(position.coords.latitude) || parseFloat(longitude) !== parseFloat(position.coords.longitude)) {
-            latitude =  parseFloat(latitude)
-            longitude = parseFloat(longitude)
-        } else {
+        if (latitude === null || longitude === null || latitude === undefined || longitude === undefined || latitude === "undefined" || longitude === "undefined" || latitude === "" || longitude === "NaN" || latitude === "NaN" || longitude === "") {
             latitude = position.coords.latitude;
             longitude = position.coords.longitude;
         }
-        const userLocationResponse = await fetch(
-            `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key=AIzaSyBhs9awrQC82lygPiy4Cq91xyX9s3WUjUI&language=${language}`
-        );
+        const userLocationResponse = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key=AIzaSyBhs9awrQC82lygPiy4Cq91xyX9s3WUjUI&language=${language}`);
 
         const userLocation = await userLocationResponse.json();
         const location = userLocation?.results[0]?.address_components
@@ -29,7 +24,7 @@ export const fetchLocation = async (language) => {
         localStorage.setItem('location', location);
         localStorage.setItem('latitude', latitude);
         localStorage.setItem('longitude', longitude)
-        return { location, latitude, longitude };
+        return {location, latitude, longitude};
     } else {
         throw new Error('Please enable location permission');
     }
