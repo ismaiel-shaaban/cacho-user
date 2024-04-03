@@ -10,7 +10,7 @@ const StoresCardList = ({page , filter ,passMetadata}) => {
             passMetadata(data?.response?.meta);
         }
     }, [data]);
-    if (isLoading) return <SkeletonProducts/>
+    if (isLoading) return <SkeletonProducts col={3}/>
     if (error) return <p>Error</p>
     return (<div
         className={`grid grid-cols-1 col-span-12 h-fit md:col-span-9 lg:grid-cols-3 sm:grid-cols-2 md:gap-[24px] gap-2 mt-[40px]`}>

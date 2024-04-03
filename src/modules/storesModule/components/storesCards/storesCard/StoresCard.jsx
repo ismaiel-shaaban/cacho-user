@@ -1,16 +1,9 @@
 import { Card, CardBody } from "@nextui-org/react";
-import { StarIcon } from "@/utilis/Icons/StarIcon";
 import Link from "next/link";
 import BookMark from "@/utilis/Icons/BookMark";
 import Rating from "@/components/sheared/rateing/Rating";
 import StoreImage from "@/components/sheared/storeImage/StoreImage";
-import { FreeMode ,Autoplay } from 'swiper/modules';
-import {Swiper, SwiperSlide} from "swiper/react";
-import 'swiper/css';
-import 'swiper/css/free-mode';
-import 'swiper/css/pagination';
-
-// import required modules
+import {strings} from "@/utilis/Localization";
 
 const StoresCard = ({ store }) => {
     const statusColor = store.status === "active" ? "bg-[--green]" : "bg-[--red]";
@@ -30,7 +23,7 @@ const StoresCard = ({ store }) => {
                 <div className={`absolute top-0 left-0 mt-[15px] ml-[15px] text-center flex items-center justify-center text-[14px] px-2 py-1 ${statusColor} text-white rounded-full`}>
                     {store.status}
                 </div>
-                <div className="p-[15px] flex items-center gap-3">
+                <div className={`p-[15px] flex items-center ${strings.getLanguage() === "ar" && "justify-between"} gap-3`}>
                     <Link href={`/Stores/${store.uuid}`}>
                         <StoreImage image={store.image} alt={store.title}/>
                     </Link>

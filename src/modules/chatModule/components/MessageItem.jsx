@@ -7,7 +7,7 @@ const MessageItem = ({content, sender}) => {
                     <p>{content}</p>
                 </div>
             </div>
-            <div className={`message-time text-gray-400 text-[12px]  ${sender !== "self" && 'text-end'}`}>{new Date().toLocaleTimeString()}</div>
+            <div className={`message-time text-gray-400 text-[12px]  ${sender !== "self" && 'text-end'}`}>{}</div>
         </>);
 }
 

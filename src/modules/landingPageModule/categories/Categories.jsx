@@ -7,6 +7,8 @@ import Card from "@/modules/categoriesModule/components/cards/card/Card";
 import SectionTitle from "@/modules/landingPageModule/components/sectionTitle/SectionTitle";
 import { strings } from "@/utilis/Localization";
 import {useEffect, useState} from "react";
+import CategoriesSkeleton from "@/modules/landingPageModule/categories/components/CategoriesSkeleton";
+import ErrorFetch from "@/components/sheared/erorrFetch/ErrorFetch";
 
 const fetcher = (...args) => fetch(...args).then(res => res.json());
 const Categories = () => {
@@ -20,9 +22,7 @@ const Categories = () => {
         }
     }, [data]);
 
-    if (isLoading) return <p>Loading...</p>;
-    if (error) return <p>Error</p>;
-
+    if (error) return <ErrorFetch/>;
 
     return (
         <section className="business-types container mt-[30px]">
@@ -54,11 +54,22 @@ const Categories = () => {
                         },
                     }}
                 >
-                    {categories.map((item) => (
-                        <SwiperSlide key={item.uuid}>
-                            <Card item={item} />
-                        </SwiperSlide>
-                    ))}
+                    <>
+                        {isLoading ? (
+                            [...Array(8)].map((_, index) => (
+                                <SwiperSlide key={index}>
+                                    <CategoriesSkeleton />
+                                </SwiperSlide>
+                            ))
+                        ) : (
+                            categories.map((item) => (
+                                <SwiperSlide key={item.uuid}>
+                                    <Card item={item} />
+                                </SwiperSlide>
+                            ))
+                        )}
+                    </>
+
                 </Swiper>
             </div>
         </section>

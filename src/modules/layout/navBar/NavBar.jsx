@@ -14,7 +14,7 @@ import {getCookie} from "cookies-next";
 import useSWR from "swr";
 
 
-const NavBar = () => {
+const NavBar = ({userLocation}) => {
     const [isDarkMode, setIsDarkMode] = useState(false);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isLogin, setIsLogin] = useState(false);
@@ -68,7 +68,7 @@ const NavBar = () => {
     return (<Navbar onMenuOpenChange={setIsMenuOpen} className="w-full p-0"
                     classNames={{base: "", wrapper: "!container justify-between"}}
                     aria-label="Main navigation"
-                    dir={strings.getLanguage() === "ar" ? "rtl" : "ltr"}>
+                    dir={strings.getLanguage() === 'ar' ? 'rtl' : 'ltr'}>
         <NavbarContent justify="start">
             <NavbarItem>
                 <Logo/>
@@ -96,7 +96,7 @@ const NavBar = () => {
                     <Divider orientation="vertical" className="w-[1px] h-[44px]"/>
                 </NavbarItem>
                 <NavbarItem>
-                    {isLoading ? "Loading..." : <UserInfo name={userData.name} image={userData.image}/>}
+                    {isLoading ? "Loading..." : <UserInfo userLocation={userLocation} name={userData.name} image={userData.image}/>}
                 </NavbarItem>
             </> : <>
                 <NavbarItem>
@@ -130,7 +130,7 @@ const NavBar = () => {
                     </Link>
                 </NavbarMenuItem>
                 <NavbarMenuItem>
-                    {isLoading ? "Loading..." : <UserInfo name={userData.name} image={userData.image}/>}
+                    {isLoading ? "Loading..." : <UserInfo userLocation={userLocation} name={userData.name} image={userData.image}/>}
                 </NavbarMenuItem>
             </div>
         </NavbarMenu>

@@ -12,6 +12,7 @@ import {BreadcrumbItem, Breadcrumbs} from "@nextui-org/react";
 import Link from "next/link";
 import {strings} from "@/utilis/Localization";
 import useSWR from "swr";
+import Head from "next/head";
 
 const fetcher = (...args) => fetch(...args).then(res => res.json());
 const Categories = () => {
@@ -28,6 +29,9 @@ const Categories = () => {
   if (!data) return <div>Loading categories...</div>;
   return (
       <main className="container">
+          <Head>
+              <title>Categories</title>
+          </Head>
         <Breadcrumbs
             className="mt-4"
             separator="/"

@@ -9,7 +9,7 @@ import ChangeLocation from "@/modules/layout/navBar/components/userInfo/ChangeLo
 import UserModal from "@/modules/modalsModule/UserModal";
 import UserImageDefault from "../../../../../../public/userImageDefult.svg";
 
-const UserInfo = ({name, image}) => {
+const UserInfo = ({name, image ,userLocation:firstLocation}) => {
     const router = useRouter();
     const {isOpen, onOpen, onOpenChange} = useDisclosure();
     const [modalContent, setModalContent] = useState(null);
@@ -51,7 +51,7 @@ const UserInfo = ({name, image}) => {
                             src: "https://avatars.githubusercontent.com/u/30373425?v=4",
                         }}
                         className="transition-transform"
-                        description={userLocation.split(",")[0]}
+                        description={userLocation.split(",")[0] || firstLocation.split(",")[0]}
                         name={`Hi, ${name}`}
                         classNames={{
                             description: "text-[14px] font-medium text-[--primary-color]",

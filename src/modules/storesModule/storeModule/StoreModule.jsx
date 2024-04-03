@@ -4,8 +4,10 @@ import StoreVideo from "@/modules/storesModule/components/storeVideo/StoreVideo"
 import {useStoreData} from "@/modules/storesModule/hooks/getStore";
 import {Spinner} from "@nextui-org/react";
 import StoreTabs from "@/modules/storesModule/components/storeTabs/StoreTabs";
+import SkeletonProducts from "@/components/sheared/skeletonProducts/SkeletonProducts";
+import ErrorFetch from "@/components/sheared/erorrFetch/ErrorFetch";
 
-const StoreModule = () => {
+const StoreModule = ({passTitle}) => {
     const router = useRouter();
     const [mainData, setMainData] = useState(null);
     const [aboutUs, setAboutUs] = useState(null);
@@ -20,14 +22,14 @@ const StoreModule = () => {
 
             setMainData({email, whatsapp, phone});
             setAboutUs({image, title, rating, reviewsCount, status, workingDays, images, about, address});
+            passTitle(title);
         }
     }, [data]);
-
+    if (isLoading) return <SkeletonProducts col={4}/>
+    if (error) return <ErrorFetch/>;
     return (<section>
-        {isLoading ? <div><Spinner size="md"/></div> : error ? <div>Error</div> : <>
-            <StoreVideo video={data?.response?.video}/>
-            <StoreTabs mainData={mainData} aboutUs={aboutUs} categories={data?.response?.categories}/>
-        </>}
+        <StoreVideo video={data?.response?.video}/>
+        <StoreTabs mainData={mainData} aboutUs={aboutUs} categories={data?.response?.categories}/>
     </section>);
 };
 

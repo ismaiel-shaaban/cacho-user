@@ -7,14 +7,14 @@ import NotFound from "@/components/sheared/NotFound";
 
 const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
-const ProductsStoreList = ({storeId,page, search ,passMeta}) => {
+const ProductsStoreList = ({fetchUrl ,passMeta}) => {
     const [url, setUrl] = useState("")
 
     useEffect(() => {
-        if (storeId) {
-            setUrl(`https://caco-dev.mimusoft.com/api/customer/businesses/${storeId}/products?page=${page}&products_search=${search}`)
+        if (fetchUrl) {
+            setUrl(fetchUrl)
         }
-    }, [storeId, page, search]);
+    }, [fetchUrl]);
 
     const {data, error, isLoading} = useSWR(url, fetcher, {
         revalidateOnFocus: false,
@@ -27,7 +27,7 @@ const ProductsStoreList = ({storeId,page, search ,passMeta}) => {
         }
     }, [data]);
 
-    if (isLoading) return <SkeletonProducts/>
+    if (isLoading) return <SkeletonProducts col={4}/>
     if (error) return <div>Error</div>;
     if (data?.response?.data.length === 0) return <NotFound title={"No Products Found"}/>;
     return (

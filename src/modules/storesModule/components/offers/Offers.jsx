@@ -2,13 +2,14 @@ import {useRouter} from "next/router";
 import {useStoreOffersData} from "@/modules/storesModule/hooks/getStoreOffers";
 import {Spinner, Tab, Tabs} from "@nextui-org/react";
 import ProductOfferTab from "@/modules/storesModule/components/offers/productOfferTab/ProductOfferTab";
+import ErrorFetch from "@/components/sheared/erorrFetch/ErrorFetch";
 
 const Offers = ()=>{
     const router = useRouter();
     const {id} = router.query;
     const {data, error, isLoading} = useStoreOffersData(id);
     if (isLoading) return <div><Spinner/></div>;
-    if (error) return <div>Error</div>;
+    if (error) return <ErrorFetch/>;
     return(
         <Tabs variant={"light"} fullWidth={true} className={"mt-5"} classNames={{
             tabContent: "group-data-[selected=true]:text-white text-[--gray-2] text-[18px] font-[500]",

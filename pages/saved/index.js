@@ -1,7 +1,15 @@
 import SavedModule from "@/modules/savedModule/SavedModule";
+import Head from "next/head";
 
 const SavedPage = () => {
-    return <SavedModule/>
+    return( <>
+        <Head>
+            <title>
+                Saved
+            </title>
+        </Head>
+        <SavedModule/>
+    </>)
 }
 
 export default SavedPage;

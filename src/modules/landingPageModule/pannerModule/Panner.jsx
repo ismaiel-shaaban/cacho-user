@@ -11,11 +11,14 @@ import classes from './Panner.module.css'
 import StoreImage from "@/components/sheared/storeImage/StoreImage";
 import useSWR from "swr";
 import {Spinner} from "@nextui-org/react";
+import SkeletonPanner from "@/modules/landingPageModule/pannerModule/components/SkeletonPanner";
 
 const fetcher = (url) => fetch(url).then((res) => res.json())
 const Panner = () => {
     const {data , error , isLoading} = useSWR('https://caco-dev.mimusoft.com/api/customer/banners' ,fetcher)
-    if (isLoading) return <Spinner/>
+    if (isLoading) return <div className="container mt-[20px]">
+        <SkeletonPanner/>
+    </div>
     if (error) return <div>{error}</div>
     return (<section className="panner container mt-[20px]">
 

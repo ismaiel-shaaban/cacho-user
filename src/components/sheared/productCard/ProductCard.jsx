@@ -42,7 +42,7 @@ const ProductCard = ({product}) => {
                     <div className="flex justify-between items-center mb-[5px]">
             <span className="text-sm text-gray-400">
               <span>{strings.by} </span>
-              <span className="text-[--primary-color]">{}</span>
+              <span className="text-[--primary-color]">{product.business.title}</span>
             </span>
                         {/*<Rating ratingCount={ratingCount} rating={rating}/>*/}
                     </div>

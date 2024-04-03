@@ -14,7 +14,7 @@ const fetcher = (url) => fetch(url).then(res => res.json())
 const ProductReviews = () => {
     const router = useRouter()
     const {id} = router.query
-    const {data ,error , isLoading} = useSWR(`https://caco-dev.mimusoft.com/api/customer/products/${id}/reviews`,fetcher)
+    const {data ,error , isLoading} = useSWR(`https://caco-dev.mimusoft.com/api/customer/products/${id}/reviews?with=customer`,fetcher)
     const reviewCount = data?.response?.data.length
     if(isLoading) return <Spinner/>
     if(error) return <div>Error</div>
@@ -25,7 +25,7 @@ const ProductReviews = () => {
                     direction={'vertical'}
                     autoHeight={true}
                     slidesPerView={3}
-                    spaceBetween={10}
+                    spaceBetween={15}
                     mousewheel={true}
                     className="mySwiper h-[422px] lg:!h-[440px]  mt-3"
                 >

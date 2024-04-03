@@ -14,7 +14,7 @@ const SidebarStoresContent = () => {
         setValues(new Set(e.target.value.split(",")));
         // Update the URL query parameter to reflect the new filter
         router.push({
-            pathname: router.pathname, query: {...router.query, filter: e.target.value},
+            pathname: router.pathname, query: {...router.query, filter: e.target.value , page: 1},
         });
     }
 

@@ -1,12 +1,11 @@
-import useSWR from 'swr';
-import { NextUIProvider } from '@nextui-org/react';
+import {useEffect, useState} from 'react';
 import { Cairo } from 'next/font/google';
+import { NextUIProvider } from '@nextui-org/react';
 import "../src/css/publicStyle.css";
-import React, { useEffect, useState } from 'react';
 import { strings } from '@/utilis/Localization';
 import NavBar from "@/modules/layout/navBar/NavBar";
 import Footer from "@/modules/layout/footer/Footer";
-import SignupPage from "./signup";
+import {fetchLocation} from "@/utilis/getUserLocation";
 
 const cairo = Cairo({
     weight: ["300", "400", "500", "600", "700", "800", "900"],
@@ -16,7 +15,12 @@ const cairo = Cairo({
 
 
 const MyApp = ({ Component, pageProps }) => {
-
+    const [userLocation, setUserLocation] = useState("");
+    useEffect(() => {
+        fetchLocation(strings.getLanguage() || "en").then((data) => {
+            setUserLocation(data?.location);
+        });
+    }, []);
     return (
         <NextUIProvider>
             <style jsx global>{`
@@ -25,7 +29,7 @@ const MyApp = ({ Component, pageProps }) => {
                 }
             `}</style>
             {Component.name !== "Login" && Component.name !== "ForgetPasswordPage" && Component.name !== "SignupPage" ?
-                <NavBar /> : null}
+                <NavBar userLocation={userLocation} /> : null}
             <Component {...pageProps}/>
             {Component.name !== "Login" && Component.name !== "ForgetPasswordPage" && Component.name !== "SignupPage" ?
                 <Footer /> : null}

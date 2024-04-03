@@ -1,10 +1,17 @@
 import StoresCards from "@/modules/storesModule/components/storesCards/StoresCards";
+import Head from "next/head";
 const Stores = () => {
 
     return(
-        <section className="container">
-        <StoresCards/>
-        </section>
+        <>
+            <Head>
+                <title>Stores</title>
+            </Head>
+            <section className="container">
+                <StoresCards/>
+            </section>
+        </>
+
     )
 }
 
