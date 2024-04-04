@@ -65,8 +65,8 @@ const Categories = () => {
                             [...Array(3)].map((_, index) => (
                                 <Fragment key={index}>
                                     {categories.map((item) => (
-                                        <SwiperSlide key={item.uuid}>
-                                            <Card key={item.uuid} item={item} />
+                                        <SwiperSlide key={item.index}>
+                                            <Card key={item.index} item={item} />
                                         </SwiperSlide>
                                     ))}
                                 </Fragment>
