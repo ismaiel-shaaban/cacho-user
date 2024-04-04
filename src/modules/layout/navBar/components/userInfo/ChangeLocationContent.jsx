@@ -19,7 +19,8 @@ const ChangeLocationContent = ({onLocationChange}) => {
         map.fitBounds(bounds);
 
         setMap(map)
-    }, [])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [ ])
 
     const onUnmount = useCallback(function callback(map) {
         setMap(null)
@@ -36,6 +37,7 @@ const ChangeLocationContent = ({onLocationChange}) => {
             setUserLocation(data?.location);
             onLocationChange(data?.location); // Call the prop callback
         });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [center]);
 
     return (<div>

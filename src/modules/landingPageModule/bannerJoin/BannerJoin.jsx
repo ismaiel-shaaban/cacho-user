@@ -1,13 +1,13 @@
 import Link from "next/link";
+import { strings } from "@/utilis/Localization";
 import Image from "next/image";
+import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
+import { Button } from "@nextui-org/react";
 import bannerImage from "../../../../public/bannerJoin/img-1.png";
-import {FaArrowLeft, FaArrowRight} from "react-icons/fa";
-import {Button} from "@nextui-org/react";
-import {strings} from "@/utilis/Localization";
 
 const BannerJoin = () => {
-    const textInEnglish = ()=>{
-        return(
+    const textInEnglish = () => {
+        return (
             <>
                 <span
                     className="text-[--primary-color] bg-white inline-block px-1 h-fit">Need</span> to market your
@@ -17,8 +17,8 @@ const BannerJoin = () => {
         )
     }
 
-    const textInArabic = ()=>{
-        return(
+    const textInArabic = () => {
+        return (
             <>
                 <span
                     className="text-[--primary-color] bg-white inline-block px-1 h-fit">تحتاج</span> إلى تسويق منتجاتك أو فتح
@@ -34,10 +34,10 @@ const BannerJoin = () => {
                 <h2 className="text-[56px] font-bold mb-[20px]">{
                     strings.getLanguage() === 'ar' ? textInArabic() : textInEnglish()
                 }</h2>
-                <Button as={Link}  href={"#"} className="w-fit rounded-md text-white text-[20px] leading-6 tracking-wide font-[700] bg-[--primary-color] flex items-center mt-[24px]">{strings.SignUpFree}{strings.getLanguage() !== "ar" ? <FaArrowRight size={20} className="ms-2" /> : <FaArrowLeft size={20} className="ms-2" /> }</Button>
+                <Button as={Link} href={"#"} className="w-fit rounded-md text-white text-[20px] leading-6 tracking-wide font-[700] bg-[--primary-color] flex items-center mt-[24px]">{strings.SignUpFree}{strings.getLanguage() !== "ar" ? <FaArrowRight size={20} className="ms-2" /> : <FaArrowLeft size={20} className="ms-2" />}</Button>
             </div>
             <div className={"h-[calc(100%+30px)] md:w-1/3 z-10 md:absolute md:end-0 md:bottom-0"}>
-                <Image src={bannerImage} alt={"Join Now"} className="h-full"/>
+                <Image src={bannerImage} alt={"Join Now"} className="h-full" />
             </div>
         </div>
     </section>)

@@ -1,8 +1,8 @@
 import { useState } from "react";
-import {useRouter} from "next/router";
+import { useRouter } from "next/router";
 import Image from "next/image";
 import Link from "next/link";
-import {Button, useDisclosure} from "@nextui-org/react";
+import { Button, useDisclosure } from "@nextui-org/react";
 import { FaArrowRight } from "react-icons/fa";
 import LogoImage from "../../../public/logo.svg";
 import bannerImage from "../../../public/bannerJoin/img-1.png";
@@ -10,12 +10,12 @@ import classes from "./LoginModule.module.css";
 import InputPhone from "@/components/sheared/inputPhone/InputPhone";
 import InputPassword from "@/components/sheared/inputPassword/InputPassword";
 import ForgetPasswordModal from "@/modules/modalsModule/ForgetPasswordModal";
-import {loginUser} from "@/modules/loginModule/loginUser";
-import {setCookie} from "cookies-next";
+import { loginUser } from "@/modules/loginModule/loginUser";
+import { setCookie } from "cookies-next";
 
 const LoginModule = () => {
     const router = useRouter()
-    const {isOpen, onOpen, onOpenChange} = useDisclosure();
+    const { isOpen, onOpen, onOpenChange } = useDisclosure();
     const [phone, setPhone] = useState({ value: "", isValid: false });
     const [password, setPassword] = useState({ value: "", isValid: false })
     const [isLoading, setIsLoading] = useState(false);
@@ -25,12 +25,12 @@ const LoginModule = () => {
         e.preventDefault();
         try {
             setIsLoading(true);
-            const user = await loginUser("+2"+phone.value, password.value);
+            const user = await loginUser("+2" + phone.value, password.value);
             setIsLoading(false)
-            const {token} = user
+            const { token } = user
             // Set token in a cookie
             setCookie("token", token);
-            if (token  && token !== "") {
+            if (token && token !== "") {
                 await router.push('/')
             }
         } catch (error) {
@@ -63,7 +63,7 @@ const LoginModule = () => {
                         <Image src={LogoImage} alt={"Cachoo"} />
                     </div>
                     <span className="text-[24px] text-[#3F3D4D] font-[600] my-10 place-self-start">Welcome back!</span>
-                    <form className="w-full"  onSubmit={handleLogin}>
+                    <form className="w-full" onSubmit={handleLogin}>
                         <div className="mb-[20px]">
                             <InputPhone onPhoneChange={(value, isValid) => setPhone({ value, isValid })} />
                         </div>

@@ -1,32 +1,32 @@
 import Image from "next/image";
-import {useState} from "react";
+import { useState } from "react";
 import InputPhone from "@/components/sheared/inputPhone/InputPhone";
 import InputPassword from "@/components/sheared/inputPassword/InputPassword";
 import Link from "next/link";
-import {Button, Input, useDisclosure} from "@nextui-org/react";
-import {FaArrowRight} from "react-icons/fa";
+import { Button, Input, useDisclosure } from "@nextui-org/react";
+import { FaArrowRight } from "react-icons/fa";
 import LogoImage from "../../../public/logo-2.svg";
 import bannerImage from "../../../public/bannerJoin/img-1.png";
 import cameraImage from "../../../public/camera1.svg";
 import classes from "./SignupModule.module.css";
 import ConfirmPhoneModal from "@/modules/modalsModule/ConfirmPhoneModal";
 import ImageUpload from "@/components/sheared/imageUpload/ImageUpload";
-import {loginUser} from "@/modules/loginModule/loginUser";
-import {setCookie} from "cookies-next";
-import {useRouter} from "next/router";
-import {signupUser} from "@/modules/signupModule/signupUser";
+import { loginUser } from "@/modules/loginModule/loginUser";
+import { setCookie } from "cookies-next";
+import { useRouter } from "next/router";
+import { signupUser } from "@/modules/signupModule/signupUser";
 
 const SignupModule = () => {
-    const {isOpen, onOpen, onOpenChange} = useDisclosure();
+    const { isOpen, onOpen, onOpenChange } = useDisclosure();
     const router = useRouter();
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(null);
 
     const [formData, setFormData] = useState({
         name: "",
-        phone: {value: "", isValid: false},
-        password: {value: "", isValid: false},
-        confirmPassword: {value: "", isValid: false},
+        phone: { value: "", isValid: false },
+        password: { value: "", isValid: false },
+        confirmPassword: { value: "", isValid: false },
         userImage: null,
     });
 
@@ -44,11 +44,11 @@ const SignupModule = () => {
         e.preventDefault();
         try {
             setIsLoading(true);
-            const user = await signupUser(formData.name, "+2"+formData.phone.value, formData.password.value, formData.confirmPassword.value);
+            const user = await signupUser(formData.name, "+2" + formData.phone.value, formData.password.value, formData.confirmPassword.value);
             setIsLoading(false)
-            const {token} = user
+            const { token } = user
             setCookie("token", token);
-            if (token  && token !== "") {
+            if (token && token !== "") {
                 await router.push('/')
             }
         } catch (error) {
@@ -67,15 +67,15 @@ const SignupModule = () => {
                     <h2 className="text-[3rem] font-bold mb-[20px] text-white">
                         <span className="text-[--primary-color] bg-white inline-block px-1 h-fit">Need</span> to
                         market your products or open new <span
-                        className="text-[--primary-color] bg-white inline-block px-1 h-fit">Business</span>
+                            className="text-[--primary-color] bg-white inline-block px-1 h-fit">Business</span>
                     </h2>
                     <Button as={Link} href={"/login"}
-                            className="w-fit rounded-md text-white text-[20px] leading-6 tracking-wide font-[700] bg-[#095DA8] flex items-center mt-[24px]">
-                        Login<FaArrowRight size={20} className="ms-2"/>
+                        className="w-fit rounded-md text-white text-[20px] leading-6 tracking-wide font-[700] bg-[#095DA8] flex items-center mt-[24px]">
+                        Login<FaArrowRight size={20} className="ms-2" />
                     </Button>
                 </div>
                 <div className="h-3/5 flex justify-end absolute bottom-0 end-0">
-                    <Image src={bannerImage} alt={"Join Now"} className="w-full h-full object-cover"/>
+                    <Image src={bannerImage} alt={"Join Now"} className="w-full h-full object-cover" />
                 </div>
             </div>
         </div>
@@ -86,12 +86,12 @@ const SignupModule = () => {
                         <div className="flex justify-between w-full">
                             <h2 className="text-[24px] font-[600] mt-[20px]">Create New Account!!</h2>
                             <div>
-                                <Link href={"/"}><Image src={LogoImage} alt={"Logo"}/></Link>
+                                <Link href={"/"}><Image src={LogoImage} alt={"Logo"} /></Link>
                             </div>
                         </div>
                         <div className="w-full">
                             <div className="flex justify-center mb-[49px]">
-                                <ImageUpload defaultImage={cameraImage} onChange={handleImageChange} />
+                                <Image alt="img" Upload defaultImage={cameraImage} onChange={handleImageChange} />
                             </div>
                             <div className="mt-4 w-full grid grid-cols-1 gap-3 sm:grid-cols-2">
                                 <Input
@@ -99,7 +99,7 @@ const SignupModule = () => {
                                     label="Name"
                                     labelPlacement="outside"
                                     placeholder="Name"
-                                    classNames={{label: "!text-[--gray-2]"}}
+                                    classNames={{ label: "!text-[--gray-2]" }}
                                     onChange={(e) => handleChange("name", e.target.value)}
                                     isRequired={true}
                                     size="lg"
@@ -107,15 +107,15 @@ const SignupModule = () => {
                                     className="w-full"
                                 />
                                 <InputPhone
-                                    onPhoneChange={(value, isValid) => handleChange("phone", {value, isValid})}/>
+                                    onPhoneChange={(value, isValid) => handleChange("phone", { value, isValid })} />
                                 <InputPassword label={"Password"} placeholder={"Password"}
-                                               onPasswordChange={(value, isValid) => handleChange("password", {
-                                                   value, isValid
-                                               })}/>
+                                    onPasswordChange={(value, isValid) => handleChange("password", {
+                                        value, isValid
+                                    })} />
                                 <InputPassword label={"Confirm Password"} placeholder={"Confirm Password"}
-                                               onPasswordChange={(value, isValid) => handleChange("confirmPassword", {
-                                                   value, isValid
-                                               })}/>
+                                    onPasswordChange={(value, isValid) => handleChange("confirmPassword", {
+                                        value, isValid
+                                    })} />
                             </div>
                         </div>
                         <div className="w-1/2 mt-5">
@@ -127,7 +127,7 @@ const SignupModule = () => {
                                 size="lg" type="submit">
                                 Sign Up
                             </Button>
-                            <ConfirmPhoneModal phone={formData.phone} isOpen={isOpen} onOpenChange={onOpenChange}/>
+                            <ConfirmPhoneModal phone={formData.phone} isOpen={isOpen} onOpenChange={onOpenChange} />
                         </div>
                     </div>
                 </div>

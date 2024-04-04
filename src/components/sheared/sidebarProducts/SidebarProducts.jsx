@@ -3,7 +3,7 @@ import {Button, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, useDis
 import {strings} from "@/utilis/Localization";
 import {useEffect, useState} from "react";
 
-const sidebarProducts = () => {
+const SidebarProducts = () => {
     const {isOpen, onOpen, onOpenChange} = useDisclosure();
     const [showSidebar, setShowSidebar] = useState(false);
 
@@ -40,4 +40,4 @@ const sidebarProducts = () => {
     )
 }
 
-export default sidebarProducts
+export default SidebarProducts
