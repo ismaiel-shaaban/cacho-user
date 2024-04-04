@@ -1,7 +1,6 @@
 import {useEffect, useState} from "react";
 import {Button, Card, CardBody} from "@nextui-org/react";
 import {strings} from "@/utilis/Localization";
-import Image from "next/image";
 import Link from "next/link";
 import {StarIcon} from "@/utilis/Icons/StarIcon";
 import classes from "./productCard.module.css";
@@ -32,7 +31,7 @@ const ProductCard = ({product}) => {
                     <img src={images[0]} alt={name} className="object-cover w-full" style={{height: "inherit"}}/>
                 </div>
                 <div className={`absolute right-0 top-0 mt-[15px] mr-[15px]`}>
-                    <BookMark/>
+                    <BookMark productId={uuid} />
                 </div>
                 {/*{discountLabel && <div*/}
                 {/*    className={`${classes.discount} absolute -rotate-45 ${discountClass} text-white w-[300px] h-[50px] text-center flex items-center justify-center text-[14px]`}>{discountLabel}</div>}*/}

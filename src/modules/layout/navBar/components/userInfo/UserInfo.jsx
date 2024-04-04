@@ -8,6 +8,7 @@ import ChangePassword from "@/modules/layout/navBar/components/userInfo/ChangePa
 import ChangeLocation from "@/modules/layout/navBar/components/userInfo/ChangeLocation";
 import UserModal from "@/modules/modalsModule/UserModal";
 import UserImageDefault from "../../../../../../public/userImageDefult.svg";
+import {strings} from "@/utilis/Localization";
 
 const UserInfo = ({name, image ,userLocation:firstLocation}) => {
     const router = useRouter();
@@ -52,7 +53,7 @@ const UserInfo = ({name, image ,userLocation:firstLocation}) => {
                         }}
                         className="transition-transform"
                         description={userLocation.split(",")[0] || firstLocation.split(",")[0]}
-                        name={`Hi, ${name}`}
+                        name={`${strings.Hi}, ${name}`}
                         classNames={{
                             description: "text-[14px] font-medium text-[--primary-color]",
                             name: "text-[12px] font-[400] text-[--gray-2]",

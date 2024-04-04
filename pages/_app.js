@@ -6,6 +6,7 @@ import { strings } from '@/utilis/Localization';
 import NavBar from "@/modules/layout/navBar/NavBar";
 import Footer from "@/modules/layout/footer/Footer";
 import {fetchLocation} from "@/utilis/getUserLocation";
+import {getCookies} from "cookies-next";
 
 const cairo = Cairo({
     weight: ["300", "400", "500", "600", "700", "800", "900"],

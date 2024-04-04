@@ -1,11 +1,29 @@
 import {useState} from "react";
+import {getCookie, getCookies} from "cookies-next";
 
-const BookMark = () => {
+const BookMark = ({productId}) => {
     const [isSaved, setIsSaved] = useState(false);
-    const handleClick = () => {
-        setTimeout(() => {
-            setIsSaved(!isSaved);
-        }, 200); // Delay of 200ms
+
+    const handleClick = async () => {
+        setIsSaved(!isSaved);
+        const token = await getCookie('token')
+        if (token) {
+           try{
+               await fetch(`https://caco-dev.mimusoft.com/api/customer/products/${productId}/favourite`, {
+                   method: "POST",
+                   headers: {
+                       "Content-Type": "application/json",
+                       "Authorization": `Bearer ${token}`
+                   },
+               })
+               console.log("Saved Successfully" , isSaved , productId)
+           } catch (e) {
+                console.log(e)
+           }
+        } else {
+            console.log("No token")
+        }
+
     };
     return (<div onClick={handleClick} className="p-2 backdrop-blur-md bg-white/50 rounded-md cursor-pointerz">
         {isSaved === false ? <span>

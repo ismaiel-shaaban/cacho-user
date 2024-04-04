@@ -7,6 +7,7 @@ import SaveIcon from "@/utilis/Icons/SaveIcon";
 import WhatsAppIcons from "@/utilis/Icons/WhatsAppIcons";
 import TextMessageIcon from "@/utilis/Icons/TextMessageIcon";
 import SendIcon from "@/utilis/Icons/SendIcon";
+import {strings} from "@/utilis/Localization";
 
 const StoreTabs = ({mainData, aboutUs,categories}) => {
 
@@ -23,16 +24,16 @@ const StoreTabs = ({mainData, aboutUs,categories}) => {
                       panel:"mt-[20px]"
                   }}
             >
-                <Tab key={"AboutUs"} title={"About Us"}>
+                <Tab key={"AboutUs"} title={strings.AboutUs}>
                     <AboutUs aboutUs={aboutUs}/>
                 </Tab>
-                <Tab key={"Products"} title={"Products"}>
+                <Tab key={"Products"} title={strings.Products}>
                     <Products categories={categories}/>
                 </Tab>
-                <Tab key={"Offers"} title={"Offers"}>
+                <Tab key={"Offers"} title={strings.Offers}>
                     <Offers/>
                 </Tab>
-                <Tab key={"Reviews"} title={"Reviews"}>
+                <Tab key={"Reviews"} title={strings.Reviews}>
                     <Reviews/>
                 </Tab>
             </Tabs>
