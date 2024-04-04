@@ -5,7 +5,7 @@ const Cards = ({businessData}) => {
     return (
         <div
             className={`grid lg:grid-cols-5 md:grid-cols-4 sm:grid-cols-3 md:gap-[20px] gap-2 mt-[34px]`}>
-            {businessData.map((item) => (<Card item={item}/>))}
+            {businessData.map((item) => (<Card item={item} key={item.uuid}/>))}
         </div>)
 }
 
