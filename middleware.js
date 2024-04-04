@@ -5,16 +5,14 @@ import {fetchUserData} from "@/utilis/getUserData";
 export async function middleware(req) {
     try {
         const res = NextResponse.next();
-        const token = getCookie('token', { req ,res});
-        // check if token exists
-        if (!token) {
-            console.log('No token found')
-            return NextResponse.redirect('/login');
-        }
-        // Fetch user data using the token
-        const userData = await fetchUserData(token);
-        if(userData?.message === 'Unauthenticated.') {
-            return NextResponse.redirect('/login');
+        if (req.nextUrl.pathname.startsWith('/chat') || req.nextUrl.pathname.startsWith('/saved')) {
+            const token =  getCookie('token', { res, req })
+            const userData = await fetchUserData(token);
+            const url = req.nextUrl.clone()
+            url.pathname = '/login'
+            if (userData?.uuid === null || token === null || token=== undefined || token === '') {
+                return NextResponse.rewrite(url)
+            }
         }
 
         if (req.nextUrl.pathname.startsWith('/login') && userData?.uuid !== null ) {
@@ -23,7 +21,7 @@ export async function middleware(req) {
         return NextResponse.next();
     } catch (error) {
         console.error('Error:', error.message);
-        return NextResponse.redirect('/login');
+        return NextResponse.rewrite(new URL('/', req.url))
     }
 }
 

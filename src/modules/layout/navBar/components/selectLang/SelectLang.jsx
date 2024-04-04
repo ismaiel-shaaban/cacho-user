@@ -10,7 +10,11 @@ const SelectLang = () => {
     );
     useEffect(() => {
         let lang = localStorage.getItem('lang');
-        strings.setLanguage(lang);
+        if(lang) {
+            strings.setLanguage(lang);
+        } else {
+            strings.setLanguage("en");
+        }
         setSelectedKeys(new Set([lang || "en"]));
     }, []);
     const toggleLanguage = (language) => {
