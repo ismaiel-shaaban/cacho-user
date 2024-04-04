@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { useState } from "react";
 import InputPassword from "@/components/sheared/inputPassword/InputPassword";
-import ChangePasswordImage from "../../../../../../public/ChangePassword.svg"
+import ChangePasswordImage from "../../../../../../public/changePassword.svg"
 import { Button } from "@nextui-org/react";
 
 const ChangePasswordContent = () => {
@@ -9,7 +9,7 @@ const ChangePasswordContent = () => {
         oldPassword: "", newPassword: "", confirmPassword: "",
     });
     return (
-        <div className="flex items-center flex-col p-2 md:flex-row md:gap-10 md:p-6 md:p-[50px]">
+        <div className="flex items-center flex-col p-2 md:flex-row md:gap-10 md:p-[50px]">
             <div>
                 <h4 className="text-2xl font-medium mb-12">change password</h4>
                 <div>
