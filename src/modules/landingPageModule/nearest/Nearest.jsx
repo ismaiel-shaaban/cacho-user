@@ -33,7 +33,7 @@ const Nearest = () => {
             <SectionTitle title={strings.Nearest} link={"#"} select={true}/>
             <div className="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 md:gap-[20px] gap-2 mt-[40px]">
                 {data?.response?.data.map((store) => (
-                    <StoresCard key={store.id} store={store}/>
+                    <StoresCard key={store.uuid} store={store}/>
                 ))}
             </div>
         </section>

@@ -67,11 +67,12 @@ const NavBar = ({userLocation}) => {
         document.documentElement.style.setProperty('--bg-color', darkMode ? '#333' : '#fff');
     };
 
-    return (<Navbar onMenuOpenChange={setIsMenuOpen} className="w-full p-0"
-                    classNames={{base: "", wrapper: "!container justify-between"}}
+    return (<Navbar onMenuOpenChange={setIsMenuOpen} className="p-0"
+                    maxWidth={"xl"}
+                    // classNames={{wrapper: "!md:container"}}
                     aria-label="Main navigation"
                     dir={strings.getLanguage() === 'ar' ? 'rtl' : 'ltr'}>
-        <NavbarContent justify="start">
+        <NavbarContent justify="start" className={"gap-2 md:w-2/3"}>
             <NavbarItem>
                 <Logo/>
             </NavbarItem>
@@ -79,7 +80,7 @@ const NavBar = ({userLocation}) => {
                 <SearchInput/>
             </NavbarItem>
         </NavbarContent>
-        <NavbarContent className="hidden md:flex" justify="end">
+        <NavbarContent className="hidden gap-2 lg:flex md:w-1/3" justify="end">
             <NavbarItem>
                 <SelectLang/>
             </NavbarItem>
@@ -110,7 +111,7 @@ const NavBar = ({userLocation}) => {
                 </NavbarItem>
             </>}
         </NavbarContent>
-        <NavbarContent className="flex md:hidden" justify="end">
+        <NavbarContent className="flex lg:hidden" justify="end">
             <NavbarItem>
                 <NavbarMenuToggle
                     aria-label={isMenuOpen ? "Close menu" : "Open menu"}
