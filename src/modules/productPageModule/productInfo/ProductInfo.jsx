@@ -7,6 +7,7 @@ import TextMessageIcon from "@/utilis/Icons/TextMessageIcon";
 import SaveIcon from "@/utilis/Icons/SaveIcon";
 
 const ProductInfo = ({info}) => {
+    console.log("ProductInfo -> info", info)
     // const [selectedSize, setSelectedSize] = useState("");
     // const [selectedColor, setSelectedColor] = useState("");
     // const colors = ["#C1C1C1", "#8290E1"];
@@ -31,7 +32,7 @@ const ProductInfo = ({info}) => {
     const discountPercentage = Math.floor(((info?.price - info?.priceAfterDiscount) / info?.price) * 100)
 
 
-    return (<div className="pe-8">
+    return (<div className="col-span-12 lg:col-span-4 md:col-span-6">
             <p className="text-gray-400">
                 By <span className="text-[--primary-color]">{info?.business?.title}</span>
             </p>

@@ -39,8 +39,9 @@ const Panner = () => {
                     <div
                         className="relative h-[calc(100dvh-84px)] w-full"
                     >
-                        <Image width={undefined} alt="panner" src={item.image} priority={true}
-                            height={undefined} layout="fill"
+                        <Image alt="panner" src={item.image} priority={true}
+                          layout="fill"
+                               sizes={"(max-width: 640px) 100vw, (max-width: 768px) 100vw, (max-width: 1024px) 100vw, 100vw"}
                             className="block h-[calc(100dvh-84px)] w-100 object-cover rounded-md" />
                         {/*<div*/}
                         {/*    className="absolute md:top-unit-28 md:right-unit-20 right-unit-10 top-unit-14 transform text-center ">*/}

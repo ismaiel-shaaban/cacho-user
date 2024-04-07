@@ -1,32 +1,33 @@
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {getCookie, getCookies} from "cookies-next";
+import {fetchUserData} from "@/utilis/getUserData";
 
-const BookMark = ({productId}) => {
-    const [isSaved, setIsSaved] = useState(false);
+const BookMark = ({productId , isSaved ,isProduct}) => {
+    const [isSavedState, setIsSavedState] = useState(isSaved);
 
     const handleClick = async () => {
-        setIsSaved(!isSaved);
-        const token = await getCookie('token')
-        if (token) {
-           try{
-               await fetch(`https://caco-dev.mimusoft.com/api/customer/products/${productId}/favourite`, {
-                   method: "POST",
-                   headers: {
-                       "Content-Type": "application/json",
-                       "Authorization": `Bearer ${token}`
-                   },
-               })
-               console.log("Saved Successfully" , isSaved , productId)
-           } catch (e) {
-                console.log(e)
-           }
-        } else {
-            console.log("No token")
-        }
 
+        const token = getCookie('token')
+        const userData = await fetchUserData(token)
+        if (userData.uuid) {
+            try {
+                await fetch(`https://caco-dev.mimusoft.com/api/customer/${isProduct ? "product" : "businesses"}/${productId}/favourite`, {
+                    method: isSaved ? "DELETE" : "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Authorization": `Bearer ${token}`
+                    },
+                });
+                setIsSavedState(!isSavedState);
+                console.log("Operation Successful", isSaved ? "Removed from favorites" : "Added to favorites");
+            } catch (e) {
+                console.log(e);
+            }
+        }
     };
-    return (<div onClick={handleClick} className="p-2 backdrop-blur-md bg-white/50 rounded-md cursor-pointerz">
-        {isSaved === false ? <span>
+
+    return (<div onClick={handleClick} className="p-2 backdrop-blur-md bg-white/50 rounded-md cursor-pointer">
+        {isSavedState === false ? <span>
            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M6.9375 6.78711C8.2725 7.27461 9.7275 7.27461 11.0625 6.78711" stroke="#8E8E93" strokeWidth="1.125"
                   strokeLinecap="round" strokeLinejoin="round"/>

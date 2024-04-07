@@ -1,6 +1,6 @@
 import useSWR from "swr";
+import {fetcher} from "@/utilis/fetcherFUN";
 
-const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
 export const useStoresData = (filter, page) => {
     const url = filter

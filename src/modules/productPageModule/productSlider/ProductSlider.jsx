@@ -1,18 +1,15 @@
 import {useState} from "react";
 import {Swiper, SwiperSlide} from "swiper/react";
 import {FreeMode, Navigation, Thumbs} from 'swiper/modules';
-import Image from 'next/image'
-import product_1 from '../../../../public/product/img-1.jpg'
-import product_2 from '../../../../public/product/img-2.jpeg'
 import {MdKeyboardArrowLeft, MdKeyboardArrowRight} from "react-icons/md";
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
+import Image from "next/image";
 
 const ProductSlider = ({slides}) => {
-    console.log("ProductSlider -> slides", slides)
     const [thumbsSwiper, setThumbsSwiper] = useState(null);
-    return (<div className="product-slide">
+    return (<div className="col-span-12 lg:col-span-4 md:col-span-6">
         <Swiper
             style={{
                 '--swiper-navigation-color': '#fff', '--swiper-pagination-color': '#fff',
@@ -28,7 +25,8 @@ const ProductSlider = ({slides}) => {
         >
             {slides.map((slide ,index) => (<SwiperSlide key={index}>
                 <div className="h-[435px] w-[387px] rounded-[10px] overflow-hidden">
-                    <img
+                    <Image
+                        fill={true}
                         src={slide}
                         alt="Image Alt Text"
                         className="object-cover rounded-[10px]"
@@ -59,7 +57,8 @@ const ProductSlider = ({slides}) => {
         >
             {slides.map((slide , index) => (<SwiperSlide key={index}>
                 <div className="h-[103px] w-[97px]">
-                    <img
+                    <Image
+                        fill={true}
                         src={slide}
                         alt="Image Alt Text"
                         className="object-cover rounded-[10px]"

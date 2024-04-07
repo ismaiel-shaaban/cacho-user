@@ -1,6 +1,6 @@
 import useSWR from "swr";
+import {fetcher} from "@/utilis/fetcherFUN";
 
-const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
 export const useStoreData = (id) => {
     const url = id && `https://caco-dev.mimusoft.com/api/customer/businesses/${id}?with=categories`;

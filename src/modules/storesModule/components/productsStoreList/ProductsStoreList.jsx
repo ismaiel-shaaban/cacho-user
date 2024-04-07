@@ -4,8 +4,8 @@ import useSWR from "swr";
 import ProductCard from "@/components/sheared/productCard/ProductCard";
 import SkeletonProducts from "@/components/sheared/skeletonProducts/SkeletonProducts";
 import NotFound from "@/components/sheared/NotFound";
+import {fetcher} from "@/utilis/fetcherFUN";
 
-const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
 const ProductsStoreList = ({fetchUrl ,passMeta}) => {
     const [url, setUrl] = useState("")

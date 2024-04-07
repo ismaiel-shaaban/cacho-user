@@ -32,7 +32,7 @@ const ProductCard = ({ product }) => {
                     <Image width={292} height={190} src={images[0]} alt={name} className="object-cover w-full" style={{ height: "inherit" }} />
                 </div>
                 <div className={`absolute right-0 top-0 mt-[15px] mr-[15px]`}>
-                    <BookMark productId={uuid} />
+                    <BookMark productId={uuid} isProduct={true} isSaved={product.isFavourite} />
                 </div>
                 {/*{discountLabel && <div*/}
                 {/*    className={`${classes.discount} absolute -rotate-45 ${discountClass} text-white w-[300px] h-[50px] text-center flex items-center justify-center text-[14px]`}>{discountLabel}</div>}*/}

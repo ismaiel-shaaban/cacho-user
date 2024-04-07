@@ -22,8 +22,8 @@ const UserInfo = ({name, image ,userLocation:firstLocation}) => {
         onOpen();
     };
 
+    const tokenData = getCookie('token')
     const handelLogout = async () => {
-        const tokenData = getCookie('token')
         try {
             const response = await fetch('https://caco-dev.mimusoft.com/api/customer/auth/logout', {
                 method: 'POST',
@@ -48,12 +48,14 @@ const UserInfo = ({name, image ,userLocation:firstLocation}) => {
                 <DropdownTrigger>
                     <User
                         as="button"
-                        avatarProps={{
-                            src: "https://avatars.githubusercontent.com/u/30373425?v=4",
-                        }}
+                        avatarProps={
+                            tokenData && {src: `${tokenData && "https://avatars.githubusercontent.com/u/30373425?v=4"}`,}
+                        }
                         className="transition-transform"
-                        description={userLocation.split(",")[0] || firstLocation.split(",")[0]}
-                        name={`${strings.Hi}, ${name}`}
+                        description={userLocation.split(",").slice(1, 3).join(", ")|| firstLocation.split(",").slice(1, 3).join(", ")}
+                        name={
+                        tokenData && `${strings.Hi}, ${name}`
+                        }
                         classNames={{
                             description: "text-[14px] font-medium text-[--primary-color]",
                             name: "text-[12px] font-[400] text-[--gray-2]",
@@ -61,27 +63,29 @@ const UserInfo = ({name, image ,userLocation:firstLocation}) => {
                     />
                 </DropdownTrigger>
                 <DropdownMenu aria-label="User Actions" variant="flat">
-                    <DropdownItem key="Edit Profile">
-                        <EditProfile onClick={
-                            () => handleActionClick("Edit Profile")
-                        }/>
-                    </DropdownItem>
-                    <DropdownItem key="Change Password">
+                    {
+                        tokenData && <DropdownItem key="Edit Profile">
+                            <EditProfile onClick={
+                                () => handleActionClick("Edit Profile")
+                            }/>
+                        </DropdownItem>
+                    }
+                    {tokenData && <DropdownItem key="Change Password">
                         <ChangePassword onClick={
                             () => handleActionClick("Change Password")
                         }/>
-                    </DropdownItem>
+                    </DropdownItem>}
                     <DropdownItem key="Change location">
                         <ChangeLocation onClick={
                             () => handleActionClick("Change Location")
                         }/>
                     </DropdownItem>
-                    <DropdownItem onClick={handelLogout} key="logout" color="danger">
+                    {tokenData && <DropdownItem onClick={handelLogout} key="logout" color="danger">
                         <div className="flex items-center justify-start gap-2">
                             <span><LogoutIcon/></span>
                             <span>Logout</span>
                         </div>
-                    </DropdownItem>
+                    </DropdownItem>}
                 </DropdownMenu>
             </Dropdown>
             <UserModal isOpen={isOpen} onOpenChange={onOpenChange} modalContent={modalContent} passLocation={

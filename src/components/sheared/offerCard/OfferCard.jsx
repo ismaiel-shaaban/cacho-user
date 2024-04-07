@@ -23,9 +23,6 @@ const OfferCard = ({ offer }) => {
                     <Image width={292} height={190} src={offer.business.image} alt={offer.title} className="object-cover w-full"
                         style={{ height: "inherit" }} />
                 </div>
-                <div className={`absolute right-0 top-0 mt-[15px] mr-[15px]`}>
-                    <BookMark />
-                </div>
                 {discountLabel && <div
                     className={`${classes.discount} absolute -rotate-45 bg-[--red] text-white w-[300px] h-[50px] text-center flex items-center justify-center text-[14px]`}>{discountLabel}</div>}
                 {/*{typeLabel && <div*/}

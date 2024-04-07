@@ -14,11 +14,12 @@ const StoresCard = ({ store }) => {
                 <div className="h-[190px] relative">
                     <img src={store.image} alt={store.title} className="object-cover w-full" style={{ height: "inherit" }} />
                     <div className="absolute bottom-[15px] right-1/2 translate-x-1/2 w-full px-3 bg-white">
-                        <span className="text-xl me-3 text-nowrap">{store.businessType.name}</span>
+                        {store?.businessType &&
+                            <span className="text-xl me-3 text-nowrap">{store?.businessType?.name}</span>}
                     </div>
                 </div>
                 <div className="absolute right-0 top-0 mt-[15px] mr-[15px]">
-                    <BookMark />
+                    <BookMark productId={store.uuid} isProduct={false}  isSaved={store.isFavourite} />
                 </div>
                 <div className={`absolute top-0 left-0 mt-[15px] ml-[15px] text-center flex items-center justify-center text-[14px] px-2 py-1 ${statusColor} text-white rounded-full`}>
                     {store.status}

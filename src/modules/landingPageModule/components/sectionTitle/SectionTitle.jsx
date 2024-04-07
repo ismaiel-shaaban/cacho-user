@@ -5,26 +5,19 @@ import {Select, SelectItem} from "@nextui-org/react";
 
 const SectionTitle = ({title, link, select}) => {
     const [lang, setLang] = useState("en");
+    const [location, setLocation] = useState("all");
 
     useEffect(() => {
         const lang = localStorage.getItem("lang");
         setLang(lang);
-    }, []);
+        const location = localStorage.getItem("location");
+        setLocation(location);
+    }, [location]);
 
     return (<div className="section-title flex items-center justify-between" dir={lang === "ar" ? "rtl" : "ltr"}>
             <div className="flex items-center">
                 <h2 className="text-[32px] text-[--primary-color] whitespace-nowrap font-bold">{title}</h2>
-                {select && <Select variant={"underlined"} dir={"ltr"}
-                                   defaultSelectedKeys={["1"]}
-                                   classNames={{
-                                       trigger: "ms-3 min-w-[100px]",
-                                       value: "text-[--primary-color]",
-                                        label: "text-[--primary-color]",
-                                   }}
-                >
-                    <SelectItem key={"1"} value="Tema, Sohag">Tema, Sohag</SelectItem>
-                    <SelectItem key={"2"} value="Cairo">Cairo</SelectItem>
-                </Select>}
+                 <p className="text-[--primary-color] mx-2">{ location &&location.split(",").slice(1, 3).join(", ")}</p>
             </div>
             {link && (<Link href={link} className="text-[--primary-color] text-[20px]">
                     {strings.viewAll}

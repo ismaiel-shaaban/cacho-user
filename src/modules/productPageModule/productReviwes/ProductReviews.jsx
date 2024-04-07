@@ -19,7 +19,7 @@ const ProductReviews = () => {
     if(isLoading) return <Spinner/>
     if(error) return <div>Error</div>
     return (
-        <div className="md:col-span-1 col-span-2">
+        <div className="col-span-12 lg:col-span-4 md:col-span-6">
             <h2>Reviews <Rating ratingCount={reviewCount} rating={4}/></h2>
                 <Swiper
                     direction={'vertical'}
@@ -27,10 +27,10 @@ const ProductReviews = () => {
                     slidesPerView={3}
                     spaceBetween={15}
                     mousewheel={true}
-                    className="mySwiper h-[422px] lg:!h-[440px]  mt-3"
+                    className="mySwiper !h-[422px] lg:!h-[440px]  mt-3"
                 >
                     {data?.response?.data.map(review => (
-                        <SwiperSlide key={review.id}>
+                        <SwiperSlide key={review.uuid}>
                             <ReviewCard review={review}/>
                         </SwiperSlide>
                     ))}

@@ -12,6 +12,8 @@ import Logo from "@/modules/layout/navBar/components/logo";
 import Link from "next/link";
 import {getCookie} from "cookies-next";
 import useSWR from "swr";
+import Image from "next/image";
+import savedLink from "../../../../public/savedLink.svg"
 
 
 const NavBar = ({userLocation}) => {
@@ -89,14 +91,11 @@ const NavBar = ({userLocation}) => {
                 </NavbarItem>
                 <NavbarItem>
                     <Link href={"/saved"}>
-                        <BookMark/>
+                        <Image src={savedLink} alt={"bookmark"} width={24} height={24}/>
                     </Link>
                 </NavbarItem>
                 <NavbarItem>
                     <Divider orientation="vertical" className="w-[1px] h-[44px]"/>
-                </NavbarItem>
-                <NavbarItem>
-                    {isLoading ? "Loading..." : <UserInfo userLocation={userLocation} name={userData.name} image={userData.image}/>}
                 </NavbarItem>
             </> : <>
                 <NavbarItem>
@@ -105,6 +104,9 @@ const NavBar = ({userLocation}) => {
                 <NavbarItem>
                     <Button className="bg-[--primary-color] text-white" as={Link}
                             href={"/signup"}>{strings.Register}</Button>
+                </NavbarItem>
+                <NavbarItem>
+                    {isLoading ? "Loading..." : <UserInfo userLocation={userLocation} name={userData.name} image={userData.image}/>}
                 </NavbarItem>
             </>}
         </NavbarContent>
@@ -126,7 +128,7 @@ const NavBar = ({userLocation}) => {
                     </Link> </NavbarMenuItem>
                 <NavbarMenuItem>
                     <Link href={"/saved"}>
-                        <BookMark/>
+                        <Image src={savedLink} alt={"bookmark"} width={24} height={24}/>
                     </Link>
                 </NavbarMenuItem>
                 <NavbarMenuItem>
