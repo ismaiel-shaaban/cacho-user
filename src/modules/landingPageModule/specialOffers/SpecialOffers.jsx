@@ -20,12 +20,12 @@ const SpecialOffers = () => {
                     <img src={data?.response?.data[0]?.business.image} alt={"Special Offers"} className="object-cover w-full h-full" />
                 </div>
                 <div className="flex flex-col md:grid md:grid-rows-2 md:h-[570px] gap-[20px]">
-                    <div className="rounded-md overflow-hidden" onClick={
+                    <div className="rounded-md overflow-hidden cursor-pointer" onClick={
                         () => router.push(`/Stores/${data?.response?.data[1]?.business.uuid}`)
                     }>
                         <img  src={data?.response?.data[1]?.business.image} alt={"Special Offers"} className="object-cover w-full h-full" />
                     </div>
-                    <div className="rounded-md overflow-hidden" onClick={
+                    <div className="rounded-md overflow-hidden cursor-pointer" onClick={
                         () => router.push(`/Stores/${data?.response?.data[2]?.business.uuid}`)
                     }>
                         <img  src={data?.response?.data[2]?.business.image} alt={"Special Offers"} className="object-cover w-full h-full" />

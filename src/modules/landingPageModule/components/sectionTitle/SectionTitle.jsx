@@ -17,9 +17,10 @@ const SectionTitle = ({title, link, select}) => {
     return (<div className="section-title flex items-center justify-between" dir={lang === "ar" ? "rtl" : "ltr"}>
             <div className="flex items-center">
                 <h2 className="text-[32px] text-[--primary-color] whitespace-nowrap font-bold">{title}</h2>
-                 <p className="text-[--primary-color] mx-2">{ location &&location.split(",").slice(1, 3).join(", ")}</p>
+                {select &&
+                    <p className="text-[--primary-color] mx-2">{location && location.split(",").slice(1, 3).join(", ")}</p>}
             </div>
-            {link && (<Link href={link} className="text-[--primary-color] text-[20px]">
+        {link && (<Link href={link} className="text-[--primary-color] text-[20px]">
                     {strings.viewAll}
                 </Link>)}
         </div>);
