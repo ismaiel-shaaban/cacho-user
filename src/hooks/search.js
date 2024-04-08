@@ -19,7 +19,10 @@ const useSearch = (search, type) => {
             break;
     }
 
-    const { data, error, isLoading } = useSWR(url, fetcher);
+    const { data, error, isLoading } = useSWR(url, fetcher ,{
+        revalidateOnFocus:false,
+        revalidateIfStale:false
+    });
 
     return {
         data,

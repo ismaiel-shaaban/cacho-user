@@ -8,8 +8,8 @@ export const useStoresData = (filter, page) => {
         : `https://caco-dev.mimusoft.com/api/customer/businesses?with=businessType${page ? `&page=${page}` : ""}`;
 
     const { data, error , isLoading } = useSWR(url, fetcher, {
-        revalidateOnFocus: false,
-        dedupingInterval: 60000, // 1 minute
+        revalidateOnFocus:false,
+        revalidateIfStale:false
     });
 
     return {

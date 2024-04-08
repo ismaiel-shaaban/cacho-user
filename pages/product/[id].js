@@ -11,7 +11,10 @@ import {fetcher} from "@/utilis/fetcherFUN";
 const ProductPage = () => {
     const router= useRouter()
     const {id} = router.query
-    const {data , error ,isLoading} = useSWR(`https://caco-dev.mimusoft.com/api/customer/products/${id}?with=business`,fetcher)
+    const {data , error ,isLoading} = useSWR(`https://caco-dev.mimusoft.com/api/customer/products/${id}?with=business`,fetcher ,{
+        revalidateOnFocus:false,
+        revalidateIfStale:false
+    })
     if(isLoading) return <div>Loading...</div>
     if(error) return <div>Error</div>
     return (

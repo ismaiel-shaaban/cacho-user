@@ -15,7 +15,10 @@ import SkeletonPanner from "@/modules/landingPageModule/pannerModule/components/
 
 const fetcher = (url) => fetch(url).then((res) => res.json())
 const Panner = () => {
-    const { data, error, isLoading } = useSWR('https://caco-dev.mimusoft.com/api/customer/banners', fetcher)
+    const { data, error, isLoading } = useSWR('https://caco-dev.mimusoft.com/api/customer/banners', fetcher , {
+        revalidateOnFocus:false,
+        revalidateIfStale:false
+    })
     if (isLoading) return <div className="container mt-[20px]">
         <SkeletonPanner />
     </div>

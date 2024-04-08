@@ -9,11 +9,15 @@ import { strings } from "@/utilis/Localization";
 import {Fragment, useEffect, useState} from "react";
 import CategoriesSkeleton from "@/modules/landingPageModule/categories/components/CategoriesSkeleton";
 import ErrorFetch from "@/components/sheared/erorrFetch/ErrorFetch";
+import {fetcher} from "@/utilis/fetcherFUN";
 
-const fetcher = (...args) => fetch(...args).then(res => res.json());
+
 const Categories = () => {
     const [categories, setCategories] = useState([]);
-    const { data, error , isLoading} = useSWR("https://caco-dev.mimusoft.com/api/customer/business-types", fetcher);
+    const { data, error , isLoading} = useSWR("https://caco-dev.mimusoft.com/api/customer/business-types", fetcher ,{
+        revalidateIfStale : false,
+        revalidateOnFocus : false,
+    });
 
     useEffect(() => {
         if (data) {

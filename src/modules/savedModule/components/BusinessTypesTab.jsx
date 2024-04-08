@@ -5,7 +5,10 @@ import StoresCard from "@/modules/storesModule/components/storesCards/storesCard
 
 const BusinessTypesTab = () => {
     const [stores , setStores] = useState([]);
-    const {data , isLoading , error} = useSWR(`https://caco-dev.mimusoft.com/api/customer/favourites?with=business`, fetcher);
+    const {data , isLoading , error} = useSWR(`https://caco-dev.mimusoft.com/api/customer/favourites?with=business`, fetcher ,{
+        revalidateOnFocus:false,
+        revalidateIfStale:false
+    });
     console.log("stores" ,stores)
     useEffect(() => {
         if (data) {

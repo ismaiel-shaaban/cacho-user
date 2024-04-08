@@ -8,7 +8,10 @@ import {useRouter} from "next/router";
 
 const SpecialOffers = () => {
     const router = useRouter()
-    const {data , isLoading , error} = useSWR("https://caco-dev.mimusoft.com/api/customer/offers?isSpecial=1&with=business" ,fetcher)
+    const {data , isLoading , error} = useSWR("https://caco-dev.mimusoft.com/api/customer/offers?isSpecial=1&with=business" ,fetcher ,{
+        revalidateOnFocus : false,
+
+    })
 
     return (
         <section className="container mt-[40px]">

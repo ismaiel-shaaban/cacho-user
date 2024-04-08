@@ -1,14 +1,12 @@
 import useSWR from "swr";
 import {getCookie} from "cookies-next";
-
-const fetcher = (url) => fetch(url ,{
-    headers: {
-        Authorization: `Bearer ${getCookie('token')}`,
-    }
-}).then((res) => res.json());
+import {fetcher} from "@/utilis/fetcherFUN";
 
 const useGetOffersProducts = (id , page) => {
-    const { data, error , isLoading } = useSWR(`https://caco-dev.mimusoft.com/api/customer/offers/${id}/products${page && `?page=${page}`}&with=business`, fetcher);
+    const { data, error , isLoading } = useSWR(`https://caco-dev.mimusoft.com/api/customer/offers/${id}/products${page && `?page=${page}`}&with=business`, fetcher ,{
+        revalidateOnFocus:false,
+        revalidateIfStale:false
+    });
     return {
         data,
         error,

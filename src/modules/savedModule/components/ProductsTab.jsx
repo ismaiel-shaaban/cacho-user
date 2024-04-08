@@ -7,7 +7,10 @@ import {useEffect, useState} from "react";
 
 export const ProductsTab = () => {
     const [products , setProducts] = useState([]);
-    const {data , isLoading , error} = useSWR(`https://caco-dev.mimusoft.com/api/customer/favourites?with=business`, fetcher);
+    const {data , isLoading , error} = useSWR(`https://caco-dev.mimusoft.com/api/customer/favourites?with=business`, fetcher , {
+        revalidateOnFocus:false,
+        revalidateIfStale:false
+    });
     useEffect(() => {
         if (data) {
             setProducts(data?.response?.data.filter(item => item.favouriteable === "product"));

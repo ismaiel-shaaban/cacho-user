@@ -1,5 +1,5 @@
 import {strings} from '@/utilis/Localization';
-import {useEffect, useState} from 'react';
+import {useEffect, useMemo, useState} from 'react';
 import {
     Button, Divider, Navbar, NavbarContent, NavbarItem, NavbarMenu, NavbarMenuItem, NavbarMenuToggle,
 } from "@nextui-org/react";
@@ -24,7 +24,7 @@ const NavBar = ({userLocation}) => {
     const [token, setToken] = useState("");
 
     const {data, isLoading} = useSWR('https://caco-dev.mimusoft.com/api/customer/profile', async (url) => {
-        const res = await fetch(url, {
+        const res = token && await fetch(url, {
             method: 'GET', headers: {
                 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`
             },
@@ -33,6 +33,9 @@ const NavBar = ({userLocation}) => {
             throw new Error(`Error fetching user data: Server responded with status ${res.status}`);
         }
         return await res.json();
+    } , {
+        revalidateOnFocus:false,
+        revalidateIfStale:false
     });
     useEffect(() => {
         if (data) {
@@ -67,6 +70,10 @@ const NavBar = ({userLocation}) => {
         document.documentElement.style.setProperty('--bg-color', darkMode ? '#333' : '#fff');
     };
 
+    const memoizedUserInfo = useMemo(() => {
+        return <UserInfo userLocation={userLocation} name={userData.name} image={userData.image} />;
+    }, [userData, userLocation]);
+
     return (<Navbar onMenuOpenChange={setIsMenuOpen} className="p-0"
                     maxWidth={"xl"}
                     // classNames={{wrapper: "!md:container"}}
@@ -99,7 +106,7 @@ const NavBar = ({userLocation}) => {
                     <Divider orientation="vertical" className="w-[1px] h-[44px]"/>
                 </NavbarItem>
                 <NavbarItem>
-                    {isLoading ? "Loading..." : <UserInfo userLocation={userLocation} name={userData.name} image={userData.image}/>}
+                    {isLoading ? "Loading..." : memoizedUserInfo}
                 </NavbarItem>
             </> : <>
                 <NavbarItem>
@@ -110,7 +117,7 @@ const NavBar = ({userLocation}) => {
                             href={"/signup"}>{strings.Register}</Button>
                 </NavbarItem>
                 <NavbarItem>
-                    {isLoading ? "Loading..." : <UserInfo userLocation={userLocation} name={userData.name} image={userData.image}/>}
+                    {isLoading ? "Loading..." :memoizedUserInfo}
                 </NavbarItem>
             </>}
         </NavbarContent>
@@ -136,7 +143,7 @@ const NavBar = ({userLocation}) => {
                     </Link>
                 </NavbarMenuItem>
                 <NavbarMenuItem>
-                    {isLoading ? "Loading..." : <UserInfo userLocation={userLocation} name={userData.name} image={userData.image}/>}
+                    {isLoading ? "Loading..." : memoizedUserInfo}
                 </NavbarMenuItem>
             </div>
         </NavbarMenu>

@@ -5,11 +5,15 @@ import Link from "next/link";
 import {strings} from "@/utilis/Localization";
 import useSWR from "swr";
 import Head from "next/head";
+import {fetcher} from "@/utilis/fetcherFUN";
 
-const fetcher = (...args) => fetch(...args).then(res => res.json());
+
 const Categories = () => {
   const [categories, setCategories] = useState([]);
-  const { data, error } = useSWR("https://caco-dev.mimusoft.com/api/customer/business-types", fetcher);
+  const { data, error } = useSWR("https://caco-dev.mimusoft.com/api/customer/business-types", fetcher,{
+      revalidateOnFocus:false,
+      revalidateIfStale:false
+  });
 
   useEffect(() => {
     if (data) {
