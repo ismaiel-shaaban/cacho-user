@@ -23,7 +23,7 @@ const NavBar = ({userLocation}) => {
     const [userData, setUserData] = useState({});
     const [token, setToken] = useState("");
 
-    const {data, isLoading} = useSWR(token && 'https://caco-dev.mimusoft.com/api/customer/profile', async (url) => {
+    const {data, isLoading} = useSWR('https://caco-dev.mimusoft.com/api/customer/profile', async (url) => {
         const res = await fetch(url, {
             method: 'GET', headers: {
                 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`
@@ -97,6 +97,9 @@ const NavBar = ({userLocation}) => {
                 </NavbarItem>
                 <NavbarItem>
                     <Divider orientation="vertical" className="w-[1px] h-[44px]"/>
+                </NavbarItem>
+                <NavbarItem>
+                    {isLoading ? "Loading..." : <UserInfo userLocation={userLocation} name={userData.name} image={userData.image}/>}
                 </NavbarItem>
             </> : <>
                 <NavbarItem>

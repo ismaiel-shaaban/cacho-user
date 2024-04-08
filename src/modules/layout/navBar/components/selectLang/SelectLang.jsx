@@ -26,7 +26,6 @@ const SelectLang = () => {
         const savedLang = localStorage.getItem('lang');
         setSelectedKeys(new Set([savedLang || "en"]));
     }, []);
-    console.log(strings.getLanguage());
     return (
         <Dropdown aria-label={"Select Lang"} onChange={(e) => console.log(e)}>
             <DropdownTrigger>

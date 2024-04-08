@@ -10,11 +10,11 @@ import UserModal from "@/modules/modalsModule/UserModal";
 import UserImageDefault from "../../../../../../public/userImageDefult.svg";
 import {strings} from "@/utilis/Localization";
 
-const UserInfo = ({name, image ,userLocation:firstLocation}) => {
+const UserInfo = ({name, image, userLocation: firstLocation}) => {
     const router = useRouter();
     const {isOpen, onOpen, onOpenChange} = useDisclosure();
     const [modalContent, setModalContent] = useState(null);
-    const [userLocation, setUserLocation] = useState("");
+    const [userLocation, setUserLocation] = useState(firstLocation);
 
 
     const handleActionClick = (action) => {
@@ -36,7 +36,7 @@ const UserInfo = ({name, image ,userLocation:firstLocation}) => {
                 throw new Error('Logout failed');
             }
             deleteCookie("token");
-            router.reload()
+            await router.reload();
         } catch (error) {
             console.error('Error:', error.message);
         }
@@ -48,13 +48,10 @@ const UserInfo = ({name, image ,userLocation:firstLocation}) => {
                 <DropdownTrigger>
                     <User
                         as="button"
-                        avatarProps={
-                            tokenData && {src: `${tokenData && "https://avatars.githubusercontent.com/u/30373425?v=4"}`,}
-                        }
                         className="transition-transform"
-                        description={userLocation.split(",").slice(1, 3).join(", ")|| firstLocation.split(",").slice(1, 3).join(", ")}
+                        description={userLocation.split(",").slice(1, 3).join(", ")}
                         name={
-                        tokenData && `${strings.Hi}, ${name}`
+                            tokenData && `${strings.Hi}, ${name}`
                         }
                         classNames={{
                             description: "text-[14px] font-medium text-[--primary-color]",
