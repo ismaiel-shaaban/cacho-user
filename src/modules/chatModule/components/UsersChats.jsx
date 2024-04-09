@@ -5,11 +5,11 @@ import useSWR from "swr";
 import { getCookie } from "cookies-next";
 
 
-const UsersChats = ({chats ,passSelelctedChat}) => {
+const UsersChats = ({chats ,passSelectedChat}) => {
     const [selectedChat, setSelectedChat] = useState(null);
     const handleSelectChat = (chatId) => {
         setSelectedChat(chatId);
-        passSelelctedChat(chatId);
+        passSelectedChat(chatId);
     }
     return (
         <div className="col-span-4 bg-white rounded-l-xl p-[24px] h-[88vh]">

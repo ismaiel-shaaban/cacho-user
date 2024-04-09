@@ -62,7 +62,7 @@ const SearchInput = () => {
                     {data.response.data.map((result) => (<div key={result.uuid}
                         className="p-2 border-b border-gray-200 text-[--primary-color]">
                         <Link
-                            href={selectedCategory === "stores" ? `/Stores/${result.uuid}` : selectedCategory === "products" ? `/product/${result.uuid}` : `/categories/${result.uuid}`}
+                            href={selectedCategory === "stores" ? `/Stores/${result.uuid}` : selectedCategory === "products" ? `/product/${result.uuid}` : `/Stores/?filter=${result.uuid}`}
                             className="flex justify-between items-center w-full ">
                             <span>
                                 {result.name ? result.name : result.title}

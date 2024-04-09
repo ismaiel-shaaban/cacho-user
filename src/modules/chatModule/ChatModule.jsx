@@ -9,7 +9,6 @@ import {getCookie} from "cookies-next";
 
 const ChatModule = () => {
     const [selectedChat, setSelectedChat] = useState(null);
-    const [messages, setMessages] = useState("");
     const [chats, setChats] = useState([]);
     const { data, isLoading, error } = useSWR(
         "https://caco-dev.mimusoft.com/api/customer/chats?with=business",
@@ -20,39 +19,16 @@ const ChatModule = () => {
             setChats(data.response.data);
         }
     }, [data]);
-    const handelpassSelelctedChat = (chat) => {
+    const handelPassSelectedChat = (chat) => {
         setSelectedChat(chat);
     }
-    useEffect(() => {
-        const fetchMessages = async () => {
-            try {
-                const response = await fetch(
-                    `https://caco-dev.mimusoft.com/api/customer/chats/${selectedChat}/messages`,
-                    {
-                        method: "GET",
-                        headers: {
-                            "Content-Type": "application/json",
-                            Authorization: "Bearer " + getCookie("token"),
-                        },
-                    }
-                );
-                const data = await response.json();
-                setMessages(data.response.data);
-            } catch (error) {
-                console.error("Error fetching messages:", error);
-            }
-        };
-        if (selectedChat){
-            fetchMessages();
-        }
-    }, [selectedChat]);
     if (isLoading) return <Spinner/>
     if(error) return <p>failed to load</p>
     return (
         <section className="container mb-6">
             <div className="grid grid-cols-12 gap-[20px] h-[88vh] mt-[20px]">
-                <UsersChats chats={chats} passSelelctedChat={handelpassSelelctedChat} />
-                <ChatBody messages={messages}  />
+                <UsersChats chats={chats} passSelectedChat={handelPassSelectedChat} />
+                <ChatBody selectedChat={selectedChat}  />
             </div>
         </section>
     );
