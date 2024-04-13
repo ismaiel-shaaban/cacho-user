@@ -30,7 +30,7 @@ const StoreModule = ({passTitle}) => {
     if (error) return <ErrorFetch/>;
     return (<section>
         <StoreVideo video={data?.response?.video}/>
-        <StoreTabs mainData={mainData} aboutUs={aboutUs} categories={data?.response?.categories}/>
+        <StoreTabs mainData={mainData} aboutUs={aboutUs} categories={data?.response?.categories} isServiceProvider={data?.response?.isServiceProvider}/>
     </section>);
 };
 

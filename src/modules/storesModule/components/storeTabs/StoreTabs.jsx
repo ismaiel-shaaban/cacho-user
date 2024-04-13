@@ -9,7 +9,7 @@ import TextMessageIcon from "@/utilis/Icons/TextMessageIcon";
 import SendIcon from "@/utilis/Icons/SendIcon";
 import {strings} from "@/utilis/Localization";
 
-const StoreTabs = ({mainData, aboutUs,categories}) => {
+const StoreTabs = ({mainData, aboutUs,categories , isServiceProvider}) => {
 
     if (mainData === null) return <Spinner />;
     return(
@@ -27,7 +27,7 @@ const StoreTabs = ({mainData, aboutUs,categories}) => {
                 <Tab key={strings.AboutUs} title={strings.AboutUs}>
                     <AboutUs aboutUs={aboutUs}/>
                 </Tab>
-                <Tab key={strings.Products} title={strings.Products}>
+                <Tab key={strings.Products} title={!isServiceProvider ? strings.Products : strings.Services}>
                     <Products categories={categories}/>
                 </Tab>
                 <Tab key={"Offers"} title={strings.Offers}>

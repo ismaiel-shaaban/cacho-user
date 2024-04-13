@@ -15,7 +15,7 @@ const BookMark = ({productId, isSaved, isProduct}) => {
 
         if (userData) {
             try {
-                await fetch(`https://caco-dev.mimusoft.com/api/customer/${isProduct ? "product" : "businesses"}/${productId}/favourite`, {
+                await fetch(`https://caco-dev.mimusoft.com/api/customer/${isProduct ? "products" : "businesses"}/${productId}/favourite`, {
                     method: isSaved ? "DELETE" : "POST", headers: {
                         "Content-Type": "application/json", "Authorization": `Bearer ${token}`
                     },

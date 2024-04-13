@@ -7,7 +7,6 @@ const BusinessTypesTab = () => {
     const [stores , setStores] = useState([]);
     const {data , isLoading , error} = useSWR(`https://caco-dev.mimusoft.com/api/customer/favourites?with=business`, fetcher ,{
         revalidateOnFocus:false,
-        revalidateIfStale:false
     });
     console.log("stores" ,stores)
     useEffect(() => {

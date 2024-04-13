@@ -21,9 +21,10 @@ const ProductCard = ({product}) => {
 
     const {images, priceAfterDiscount, price, name, uuid} = product;
 
-    // const discountLabel = discountType ? (lang === "ar" ? `${strings.off} ${discount}` : `${discount} ${strings.off}`) : null;
-    // const typeLabel = type && strings.New;
-    // const discountClass = priceAfterDiscount ? "bg-[--red]" : "bg-[--primary-color]";
+    const discount = ((price-priceAfterDiscount)/priceAfterDiscount)*100
+
+    const discountLabel = priceAfterDiscount ? (lang === "ar" ? `${strings.off} ${discount.toFixed(2)}%` : `${discount.toFixed(2)}% ${strings.off}`) : null;
+    const discountClass = priceAfterDiscount ? "bg-[--red]" : "bg-[--primary-color]";
 
     return (
         <Card dir={lang === "ar" ? "rtl" : "ltr"} className={`shadow-none !transition !duration-300 hover:shadow-xl`}>
@@ -35,10 +36,8 @@ const ProductCard = ({product}) => {
                 <div className={`absolute right-0 top-0 mt-[15px] mr-[15px]`}>
                     <BookMark productId={uuid} isProduct={true} isSaved={product.isFavourite}/>
                 </div>
-                {/*{discountLabel && <div*/}
-                {/*    className={`${classes.discount} absolute -rotate-45 ${discountClass} text-white w-[300px] h-[50px] text-center flex items-center justify-center text-[14px]`}>{discountLabel}</div>}*/}
-                {/*{typeLabel && <div*/}
-                {/*    className={`${classes.discount} absolute -rotate-45 ${discountClass} text-white w-[300px] h-[50px] text-center flex items-center justify-center text-[14px]`}>{typeLabel}</div>}*/}
+                {discountLabel && <div
+                    className={`${classes.discount} absolute -rotate-45 ${discountClass} text-white w-[300px] h-[50px] text-center flex items-center justify-center text-[14px]`}>{discountLabel}</div>}
                 <div className="p-[15px]">
                     <div className="flex justify-between items-center mb-[5px]">
                         <span className="text-sm text-gray-400">
@@ -47,7 +46,7 @@ const ProductCard = ({product}) => {
                                 <Link href={`/Stores/${product.business.uuid}`}>{product.business.title}</Link>
                             </span>
                         </span>
-                        {/*<Rating ratingCount={ratingCount} rating={rating}/>*/}
+                        <Rating ratingCount={product.reviewsCount} rating={product.rating}/>
                     </div>
                     <h3 className="text-md font-medium mb-[10px] leading-7">{name}</h3>
                     <div className="flex justify-between items-center">

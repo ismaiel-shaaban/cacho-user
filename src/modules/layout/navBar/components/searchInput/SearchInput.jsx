@@ -52,6 +52,7 @@ const SearchInput = () => {
                 <SelectItem key="categories" value="categories">Categories</SelectItem>
                 <SelectItem key="stores" value="stores">Business</SelectItem>
                 <SelectItem key="products" value="products">Products</SelectItem>
+                <SelectItem key="service" value="service">Service</SelectItem>
             </Select>}
         />
         <div className="absolute top-full left-0 w-full bg-white shadow-md z-10 rounded-md">

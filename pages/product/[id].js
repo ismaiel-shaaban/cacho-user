@@ -25,7 +25,7 @@ const ProductPage = () => {
             <section className="container">
                 {data?.response ? <div className="grid gap-5 grid-cols-12 md:gap-[30px] mt-6">
                     <ProductSlider slides={data?.response?.images}/>
-                    <ProductInfo info={data?.response}/>
+                    <ProductInfo info={data?.response} images={data?.response?.images}/>
                     <ProductReviews rating={data?.response?.rating} reviewsCount={data?.response?.reviewsCount}/>
                 </div> : null}
                 <Divider className="mt-10"/>

@@ -25,8 +25,6 @@ const OfferCard = ({ offer }) => {
                 </div>
                 {discountLabel && <div
                     className={`${classes.discount} absolute -rotate-45 bg-[--red] text-white w-[300px] h-[50px] text-center flex items-center justify-center text-[14px]`}>{discountLabel}</div>}
-                {/*{typeLabel && <div*/}
-                {/*    className={`${classes.discount} absolute -rotate-45 ${discountClass} text-white w-[300px] h-[50px] text-center flex items-center justify-center text-[14px]`}>{typeLabel}</div>}*/}
                 <div className="p-[15px]">
                     <div>
                         <div className="flex justify-between items-center">

@@ -8,7 +8,7 @@ import SaveIcon from "@/utilis/Icons/SaveIcon";
 import Link from "next/link";
 import { FaWhatsapp } from "react-icons/fa";
 
-const ProductInfo = ({ info }) => {
+const ProductInfo = ({ info ,images }) => {
     const [selectedAttribute, setSelectedAttribute] = useState({});
     const [selectedPrice, setSelectedPrice] = useState(info?.priceAfterDiscount);
     const [selectedPriceAfterDiscount, setSelectedPriceAfterDiscount] = useState(info?.price)
@@ -20,6 +20,8 @@ const ProductInfo = ({ info }) => {
     };
 
     const discountPercentage = Math.floor(((selectedPriceAfterDiscount -selectedPrice ) / selectedPrice) * 100);
+
+    const encodedMessage = encodeURIComponent(info?.name +" "+ images[0])
 
     return (
         <div className="col-span-12 lg:col-span-4 md:col-span-6">
@@ -55,9 +57,9 @@ const ProductInfo = ({ info }) => {
             </div>
             {info.business.whatsapp && <div className={"w-5/6 ms-auto flex gap-2"}>
                 <span></span>
-                <Button as={Link} href={`https://wa.me/${info.business.whatsapp}`} size={"lg"} color={"success"}
+                <Button as={Link} target={"_blank"} href={`https://wa.me/${info.business.whatsapp}/?text=${encodedMessage}`} size={"lg"} color={"success"}
                         startContent={<FaWhatsapp size={24}/>}
-                        className={"w-full mt-2 py-[16px] px-[10px] text-white h-[54px] "}>
+                        className={"w-full mt-2 py-[16px] px-[10px] text-white h-[54px]"}>
                     Whatsapp
                 </Button>
             </div>}
