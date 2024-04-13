@@ -23,7 +23,7 @@ const ProductSlider = ({slides}) => {
             modules={[FreeMode, Navigation, Thumbs]}
             className="mySwiper2"
         >
-            {slides.map((slide ,index) => (<SwiperSlide key={index}>
+            {slides && slides.map((slide ,index) => (<SwiperSlide key={index}>
                 <div className="h-[435px] w-[387px] rounded-[10px] overflow-hidden">
                     <Image
                         fill={true}
@@ -55,7 +55,7 @@ const ProductSlider = ({slides}) => {
             modules={[FreeMode, Navigation, Thumbs]}
             className={`mySwiper mt-2`}
         >
-            {slides.map((slide , index) => (<SwiperSlide key={index}>
+            {slides && slides.map((slide , index) => (<SwiperSlide key={index}>
                 <div className="h-[103px] w-[97px]">
                     <Image
                         fill={true}

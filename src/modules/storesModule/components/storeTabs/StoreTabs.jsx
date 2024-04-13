@@ -24,10 +24,10 @@ const StoreTabs = ({mainData, aboutUs,categories}) => {
                       panel:"mt-[20px]"
                   }}
             >
-                <Tab key={"AboutUs"} title={strings.AboutUs}>
+                <Tab key={strings.AboutUs} title={strings.AboutUs}>
                     <AboutUs aboutUs={aboutUs}/>
                 </Tab>
-                <Tab key={"Products"} title={strings.Products}>
+                <Tab key={strings.Products} title={strings.Products}>
                     <Products categories={categories}/>
                 </Tab>
                 <Tab key={"Offers"} title={strings.Offers}>

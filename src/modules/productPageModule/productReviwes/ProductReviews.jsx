@@ -11,16 +11,15 @@ import {useRouter} from "next/router";
 import useSWR from "swr";
 
 const fetcher = (url) => fetch(url).then(res => res.json())
-const ProductReviews = () => {
+const ProductReviews = ({reviewsCount ,rating}) => {
     const router = useRouter()
     const {id} = router.query
     const {data ,error , isLoading} = useSWR(`https://caco-dev.mimusoft.com/api/customer/products/${id}/reviews?with=customer`,fetcher)
-    const reviewCount = data?.response?.data.length
     if(isLoading) return <Spinner/>
     if(error) return <div>Error</div>
     return (
         <div className="col-span-12 lg:col-span-4 md:col-span-6">
-            <h2>Reviews <Rating ratingCount={reviewCount} rating={4}/></h2>
+            <h2>Reviews <Rating ratingCount={reviewsCount} rating={rating}/></h2>
                 <Swiper
                     direction={'vertical'}
                     autoHeight={true}

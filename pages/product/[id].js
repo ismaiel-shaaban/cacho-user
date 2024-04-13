@@ -23,11 +23,11 @@ const ProductPage = () => {
                 <title>{data?.response?.name}</title>
             </Head>
             <section className="container">
-                <div className="grid gap-5 grid-cols-12 md:gap-[30px] mt-6">
-                    <ProductSlider slides={data?.response.images}/>
+                {data?.response ? <div className="grid gap-5 grid-cols-12 md:gap-[30px] mt-6">
+                    <ProductSlider slides={data?.response?.images}/>
                     <ProductInfo info={data?.response}/>
-                    <ProductReviews/>
-                </div>
+                    <ProductReviews rating={data?.response?.rating} reviewsCount={data?.response?.reviewsCount}/>
+                </div> : null}
                 <Divider className="mt-10"/>
                 {/*<SimilarProducts/>*/}
             </section>

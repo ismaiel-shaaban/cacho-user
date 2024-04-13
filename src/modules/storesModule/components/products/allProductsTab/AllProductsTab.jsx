@@ -3,6 +3,7 @@ import {useEffect, useState} from "react";
 import PaginationPages from "@/components/sheared/paginationPage/PaginationPage";
 import SearchProductsInput from "@/components/sheared/searchProductsInput/SearchProductsInput";
 import ProductsStoreList from "@/modules/storesModule/components/productsStoreList/ProductsStoreList";
+import {strings} from "@/utilis/Localization";
 
 const AllProductsTab = () => {
     const router = useRouter();
@@ -25,7 +26,9 @@ const AllProductsTab = () => {
     const handleSearch = (search) => {
         setSearch(search);
     };
-    return (<div>
+    return (<div
+        dir={strings.getLanguage() === "ar" ? "rtl" : "ltr"}
+    >
         <div className="flex justify-end">
             <SearchProductsInput searchProducts={handleSearch}/>
         </div>

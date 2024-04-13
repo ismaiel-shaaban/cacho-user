@@ -1,12 +1,14 @@
 import {Input} from "@nextui-org/react";
 import {CiSearch} from "react-icons/ci";
+import {strings} from "@/utilis/Localization";
 
 const SearchProductsInput = ({ searchProducts }) => {
     return (
         <Input
+            dir={strings.getLanguage() === "ar" ? "rtl" : "ltr"}
             type="text"
             onChange={(e) => searchProducts(e.target.value.trim())}
-            placeholder="Search Products"
+            placeholder={strings.SearchProducts}
             clearable
             endContent={<CiSearch size={20} />}
             classNames={{

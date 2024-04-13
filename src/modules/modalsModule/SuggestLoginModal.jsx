@@ -7,7 +7,7 @@ const SuggestLoginModal = ({onOpenChange, isOpen}) => {
             <ModalContent>
                 <ModalBody>
                     <div className="text-center py-5">
-                        <h3 className="mb-4 text-[20px] font-medium text-[--primary-color]">You Need To Login To Save This Product.</h3>
+                        <h3 className="mb-4 text-[20px] font-medium text-[--primary-color]">You Need To Login To Make This Action</h3>
                         <Button as={Link} href={"/login"} color="primary" onClick={onOpenChange}>Login</Button>
                     </div>
                 </ModalBody>

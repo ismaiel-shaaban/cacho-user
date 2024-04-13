@@ -3,6 +3,7 @@ import {useStoreOffersData} from "@/modules/storesModule/hooks/getStoreOffers";
 import {Skeleton, Spinner, Tab, Tabs} from "@nextui-org/react";
 import ProductOfferTab from "@/modules/storesModule/components/offers/productOfferTab/ProductOfferTab";
 import ErrorFetch from "@/components/sheared/erorrFetch/ErrorFetch";
+import {strings} from "@/utilis/Localization";
 
 const Offers = ()=>{
     const router = useRouter();
@@ -15,7 +16,9 @@ const Offers = ()=>{
     </Skeleton>;
     if (error) return <ErrorFetch/>;
     return(
-        <Tabs variant={"light"} fullWidth={true} className={"mt-5"} classNames={{
+        <Tabs variant={"light"} fullWidth={true} className={"mt-5"}
+              dir={strings.getLanguage() === "ar" ? "rtl" : "ltr"}
+              classNames={{
             tabContent: "group-data-[selected=true]:text-white text-[--gray-2] text-[18px] font-[500]",
             tab:"bg-[--gray-in] w-fit rounded-md px-[12px] py-[6px]",
             cursor: "group-data-[selected=true]:bg-[--primary-color] rounded-md w-full",

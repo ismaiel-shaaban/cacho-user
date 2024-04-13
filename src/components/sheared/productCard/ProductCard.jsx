@@ -1,14 +1,14 @@
-import { useEffect, useState } from "react";
-import { Button, Card, CardBody } from "@nextui-org/react";
-import { strings } from "@/utilis/Localization";
+import {useEffect, useState} from "react";
+import {Button, Card, CardBody} from "@nextui-org/react";
+import {strings} from "@/utilis/Localization";
 import Link from "next/link";
-import { StarIcon } from "@/utilis/Icons/StarIcon";
+import {StarIcon} from "@/utilis/Icons/StarIcon";
 import classes from "./productCard.module.css";
 import BookMark from "@/utilis/Icons/BookMark";
 import Rating from "@/components/sheared/rateing/Rating";
 import Image from "next/image";
 
-const ProductCard = ({ product }) => {
+const ProductCard = ({product}) => {
     const [lang, setLang] = useState("en");
 
     useEffect(() => {
@@ -19,7 +19,7 @@ const ProductCard = ({ product }) => {
 
     if (!product) return <div>Loading...</div>;
 
-    const { images, priceAfterDiscount, price, name, uuid } = product;
+    const {images, priceAfterDiscount, price, name, uuid} = product;
 
     // const discountLabel = discountType ? (lang === "ar" ? `${strings.off} ${discount}` : `${discount} ${strings.off}`) : null;
     // const typeLabel = type && strings.New;
@@ -29,10 +29,11 @@ const ProductCard = ({ product }) => {
         <Card dir={lang === "ar" ? "rtl" : "ltr"} className={`shadow-none !transition !duration-300 hover:shadow-xl`}>
             <CardBody className="p-0 overflow-hidden relative">
                 <div className="h-[190px]">
-                    <Image width={292} height={190} src={images[0]} alt={name} className="object-cover w-full" style={{ height: "inherit" }} />
+                    <Image width={292} height={190} src={images[0]} alt={name} className="object-cover w-full"
+                           style={{height: "inherit"}}/>
                 </div>
                 <div className={`absolute right-0 top-0 mt-[15px] mr-[15px]`}>
-                    <BookMark productId={uuid} isProduct={true} isSaved={product.isFavourite} />
+                    <BookMark productId={uuid} isProduct={true} isSaved={product.isFavourite}/>
                 </div>
                 {/*{discountLabel && <div*/}
                 {/*    className={`${classes.discount} absolute -rotate-45 ${discountClass} text-white w-[300px] h-[50px] text-center flex items-center justify-center text-[14px]`}>{discountLabel}</div>}*/}
@@ -42,7 +43,9 @@ const ProductCard = ({ product }) => {
                     <div className="flex justify-between items-center mb-[5px]">
                         <span className="text-sm text-gray-400">
                             <span>{strings.by} </span>
-                            <span className="text-[--primary-color]">{product.business.title}</span>
+                            <span className="text-[--primary-color]">
+                                <Link href={`/Stores/${product.business.uuid}`}>{product.business.title}</Link>
+                            </span>
                         </span>
                         {/*<Rating ratingCount={ratingCount} rating={rating}/>*/}
                     </div>
@@ -59,7 +62,7 @@ const ProductCard = ({ product }) => {
                             </span>}
                         </div>
                         <Button variant={"ghost"} as={Link} href={`/product/${uuid}`}
-                            className="text-[--primary-color] border-[--primary-color] rounded-[10px] hover:!bg-[--primary-color] hover:!text-white">
+                                className="text-[--primary-color] border-[--primary-color] rounded-[10px] hover:!bg-[--primary-color] hover:!text-white">
                             {strings.details}
                         </Button>
                     </div>

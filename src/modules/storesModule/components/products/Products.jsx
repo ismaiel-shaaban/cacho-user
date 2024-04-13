@@ -1,10 +1,13 @@
 import {Tab, Tabs} from "@nextui-org/react";
 import AllProductsTab from "@/modules/storesModule/components/products/allProductsTab/AllProductsTab";
 import ProductCategoryTab from "@/modules/storesModule/components/products/productCategoryTab/ProductCategoryTab";
+import {strings} from "@/utilis/Localization";
 
 const Products = ({categories}) => {
     return (
-        <Tabs variant={"light"} fullWidth={true} disallowEmptySelection={true} className={"mt-5"} classNames={{
+        <Tabs variant={"light"} fullWidth={true} disallowEmptySelection={true}
+              dir={strings.getLanguage() === "ar" ? "rtl" : "ltr"}
+              className={"mt-5"} classNames={{
             tabContent: "group-data-[selected=true]:text-white text-[--gray-2] text-[18px] font-[500]",
             tab:"bg-[--gray-in] w-fit rounded-md px-[12px] py-[6px]",
             cursor: "group-data-[selected=true]:bg-[--primary-color] rounded-md w-full",

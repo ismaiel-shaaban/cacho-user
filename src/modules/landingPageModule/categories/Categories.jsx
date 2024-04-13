@@ -10,6 +10,7 @@ import {Fragment, useEffect, useState} from "react";
 import CategoriesSkeleton from "@/modules/landingPageModule/categories/components/CategoriesSkeleton";
 import ErrorFetch from "@/components/sheared/erorrFetch/ErrorFetch";
 import {fetcher} from "@/utilis/fetcherFUN";
+import {getCookie} from "cookies-next";
 
 
 const Categories = () => {
@@ -22,7 +23,7 @@ const Categories = () => {
     useEffect(() => {
         if (data) {
             setCategories(data.response.data );
-            console.log(data.response.data);
+            console.log(getCookie("token"))
         }
     }, [data]);
 

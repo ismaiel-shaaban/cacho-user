@@ -6,13 +6,14 @@ import {Spinner} from "@nextui-org/react";
 import StoreTabs from "@/modules/storesModule/components/storeTabs/StoreTabs";
 import SkeletonProducts from "@/components/sheared/skeletonProducts/SkeletonProducts";
 import ErrorFetch from "@/components/sheared/erorrFetch/ErrorFetch";
+import {getCookie} from "cookies-next";
 
 const StoreModule = ({passTitle}) => {
     const router = useRouter();
     const [mainData, setMainData] = useState(null);
     const [aboutUs, setAboutUs] = useState(null);
     const {id} = router.query;
-    const {data, error, isLoading} = useStoreData(id);
+    const {data, error, isLoading} = useStoreData(id)
 
     useEffect(() => {
         if (data) {
