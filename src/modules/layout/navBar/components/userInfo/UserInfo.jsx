@@ -1,4 +1,4 @@
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {useRouter} from "next/router";
 import {deleteCookie, getCookie} from "cookies-next";
 import {Dropdown, DropdownItem, DropdownMenu, DropdownTrigger, useDisclosure, User} from "@nextui-org/react";
@@ -10,11 +10,23 @@ import UserModal from "@/modules/modalsModule/UserModal";
 import UserImageDefault from "../../../../../../public/userImageDefult.svg";
 import {strings} from "@/utilis/Localization";
 
-const UserInfo = ({name, image, userLocation: firstLocation}) => {
+const UserInfo = ({userLocation}) => {
     const router = useRouter();
     const {isOpen, onOpen, onOpenChange} = useDisclosure();
     const [modalContent, setModalContent] = useState(null);
-    const [userLocation, setUserLocation] = useState(firstLocation);
+    const [userLocationData, setUserLocationData] = useState(null);
+    const [userData, setUserData] = useState(null);
+
+    useEffect(()=>{
+        setUserLocationData(userLocation)
+    },[userLocation])
+
+    useEffect(() => {
+        const storedUserData = localStorage.getItem("userData");
+        if (storedUserData) {
+            setUserData(JSON.parse(storedUserData));
+        }
+    }, []);
 
 
     const handleActionClick = (action) => {
@@ -36,6 +48,8 @@ const UserInfo = ({name, image, userLocation: firstLocation}) => {
                 throw new Error('Logout failed');
             }
             deleteCookie("token");
+            localStorage.removeItem("userData")
+            setUserData(null)
             await router.reload();
         } catch (error) {
             console.error('Error:', error.message);
@@ -49,10 +63,8 @@ const UserInfo = ({name, image, userLocation: firstLocation}) => {
                     <User
                         as="button"
                         className="transition-transform"
-                        description={userLocation.split(",").slice(1, 3).join(", ")}
-                        name={
-                            tokenData && `${strings.Hi}, ${name}`
-                        }
+                        description={userLocationData && userLocationData.split(",").slice(1, 3).join(", ")}
+                        name={(userData?.name ? strings.Hi + ", " + userData.name : null)}
                         classNames={{
                             description: "text-[14px] font-medium text-[--primary-color]",
                             name: "text-[12px] font-[400] text-[--gray-2]",
@@ -86,7 +98,7 @@ const UserInfo = ({name, image, userLocation: firstLocation}) => {
                 </DropdownMenu>
             </Dropdown>
             <UserModal isOpen={isOpen} onOpenChange={onOpenChange} modalContent={modalContent} passLocation={
-                (location) => setUserLocation(location)
+                (location) => setUserLocationData(location)
             }/>
         </>
     );
