@@ -15,9 +15,9 @@ export async function middleware(req) {
             }
         }
 
-        // if (req.nextUrl.pathname.startsWith('/login') && userData?.uuid !== null) {
-        //     return NextResponse.rewrite(new URL('/', req.url))
-        // }
+        if (req.nextUrl.pathname.startsWith('/login') && userData) {
+            return NextResponse.rewrite(new URL('/', req.url))
+        }
         return NextResponse.next();
     } catch (error) {
         console.error('Error:', error.message);

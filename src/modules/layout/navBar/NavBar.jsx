@@ -20,13 +20,13 @@ const NavBar = ({userLocation}) => {
     const [isDarkMode, setIsDarkMode] = useState(false);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isLogin, setIsLogin] = useState(false);
+    const tokenData = getCookie('token');
 
     useEffect(() => {
-        const tokenData = getCookie('token');
         if (tokenData !== null && tokenData !== "" && tokenData !== undefined) {
             setIsLogin(true);
         }
-    }, []);
+    }, [tokenData]);
 
     useEffect(() => {
         const savedDarkMode = localStorage.getItem('darkMode');
