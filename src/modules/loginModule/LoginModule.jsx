@@ -1,18 +1,17 @@
 import {useState} from "react";
 import {useRouter} from "next/router";
+import {Button, useDisclosure} from "@nextui-org/react";
+import {setCookie} from "cookies-next";
 import Image from "next/image";
 import Link from "next/link";
-import {Button, useDisclosure} from "@nextui-org/react";
-import {FaArrowRight} from "react-icons/fa";
-import LogoImage from "../../../public/logo.svg";
-import bannerImage from "../../../public/bannerJoin/img-1.png";
-import classes from "./LoginModule.module.css";
 import InputPhone from "@/components/sheared/inputPhone/InputPhone";
 import InputPassword from "@/components/sheared/inputPassword/InputPassword";
 import ForgetPasswordModal from "@/modules/modalsModule/ForgetPasswordModal";
 import {loginUser} from "@/modules/loginModule/loginUser";
-import {setCookie} from "cookies-next";
+import {FaArrowRight} from "react-icons/fa";
 import {fetchUserData} from "@/utilis/getUserData";
+import LogoImage from "../../../public/logo.svg";
+import classes from "./LoginModule.module.css";
 
 const LoginModule = () => {
     const router = useRouter()
@@ -73,8 +72,8 @@ const LoginModule = () => {
                             Sign Up Free<FaArrowRight size={20} className="ms-2"/>
                         </Button>
                     </div>
-                    <div className="h-3/5 flex justify-end absolute bottom-0 end-0">
-                        <Image src={bannerImage} alt={"Join Now"} className="w-full h-full object-cover "/>
+                    <div className="flex justify-center p-3">
+                        <Image src={LogoImage} alt={"Join Now"} className="block w-full h-full object-cover"/>
                     </div>
                 </div>
             </div>

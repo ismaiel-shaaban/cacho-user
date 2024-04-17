@@ -1,4 +1,5 @@
 import useSWR from "swr";
+import {fetcher} from "@/utilis/fetcherFUN";
 
 export async function fetchUserData(token) {
     try {
@@ -23,12 +24,11 @@ export async function fetchUserData(token) {
     }
 }
 
-// const useUserData = (token) => {
-//     const {data , error} = useSWR(token ? 'https://caco-dev.mimusoft.com/api/customer/profile' : null, fetchUserData(token));
-//     return {
-//         data,
-//         error
-//     };
-// };
-//
-// export default useUserData;
+export const useUserData = (token) => {
+    const {data , error , isLoading} = useSWR(token ? 'https://caco-dev.mimusoft.com/api/customer/profile' : null, fetcher);
+    return {
+        data,
+        error,
+        isLoading
+    };
+};

@@ -9,6 +9,7 @@ import ChangeLocation from "@/modules/layout/navBar/components/userInfo/ChangeLo
 import UserModal from "@/modules/modalsModule/UserModal";
 import UserImageDefault from "../../../../../../public/userImageDefult.svg";
 import {strings} from "@/utilis/Localization";
+import {useUserData} from "@/utilis/getUserData";
 
 const UserInfo = ({userLocation}) => {
     const router = useRouter();
@@ -16,36 +17,36 @@ const UserInfo = ({userLocation}) => {
     const [modalContent, setModalContent] = useState(null);
     const [userLocationData, setUserLocationData] = useState(null);
     const [userData, setUserData] = useState(null);
+    const token = getCookie("token")
+    const {data , error , isLoading} = useUserData(token)
+    useEffect(() => {
+        if(data){
+            setUserData(strings.Hi + " " + data.name)
+        }
+        if(isLoading){
+            setUserData(strings.Loading)
+        }
+        if (error){
+            setUserData(strings.Error)
+        }
+    }, [data , isLoading , error]);
 
     useEffect(()=>{
         setUserLocationData(userLocation)
     },[userLocation])
-
-    useEffect(() => {
-        const storedUserData = localStorage.getItem("userData");
-        const token = getCookie("token")
-        if (storedUserData && token) {
-            setUserData(JSON.parse(storedUserData));
-        } else {
-            localStorage.removeItem("userData")
-            setUserData(null)
-        }
-    }, []);
 
 
     const handleActionClick = (action) => {
         setModalContent(action);
         onOpen();
     };
-
-    const tokenData = getCookie('token')
     const handelLogout = async () => {
         try {
             const response = await fetch('https://caco-dev.mimusoft.com/api/customer/auth/logout', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${tokenData}`
+                    'Authorization': `Bearer ${token}`
                 },
             });
             if (!response.ok) {
@@ -66,9 +67,10 @@ const UserInfo = ({userLocation}) => {
                 <DropdownTrigger>
                     <User
                         as="button"
+                        aria-label="User Info"
                         className="transition-transform"
                         description={userLocationData && userLocationData}
-                        name={(userData?.name ? strings.Hi + ", " + userData.name : null)}
+                        name={userData ? userData : null}
                         classNames={{
                             description: "text-[14px] font-medium text-[--primary-color]",
                             name: "text-[12px] font-[400] text-[--gray-2]",
@@ -77,13 +79,13 @@ const UserInfo = ({userLocation}) => {
                 </DropdownTrigger>
                 <DropdownMenu aria-label="User Actions" variant="flat">
                     {
-                        tokenData && <DropdownItem key="Edit Profile">
+                        token && <DropdownItem key="Edit Profile">
                             <EditProfile onClick={
                                 () => handleActionClick("Edit Profile")
                             }/>
                         </DropdownItem>
                     }
-                    {tokenData && <DropdownItem key="Change Password">
+                    {token && <DropdownItem key="Change Password">
                         <ChangePassword onClick={
                             () => handleActionClick("Change Password")
                         }/>
@@ -93,7 +95,7 @@ const UserInfo = ({userLocation}) => {
                             () => handleActionClick("Change Location")
                         }/>
                     </DropdownItem>
-                    {tokenData && <DropdownItem onClick={handelLogout} key="logout" color="danger">
+                    {token && <DropdownItem onClick={handelLogout} key="logout" color="danger">
                         <div className="flex items-center justify-start gap-2">
                             <span><LogoutIcon/></span>
                             <span>Logout</span>

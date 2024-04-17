@@ -1,15 +1,15 @@
-import {useState} from "react";
+import {memo, useState} from "react";
 import ImageUpload from "@/components/sheared/imageUpload/ImageUpload";
 import {Button, Input} from "@nextui-org/react";
 import {getCookie} from "cookies-next";
 import {mutate} from "swr";
+import {useRouter} from "next/router";
 
 const EditProfileContent = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [isSuccess, setIsSuccess] = useState(false);
     const [error, setError] = useState(null);
     const tokenData = getCookie('token')
-    console.log(tokenData)
     const [formData, setFormData] = useState({
         avatar: "", name: "",
     })
@@ -66,4 +66,4 @@ const EditProfileContent = () => {
     </form>)
 }
 
-export default EditProfileContent;
+export default memo(EditProfileContent);

@@ -64,5 +64,7 @@
   "Chats": "Chats",
   "TypeAMessage": "Type a message...",
   "TypeToSearch": "Type To Search...",
-  "Online": "Online"
+  "Online": "Online",
+  "Loading" : "Loading ...",
+  "Error": "Error"
 }

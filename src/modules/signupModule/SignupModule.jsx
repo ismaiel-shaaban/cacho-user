@@ -1,20 +1,19 @@
+import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
-import InputPhone from "@/components/sheared/inputPhone/InputPhone";
-import InputPassword from "@/components/sheared/inputPassword/InputPassword";
-import Link from "next/link";
-import { Button, Input, useDisclosure } from "@nextui-org/react";
-import { FaArrowRight } from "react-icons/fa";
-import LogoImage from "../../../public/logo-2.svg";
-import bannerImage from "../../../public/bannerJoin/img-1.png";
-import cameraImage from "../../../public/camera1.svg";
-import classes from "./SignupModule.module.css";
-import ConfirmPhoneModal from "@/modules/modalsModule/ConfirmPhoneModal";
-import ImageUpload from "@/components/sheared/imageUpload/ImageUpload";
 import { setCookie } from "cookies-next";
 import { useRouter } from "next/router";
-import { signupUser } from "@/modules/signupModule/signupUser";
 import {fetchUserData} from "@/utilis/getUserData";
+import InputPhone from "@/components/sheared/inputPhone/InputPhone";
+import InputPassword from "@/components/sheared/inputPassword/InputPassword";
+import { Button, Input, useDisclosure } from "@nextui-org/react";
+import ImageUpload from "@/components/sheared/imageUpload/ImageUpload";
+import ConfirmPhoneModal from "@/modules/modalsModule/ConfirmPhoneModal";
+import { signupUser } from "@/modules/signupModule/signupUser";
+import { FaArrowRight } from "react-icons/fa";
+import LogoImage from "../../../public/logo-2.svg";
+import cameraImage from "../../../public/camera1.svg";
+import classes from "./SignupModule.module.css";
 
 const SignupModule = () => {
     const { isOpen, onOpen, onOpenChange } = useDisclosure();
@@ -43,7 +42,7 @@ const SignupModule = () => {
     const handleSignUp = async (e) => {
         e.preventDefault();
         try {
-            const {code , token} = await signupUser(formData.name, "+2" + formData.phone.value, formData.password.value, formData.confirmPassword.value);
+            const {code , token} = await signupUser(formData.name, "+2" + formData.phone.value, formData.password.value, formData.confirmPassword.value , formData.userImage);
             if (code === 200) {
                 const userData = await fetchUserData(token);
                 if (userData) {
@@ -83,14 +82,15 @@ const SignupModule = () => {
                         Login<FaArrowRight size={20} className="ms-2" />
                     </Button>
                 </div>
-                <div className="h-3/5 flex justify-end absolute bottom-0 end-0">
-                    <Image src={bannerImage} alt={"Join Now"} className="w-full h-full object-cover" />
+                <div className="flex justify-center p-3">
+                    <Image src={LogoImage} alt={"Join Now"} className="block w-full h-full object-cover"/>
                 </div>
             </div>
         </div>
         <div>
             <form onSubmit={handleSignUp}>
-                <div className="h-[calc(100dvh-64px)] bg-white flex flex-col justify-center items-center px-8 md:px-[57px]">
+                <div
+                    className="h-[calc(100dvh-64px)] bg-white flex flex-col justify-center items-center px-8 md:px-[57px]">
                     <div className="flex flex-col items-center justify-evenly w-full h-full py-8">
                         <div className="flex justify-between w-full">
                             <h2 className="text-[24px] font-[600] mt-[20px]">Create New Account!!</h2>
@@ -100,7 +100,7 @@ const SignupModule = () => {
                         </div>
                         <div className="w-full">
                             <div className="flex justify-center mb-[49px]">
-                                <Image alt="img" src={""} Upload defaultImage={cameraImage} onChange={handleImageChange} />
+                                <ImageUpload  onChange={handleImageChange} />
                             </div>
                             <div className="mt-4 w-full grid grid-cols-1 gap-3 sm:grid-cols-2">
                                 <Input

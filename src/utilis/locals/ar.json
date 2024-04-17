@@ -64,5 +64,7 @@
   "Chats": "المحادثات",
   "TypeAMessage": "أكتب رسالة ...",
   "TypeToSearch": "أكتب لتبحث ...",
-  "Online": "نشط"
+  "Online": "نشط",
+  "Loading" : "تحميل ...",
+  "Error": "خطأ"
 }
