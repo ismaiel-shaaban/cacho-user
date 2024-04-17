@@ -1,0 +1,23 @@
+.icons{
+    top: 167px
+}
+@media (min-width: 328px) and  (max-width:354px){
+    .icons{
+        top: 126px
+    }
+}
+@media (min-width: 354px) {
+    .icons{
+        top: 88px
+    }
+}
+@media (min-width: 768px) {
+    .icons{
+        top: 50px
+    }
+}
+@media screen and (min-width: 1024px) {
+    .icons{
+        top: 0px
+    }
+}

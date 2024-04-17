@@ -8,9 +8,9 @@ const Products = ({categories}) => {
         <Tabs variant={"light"} fullWidth={true} disallowEmptySelection={true}
               dir={strings.getLanguage() === "ar" ? "rtl" : "ltr"}
               className={"mt-5"} classNames={{
-            tabContent: "group-data-[selected=true]:text-white text-[--gray-2] text-[18px] font-[500]",
+            tabContent: "group-data-[selected=true]:text-[--primary-color] text-[--gray-2] text-[18px] font-[500]",
             tab:"bg-[--gray-in] w-fit rounded-md px-[12px] py-[6px]",
-            cursor: "group-data-[selected=true]:bg-[--primary-color] rounded-md w-full",
+            cursor: "group-data-[selected=true]:bg-white rounded-md w-full",
             tabList: "gap-[20px]",
         }}>
             <Tab title={"All"} key={"all"} >

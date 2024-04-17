@@ -23,8 +23,12 @@ const UserInfo = ({userLocation}) => {
 
     useEffect(() => {
         const storedUserData = localStorage.getItem("userData");
-        if (storedUserData) {
+        const token = getCookie("token")
+        if (storedUserData && token) {
             setUserData(JSON.parse(storedUserData));
+        } else {
+            localStorage.removeItem("userData")
+            setUserData(null)
         }
     }, []);
 
@@ -63,7 +67,7 @@ const UserInfo = ({userLocation}) => {
                     <User
                         as="button"
                         className="transition-transform"
-                        description={userLocationData && userLocationData.split(",").slice(1, 3).join(", ")}
+                        description={userLocationData && userLocationData}
                         name={(userData?.name ? strings.Hi + ", " + userData.name : null)}
                         classNames={{
                             description: "text-[14px] font-medium text-[--primary-color]",

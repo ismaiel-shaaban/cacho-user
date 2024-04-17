@@ -1,20 +1,41 @@
-import { useState } from "react";
-import { Input } from "@nextui-org/react";
-import { CiSearch } from "react-icons/ci";
+import {useRouter} from "next/router";
+import {useEffect, useState} from "react";
+import {Input, Spinner} from "@nextui-org/react";
 import useSWR from "swr";
-import { getCookie } from "cookies-next";
+import { CiSearch } from "react-icons/ci";
+import {fetcher} from "@/utilis/fetcherFUN";
+import {strings} from "@/utilis/Localization";
 
-
-const UsersChats = ({chats ,passSelectedChat}) => {
+const UsersChats = () => {
+    const router = useRouter();
+    const [chats, setChats] = useState([]);
     const [selectedChat, setSelectedChat] = useState(null);
+    const { data, isLoading, error } = useSWR(
+        "https://caco-dev.mimusoft.com/api/customer/chats?with=business",
+        fetcher
+    );
+    useEffect(() => {
+        if (data){
+            setChats(data.response.data);
+        }
+    }, [data]);
+
+    useEffect(() => {
+        setSelectedChat(router.query.chatId)
+    }, [router.query.chatId]);
+
     const handleSelectChat = (chatId) => {
         setSelectedChat(chatId);
-        passSelectedChat(chatId);
+        router.push({
+            pathname:  router.pathname, query: {...router.query, chatId: chatId}
+        })
     }
+    if (isLoading) return <Spinner/>
+    if(error) return <p>failed to load</p>
     return (
-        <div className="col-span-4 bg-white rounded-l-xl p-[24px] h-[88vh]">
+        <div className="col-span-4 bg-white rounded-s-xl p-[24px] h-full">
             <div className="flex mb-[20px] flex-col">
-                <h3 className="text-[24px] font-medium">Chats</h3>
+                <h3 className="text-[24px] font-medium">{strings.Chats}</h3>
                 <Input
                     classNames={{
                         base: "w-full h-10",
@@ -22,7 +43,7 @@ const UsersChats = ({chats ,passSelectedChat}) => {
                         input: "text-small",
                         inputWrapper: "h-full font-normal text-default-500 bg-[--gray]",
                     }}
-                    placeholder="Type to search..."
+                    placeholder={strings.TypeToSearch}
                     size="sm"
                     endContent={<CiSearch size={20} />}
                     type="search"

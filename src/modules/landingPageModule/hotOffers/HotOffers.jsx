@@ -14,7 +14,7 @@ const HotOffers = () => {
     </div>
     if (error) return <ErrorFetch/>;
     return (
-        <section className="container mx-auto mt-[50px]">
+        <section className="container mx-auto mt-[30px]">
             <SectionTitle title={strings.HotOffers} link="/offers"/>
             <HotOfferList hotOffers={data.response.data} count={8}/>
         </section>

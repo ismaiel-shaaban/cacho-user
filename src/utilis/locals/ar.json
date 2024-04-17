@@ -58,5 +58,11 @@
   "GiveYourRating": "أعط تقييمك",
   "ShowMore": "أظهر المزيد",
   "SearchProducts" : "ابحث عن المنتجات",
-  "Services": "الخدمات"
+  "Services": "الخدمات",
+  "SaveStore": "إضافة الى المفضلة",
+  "SuggestLogin": "تحتاج إلى تسجيل الدخول لاتمام هذا الإجراء",
+  "Chats": "المحادثات",
+  "TypeAMessage": "أكتب رسالة ...",
+  "TypeToSearch": "أكتب لتبحث ...",
+  "Online": "نشط"
 }

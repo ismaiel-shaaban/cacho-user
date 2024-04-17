@@ -18,10 +18,10 @@ const NewStores = () => {
     </div>;
     if (error) return <ErrorFetch/>
     return (
-        <section className="container mt-[40px]">
+        <section className="container mt-[30px]">
             <SectionTitle title={strings.New} link="/Stores" />
             <div
-                className="grid grid-cols-1 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 md:gap-[24px] gap-2 mt-[40px]">
+                className="grid grid-cols-1 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 md:gap-[24px] gap-2 mt-[25px]">
                 {data?.response?.data.slice(0, 8).map((store) => (<StoresCard key={store.uuid} store={store}/>))}
             </div>
         </section>

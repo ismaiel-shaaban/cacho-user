@@ -6,7 +6,7 @@ import StoreImage from "@/components/sheared/storeImage/StoreImage";
 import {strings} from "@/utilis/Localization";
 
 const StoresCard = ({ store }) => {
-    const statusColor = store.status === "active" ? "bg-[--green]" : "bg-[--red]";
+    const statusColor = store.isOpen === 1 ? "bg-[--green]" : "bg-[--red]";
 
     return (
         <Card className="shadow-none !transition !duration-300 hover:shadow-xl">
@@ -22,7 +22,7 @@ const StoresCard = ({ store }) => {
                     <BookMark productId={store.uuid} isProduct={false}  isSaved={store.isFavourite} />
                 </div>
                 <div className={`absolute top-0 left-0 mt-[15px] ml-[15px] text-center flex items-center justify-center text-[14px] px-2 py-1 ${statusColor} text-white rounded-full`}>
-                    {store.status}
+                    {store.isOpen === 1 ? "Open": "Closed"}
                 </div>
                 <div className={`p-[15px] flex items-center ${strings.getLanguage() === "ar" && "justify-between"} gap-3`}>
                     <Link href={`/Stores/${store.uuid}`}>

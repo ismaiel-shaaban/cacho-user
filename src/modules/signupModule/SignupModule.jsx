@@ -11,10 +11,10 @@ import cameraImage from "../../../public/camera1.svg";
 import classes from "./SignupModule.module.css";
 import ConfirmPhoneModal from "@/modules/modalsModule/ConfirmPhoneModal";
 import ImageUpload from "@/components/sheared/imageUpload/ImageUpload";
-import { loginUser } from "@/modules/loginModule/loginUser";
 import { setCookie } from "cookies-next";
 import { useRouter } from "next/router";
 import { signupUser } from "@/modules/signupModule/signupUser";
+import {fetchUserData} from "@/utilis/getUserData";
 
 const SignupModule = () => {
     const { isOpen, onOpen, onOpenChange } = useDisclosure();
@@ -43,13 +43,22 @@ const SignupModule = () => {
     const handleSignUp = async (e) => {
         e.preventDefault();
         try {
-            setIsLoading(true);
-            const user = await signupUser(formData.name, "+2" + formData.phone.value, formData.password.value, formData.confirmPassword.value);
-            setIsLoading(false)
-            const { token } = user
-            setCookie("token", token);
-            if (token && token !== "") {
-                await router.push('/')
+            const {code , token} = await signupUser(formData.name, "+2" + formData.phone.value, formData.password.value, formData.confirmPassword.value);
+            if (code === 200) {
+                const userData = await fetchUserData(token);
+                if (userData) {
+                    // Save user data to localStorage
+                    localStorage.setItem("userData", JSON.stringify(userData));
+                    setCookie("token", token);
+                    setIsLoading(false);
+                    await router.push('/');
+                } else {
+                    setIsLoading(false);
+                    setError("Failed to fetch user data.");
+                }
+            } else {
+                setIsLoading(false);
+                setError("Invalid phone number or password.");
             }
         } catch (error) {
             setError(error.message);
@@ -91,7 +100,7 @@ const SignupModule = () => {
                         </div>
                         <div className="w-full">
                             <div className="flex justify-center mb-[49px]">
-                                <Image alt="img" Upload defaultImage={cameraImage} onChange={handleImageChange} />
+                                <Image alt="img" src={""} Upload defaultImage={cameraImage} onChange={handleImageChange} />
                             </div>
                             <div className="mt-4 w-full grid grid-cols-1 gap-3 sm:grid-cols-2">
                                 <Input

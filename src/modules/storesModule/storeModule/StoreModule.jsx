@@ -18,11 +18,11 @@ const StoreModule = ({passTitle}) => {
     useEffect(() => {
         if (data) {
             const {
-                email, whatsapp, phone, image, title, rating, reviewsCount, status, workingDays, images, about, address
+                email, whatsapp, phone, image, title, rating, reviewsCount, status, workingDays, images, about, address ,isOpen
             } = data.response;
 
             setMainData({email, whatsapp, phone});
-            setAboutUs({image, title, rating, reviewsCount, status, workingDays, images, about, address});
+            setAboutUs({image, title, rating, reviewsCount, status, workingDays, images, about, address , isOpen});
             passTitle(title);
         }
     }, [data]);

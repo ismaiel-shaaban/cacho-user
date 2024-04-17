@@ -14,9 +14,9 @@ const SpecialOffers = () => {
     })
 
     return (
-        <section className="container mt-[40px]">
+        <section className="container mt-[30px]">
             <SectionTitle title={strings.SpecialOffers} />
-            <div className="flex flex-col md:grid md:grid-cols-2 gap-[20px] md:h-[570px] mt-[40px]">
+            <div className="flex flex-col md:grid md:grid-cols-2 gap-[20px] md:h-[570px] mt-[25px]">
                 <div className="rounded-md overflow-hidden md:h-auto h-[calc(570px/2)] cursor-pointer" onClick={
                     () => router.push(`/Stores/${data?.response?.data[0]?.business.uuid}`)
                 }>

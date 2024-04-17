@@ -58,5 +58,11 @@
   "GiveYourRating" : "Give your rating",
   "ShowMore": "Show More",
   "SearchProducts": "Search Products",
-  "Services": "Services"
+  "Services": "Services",
+  "SaveStore": "Add To Favorites",
+  "SuggestLogin": "You Need To Login To Make This Action",
+  "Chats": "Chats",
+  "TypeAMessage": "Type a message...",
+  "TypeToSearch": "Type To Search...",
+  "Online": "Online"
 }

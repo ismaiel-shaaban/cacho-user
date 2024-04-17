@@ -23,7 +23,6 @@ const Categories = () => {
     useEffect(() => {
         if (data) {
             setCategories(data.response.data );
-            console.log(getCookie("token"))
         }
     }, [data]);
 

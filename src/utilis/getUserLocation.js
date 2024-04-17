@@ -14,12 +14,9 @@ export const fetchLocation = async (language) => {
         const userLocationResponse = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key=AIzaSyBhs9awrQC82lygPiy4Cq91xyX9s3WUjUI&language=${language}`);
 
         const userLocation = await userLocationResponse.json();
-        const location = userLocation?.results[0]?.address_components
-            .filter((ele) => ele.types.includes('political'))
-            .map((el) => el.long_name)
-            .slice(0, 8)
-            .join(',')
-            .toString();
+
+        const locationContent = userLocation?.plus_code?.compound_code.split(" ");
+        const location = locationContent.slice(1).join(" ");
         // set location in local storage
         localStorage.setItem('location', location);
         localStorage.setItem('latitude', latitude);

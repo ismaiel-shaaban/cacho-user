@@ -23,7 +23,7 @@ const AboutUs = ({aboutUs}) => {
             <div className="flex items-center gap-[20px]">
                 <Chip color={aboutUs.status === "active" ? "success" : "danger"}
                       classNames={{base: "text-white"}}
-                      endContent={aboutUs.status === "active" ? <GoDotFill/> : null}>{aboutUs.status}</Chip>
+                      endContent={aboutUs.isOpen === 1 ? <GoDotFill/> : null}>{aboutUs.isOpen === 1 ? "Open" : "Closed"}</Chip>
                 <Chip variant="bordered" classNames={{
                     base: "border-[--primary-color] text-[--primary-color]"
                 }}>{aboutUs.workingDays}</Chip>

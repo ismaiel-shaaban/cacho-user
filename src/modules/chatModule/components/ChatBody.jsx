@@ -5,17 +5,28 @@ import {useEffect, useState} from "react";
 import {getCookie} from "cookies-next";
 import {fetcher} from "@/utilis/fetcherFUN";
 import useSWRInfinite from "swr/infinite";
+import {useRouter} from "next/router";
+import {strings} from "@/utilis/Localization";
 
 
-const ChatBody = ({selectedChat}) => {
+const ChatBody = () => {
+    const {query} = useRouter();
+    const {chatId} = query
     const [messages, setMessages] = useState([]);
+    const [selectedChat, setSelectedChat] = useState(chatId);
+    useEffect(()=>{
+        setSelectedChat(chatId)
+    },[chatId])
 
-    const { data,isLoading, error, size, setSize } = useSWRInfinite(
-        (index) =>
-            `https://caco-dev.mimusoft.com/api/customer/chats/${selectedChat}/messages?page=${index + 1}`,
-        fetcher , {
-            revalidateOnFocus:false,
-            revalidateIfStale:false
+    const { data, isLoading, error, size, setSize } = useSWRInfinite(
+        (index) => {
+            if (!selectedChat) return null; // Return null if selectedChat is null or undefined
+            return `https://caco-dev.mimusoft.com/api/customer/chats/${selectedChat}/messages?page=${index + 1}`;
+        },
+        fetcher,
+        {
+            revalidateOnFocus: false,
+            revalidateIfStale: false
         }
     );
 
@@ -44,7 +55,7 @@ const ChatBody = ({selectedChat}) => {
     };
 
     return (
-        <div className="col-span-8 bg-white h-[88vh] rounded-r-xl p-[24px]">
+        <div className=" bg-white h-[88vh] rounded-e-xl p-[24px] col-span-9 md:col-span-8">
             <div className="h-full">
                 <div className="flex gap-4 items-center">
                     <div className="w-[50px] h-[50px]">
@@ -83,7 +94,7 @@ const ChatBody = ({selectedChat}) => {
                     <div className="chat-input mt-[20px]">
                         <input
                             type="text"
-                            placeholder="Type a message..."
+                            placeholder={strings.TypeAMessage}
                             className="w-full p-[10px] rounded-md border border-gray-300"
                         />
                     </div>
