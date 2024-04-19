@@ -3,7 +3,7 @@ import Image from "next/image";
 import { useState } from "react";
 import { setCookie } from "cookies-next";
 import { useRouter } from "next/router";
-import {fetchUserData} from "@/utilis/getUserData";
+import { fetchUserData } from "@/utilis/getUserData";
 import InputPhone from "@/components/sheared/inputPhone/InputPhone";
 import InputPassword from "@/components/sheared/inputPassword/InputPassword";
 import { Button, Input, useDisclosure } from "@nextui-org/react";
@@ -42,7 +42,7 @@ const SignupModule = () => {
     const handleSignUp = async (e) => {
         e.preventDefault();
         try {
-            const {code , token} = await signupUser(formData.name, "+2" + formData.phone.value, formData.password.value, formData.confirmPassword.value , formData.userImage);
+            const { code, token } = await signupUser(formData.name, "+966" + formData.phone.value, formData.password.value, formData.confirmPassword.value, formData.userImage);
             if (code === 200) {
                 const userData = await fetchUserData(token);
                 if (userData) {
@@ -83,7 +83,7 @@ const SignupModule = () => {
                     </Button>
                 </div>
                 <div className="flex justify-center p-3">
-                    <Image src={LogoImage} alt={"Join Now"} className="block w-full h-full object-cover"/>
+                    <Image src={LogoImage} alt={"Join Now"} className="block w-full h-full object-cover" />
                 </div>
             </div>
         </div>
@@ -100,7 +100,7 @@ const SignupModule = () => {
                         </div>
                         <div className="w-full">
                             <div className="flex justify-center mb-[49px]">
-                                <ImageUpload  onChange={handleImageChange} />
+                                <ImageUpload onChange={handleImageChange} />
                             </div>
                             <div className="mt-4 w-full grid grid-cols-1 gap-3 sm:grid-cols-2">
                                 <Input

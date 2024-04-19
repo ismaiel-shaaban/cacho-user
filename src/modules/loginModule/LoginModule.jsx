@@ -30,7 +30,7 @@ const LoginModule = () => {
 
         try {
             setIsLoading(true);
-            const { token, code } = await loginUser("+2" + phone.value, password.value);
+            const { token, code } = await loginUser("+966" + phone.value, password.value);
 
             if (code === 200) {
                 const userData = await fetchUserData(token);
