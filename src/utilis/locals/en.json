@@ -66,5 +66,13 @@
   "TypeToSearch": "Type To Search...",
   "Online": "Online",
   "Loading" : "Loading ...",
-  "Error": "Error"
+  "Error": "Error",
+  "Open": "Open",
+  "Closed" : "Closed",
+  "Images" : "Images",
+  "Description": "Description",
+  "ContactViaWhatsApp": "Contact Via WhatsApp",
+  "ChatWithStore": "Chat With Store",
+  "NoItemsFound": "No Items Found",
+  "ShippingCompanies": "Shipping Companies"
 }

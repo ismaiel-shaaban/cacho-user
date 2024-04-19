@@ -1,27 +1,27 @@
-import Categories from "@/modules/landingPageModule/categories/Categories";
-import Panner from "@/modules/landingPageModule/pannerModule/Panner";
-import HotOffers from "@/modules/landingPageModule/hotOffers/HotOffers";
-import Nearest from "@/modules/landingPageModule/nearest/Nearest";
-import BannerJoin from "@/modules/landingPageModule/bannerJoin/BannerJoin";
-import NewStores from "@/modules/landingPageModule/new/New";
+import dynamic from 'next/dynamic';
 import Head from "next/head";
-import {getCookie} from "cookies-next";
-import SpecialOffers from "@/modules/landingPageModule/specialOffers/SpecialOffers";
+
+const DynamicCategories = dynamic(() => import('@/modules/landingPageModule/categories/Categories'));
+const DynamicPanner = dynamic(() => import('@/modules/landingPageModule/pannerModule/Panner'));
+const DynamicHotOffers = dynamic(() => import('@/modules/landingPageModule/hotOffers/HotOffers'));
+const DynamicNearest = dynamic(() => import('@/modules/landingPageModule/nearest/Nearest'));
+const DynamicBannerJoin = dynamic(() => import('@/modules/landingPageModule/bannerJoin/BannerJoin'));
+const DynamicNewStores = dynamic(() => import('@/modules/landingPageModule/new/New'));
+const DynamicSpecialOffers = dynamic(() => import('@/modules/landingPageModule/specialOffers/SpecialOffers'));
 
 export default function Home() {
-
     return (
         <>
             <Head>
-                <title>Home</title>
+                Home
             </Head>
-            <Panner/>
-            <Categories/>
-            <HotOffers />
-            <Nearest/>
-            <BannerJoin/>
-            <NewStores />
-            <SpecialOffers />
+            <DynamicPanner />
+            <DynamicCategories />
+            <DynamicHotOffers />
+            <DynamicNearest />
+            <DynamicBannerJoin />
+            <DynamicNewStores />
+            <DynamicSpecialOffers />
         </>
-    )
+    );
 }

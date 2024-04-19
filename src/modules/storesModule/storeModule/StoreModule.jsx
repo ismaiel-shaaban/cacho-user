@@ -2,11 +2,9 @@ import {useEffect, useState} from "react";
 import {useRouter} from "next/router";
 import StoreVideo from "@/modules/storesModule/components/storeVideo/StoreVideo";
 import {useStoreData} from "@/modules/storesModule/hooks/getStore";
-import {Spinner} from "@nextui-org/react";
 import StoreTabs from "@/modules/storesModule/components/storeTabs/StoreTabs";
 import SkeletonProducts from "@/components/sheared/skeletonProducts/SkeletonProducts";
 import ErrorFetch from "@/components/sheared/erorrFetch/ErrorFetch";
-import {getCookie} from "cookies-next";
 
 const StoreModule = ({passTitle}) => {
     const router = useRouter();
@@ -18,11 +16,11 @@ const StoreModule = ({passTitle}) => {
     useEffect(() => {
         if (data) {
             const {
-                email, whatsapp, phone, image, title, rating, reviewsCount, status, workingDays, images, about, address ,isOpen
+                email, whatsapp, phone, image, title, rating, reviewsCount, status, workingDays, images, about, address ,isOpen , isFavourite
             } = data.response;
 
             setMainData({email, whatsapp, phone});
-            setAboutUs({image, title, rating, reviewsCount, status, workingDays, images, about, address , isOpen});
+            setAboutUs({image, title, rating, reviewsCount, status, workingDays, images, about, address , isOpen ,isFavourite});
             passTitle(title);
         }
     }, [data]);

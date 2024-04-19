@@ -11,6 +11,7 @@ import {useCategoriesData} from "@/modules/categoriesModule/hooks/getCategories"
 const StoresCards = () => {
     const router = useRouter();
     const filter = router.query.filter;
+    const sort = router.query.sort;
     const page = router.query.page ? parseInt(router.query.page) : 1;
     const [metadata, setMetadata] = useState({});
 
@@ -26,7 +27,7 @@ const StoresCards = () => {
                 <div className="md:col-span-3">
                         <SidebarStoresFilter />
                 </div>
-                <StoresCardList page={page} filter={filter} passMetadata={
+                <StoresCardList page={page} filter={filter} sort={sort} passMetadata={
                     (meta) => setMetadata(meta)
                 }/>
             </div>

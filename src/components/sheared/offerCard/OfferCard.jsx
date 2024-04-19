@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { Button, Card, CardBody } from "@nextui-org/react";
-import BookMark from "@/utilis/Icons/BookMark";
 import { strings } from "@/utilis/Localization";
 import classes from "./offerCard.module.css";
 import Image from "next/image";

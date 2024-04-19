@@ -13,6 +13,8 @@ import {getCookie} from "cookies-next";
 import {useRouter} from "next/router";
 import {fetchUserData} from "@/utilis/getUserData";
 import SuggestLoginModal from "@/modules/modalsModule/SuggestLoginModal";
+import BookMark from "@/utilis/Icons/BookMark";
+import {CiDeliveryTruck} from "react-icons/ci";
 
 const StoreTabs = ({mainData, aboutUs, categories, isServiceProvider}) => {
     const router = useRouter();
@@ -45,7 +47,7 @@ const StoreTabs = ({mainData, aboutUs, categories, isServiceProvider}) => {
 
     if (mainData === null) return <Spinner/>;
     return (<div className="my-[20px] relative">
-            <Tabs aria-label="Store Data" variant={"bordered"}
+            <Tabs aria-label="Store Data" variant={"bordered"} dir={strings.getLanguage() === "ar" ? "rtl" : "ltr"}
                   classNames={{
                       base: "bg-[#AD732E1A] rounded-md",
                       tabList: "shadow-none border-none flex-wrap w-fit justify-center items-center",
@@ -72,22 +74,21 @@ const StoreTabs = ({mainData, aboutUs, categories, isServiceProvider}) => {
                 <Tooltip content={strings.SaveStore}>
                 <span
                     className="p-[15px] border-2 rounded-md flex items-center justify-center w-[50px] h-[50px] md:w-[54px] md:h-[54px]">
-                    <SaveIcon/>
+                    <BookMark productId={id} isProduct={false} isSaved={aboutUs.isFavourite} />
                 </span>
                 </Tooltip>
-
                 <Tooltip
-                    content={"Chat With Store"}
-                    classNames={{content: "bg-[--rate-color] text-white"}}
+                    content={strings.ContactViaWhatsApp}
+                    classNames={{content: "bg-[--green] text-white"}}
                     onClick={handleChatWithStore}
                 >
                     <a href={`https://wa.me/${mainData.whatsapp}`}
-                       className="p-[15px] bg-[--green] w-[54px] h-[54px] rounded-[10px] flex items-center justify-center">
+                       className="p-[15px] bg-[--green] w-[50px] h-[50px] rounded-[10px] flex items-center justify-center md:w-[54px] md:h-[54px]">
                         <WhatsAppIcons/>
                     </a>
                 </Tooltip>
                 <Tooltip
-                    content={"Chat With Store"}
+                    content={strings.ChatWithStore}
                     classNames={{content: "bg-[--rate-color] text-white"}}
                 >
                     <span
@@ -97,12 +98,20 @@ const StoreTabs = ({mainData, aboutUs, categories, isServiceProvider}) => {
                         <TextMessageIcon/>
                     </span>
                 </Tooltip>
-                <Tooltip content={"Location"} classNames={{
+                <Tooltip content={strings.Location} classNames={{
                     content: "bg-[--primary-color] text-white"
                 }}>
                     <a href={`tel:${mainData.phone}`}
                        className="p-[15px] bg-[--primary-color] rounded-[10px] flex items-center justify-center w-[50px] h-[50px] md:w-[54px] md:h-[54px]">
                         <SendIcon/>
+                    </a>
+                </Tooltip>
+                <Tooltip content={strings.ShippingCompanies} classNames={{
+                    content: "bg-blue-600 text-white"
+                }}>
+                    <a href={`tel:${mainData.phone}`}
+                       className="p-[15px] bg-blue-600 shadow-xl rounded-[10px] flex items-center justify-center w-[50px] h-[50px] md:w-[54px] md:h-[54px]">
+                        <CiDeliveryTruck size={24} className={"text-white"} />
                     </a>
                 </Tooltip>
             </div>

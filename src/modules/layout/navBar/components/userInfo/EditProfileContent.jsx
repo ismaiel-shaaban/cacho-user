@@ -21,27 +21,31 @@ const EditProfileContent = () => {
         e.preventDefault();
         try {
             setIsLoading(true);
+            const formDataApi = new FormData();
+            formDataApi.append("avatar", formData.avatar); // Append the file to the FormData object
+            formDataApi.append("name", formData.name); // Append other form data fields
+            console.log("formDataApi => " ,formDataApi)
             const res = await fetch("https://caco-dev.mimusoft.com/api/customer/profile", {
                 method: "POST",
                 headers: {
-                    "Content-Type": "application/json",
                     "Authorization": "Bearer " + tokenData
                 },
-                body: JSON.stringify(formData)
+                body: formDataApi // Pass the FormData object as the body
             });
             setIsLoading(false);
             if (res.ok) {
-                setIsSuccess(true); // Set isSuccess to true if the request is successful
+                setIsSuccess(true);
                 const newUserData = await res.json();
-                mutate("https://caco-dev.mimusoft.com/api/customer/profile" ,newUserData ,false);
+                mutate("https://caco-dev.mimusoft.com/api/customer/profile", newUserData, false);
             } else {
-                setIsSuccess(false); // Set isSuccess to false if the request fails
+                setIsSuccess(false);
             }
         } catch (error) {
             setError(error.message);
             setIsLoading(false);
         }
     };
+
 
 
     return (<form onSubmit={handleSubmit}>

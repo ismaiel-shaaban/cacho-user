@@ -7,10 +7,11 @@ import {Autoplay, FreeMode} from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 import LocationIcon from "@/utilis/Icons/LocationIcon";
+import {strings} from "@/utilis/Localization";
 
 const AboutUs = ({aboutUs}) => {
-    return (<div>
-        <div className="flex items-end gap-2 md:gap-[40px]">
+    return (<div dir={strings.getLanguage() === "ar" ? "rtl" : "ltr"}>
+        <div className="flex items-end gap-2 mt-5 md:mt-10 lg:mt-5 md:gap-[40px]">
             <div className="flex gap-2">
                 <img src={aboutUs.image} alt={aboutUs.title}
                        className="block w-[60px] object-cover h-[60px] rounded-md overflow-hidden"/>
@@ -23,14 +24,14 @@ const AboutUs = ({aboutUs}) => {
             <div className="flex items-center gap-[20px]">
                 <Chip color={aboutUs.status === "active" ? "success" : "danger"}
                       classNames={{base: "text-white"}}
-                      endContent={aboutUs.isOpen === 1 ? <GoDotFill/> : null}>{aboutUs.isOpen === 1 ? "Open" : "Closed"}</Chip>
+                      endContent={aboutUs.isOpen === 1 ? <GoDotFill/> : null}>{aboutUs.isOpen === 1 ? strings.Open : strings.Closed}</Chip>
                 <Chip variant="bordered" classNames={{
                     base: "border-[--primary-color] text-[--primary-color]"
                 }}>{aboutUs.workingDays}</Chip>
             </div>
         </div>
         <div>
-            <h3 className="text-[20px] font-[600] my-[20px]">Images
+            <h3 className="text-[20px] font-[600] my-[20px]">{strings.Images}
                 <span className="text-[14px] font-[400]"> ({aboutUs.images && aboutUs.images.length})</span>
             </h3>
             {aboutUs.images &&  <Swiper
@@ -70,11 +71,11 @@ const AboutUs = ({aboutUs}) => {
             </Swiper>}
         </div>
         <div>
-            <h3 className="text-[20px] font-[600] mb-[10px] mt-[24px]">Description</h3>
+            <h3 className="text-[20px] font-[600] mb-[10px] mt-[24px]">{strings.Description}</h3>
             <p className="text-[18px] font-[500]">{aboutUs.about}</p>
         </div>
         <div>
-            <h3 className="text-[20px] font-[600] mb-[10px] mt-[24px]">Location</h3>
+            <h3 className="text-[20px] font-[600] mb-[10px] mt-[24px]">{strings.Location}</h3>
             <p className="text-[18px] font-[500] text-[--primary-color] flex gap-3">{aboutUs.address} <span><LocationIcon/></span></p>
         </div>
     </div>)

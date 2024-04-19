@@ -51,10 +51,9 @@ const Reviews = () => {
     return (
         <>
             <div className="grid grid-cols-1 gap-3 lg:grid-cols-3 sm:grid-cols-2"
-                 onClick={handleAddReview}
                  dir={strings.getLanguage() === "ar" ? "rtl" : "ltr"}
             >
-                <div className="cursor-pointer">
+                <div onClick={handleAddReview} className="cursor-pointer">
                     <Card classNames={{
                         base: "h-full shadow-none rounded-md bg-transparent border-2 border-[--gray-2]",
                     }}>

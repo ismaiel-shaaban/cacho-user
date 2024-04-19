@@ -22,7 +22,7 @@ const StoresCard = ({ store }) => {
                     <BookMark productId={store.uuid} isProduct={false}  isSaved={store.isFavourite} />
                 </div>
                 <div className={`absolute top-0 left-0 mt-[15px] ml-[15px] text-center flex items-center justify-center text-[14px] px-2 py-1 ${statusColor} text-white rounded-full`}>
-                    {store.isOpen === 1 ? "Open": "Closed"}
+                    {store.isOpen === 1 ? strings.Open: strings.Closed}
                 </div>
                 <div className={`p-[15px] flex items-center ${strings.getLanguage() === "ar" && "justify-between"} gap-3`}>
                     <Link href={`/Stores/${store.uuid}`}>

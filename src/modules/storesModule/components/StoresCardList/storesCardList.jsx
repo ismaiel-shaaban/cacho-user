@@ -3,8 +3,8 @@ import {memo, useEffect} from "react";
 import {useStoresData} from "@/modules/storesModule/hooks/getStores";
 import SkeletonProducts from "@/components/sheared/skeletonProducts/SkeletonProducts";
 
-const StoresCardList = ({page , filter ,passMetadata}) => {
-    const {data, error, isLoading} = useStoresData(filter, page);
+const StoresCardList = ({page , filter ,passMetadata ,sort}) => {
+    const {data, error, isLoading} = useStoresData(filter, page ,sort);
     useEffect(() => {
         if (data?.response?.meta) {
             passMetadata(data?.response?.meta);

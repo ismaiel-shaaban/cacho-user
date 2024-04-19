@@ -12,7 +12,7 @@ const PaginationPages = ({total, current, onChange}) => {
     };
 
     return (<div className="flex justify-center mt-5">
-        <Pagination variant={"faded"} siblings={2} onChange={handlePageChange} loop showControls total={total}
+        <Pagination variant={"faded"} onChange={handlePageChange} loop showControls total={total}
                     page={currentPage}/>
     </div>);
 };

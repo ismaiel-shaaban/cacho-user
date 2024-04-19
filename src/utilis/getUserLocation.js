@@ -14,9 +14,14 @@ export const fetchLocation = async (language) => {
         const userLocationResponse = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key=AIzaSyBhs9awrQC82lygPiy4Cq91xyX9s3WUjUI&language=${language}`);
 
         const userLocation = await userLocationResponse.json();
+        let location
+        if(userLocation?.plus_code?.compound_code?.includes(" ")){
+            location = userLocation?.plus_code?.compound_code.split(" ").slice(1).join(" ")
+        } else {
+            const resultLength = userLocation.results.length
+            location = userLocation?.results[resultLength-2].formatted_address
+        }
 
-        const locationContent = userLocation?.plus_code?.compound_code.split(" ");
-        const location = locationContent.slice(1).join(" ");
         // set location in local storage
         localStorage.setItem('location', location);
         localStorage.setItem('latitude', latitude);

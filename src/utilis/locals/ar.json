@@ -66,5 +66,13 @@
   "TypeToSearch": "أكتب لتبحث ...",
   "Online": "نشط",
   "Loading" : "تحميل ...",
-  "Error": "خطأ"
+  "Error": "خطأ",
+  "Open": "مفتوح",
+  "Closed" : "مغلق",
+  "Images": "الصور",
+  "Description": "الوصف",
+  "ContactViaWhatsApp": "التوصل من خلال الواتساب",
+  "ChatWithStore": "الدردشة مع المتجر",
+  "NoItemsFound" : "لا يوجد عناصر",
+  "ShippingCompanies" : "شركات الشحن"
 }

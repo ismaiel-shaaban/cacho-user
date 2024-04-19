@@ -1,5 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import { useState } from "react";
+import Image from "next/image";
 import cameraImage from "../../../../public/camera1.svg";
 
 const ImageUpload = ({ onChange }) => {
@@ -19,7 +20,7 @@ const ImageUpload = ({ onChange }) => {
                 {image ? (
                     <img src={image} className="w-full h-full rounded-full object-cover" alt={"User Image"} />
                 ) : (
-                    <img src={cameraImage} className="w-[50px] h-[50px] sm:w-[95px] sm:h-[95px]" alt={"Camera Icon"} />
+                    <Image src={cameraImage} className="w-[50px] h-[50px] sm:w-[95px] sm:h-[95px]" alt={"Camera Icon"} />
                 )}
             </label>
         </div>

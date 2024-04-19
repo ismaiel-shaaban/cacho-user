@@ -49,10 +49,10 @@ const SearchInput = () => {
                 onChange={handleCategoryChange}
                 aria-label={"Select a category"}
             >
-                <SelectItem key="categories" value="categories">Categories</SelectItem>
-                <SelectItem key="stores" value="stores">Business</SelectItem>
-                <SelectItem key="products" value="products">Products</SelectItem>
-                <SelectItem key="service" value="service">Service</SelectItem>
+                <SelectItem key="categories" value="categories">{strings.Categories}</SelectItem>
+                <SelectItem key="stores" value="stores">{strings.Stores}</SelectItem>
+                <SelectItem key="products" value="products">{strings.Products}</SelectItem>
+                <SelectItem key="service" value="service">{strings.Services}</SelectItem>
             </Select>}
         />
         <div className="absolute top-full left-0 w-full bg-white shadow-md z-10 rounded-md">

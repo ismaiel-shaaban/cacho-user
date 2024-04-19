@@ -16,12 +16,12 @@ const BookMark = ({productId, isSaved, isProduct}) => {
         if (userData) {
             try {
                 await fetch(`https://caco-dev.mimusoft.com/api/customer/${isProduct ? "products" : "businesses"}/${productId}/favourite`, {
-                    method: isSaved ? "DELETE" : "POST", headers: {
+                    method: isSavedState ? "DELETE" : "POST", headers: {
                         "Content-Type": "application/json", "Authorization": `Bearer ${token}`
                     },
                 });
+                console.log("Operation Successful", isSavedState ? "Removed from favorites" : "Added to favorites");
                 setIsSavedState(!isSavedState);
-                console.log("Operation Successful", isSaved ? "Removed from favorites" : "Added to favorites");
             } catch (e) {
                 console.log(e);
             }
