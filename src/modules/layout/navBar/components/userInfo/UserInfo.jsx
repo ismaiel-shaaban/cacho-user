@@ -7,7 +7,6 @@ import EditProfile from "@/modules/layout/navBar/components/userInfo/EditProfile
 import ChangePassword from "@/modules/layout/navBar/components/userInfo/ChangePassword";
 import ChangeLocation from "@/modules/layout/navBar/components/userInfo/ChangeLocation";
 import UserModal from "@/modules/modalsModule/UserModal";
-import UserImageDefault from "../../../../../../public/userImageDefult.svg";
 import {strings} from "@/utilis/Localization";
 import {useUserData} from "@/utilis/getUserData";
 
@@ -16,12 +15,15 @@ const UserInfo = ({userLocation}) => {
     const {isOpen, onOpen, onOpenChange} = useDisclosure();
     const [modalContent, setModalContent] = useState(null);
     const [userLocationData, setUserLocationData] = useState(null);
-    const [userData, setUserData] = useState(null);
+    const [userData, setUserData] = useState({
+        name:"",
+        imageUrl:""
+    });
     const token = getCookie("token")
     const {data , error , isLoading} = useUserData(token)
     useEffect(() => {
         if(data){
-            setUserData(strings.Hi + " " + data.name)
+            setUserData({imageUrl: data.avatar, name: strings.Hi + " " + data.name})
         }
         if(isLoading){
             setUserData(strings.Loading)
@@ -67,10 +69,13 @@ const UserInfo = ({userLocation}) => {
                 <DropdownTrigger>
                     <User
                         as="button"
+                        avatarProps={{
+                        src:`${userData.imageUrl}`
+                        }}
                         aria-label="User Info"
                         className="transition-transform"
                         description={userLocationData && userLocationData}
-                        name={userData ? userData : null}
+                        name={userData ? userData.name : null}
                         classNames={{
                             description: "text-[14px] font-medium text-[--primary-color]",
                             name: "text-[12px] font-[400] text-[--gray-2]",

@@ -7,7 +7,7 @@
   "Categories": "الأقسام",
   "viewAll": "عرض الكل",
   "off": "خصم",
-  "egp": "جنيه",
+  "egp": "ريال",
   "Nearest": "الأقرب",
   "New": "الأحدث",
   "SpecialOffers": "عروض خاصة",
@@ -74,5 +74,6 @@
   "ContactViaWhatsApp": "التوصل من خلال الواتساب",
   "ChatWithStore": "الدردشة مع المتجر",
   "NoItemsFound" : "لا يوجد عناصر",
-  "ShippingCompanies" : "شركات الشحن"
+  "ShippingCompanies" : "شركات الشحن",
+  "NoStoresFound": "لا يوجد متاجر"
 }

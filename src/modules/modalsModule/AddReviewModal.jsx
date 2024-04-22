@@ -5,7 +5,7 @@ import ReactStars from "react-rating-stars-component";
 import {getCookie} from "cookies-next";
 import {strings} from "@/utilis/Localization";
 
-const AddReviewModal = ({isOpen, onOpenChange , id}) => {
+const AddReviewModal = ({isOpen, onOpenChange , id , isProduct = false}) => {
     const [rateForm, setRateForm] = useState({
         rating: 1, comment: "", isAnonymous :false
     });
@@ -17,9 +17,14 @@ const AddReviewModal = ({isOpen, onOpenChange , id}) => {
 
     const handelSubmit = async (e) => {
         e.preventDefault();
-        console.log(rateForm)
         const token = await getCookie('token');
-        const res = await fetch(`https://caco-dev.mimusoft.com/api/customer/businesses/${id}/reviews`, {
+        let url
+        if (isProduct){
+            url = `https://caco-dev.mimusoft.com/api/customer/products/${id}/reviews`
+        } else {
+            url = `https://caco-dev.mimusoft.com/api/customer/businesses/${id}/reviews`
+        }
+        const res = await fetch(url, {
             method: 'POST',
             headers: {
                 'Authorization': 'Bearer ' + token,

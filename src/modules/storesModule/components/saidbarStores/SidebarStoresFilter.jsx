@@ -5,7 +5,7 @@ import {useEffect, useState} from "react";
 import SidebarStoresContent from "@/modules/storesModule/components/saidbarStores/SidebarStoresContent";
 import {strings} from "@/utilis/Localization";
 
-const SidebarStoresFilter = () => {
+const SidebarStoresFilter = ({dataCount}) => {
     const {isOpen, onOpen, onOpenChange} = useDisclosure();
     const [showSidebar, setShowSidebar] = useState(false);
 
@@ -18,7 +18,7 @@ const SidebarStoresFilter = () => {
         return () => window.removeEventListener("resize", handleResize);
     }, []);
     return (<>
-        {showSidebar && <SidebarStoresContent />}
+        {showSidebar && <SidebarStoresContent dataCount={dataCount} />}
         {!showSidebar && <>
             <Button onPress={onOpen} variant={"shadow"} color={"primary"} className="mt-3">Filter</Button>
             <Modal isOpen={isOpen} onOpenChange={onOpenChange} placement={"center"}>
@@ -26,7 +26,7 @@ const SidebarStoresFilter = () => {
                     {(onClose) => (<>
                         <ModalHeader className="flex flex-col gap-1">{strings.Filter}</ModalHeader>
                         <ModalBody>
-                            <SidebarStoresContent/>
+                            <SidebarStoresContent dataCount={dataCount}/>
                         </ModalBody>
                         <ModalFooter>
                             <Button color="danger" variant="light" onPress={onClose}>

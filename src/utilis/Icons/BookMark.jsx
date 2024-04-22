@@ -1,5 +1,5 @@
-import {useEffect, useState} from "react";
-import {getCookie, getCookies} from "cookies-next";
+import {useState} from "react";
+import {getCookie} from "cookies-next";
 import {fetchUserData} from "@/utilis/getUserData";
 import {useDisclosure} from "@nextui-org/react";
 import SuggestLoginModal from "@/modules/modalsModule/SuggestLoginModal";
@@ -31,7 +31,7 @@ const BookMark = ({productId, isSaved, isProduct}) => {
     };
 
     return (<>
-        <div onClick={handleClick} className="p-2 backdrop-blur-md bg-white/50 rounded-md cursor-pointer">
+        <div onClick={handleClick} className="p-2 backdrop-blur-md bg-white/85 rounded-md cursor-pointer">
             {isSavedState === false ? <span>
            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M6.9375 6.78711C8.2725 7.27461 9.7275 7.27461 11.0625 6.78711" stroke="#8E8E93" strokeWidth="1.125"

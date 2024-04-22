@@ -4,6 +4,7 @@ import {Skeleton, Spinner, Tab, Tabs} from "@nextui-org/react";
 import ProductOfferTab from "@/modules/storesModule/components/offers/productOfferTab/ProductOfferTab";
 import ErrorFetch from "@/components/sheared/erorrFetch/ErrorFetch";
 import {strings} from "@/utilis/Localization";
+import NotFound from "@/components/sheared/NotFound";
 
 const Offers = ()=>{
     const router = useRouter();
@@ -15,6 +16,7 @@ const Offers = ()=>{
         </div>
     </Skeleton>;
     if (error) return <ErrorFetch/>;
+    if (data?.response?.data.length === 0) return <NotFound title={strings.NoItemsFound}/>;
     return(
         <Tabs variant={"light"} fullWidth={true} className={"mt-5"}
               dir={strings.getLanguage() === "ar" ? "rtl" : "ltr"}

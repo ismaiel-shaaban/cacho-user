@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Rating from "@/components/sheared/rateing/Rating";
 import {Chip} from "@nextui-org/react";
 import {GoDotFill} from "react-icons/go";
@@ -22,9 +21,9 @@ const AboutUs = ({aboutUs}) => {
 
             </div>
             <div className="flex items-center gap-[20px]">
-                <Chip color={aboutUs.status === "active" ? "success" : "danger"}
-                      classNames={{base: "text-white"}}
-                      endContent={aboutUs.isOpen === 1 ? <GoDotFill/> : null}>{aboutUs.isOpen === 1 ? strings.Open : strings.Closed}</Chip>
+                <Chip
+                      classNames={{base: `text-white ${aboutUs.isOpen ? "bg-success" : "bg-[--red]"}`}}
+                      endContent={aboutUs.isOpen ? <GoDotFill/> : null}>{aboutUs.isOpen ? strings.Open : strings.Closed}</Chip>
                 <Chip variant="bordered" classNames={{
                     base: "border-[--primary-color] text-[--primary-color]"
                 }}>{aboutUs.workingDays}</Chip>

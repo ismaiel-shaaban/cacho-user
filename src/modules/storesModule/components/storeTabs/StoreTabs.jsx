@@ -1,9 +1,19 @@
-import {Spinner, Tab, Tabs, Tooltip, useDisclosure} from "@nextui-org/react";
+import {
+    Button,
+    Dropdown, DropdownItem,
+    DropdownMenu,
+    DropdownTrigger,
+    Spinner,
+    Tab,
+    Tabs,
+    Tooltip,
+    useDisclosure
+} from "@nextui-org/react";
+import Link from "next/link";
 import AboutUs from "@/modules/storesModule/components/aboutUs/AboutUs";
 import Products from "@/modules/storesModule/components/products/Products";
 import Offers from "@/modules/storesModule/components/offers/Offers";
 import Reviews from "@/modules/storesModule/components/reviews/Reviews";
-import SaveIcon from "@/utilis/Icons/SaveIcon";
 import WhatsAppIcons from "@/utilis/Icons/WhatsAppIcons";
 import TextMessageIcon from "@/utilis/Icons/TextMessageIcon";
 import SendIcon from "@/utilis/Icons/SendIcon";
@@ -15,6 +25,8 @@ import {fetchUserData} from "@/utilis/getUserData";
 import SuggestLoginModal from "@/modules/modalsModule/SuggestLoginModal";
 import BookMark from "@/utilis/Icons/BookMark";
 import {CiDeliveryTruck} from "react-icons/ci";
+import {formatPhoneNumber} from "@/utilis/formatPhoneNumber";
+import {BiLinkExternal} from "react-icons/bi";
 
 const StoreTabs = ({mainData, aboutUs, categories, isServiceProvider}) => {
     const router = useRouter();
@@ -72,47 +84,68 @@ const StoreTabs = ({mainData, aboutUs, categories, isServiceProvider}) => {
             </Tabs>
             <div className={`absolute right-0 me-2 flex rounded-md gap-2 md:gap-2 ${classes.icons}`}>
                 <Tooltip content={strings.SaveStore}>
-                <span
-                    className="p-[15px] border-2 rounded-md flex items-center justify-center w-[50px] h-[50px] md:w-[54px] md:h-[54px]">
+                <Button isIconOnly
+                    className="p-[15px] border-2 rounded-md bg-transparent !w-[50px] !h-[50px] cursor-pointer !md:w-[54px] !md:h-[54px]">
                     <BookMark productId={id} isProduct={false} isSaved={aboutUs.isFavourite} />
-                </span>
+                </Button>
                 </Tooltip>
                 <Tooltip
                     content={strings.ContactViaWhatsApp}
                     classNames={{content: "bg-[--green] text-white"}}
                     onClick={handleChatWithStore}
                 >
-                    <a href={`https://wa.me/${mainData.whatsapp}`}
-                       className="p-[15px] bg-[--green] w-[50px] h-[50px] rounded-[10px] flex items-center justify-center md:w-[54px] md:h-[54px]">
+                    <Button isIconOnly as={Link} href={`https://wa.me/${formatPhoneNumber(mainData?.whatsapp)}`}
+                            target={"_blank"}
+                            isDisabled={!mainData.whatsappEnabled || !mainData.whatsapp}
+                       className="p-[15px] bg-[--green] rounded-[10px] !w-[50px] !h-[50px] cursor-pointer !md:w-[54px] !md:h-[54px]">
                         <WhatsAppIcons/>
-                    </a>
+                    </Button>
                 </Tooltip>
                 <Tooltip
                     content={strings.ChatWithStore}
                     classNames={{content: "bg-[--rate-color] text-white"}}
                 >
-                    <span
+                    <Button
+                        isDisabled={!mainData.chatEnabled}
+                        isIconOnly
                         onClick={handleChatWithStore}
-                        className="p-[15px] bg-[--rate-color] rounded-[10px] flex items-center justify-center w-[50px] h-[50px] cursor-pointer md:w-[54px] md:h-[54px]"
+                        className="p-[15px] bg-[--rate-color] rounded-[10px] !w-[50px] !h-[50px] cursor-pointer !md:w-[54px] !md:h-[54px]"
                     >
                         <TextMessageIcon/>
-                    </span>
+                    </Button>
                 </Tooltip>
                 <Tooltip content={strings.Location} classNames={{
                     content: "bg-[--primary-color] text-white"
                 }}>
-                    <a href={`tel:${mainData.phone}`}
-                       className="p-[15px] bg-[--primary-color] rounded-[10px] flex items-center justify-center w-[50px] h-[50px] md:w-[54px] md:h-[54px]">
+                    <Button as={Link} isIconOnly target={"_blank"} href={`https://www.google.com/maps/search/?api=1&query=${mainData.location.lat},${mainData.location.lng}`}
+                       className="p-[15px] bg-[--primary-color] rounded-[10px] !w-[50px] !h-[50px] cursor-pointer !md:w-[54px] !md:h-[54px]">
                         <SendIcon/>
-                    </a>
+                    </Button>
                 </Tooltip>
                 <Tooltip content={strings.ShippingCompanies} classNames={{
                     content: "bg-blue-600 text-white"
                 }}>
-                    <a href={`tel:${mainData.phone}`}
-                       className="p-[15px] bg-blue-600 shadow-xl rounded-[10px] flex items-center justify-center w-[50px] h-[50px] md:w-[54px] md:h-[54px]">
-                        <CiDeliveryTruck size={24} className={"text-white"} />
-                    </a>
+                    <Dropdown backdrop={"opaque"} dir={strings.getLanguage() === "ar" ? "rtl" : "ltr"}>
+                        <DropdownTrigger>
+                            <Button
+                                isIconOnly
+                                isDisabled={mainData.deliveryCompaniesCount===0}
+                                className="p-[15px] bg-blue-600 shadow-xl rounded-[10px] !w-[50px] !h-[50px] cursor-pointer !md:w-[54px] !md:h-[54px]">
+                                <CiDeliveryTruck size={24} className={"text-white"} />
+                            </Button>
+                        </DropdownTrigger>
+                        <DropdownMenu variant="faded" aria-label="Static Actions" color={"secondary"} items={mainData.deliveryCompanies}>
+                            {(item) => (
+                                <DropdownItem
+                                    key={item.name}
+                                    href={item.link}
+                                    as={Link}
+                                    title={item.name}
+                                    endContent={<BiLinkExternal />}
+                                />
+                            )}
+                        </DropdownMenu>
+                    </Dropdown>
                 </Tooltip>
             </div>
         <SuggestLoginModal isOpen={isOpen} onOpenChange={onOpenChange}/>

@@ -5,7 +5,7 @@ import {useEffect, useState} from "react";
 import {useRouter} from "next/router";
 import {useCategoriesData} from "@/modules/categoriesModule/hooks/getCategories";
 
-const SidebarStoresContent = () => {
+const SidebarStoresContent = ({dataCount}) => {
     const router = useRouter();
     const filter = router.query.filter;
     const [values, setValues] = useState([]);
@@ -65,7 +65,7 @@ const SidebarStoresContent = () => {
         <div>
             <div className="flex items-center justify-between">
                 <h2 className="text-[16px] font-[500]">{strings.Filter} <span
-                    className="text-[12px] font-normal text-[--gray-2]">(32 {strings.results})</span></h2>
+                    className="text-[12px] font-normal text-[--gray-2]">( { dataCount + " " +strings.results })</span></h2>
                 <button className="text-sm text-[--rate-color]" onClick={handleReset}>{strings.Reset}</button>
             </div>
             <div>

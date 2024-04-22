@@ -14,6 +14,7 @@ const StoresCards = () => {
     const sort = router.query.sort;
     const page = router.query.page ? parseInt(router.query.page) : 1;
     const [metadata, setMetadata] = useState({});
+    const [dataCount ,setDataCount] = useState(0)
 
     const handlePageChange = (page) => {
         // Update the URL query parameter to reflect the new page
@@ -25,15 +26,18 @@ const StoresCards = () => {
     return (<>
             <div className="md:grid md:grid-cols-12 gap-[40px]" dir={strings.getLanguage() === "ar" ? "rtl" : "ltr"}>
                 <div className="md:col-span-3">
-                        <SidebarStoresFilter />
+                        <SidebarStoresFilter dataCount={dataCount} />
                 </div>
                 <StoresCardList page={page} filter={filter} sort={sort} passMetadata={
-                    (meta) => setMetadata(meta)
+                    (meta) => setMetadata(meta)} passDataCount={
+                    (count)=>setDataCount(count)
                 }/>
             </div>
 
-            <PaginationPages total={metadata["last_page"]} current={metadata["current_page"]}
+        {
+            metadata["last_page"] > 1 && <PaginationPages total={metadata["last_page"]} current={metadata["current_page"]}
                              onChange={handlePageChange}/>
+        }
         </>);
 };
 

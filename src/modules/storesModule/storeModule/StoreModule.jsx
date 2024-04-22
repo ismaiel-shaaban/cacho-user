@@ -16,10 +16,10 @@ const StoreModule = ({passTitle}) => {
     useEffect(() => {
         if (data) {
             const {
-                email, whatsapp, phone, image, title, rating, reviewsCount, status, workingDays, images, about, address ,isOpen , isFavourite
+                email, whatsapp, phone, image, title, rating, reviewsCount, status, workingDays, images, about, address ,isOpen , isFavourite,chatEnabled ,callEnabled , whatsappEnabled,deliveryCompanies,deliveryCompaniesCount,location
             } = data.response;
 
-            setMainData({email, whatsapp, phone});
+            setMainData({email, whatsapp, phone ,chatEnabled ,callEnabled , whatsappEnabled,deliveryCompanies,deliveryCompaniesCount ,location});
             setAboutUs({image, title, rating, reviewsCount, status, workingDays, images, about, address , isOpen ,isFavourite});
             passTitle(title);
         }

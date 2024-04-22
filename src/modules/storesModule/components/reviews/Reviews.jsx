@@ -17,7 +17,7 @@ import {fetchUserData} from "@/utilis/getUserData";
 const fetcher = (...args) => fetch(...args).then(res => res.json());
 
 const Reviews = () => {
-    const { isOpen, onOpen, onOpenChange } = useDisclosure();
+    const { isOpen, onOpenChange } = useDisclosure();
     const [showLoginModal, setShowLoginModal] = useState(false);
     const router = useRouter();
     const { id } = router.query;
@@ -97,7 +97,7 @@ const Reviews = () => {
                     {strings.ShowMore}
                 </Button>
             </div>
-            <AddReviewModal isOpen={isOpen} onOpenChange={onOpenChange} id={id} />
+            <AddReviewModal isOpen={isOpen} onOpenChange={onOpenChange} id={id} isProduct={false} />
             <SuggestLoginModal isOpen={showLoginModal} onOpenChange={() => setShowLoginModal(false)} />
         </>
     );

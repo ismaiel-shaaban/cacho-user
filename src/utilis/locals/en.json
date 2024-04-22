@@ -7,7 +7,7 @@
   "Categories": "Categories",
   "viewAll": "view all",
   "off": "OFF",
-  "egp": "EGP",
+  "egp": "SR",
   "Nearest": "Nearest",
   "New": "New",
   "SpecialOffers": "Special Offers",
@@ -74,5 +74,6 @@
   "ContactViaWhatsApp": "Contact Via WhatsApp",
   "ChatWithStore": "Chat With Store",
   "NoItemsFound": "No Items Found",
-  "ShippingCompanies": "Shipping Companies"
+  "ShippingCompanies": "Shipping Companies",
+  "NoStoresFound" : "No Stores Found"
 }

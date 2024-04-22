@@ -24,7 +24,6 @@ const EditProfileContent = () => {
             const formDataApi = new FormData();
             formDataApi.append("avatar", formData.avatar); // Append the file to the FormData object
             formDataApi.append("name", formData.name); // Append other form data fields
-            console.log("formDataApi => " ,formDataApi)
             const res = await fetch("https://caco-dev.mimusoft.com/api/customer/profile", {
                 method: "POST",
                 headers: {
