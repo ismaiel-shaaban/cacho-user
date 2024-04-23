@@ -28,26 +28,26 @@ const OfferCard = ({ offer }) => {
                     <div>
                         <div className="flex justify-between items-center">
                             <div className="flex justify-between flex-col mb-[5px]">
-                                <span className="text-sm text-gray-400">
+                                <span className="text-sm text-gray-400 text-start">
                                     <span>{strings.by} </span>
                                     <span className="text-[--primary-color]">{offer.business.title}</span>
                                 </span>
                                 <h3 className="text-md font-medium mb-[10px] leading-7">{offer.title}</h3>
                             </div>
-                            <span className="text-sm">
+                            {!offer.isUnlimited && <span className="text-sm">
                                 <div>
                                     <div>{strings.from} <span
                                         className="text-[--primary-color]">{offer.startDate}</span> </div>
                                     <div>{strings.to} <span
                                         className="text-[--primary-color]">{offer.endDate}</span></div>
                                 </div>
-                            </span>
+                            </span>}
                         </div>
                     </div>
 
                     <div className="flex justify-end items-center">
                         <Button variant={"ghost"} as={Link} href={`/offers/${offer.uuid}`}
-                            className="text-[--primary-color] border-[--primary-color] rounded-[10px] hover:!bg-[--primary-color] hover:!text-white">
+                                className="text-[--primary-color] border-[--primary-color] rounded-[10px] hover:!bg-[--primary-color] hover:!text-white">
                             {strings.details}
                         </Button>
                     </div>

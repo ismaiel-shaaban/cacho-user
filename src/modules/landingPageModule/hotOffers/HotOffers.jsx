@@ -7,7 +7,7 @@ import ErrorFetch from "@/components/sheared/erorrFetch/ErrorFetch";
 
 
 const HotOffers = () => {
-    const {data , error , isLoading} = useGetOffersData();
+    const {data , error , isLoading} = useGetOffersData(0,false);
 
     if (isLoading) return <div className="container">
         <SkeletonProducts col={4} />

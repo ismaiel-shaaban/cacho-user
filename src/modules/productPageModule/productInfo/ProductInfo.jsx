@@ -67,7 +67,7 @@ const ProductInfo = ({ info ,images }) => {
             <h3 className="text-[32px] font-[600]">{info?.name}</h3>
 
             <div className="flex items-center justify-between mt-3">
-                <div className="flex gap-[33px] items-center text-[32px]">
+                <div className="flex items-center text-[32px] gap-3 md:gap-[25px]">
                     <span className="font-[600]">
                         {selectedPrice}
                         <span className="text-[10px] text-gray-400 font-normal leading-5">{strings.egp}</span>

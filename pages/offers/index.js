@@ -5,6 +5,8 @@ import useGetOffersData from "@/hooks/getoffersData";
 import PaginationPages from "@/components/sheared/paginationPage/PaginationPage";
 import OffersModules from "@/modules/offersModules/OffersModules";
 import SkeletonProducts from "@/components/sheared/skeletonProducts/SkeletonProducts";
+import NotFound from "@/components/sheared/NotFound";
+import {strings} from "@/utilis/Localization";
 
 
 const Offers = () => {
@@ -27,7 +29,12 @@ const Offers = () => {
                     }
                 </title>
             </Head>
-            <OffersModules hotOffers={data?.response?.data} />
+            { data?.response?.data.length > 0 ?
+                <OffersModules hotOffers={data?.response?.data} />
+                : <div className={"h-[60vh] flex items-center justify-center"}>
+                    <NotFound title={strings.NoItemsFound} />
+                </div>
+            }
             {data?.response?.meta["last_page"] > 1 && (
                 <PaginationPages total={data.response.meta["last_page"]} current={data.response.meta["current_page"]}
                                  onChange={handlePageChange}

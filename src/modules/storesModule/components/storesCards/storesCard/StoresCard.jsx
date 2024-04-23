@@ -9,7 +9,7 @@ const StoresCard = ({ store }) => {
     const statusColor = store.isOpen ? "bg-[--green]" : "bg-[--red]";
 
     return (
-        <Card className="shadow-none !transition !duration-300 hover:shadow-xl">
+        <Card dir={strings.getLanguage() === "ar" ? "rtl" : "ltr"} className="shadow-none !transition !duration-300 hover:shadow-xl">
             <CardBody className="p-0 overflow-hidden relative">
                 <div className="h-[190px] relative">
                     <img src={store.image} alt={store.title} className="object-cover w-full" style={{ height: "inherit" }} />
