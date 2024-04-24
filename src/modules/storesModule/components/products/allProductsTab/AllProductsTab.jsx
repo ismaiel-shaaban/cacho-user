@@ -29,7 +29,7 @@ const AllProductsTab = () => {
     return (<div
         dir={strings.getLanguage() === "ar" ? "rtl" : "ltr"}
     >
-        <div className="flex justify-end">
+        <div className="flex justify-start">
             <SearchProductsInput searchProducts={handleSearch}/>
         </div>
         <ProductsStoreList fetchUrl={url} passMeta={(meta) => {

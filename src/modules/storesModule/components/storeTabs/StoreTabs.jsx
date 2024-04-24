@@ -1,4 +1,5 @@
 import {
+    Badge,
     Button,
     Dropdown, DropdownItem,
     DropdownMenu,
@@ -122,31 +123,31 @@ const StoreTabs = ({ mainData, aboutUs, categories, isServiceProvider }) => {
                     <SendIcon />
                 </Button>
             </Tooltip>
-            <Tooltip content={strings.ShippingCompanies} classNames={{
-                content: "bg-blue-600 text-white"
-            }}>
-                <Dropdown backdrop={"opaque"} dir={strings.getLanguage() === "ar" ? "rtl" : "ltr"}>
-                    <DropdownTrigger>
-                        <Button
-                            isIconOnly
-                            isDisabled={mainData.deliveryCompaniesCount === 0}
-                            className="p-[15px] bg-blue-600 shadow-xl rounded-[10px] !w-[50px] !h-[50px] cursor-pointer !md:w-[54px] !md:h-[54px]">
-                            <CiDeliveryTruck size={24} className={"text-white"} />
-                        </Button>
-                    </DropdownTrigger>
-                    <DropdownMenu variant="faded" aria-label="Static Actions" color={"secondary"} items={mainData.deliveryCompanies}>
-                        {(item) => (
-                            <DropdownItem
-                                key={item.name}
-                                href={item.link}
-                                as={Link}
-                                title={item.name}
-                                endContent={<BiLinkExternal />}
-                            />
-                        )}
-                    </DropdownMenu>
-                </Dropdown>
-            </Tooltip>
+
+                <Badge content={mainData.deliveryCompaniesCount} variant="shadow" color={"primary"}>
+                    <Dropdown backdrop={"opaque"} dir={strings.getLanguage() === "ar" ? "rtl" : "ltr"}>
+                        <DropdownTrigger>
+                            <Button
+                                isIconOnly
+                                isDisabled={mainData.deliveryCompaniesCount === 0}
+                                className="p-[15px] bg-blue-600 shadow-xl rounded-[10px] !w-[50px] !h-[50px] cursor-pointer !md:w-[54px] !md:h-[54px]">
+                                <CiDeliveryTruck size={24} className={"text-white"} />
+                            </Button>
+                        </DropdownTrigger>
+                        <DropdownMenu variant="faded" aria-label="Static Actions" color={"secondary"} items={mainData.deliveryCompanies}>
+                            {(item) => (
+                                <DropdownItem
+                                    key={item.name}
+                                    href={item.link}
+                                    as={Link}
+                                    title={item.name}
+                                    endContent={<BiLinkExternal />}
+                                />
+                            )}
+                        </DropdownMenu>
+                    </Dropdown>
+                </Badge>
+
         </div>
         <SuggestLoginModal isOpen={isOpen} onOpenChange={onOpenChange} />
     </div>)

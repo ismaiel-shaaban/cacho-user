@@ -75,5 +75,9 @@
   "ChatWithStore": "Chat With Store",
   "NoItemsFound": "No Items Found",
   "ShippingCompanies": "Shipping Companies",
-  "NoStoresFound" : "No Stores Found"
+  "NoStoresFound" : "No Stores Found",
+  "colors": "Colors",
+  "sizes": "Sizes",
+  "volumes": "Volumes",
+  "All": "All"
 }

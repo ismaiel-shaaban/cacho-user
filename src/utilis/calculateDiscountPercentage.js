@@ -6,7 +6,7 @@ export function calculateDiscountPercentage(originalPrice, discountedPrice) {
         // حساب نسبة الخصم بقسمة الخصم على السعر الأصلي وضربها في 100 للحصول على النسبة المئوية
         const discountPercentage = (discountAmount / originalPrice) * 100;
         // إرجاع نسبة الخصم المحسوبة
-        return discountPercentage.toFixed(2);
+        return parseInt(discountPercentage);
     } else {
         // إرجاع قيمة خطأ في حالة عدم تطابق البيانات
         return "Invalid data";

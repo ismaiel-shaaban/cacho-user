@@ -37,8 +37,8 @@ const ProductReviews = ({reviewsCount ,rating}) => {
     if(error) return <div>Error</div>
     return (
         <>
-        <div className="col-span-12 lg:col-span-4 md:col-span-6">
-            <h2>Reviews <Rating ratingCount={reviewsCount} rating={rating}/></h2>
+        <div className="col-span-12 lg:col-span-4 md:col-span-6" dir={strings.getLanguage() === "ar" ? "rtl" : "ltr"}>
+            <h2>{strings.Reviews} <Rating ratingCount={reviewsCount} rating={rating}/></h2>
                 <Swiper
                     direction={'vertical'}
                     autoHeight={true}

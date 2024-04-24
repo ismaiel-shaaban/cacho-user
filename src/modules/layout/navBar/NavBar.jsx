@@ -3,7 +3,6 @@ import {useEffect, useMemo, useState} from 'react';
 import {
     Button, Divider, Navbar, NavbarContent, NavbarItem, NavbarMenu, NavbarMenuItem, NavbarMenuToggle,
 } from "@nextui-org/react";
-import BookMark from "@/utilis/Icons/BookMark";
 import UserInfo from "@/modules/layout/navBar/components/userInfo/UserInfo";
 import SearchInput from "@/modules/layout/navBar/components/searchInput/SearchInput";
 import {MessagesIcon} from "@/utilis/Icons/MessagesIcon";
@@ -11,7 +10,6 @@ import SelectLang from "@/modules/layout/navBar/components/selectLang/SelectLang
 import Logo from "@/modules/layout/navBar/components/logo";
 import Link from "next/link";
 import {getCookie} from "cookies-next";
-import useSWR from "swr";
 import Image from "next/image";
 import savedLink from "../../../../public/savedLink.svg"
 
@@ -113,7 +111,8 @@ const NavBar = ({userLocation}) => {
                 <NavbarMenuItem>
                     <Link href={"/chat"}>
                         <MessagesIcon/>
-                    </Link> </NavbarMenuItem>
+                    </Link>
+                </NavbarMenuItem>
                 <NavbarMenuItem>
                     <Link href={"/saved"}>
                         <Image src={savedLink} alt={"bookmark"} width={24} height={24}/>
@@ -123,6 +122,15 @@ const NavBar = ({userLocation}) => {
                     {memoizedUserInfo}
                 </NavbarMenuItem>
             </div>
+            {!isLogin && <div className="flex justify-center items-center gap-2 md:w-2/3">
+                <NavbarMenuItem>
+                    <Link href={"/login"} className="text-[--primary-color]">{strings.LogIn}</Link>
+                </NavbarMenuItem>
+                <NavbarMenuItem>
+                    <Button className="bg-[--primary-color] text-white" as={Link}
+                            href={"/signup"}>{strings.Register}</Button>
+                </NavbarMenuItem>
+            </div>}
         </NavbarMenu>
     </Navbar>);
 };

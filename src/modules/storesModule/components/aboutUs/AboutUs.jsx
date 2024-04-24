@@ -28,9 +28,6 @@ const AboutUs = ({aboutUs}) => {
 
     }, [data]);
 
-    console.log(productsImages)
-
-
     return (<div dir={strings.getLanguage() === "ar" ? "rtl" : "ltr"}>
         <div className="flex items-end gap-2 mt-5 md:mt-10 lg:mt-5 md:gap-[40px]">
             <div className="flex gap-2">

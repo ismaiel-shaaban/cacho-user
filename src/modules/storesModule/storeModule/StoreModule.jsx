@@ -25,11 +25,12 @@ const StoreModule = ({ passTitle }) => {
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [data]);
+    console.log("data=>" , data)
     if (isLoading) return <SkeletonProducts col={4} />
     if (error) return <ErrorFetch />;
     return (<section>
         <StoreVideo video={data?.response?.video} />
-        <StoreTabs mainData={mainData} aboutUs={aboutUs} categories={data?.response?.categories} isServiceProvider={data?.response?.isServiceProvider} />
+        <StoreTabs mainData={mainData} aboutUs={aboutUs} categories={data?.response?.businessType.categories} isServiceProvider={data?.response?.isServiceProvider} />
     </section>);
 };
 

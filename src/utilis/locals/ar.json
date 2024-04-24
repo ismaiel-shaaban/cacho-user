@@ -75,5 +75,9 @@
   "ChatWithStore": "الدردشة مع المتجر",
   "NoItemsFound" : "لا يوجد عناصر",
   "ShippingCompanies" : "شركات الشحن",
-  "NoStoresFound": "لا يوجد متاجر"
+  "NoStoresFound": "لا يوجد متاجر",
+  "colors": "الألوان",
+  "sizes": "المقاسات",
+  "volumes": "الأحجام",
+  "All": "الكل"
 }
