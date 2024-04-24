@@ -16,6 +16,7 @@ import {getCookie} from "cookies-next";
 import {fetchUserData} from "@/utilis/getUserData";
 import {useState} from "react";
 import AddReviewModal from "@/modules/modalsModule/AddReviewModal";
+import SuggestLoginModal from "@/modules/modalsModule/SuggestLoginModal";
 
 const fetcher = (url) => fetch(url).then(res => res.json())
 const ProductReviews = ({reviewsCount ,rating}) => {
@@ -79,6 +80,7 @@ const ProductReviews = ({reviewsCount ,rating}) => {
                 </Swiper>
         </div>
             <AddReviewModal isOpen={isOpen} onOpenChange={onOpenChange} id={id} isProduct={true}/>
+            <SuggestLoginModal isOpen={showLoginModal} onOpenChange={() => setShowLoginModal(false)} />
         </>
     );
 }
