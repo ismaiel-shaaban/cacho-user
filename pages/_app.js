@@ -17,6 +17,7 @@ const cairo = Cairo({
 
 const MyApp = ({ Component, pageProps }) => {
     const [userLocation, setUserLocation] = useState("");
+    console.log('Component.name)',Component.name);
     const shouldShowNavAndFooter = !["Login", "ForgetPasswordPage", "SignupPage"].includes(Component.name);
 
     useEffect(() => {
