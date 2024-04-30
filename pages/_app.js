@@ -7,6 +7,7 @@ import NavBar from "@/modules/layout/navBar/NavBar";
 import Footer from "@/modules/layout/footer/Footer";
 import { fetchLocation } from "@/utilis/getUserLocation";
 import { getCookie } from "cookies-next";
+import { useRouter } from 'next/router';
 
 const cairo = Cairo({
     weight: ["300", "400", "500", "600", "700", "800", "900"],
@@ -14,17 +15,18 @@ const cairo = Cairo({
     display: 'swap'
 });
 
-
 const MyApp = ({ Component, pageProps }) => {
     const [userLocation, setUserLocation] = useState("");
-    console.log('Component.name)',Component.name);
-    const shouldShowNavAndFooter = !["Login", "ForgetPasswordPage", "SignupPage"].includes(Component.name);
+    const router = useRouter();
 
     useEffect(() => {
         fetchLocation(strings.getLanguage() || "en").then((data) => {
             setUserLocation(data?.location);
         });
     }, []);
+
+    // Check if the current page is one of the specified pages
+    const shouldShowNavAndFooter = !["/login", "/forget-password", "/signup"].includes(router.pathname);
 
     return (
         <NextUIProvider>
