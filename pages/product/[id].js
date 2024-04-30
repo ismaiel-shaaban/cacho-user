@@ -2,21 +2,21 @@ import ProductSlider from "@/modules/productPageModule/productSlider/ProductSlid
 import ProductInfo from "@/modules/productPageModule/productInfo/ProductInfo";
 import ProductReviews from "@/modules/productPageModule/productReviwes/ProductReviews";
 import SimilarProducts from "@/modules/productPageModule/similarProducts/SimilarProducts";
-import {Divider} from "@nextui-org/react";
-import {useRouter} from "next/router";
+import { Divider } from "@nextui-org/react";
+import { useRouter } from "next/router";
 import useSWR from "swr";
 import Head from "next/head";
-import {fetcher} from "@/utilis/fetcherFUN";
+import { fetcher } from "@/utilis/fetcherFUN";
 
 const ProductPage = () => {
-    const router= useRouter()
-    const {id} = router.query
-    const {data , error ,isLoading} = useSWR(`https://caco-dev.mimusoft.com/api/customer/products/${id}?with=business`,fetcher ,{
-        revalidateOnFocus:false,
-        revalidateIfStale:false
+    const router = useRouter()
+    const { id } = router.query
+    const { data, error, isLoading } = useSWR(`https://caco-dev.mimusoft.com/api/customer/products/${id}?with=business`, fetcher, {
+        revalidateOnFocus: false,
+        revalidateIfStale: false
     })
-    if(isLoading) return <div>Loading...</div>
-    if(error) return <div>Error</div>
+    if (isLoading) return <div>Loading...</div>
+    if (error) return <div>Error</div>
     return (
         <>
             <Head>
@@ -24,11 +24,11 @@ const ProductPage = () => {
             </Head>
             <section className="container">
                 {data?.response ? <div className="grid gap-5 grid-cols-12 md:gap-[30px] mt-6">
-                    <ProductSlider slides={data?.response?.images}/>
-                    <ProductInfo info={data?.response} images={data?.response?.images}/>
-                    <ProductReviews rating={data?.response?.rating} reviewsCount={data?.response?.reviewsCount}/>
+                    <ProductSlider slides={data?.response?.images} />
+                    <ProductInfo info={data?.response} images={data?.response?.images} />
+                    <ProductReviews rating={data?.response?.rating} reviewsCount={data?.response?.reviewsCount} />
                 </div> : null}
-                <Divider className="mt-10"/>
+                <Divider className="mt-10" />
                 {/*<SimilarProducts/>*/}
             </section>
         </>

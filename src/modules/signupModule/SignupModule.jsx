@@ -12,8 +12,8 @@ import ConfirmPhoneModal from "@/modules/modalsModule/ConfirmPhoneModal";
 import { signupUser } from "@/modules/signupModule/signupUser";
 import { FaArrowRight } from "react-icons/fa";
 import LogoImage from "../../../public/logo-2.svg";
-import cameraImage from "../../../public/camera1.svg";
 import classes from "./SignupModule.module.css";
+import {strings} from "@/utilis/Localization";
 
 const SignupModule = () => {
     const { isOpen, onOpen, onOpenChange } = useDisclosure();
@@ -99,7 +99,7 @@ const SignupModule = () => {
                         </div>
                         <div className="w-full">
                             <div className="flex justify-center mb-[49px]">
-                                <ImageUpload onChange={handleImageChange} />
+                                <ImageUpload onChange={handleImageChange}/>
                             </div>
                             <div className="mt-4 w-full grid grid-cols-1 gap-3 sm:grid-cols-2">
                                 <Input
@@ -107,7 +107,7 @@ const SignupModule = () => {
                                     label="Name"
                                     labelPlacement="outside"
                                     placeholder="Name"
-                                    classNames={{ label: "!text-[--gray-2]" }}
+                                    classNames={{label: "!text-[--gray-2]"}}
                                     onChange={(e) => handleChange("name", e.target.value)}
                                     isRequired={true}
                                     size="lg"
@@ -115,15 +115,19 @@ const SignupModule = () => {
                                     className="w-full"
                                 />
                                 <InputPhone
-                                    onPhoneChange={(value, isValid) => handleChange("phone", { value, isValid })} />
+                                    onPhoneChange={(value, isValid) => handleChange("phone", {value, isValid})}/>
                                 <InputPassword label={"Password"} placeholder={"Password"}
-                                    onPasswordChange={(value, isValid) => handleChange("password", {
-                                        value, isValid
-                                    })} />
+                                               onPasswordChange={(value, isValid) => handleChange("password", {
+                                                   value, isValid
+                                               })}/>
                                 <InputPassword label={"Confirm Password"} placeholder={"Confirm Password"}
-                                    onPasswordChange={(value, isValid) => handleChange("confirmPassword", {
-                                        value, isValid
-                                    })} />
+                                               onPasswordChange={(value, isValid) => handleChange("confirmPassword", {
+                                                   value, isValid
+                                               })}/>
+                            </div>
+                            <div className="text-[15px] mt-4">
+                                {strings.AlreadyHaveAnAccount} <Link href={"/login"}
+                                                                  className="underline text-[--primary-color] font-bold">{strings.LogIn}</Link>
                             </div>
                         </div>
                         <div className="w-1/2 mt-5">

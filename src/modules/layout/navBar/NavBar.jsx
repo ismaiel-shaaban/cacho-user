@@ -46,12 +46,12 @@ const NavBar = ({userLocation}) => {
     };
 
     const memoizedUserInfo = useMemo(() => {
-        return <UserInfo userLocation={userLocation} />;
+        return <UserInfo userLocation={userLocation}/>;
     }, [userLocation]);
 
     return (<Navbar onMenuOpenChange={setIsMenuOpen} className="p-0"
                     maxWidth={"xl"}
-                    // classNames={{wrapper: "!md:container"}}
+        // classNames={{wrapper: "!md:container"}}
                     aria-label="Main navigation"
                     dir={strings.getLanguage() === 'ar' ? 'rtl' : 'ltr'}>
         <NavbarContent justify="start" className={"gap-2 md:w-2/3"}>
@@ -85,11 +85,8 @@ const NavBar = ({userLocation}) => {
                 </NavbarItem>
             </> : <>
                 <NavbarItem>
-                    <Link href={"/login"} className="text-[--primary-color]">{strings.LogIn}</Link>
-                </NavbarItem>
-                <NavbarItem>
                     <Button className="bg-[--primary-color] text-white" as={Link}
-                            href={"/signup"}>{strings.Register}</Button>
+                            href={"/login"}>{strings.LogIn}</Button>
                 </NavbarItem>
                 <NavbarItem>
                     {memoizedUserInfo}
@@ -124,11 +121,8 @@ const NavBar = ({userLocation}) => {
             </div>
             {!isLogin && <div className="flex justify-center items-center gap-2 md:w-2/3">
                 <NavbarMenuItem>
-                    <Link href={"/login"} className="text-[--primary-color]">{strings.LogIn}</Link>
-                </NavbarMenuItem>
-                <NavbarMenuItem>
                     <Button className="bg-[--primary-color] text-white" as={Link}
-                            href={"/signup"}>{strings.Register}</Button>
+                            href={"/login"}>{strings.LogIn}</Button>
                 </NavbarMenuItem>
             </div>}
         </NavbarMenu>

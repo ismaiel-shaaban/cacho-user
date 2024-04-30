@@ -79,5 +79,8 @@
   "colors": "الألوان",
   "sizes": "المقاسات",
   "volumes": "الأحجام",
-  "All": "الكل"
+  "All": "الكل",
+  "ForgotPassword": "هل نسيت كلمة المرور؟",
+  "DontHaveAnAccount" : "هل ليس لديك حساب؟",
+  "AlreadyHaveAnAccount" : "هل لديك بالفعل حساب؟"
 }

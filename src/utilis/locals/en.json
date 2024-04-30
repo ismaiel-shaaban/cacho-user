@@ -79,5 +79,8 @@
   "colors": "Colors",
   "sizes": "Sizes",
   "volumes": "Volumes",
-  "All": "All"
+  "All": "All",
+  "ForgotPassword":"Forgot Password?",
+  "DontHaveAnAccount" : "Don't Have An Account?",
+  "AlreadyHaveAnAccount": "Already have an account?"
 }

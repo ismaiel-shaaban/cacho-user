@@ -12,6 +12,7 @@ import {FaArrowRight} from "react-icons/fa";
 import {fetchUserData} from "@/utilis/getUserData";
 import LogoImage from "../../../public/logo.svg";
 import classes from "./LoginModule.module.css";
+import {strings} from "@/utilis/Localization";
 
 const LoginModule = () => {
     const router = useRouter()
@@ -91,9 +92,12 @@ const LoginModule = () => {
                         <div className="mt-[45px]">
                             <InputPassword label={"Password"} placeholder={"Password"}
                                            onPasswordChange={(value, isValid) => setPassword({value, isValid})}/>
-                            <div className="flex justify-end">
+                            <div className="flex justify-between items-center flex-wrap">
+                                <div className="text-[15px]">
+                                    {strings.DontHaveAnAccount} <Link href={"/signup"} className="underline text-[--primary-color] font-bold">{strings.Register}</Link>
+                                </div>
                                 <Button onPress={onOpen} variant={"light"}
-                                        className="mt-[10px] text-[--rate-color] text-[14px]">Forgot Password?</Button>
+                                        className="text-[--rate-color] text-[14px]">{strings.ForgotPassword}</Button>
                             </div>
                             <ForgetPasswordModal isOpen={isOpen} onOpenChange={onOpenChange}/>
                         </div>
