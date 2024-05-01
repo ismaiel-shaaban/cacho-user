@@ -1,30 +1,71 @@
-import {EyeSlashFilledIcon} from "@/utilis/Icons/EyeSlashFilledIcon";
-import {EyeFilledIcon} from "@/utilis/Icons/EyeFilledIcon";
-import {Input} from "@nextui-org/react";
-import {useState} from "react";
+import { EyeSlashFilledIcon } from "@/utilis/Icons/EyeSlashFilledIcon";
+import { EyeFilledIcon } from "@/utilis/Icons/EyeFilledIcon";
+import { Input } from "@nextui-org/react";
+import { useState, useEffect } from "react";
+import {strings} from "@/utilis/Localization";
 
-const InputPassword = ({  onPasswordChange , label , placeholder}) => {
+const InputPassword = ({ onPasswordChange, label, placeholder }) => {
     const [isVisible, setIsVisible] = useState(false);
+    const [error, setError] = useState("");
+    const [typingTimeout, setTypingTimeout] = useState(0);
+    const [valid, setValid] = useState(true);
+
     const toggleVisibility = () => setIsVisible(!isVisible);
 
     const handleValidation = (e) => {
         const value = e.target.value;
-        const isValid = value.length > 6;
-        onPasswordChange(value, isValid);
-    }
-    return (
-        <Input isRequired={true} size={"lg"} placeholder={placeholder}
-               type={isVisible ? "text" : "password"}
-               name="password" onChange={handleValidation}
-               label={label} labelPlacement={"outside"} classNames={{label: "!text-[--gray-2]"}}
-               endContent={<button className="focus:outline-none" type="button"
-                                   onClick={toggleVisibility}>
-                   {isVisible ? (<EyeSlashFilledIcon
-                       className="text-2xl text-default-400 pointer-events-none"/>) : (
-                       <EyeFilledIcon className="text-2xl text-default-400 pointer-events-none"/>)}
-               </button>}
-        />
-    )
-}
 
-export default InputPassword
+        clearTimeout(typingTimeout);
+
+        const newTimeout = setTimeout(() => {
+            const isValid =
+                value.length >= 8 && // At least 8 characters
+                /[a-z]/.test(value) && // Contains lowercase letters
+                /[A-Z]/.test(value) && // Contains uppercase letters
+                /\d/.test(value); // Contains numbers
+
+            onPasswordChange(value, isValid);
+            setValid(isValid)
+
+            if (!isValid) {
+                setError(
+                    strings.PasswordError
+                );
+            } else {
+                setError("");
+            }
+        }, 500); // Adjust the delay as needed (in milliseconds)
+
+        setTypingTimeout(newTimeout);
+    };
+
+
+    return (
+        <div>
+            <Input
+                isRequired={true}
+                size={"lg"}
+                placeholder={placeholder}
+                type={isVisible ? "text" : "password"}
+                name="password"
+                onChange={handleValidation}
+                label={label}
+                labelPlacement={"outside"}
+                classNames={{ label: "!text-[--gray-2]" }}
+                isInvalid={!valid}
+                endContent={
+                    <button className="focus:outline-none" type="button" onClick={toggleVisibility}>
+                        {isVisible ? (
+                            <EyeSlashFilledIcon className="text-2xl text-default-400 pointer-events-none" />
+                        ) : (
+                            <EyeFilledIcon className="text-2xl text-default-400 pointer-events-none" />
+                        )}
+                    </button>
+                }
+            />
+            {error && <div dir={strings.getLanguage() === "ar" ? "rtl" : "ltr"} className="text-tiny text-danger">{error}</div>}
+        </div>
+    );
+};
+
+export default InputPassword;

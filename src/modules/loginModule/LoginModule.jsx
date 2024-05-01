@@ -1,4 +1,5 @@
 import {useState} from "react";
+import {strings} from "@/utilis/Localization";
 import {useRouter} from "next/router";
 import {Button, useDisclosure} from "@nextui-org/react";
 import {setCookie} from "cookies-next";
@@ -8,11 +9,10 @@ import InputPhone from "@/components/sheared/inputPhone/InputPhone";
 import InputPassword from "@/components/sheared/inputPassword/InputPassword";
 import ForgetPasswordModal from "@/modules/modalsModule/ForgetPasswordModal";
 import {loginUser} from "@/modules/loginModule/loginUser";
-import {FaArrowRight} from "react-icons/fa";
+import {FaArrowLeft, FaArrowRight} from "react-icons/fa";
 import {fetchUserData} from "@/utilis/getUserData";
 import LogoImage from "../../../public/logo.svg";
 import classes from "./LoginModule.module.css";
-import {strings} from "@/utilis/Localization";
 
 const LoginModule = () => {
     const router = useRouter()
@@ -56,21 +56,41 @@ const LoginModule = () => {
         }
     };
 
+    const textInEnglish = () => {
+        return (
+            <>
+                <span
+                    className="text-[--primary-color] bg-white inline-block px-1 h-fit">Need</span> to market your
+                products or open new
+                <span className="text-[--primary-color] bg-white inline-block px-1 h-fit">Business</span>
+            </>
+        )
+    }
+
+    const textInArabic = () => {
+        return (
+            <>
+                <span
+                    className="text-[--primary-color] bg-white inline-block px-1 h-fit">تحتاج</span> إلى تسويق منتجاتك أو فتح
+                <span className="text-[--primary-color] bg-white inline-block px-1 h-fit">أعمال</span>
+                تجارية جديدة
+            </>
+        )
+    }
+
 
     return (
         <div className="grid grid-cols-1 md:grid-cols-2">
-            <div>
+            <div dir={strings.getLanguage() === "ar" ? "rtl" : "ltr"}>
                 <div
                     className={`${classes["login-banner"]} z-10 h-[calc(100dvh-64px)] relative bg-gradient-to-b from-[#50489E] to-[#3F3D4D] hidden md:flex flex-col justify-between`}>
                     <div className="pt-20 ps-10 flex flex-col gap-14">
-                        <h2 className="text-[3rem] font-bold mb-[20px] text-white">
-                            <span className="text-[--primary-color] bg-white inline-block px-1 h-fit">Need</span> to
-                            market your products or open new <span
-                            className="text-[--primary-color] bg-white inline-block px-1 h-fit">Business</span>
-                        </h2>
+                        <h2 className="text-[56px] font-bold mb-[20px]">{
+                            strings.getLanguage() === 'ar' ? textInArabic() : textInEnglish()
+                        }</h2>
                         <Button as={Link} href={"/signup"}
                                 className="w-fit rounded-md text-white text-[20px] leading-6 tracking-wide font-[700] bg-[--primary-color] flex items-center mt-[24px]">
-                            Sign Up Free<FaArrowRight size={20} className="ms-2"/>
+                            {strings.SignUpFree} {strings.getLanguage() === 'ar' ? <FaArrowLeft size={20} className="ms-2"/> : <FaArrowRight size={20} className="ms-2"/>}
                         </Button>
                     </div>
                     <div className="flex justify-center p-3">
@@ -84,13 +104,13 @@ const LoginModule = () => {
                     <div className="text-[3rem] font-bold mb-[30px] text-black w-[200px]">
                         <Image src={LogoImage} alt={"Cachoo"}/>
                     </div>
-                    <span className="text-[24px] text-[#3F3D4D] font-[600] my-10 place-self-start">Welcome back!</span>
+                    <span className="text-[24px] text-[#3F3D4D] font-[600] my-10 place-self-start w-full" dir={strings.getLanguage() === "ar" ? "rtl" : "ltr"}>{strings.WelcomeBack}</span>
                     <form className="w-full" onSubmit={handleLogin}>
                         <div className="mb-[20px]">
                             <InputPhone onPhoneChange={(value, isValid) => setPhone({value, isValid})}/>
                         </div>
                         <div className="mt-[45px]">
-                            <InputPassword label={"Password"} placeholder={"Password"}
+                            <InputPassword label={strings.Password} placeholder={strings.Password}
                                            onPasswordChange={(value, isValid) => setPassword({value, isValid})}/>
                             <div className="flex justify-between items-center flex-wrap">
                                 <div className="text-[15px]">
@@ -107,7 +127,7 @@ const LoginModule = () => {
                             isLoading={isLoading}
                             type={"submit"}
                         >
-                            Login
+                            {strings.LogIn}
                         </Button>
                         {
                             error && <div className="text-[14px] text-red-500 mt-[10px]">{error}</div>

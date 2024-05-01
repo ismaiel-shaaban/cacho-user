@@ -82,5 +82,14 @@
   "All": "الكل",
   "ForgotPassword": "هل نسيت كلمة المرور؟",
   "DontHaveAnAccount" : "هل ليس لديك حساب؟",
-  "AlreadyHaveAnAccount" : "هل لديك بالفعل حساب؟"
+  "AlreadyHaveAnAccount" : "هل لديك بالفعل حساب؟",
+  "Phone": "الهاتف",
+  "Name": "الأسم",
+  "Password": "الرقم السرى",
+  "ConfirmPassword": "تأكيد الرقم السرى",
+  "SignUp": "تسجيل",
+  "CreateNewAccount": "إنشاء حساب جديد!",
+  "WelcomeBack": "مرحباً مجدداً!",
+  "PasswordError": "يجب أن تكون كلمة المرور على الأقل ٨ أحرف وتحتوي على حرف كبير وحرف صغير ورقم واحد على الأقل.",
+  "PhoneError": "الرجاء إدخال رقم هاتف سعودي صحيح."
 }

@@ -82,5 +82,14 @@
   "All": "All",
   "ForgotPassword":"Forgot Password?",
   "DontHaveAnAccount" : "Don't Have An Account?",
-  "AlreadyHaveAnAccount": "Already have an account?"
+  "AlreadyHaveAnAccount": "Already have an account?",
+  "Phone": "Phone",
+  "Name": "Name",
+  "Password": "Password",
+  "ConfirmPassword": "Confirm Password",
+  "SignUp": "Sign Up",
+  "CreateNewAccount": "Create New Account!!",
+  "WelcomeBack": "Welcome back!",
+  "PasswordError": "Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, one number.",
+  "PhoneError": "Please enter a valid Saudi phone number."
 }
