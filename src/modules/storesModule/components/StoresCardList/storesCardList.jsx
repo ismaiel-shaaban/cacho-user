@@ -5,8 +5,8 @@ import SkeletonProducts from "@/components/sheared/skeletonProducts/SkeletonProd
 import NotFound from "@/components/sheared/NotFound";
 import {strings} from "@/utilis/Localization";
 
-const StoresCardList = ({page , filter ,passMetadata ,sort ,passDataCount}) => {
-    const {data, error, isLoading} = useStoresData(filter, page ,sort);
+const StoresCardList = ({page , filter ,passMetadata ,sort ,passDataCount ,nearest}) => {
+    const {data, error, isLoading} = useStoresData(filter, page ,sort , nearest);
     useEffect(() => {
         if (data?.response?.meta) {
             passMetadata(data?.response?.meta);

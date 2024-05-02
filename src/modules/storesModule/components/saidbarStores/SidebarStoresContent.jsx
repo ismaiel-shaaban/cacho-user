@@ -39,15 +39,25 @@ const SidebarStoresContent = ({dataCount}) => {
             }
         }
 
-        // Update the URL query parameter to reflect the selected type
-        router.push({
-            pathname: router.pathname,
-            query: {
-                ...router.query,
-                sort: type === 'old' ? (e.target.checked ? 'old' : undefined) : (e.target.checked ? 'new' : undefined),
-                page: 1
-            },
-        });
+        if(type === "location"){
+            router.push({
+                pathname: router.pathname,
+                query: {
+                    ...router.query,
+                    nearest:e.target.checked === true ? "1" : "0",
+                    page: 1
+                },
+            });
+        }else {
+            router.push({
+                pathname: router.pathname,
+                query: {
+                    ...router.query,
+                    sort: type === 'old' ? (e.target.checked ? 'old' : undefined) : (e.target.checked ? 'new' : undefined),
+                    page: 1
+                },
+            });
+        }
     };
 
     const handleReset = () => {
@@ -69,33 +79,7 @@ const SidebarStoresContent = ({dataCount}) => {
                 <button className="text-sm text-[--rate-color]" onClick={handleReset}>{strings.Reset}</button>
             </div>
             <div>
-                <h4 className="text-[12px] mt-[15px] text-[--label-color] mb-3">{strings.Location}</h4>
-                <div>
-                    <Select variant={"flat"} label={strings.Select} size={"sm"} dir={"ltr"} classNames={{
-                        trigger: 'bg-white'
-                    }}>
-                        <SelectItem key="Tema" value="Tema">Tema</SelectItem>
-                        <SelectItem key="Minia" value="Minia">Minia</SelectItem>
-                        <SelectItem key="Giza" value="Giza">Giza</SelectItem>
-                    </Select>
-                    <Checkbox color={"primary"} className="my-2 text-[12px] text-[--gray-2]"
-                              classNames={{label: "text-[12px] text-[--gray-2] font-[500]"}}>{strings.Nearest}</Checkbox>
-                </div>
-                <div className="flex gap-3 flex-wrap">
-                    <Chip onClose={() => console.log("close")} classNames={{
-                        base: "p-[4px] rounded-[4px] bg-[#50489E1A] text-[--primary-color]"
-                    }}>Tema</Chip>
-                    <Chip onClose={() => console.log("close")} classNames={{
-                        base: "p-[4px] rounded-[4px] bg-[#50489E1A] text-[--primary-color]"
-                    }}>Giza</Chip>
-                    <Chip onClose={() => console.log("close")} classNames={{
-                        base: "p-[4px] rounded-[4px] bg-[#50489E1A] text-[--primary-color]"
-                    }}>Bahnabay</Chip>
-                    <Chip onClose={() => console.log("close")} classNames={{
-                        base: "p-[4px] rounded-[4px] bg-[#50489E1A] text-[--primary-color]"
-                    }}>Tema</Chip>
-                </div>
-                <h4 className="text-[12px] mt-[15px] text-[--label-color] mb-3">{strings.Category}</h4>
+                <h4 className="text-[12px] text-[--label-color] mb-3">{strings.Category}</h4>
                 <div>
                     <Select variant={"flat"} label={strings.Select}
                             selectedKeys={values}
@@ -109,18 +93,20 @@ const SidebarStoresContent = ({dataCount}) => {
                     </Select>
                 </div>
                 <h4 className="text-[12px] mt-[15px] text-[--label-color]">{strings.Type}</h4>
-                <div className="flex gap-3">
+                <div className="flex flex-wrap gap-3">
                     <Checkbox color={"primary"} className="my-2 text-[12px] text-[--gray-2]"
                               isSelected={oldIsSelected} onChange={(e) => handleCheckbox(e, 'old')}
                               classNames={{label: "text-[12px] text-[--gray-2] font-[500] text-uppercase"}}>{strings.Old}</Checkbox>
                     <Checkbox color={"primary"} className="my-2 text-[12px] text-[--gray-2]"
                               isSelected={newIsSelected} onChange={(e) => handleCheckbox(e, 'new')}
                               classNames={{label: "text-[12px] text-[--gray-2] font-[500] text-uppercase"}}>{strings.New}</Checkbox>
+                    <Checkbox color={"primary"} className="text-[12px] text-[--gray-2]" onChange={(e)=> handleCheckbox(e, 'location')}
+                              classNames={{label: "text-[12px] text-[--gray-2] font-[500]"}}>{strings.Nearest}</Checkbox>
                 </div>
             </div>
         </div>
 
-    </div>)
+    </div>  )
 }
 
 export default SidebarStoresContent

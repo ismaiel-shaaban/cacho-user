@@ -12,6 +12,7 @@ const StoresCards = () => {
     const router = useRouter();
     const filter = router.query.filter;
     const sort = router.query.sort;
+    const nearest = router.query.nearest
     const page = router.query.page ? parseInt(router.query.page) : 1;
     const [metadata, setMetadata] = useState({});
     const [dataCount ,setDataCount] = useState(0)
@@ -28,7 +29,7 @@ const StoresCards = () => {
                 <div className="md:col-span-3">
                         <SidebarStoresFilter dataCount={dataCount} />
                 </div>
-                <StoresCardList page={page} filter={filter} sort={sort} passMetadata={
+                <StoresCardList page={page} filter={filter} sort={sort} nearest={nearest} passMetadata={
                     (meta) => setMetadata(meta)} passDataCount={
                     (count)=>setDataCount(count)
                 }/>
