@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { Button, Card, CardBody } from "@nextui-org/react";
 import { strings } from "@/utilis/Localization";
 import Link from "next/link";
-import { StarIcon } from "@/utilis/Icons/StarIcon";
 import classes from "./productCard.module.css";
 import BookMark from "@/utilis/Icons/BookMark";
 import Rating from "@/components/sheared/rateing/Rating";
@@ -37,6 +36,8 @@ const ProductCard = ({ product }) => {
         <Card
             dir={lang === "ar" ? "rtl" : "ltr"}
             className={`shadow-none !transition !duration-300 hover:shadow-xl`}
+            as={Link}
+            href={`/product/${uuid}`}
         >
             <CardBody className='relative p-0 overflow-hidden'>
                 <div className='h-[190px]'>

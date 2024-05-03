@@ -9,7 +9,7 @@ const StoresCard = ({ store }) => {
     const statusColor = store.isOpen ? "bg-[--green]" : "bg-[--red]";
 
     return (
-        <Card dir={strings.getLanguage() === "ar" ? "rtl" : "ltr"} className="shadow-none !transition !duration-300 hover:shadow-xl">
+        <Card as={Link} href={`/Stores/${store.uuid}`} dir={strings.getLanguage() === "ar" ? "rtl" : "ltr"} className="shadow-none !transition !duration-300 hover:shadow-xl">
             <CardBody className="p-0 overflow-hidden relative">
                 <div className="h-[190px] relative">
                     <img src={store.image} alt={store.title} className="object-cover w-full" style={{ height: "inherit" }} />
@@ -26,7 +26,7 @@ const StoresCard = ({ store }) => {
                 </div>
                 <div className={`p-[15px] flex items-center ${strings.getLanguage() === "ar" && "justify-between"} gap-3`}>
                     <Link href={`/Stores/${store.uuid}`}>
-                        <StoreImage image={store.image} alt={store.title}/>
+                        <StoreImage image={store?.logo} alt={store.title}/>
                     </Link>
                     <div>
                         <h3 className="text-md font-medium mb-[10px] leading-7">
