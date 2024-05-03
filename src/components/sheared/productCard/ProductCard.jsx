@@ -88,9 +88,9 @@ const ProductCard = ({ product }) => {
                                 </span>
                             </span>
                             {priceAfterDiscount !== price && price > priceAfterDiscount && (
-                                <span className='font-[600] text-[20px] text-gray-400'>
+                                <span className='font-[600] text-[20px] text-red-500'>
                                     <span className='line-through'>{price}</span>
-                                    <span className='text-[10px] text-gray-400 font-normal leading-5 no-underline'>
+                                    <span className='text-[10px] font-normal leading-5 no-underline'>
                                         {strings.egp}
                                     </span>
                                 </span>

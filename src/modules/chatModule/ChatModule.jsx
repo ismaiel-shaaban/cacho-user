@@ -8,6 +8,11 @@ import UserChatsModal from "@/modules/chatModule/components/UserChatsModal";
 const ChatModule = () => {
     const {isOpen, onOpen, onOpenChange} = useDisclosure();
     const [showPopup, setShowPopup] = useState(false);
+    const [selectedChatData, setSelectedChatData] = useState(null);
+
+    const handleSelectChat = (chatData) => {
+        setSelectedChatData(chatData);
+    };
 
     useEffect(() => {
         const handleResize = () => {
@@ -24,11 +29,11 @@ const ChatModule = () => {
                         <Button onPress={onOpen} variant="shadow" color="primary" className="mb-3">
                             {strings.Chats}
                         </Button>
-                        <UserChatsModal isOpen={isOpen} onOpenChange={onOpenChange}/>
+                        <UserChatsModal isOpen={isOpen} onOpenChange={onOpenChange} onSelectChat={handleSelectChat}/>
                     </div>)}
 
-                {showPopup && <UsersChats/>}
-                <ChatBody/>
+                {showPopup && <UsersChats onSelectChat={handleSelectChat}/>}
+                <ChatBody selectedChatData={selectedChatData}/>
             </div>
         </section>);
 };

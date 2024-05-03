@@ -6,7 +6,7 @@ import { CiSearch } from "react-icons/ci";
 import {fetcher} from "@/utilis/fetcherFUN";
 import {strings} from "@/utilis/Localization";
 
-const UsersChats = () => {
+const UsersChats = ({onSelectChat}) => {
     const router = useRouter();
     const [chats, setChats] = useState([]);
     const [selectedChat, setSelectedChat] = useState(null);
@@ -24,11 +24,24 @@ const UsersChats = () => {
         setSelectedChat(router.query.chatId)
     }, [router.query.chatId]);
 
+    useEffect(() => {
+        const chatIdFromUrl = router.query.chatId;
+        if (chatIdFromUrl) {
+            const selectedChatData = chats.find((chat) => chat.uuid === chatIdFromUrl);
+            if (selectedChatData) {
+                setSelectedChat(chatIdFromUrl);
+                onSelectChat(selectedChatData);
+            }
+        }
+    }, [router.query.chatId, chats, onSelectChat]);
+
     const handleSelectChat = (chatId) => {
+        const selectedChatData = chats.find((chat) => chat.uuid === chatId)
         setSelectedChat(chatId);
         router.push({
             pathname:  router.pathname, query: {...router.query, chatId: chatId}
         })
+        onSelectChat(selectedChatData)
     }
     if (isLoading) return <Spinner/>
     if(error) return <p>failed to load</p>

@@ -2,13 +2,13 @@ import {Button, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader} from "
 import {strings} from "@/utilis/Localization";
 import UsersChats from "@/modules/chatModule/components/UsersChats";
 
-const UserChatsModal = ({isOpen , onOpenChange})=>{
+const UserChatsModal = ({isOpen , onOpenChange ,onSelectChat})=>{
     return(
         <>
             <Modal isOpen={isOpen} onOpenChange={onOpenChange} placement={"center"} dir={strings.getLanguage() === "en" ? "ltr" : "rtl"}>
                 <ModalContent>
                         <ModalBody>
-                            <UsersChats/>
+                            <UsersChats onSelectChat={onSelectChat}/>
                         </ModalBody>
                 </ModalContent>
             </Modal>
