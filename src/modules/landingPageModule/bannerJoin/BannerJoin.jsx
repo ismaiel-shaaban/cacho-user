@@ -30,8 +30,8 @@ const BannerJoin = () => {
     return (<section className="banner-join container mt-[46px]" dir={strings.getLanguage() === "ar" ? "rtl" : "ltr"}>
         <div
             className="bg-gradient-to-b from-[#50489E] to-[#3F3D4D] rounded-[20px] relative overflow-visible">
-            <div className="h-full text-white py-[20px] px-[30px] md:py-[69px] md:px-[75px] md:w-3/5">
-                <h2 className="text-[56px] font-bold mb-[20px]">{
+            <div className="h-full text-white py-[15px] px-[20px] md:py-[40px] md:px-[55px] md:w-3/5">
+                <h2 className="text-[40px] font-bold mb-[20px]">{
                     strings.getLanguage() === 'ar' ? textInArabic() : textInEnglish()
                 }</h2>
                 <Button as={Link} href={"#"} className="w-fit rounded-md text-white text-[20px] leading-6 tracking-wide font-[700] bg-[--primary-color] flex items-center mt-[24px]">{strings.SignUpFree}{strings.getLanguage() !== "ar" ? <FaArrowRight size={20} className="ms-2" /> : <FaArrowLeft size={20} className="ms-2" />}</Button>

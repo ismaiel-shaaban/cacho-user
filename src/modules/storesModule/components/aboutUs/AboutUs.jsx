@@ -88,12 +88,14 @@ const AboutUs = ({aboutUs}) => {
                     ))
                 ) : (
                         <Fragment>
-                            {productsImages[0] && Array.from({ length: 3 }).flatMap(() => productsImages[0]).map((image, index) => (
-                                <SwiperSlide key={`${index}`}>
-                                    <div>
-                                        <img src={image} alt={"product"} className="object-cover w-full h-full" />
-                                    </div>
-                                </SwiperSlide>
+                            {productsImages.map((innerArray) => (
+                                innerArray.map((image, index) => (
+                                    <SwiperSlide key={`${index}`}>
+                                        <div>
+                                            <img src={image} alt="product" className="object-cover w-full h-full" />
+                                        </div>
+                                    </SwiperSlide>
+                                ))
                             ))}
                         </Fragment>
                 )}

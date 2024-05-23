@@ -23,6 +23,7 @@ const SignupModule = () => {
 
     const [formData, setFormData] = useState({
         name: "",
+        email: "",
         phone: {value: "", isValid: false},
         password: {value: "", isValid: false},
         confirmPassword: {value: "", isValid: false},
@@ -48,7 +49,7 @@ const SignupModule = () => {
         try {
             const {
                 code, token
-            } = await signupUser(formData.name, "+966" + formData.phone.value, formData.password.value, formData.confirmPassword.value, formData.userImage);
+            } = await signupUser(formData.name, formData.email, "+966" + formData.phone.value, formData.password.value, formData.confirmPassword.value, formData.userImage);
             if (code === 200) {
                 const userData = await fetchUserData(token);
                 if (userData) {
@@ -99,7 +100,8 @@ const SignupModule = () => {
                     <h2 className="text-[56px] font-bold mb-[20px]">{strings.getLanguage() === 'ar' ? textInArabic() : textInEnglish()}</h2>
                     <Button as={Link} href={"/login"}
                             className="w-fit rounded-md text-white text-[20px] leading-6 tracking-wide font-[700] bg-[#095DA8] flex items-center mt-[24px]">
-                        {strings.LogIn} {strings.getLanguage() === 'ar' ? <FaArrowLeft size={20} className="ms-2"/> : <FaArrowRight size={20} className="ms-2"/>}
+                        {strings.LogIn} {strings.getLanguage() === 'ar' ? <FaArrowLeft size={20} className="ms-2"/> :
+                        <FaArrowRight size={20} className="ms-2"/>}
                     </Button>
                 </div>
                 <div className="flex justify-center p-3">
@@ -112,7 +114,8 @@ const SignupModule = () => {
                 <div
                     className="h-[calc(100dvh-64px)] bg-white flex flex-col justify-center items-center px-8 md:px-[57px]">
                     <div className="flex flex-col items-center justify-evenly w-full h-full py-8">
-                        <div dir={strings.getLanguage() === "ar" ? "rtl" : "ltr"} className="flex justify-between w-full">
+                        <div dir={strings.getLanguage() === "ar" ? "rtl" : "ltr"}
+                             className="flex justify-between w-full">
                             <h2 className="text-[24px] font-[600] mt-[20px]">{strings.CreateNewAccount}</h2>
                             <div>
                                 <Link href={"/"}><Image src={LogoImage} alt={"Logo"}/></Link>
@@ -135,8 +138,12 @@ const SignupModule = () => {
                                     isInvalid={formData.name.length < 3}
                                     className="w-full"
                                 />
-                                <InputPhone
-                                    onPhoneChange={(value, isValid) => handleChange("phone", {value, isValid})}/>
+                                <Input type="email" label={strings.Email} placeholder={strings.EnterYourEmail}
+                                       onChange={(e) => handleChange("email", e.target.value)}
+                                       classNames={{label: "!text-[--gray-2]"}}
+                                       labelPlacement="outside" size={"lg"}/>
+                                <div className={"col-span-2"}><InputPhone
+                                    onPhoneChange={(value, isValid) => handleChange("phone", {value, isValid})}/></div>
                                 <InputPassword label={strings.Password} placeholder={strings.Password}
                                                onPasswordChange={(value, isValid) => handleChange("password", {
                                                    value, isValid
@@ -146,9 +153,14 @@ const SignupModule = () => {
                                                    value, isValid
                                                })}/>
                             </div>
-                            <div className="text-[15px] mt-4">
-                                {strings.AlreadyHaveAnAccount} <Link href={"/login"}
-                                                                     className="underline text-[--primary-color] font-bold">{strings.LogIn}</Link>
+                            <div className="text-[15px] mt-4 flex justify-between items-center">
+                                <div>{strings.AlreadyHaveAnAccount} <Link href={"/login"}
+                                                                          className="underline text-[--primary-color] font-bold">{strings.LogIn}</Link>
+                                </div>
+                                <div className={"flex gap-2 font-semibold text-[--primary-color] underline"}>
+                                    <Link href={"/"}>{strings.PrivacyPolicy}</Link>
+                                    <Link href={"/"}>{strings.TermsOfUse}</Link>
+                                </div>
                             </div>
                         </div>
                         {error && <div className="text-[14px] text-red-500 mt-[10px]">{error}</div>}

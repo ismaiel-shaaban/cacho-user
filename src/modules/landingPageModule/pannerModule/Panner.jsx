@@ -15,9 +15,9 @@ import SkeletonPanner from "@/modules/landingPageModule/pannerModule/components/
 
 const fetcher = (url) => fetch(url).then((res) => res.json())
 const Panner = () => {
-    const { data, error, isLoading } = useSWR('https://caco-dev.mimusoft.com/api/customer/banners', fetcher , {
-        revalidateOnFocus:false,
-        revalidateIfStale:false
+    const { data, error, isLoading } = useSWR('https://caco-dev.mimusoft.com/api/customer/banners', fetcher, {
+        revalidateOnFocus: false,
+        revalidateIfStale: false
     })
     if (isLoading) return <div className="container mt-[20px]">
         <SkeletonPanner />
@@ -43,21 +43,20 @@ const Panner = () => {
                         className="relative h-[calc(100dvh-84px)] w-full"
                     >
                         <Image alt="panner" src={item.image} priority={true}
-                          layout="fill" sizes={"(max-width: 640px) 100vw, (max-width: 768px) 100vw, (max-width: 1024px) 100vw, 100vw"}
+                            layout="fill" sizes={"(max-width: 640px) 100vw, (max-width: 768px) 100vw, (max-width: 1024px) 100vw, 100vw"}
                             className="block h-[calc(100dvh-84px)] w-100 object-cover rounded-md" />
                         {/*<div*/}
-                        {/*    className="absolute md:top-unit-28 md:right-unit-20 right-unit-10 top-unit-14 transform text-center ">*/}
+                        {/*    className="absolute text-center transform md:top-unit-28 md:right-unit-20 right-unit-10 top-unit-14 ">*/}
                         {/*    <h2 className="font-[500] md:text-[8rem] text-[4rem] text-white">{item.discount} <span*/}
                         {/*        className="bg-[#F40000]">OFF</span>*/}
                         {/*    </h2>*/}
                         {/*</div>*/}
                         <div
-                            className="absolute bottom-unit-28 left-unit-10 transform text-center flex items-center justify-center gap-3">
-                            <StoreImage image={item.business.logo} alt="storeImage" />
+                            className="absolute flex items-center justify-center gap-3 text-center transform bottom-unit-28 left-unit-10">
                             <div>
                                 <h3 className="text-white font-[500] text-2xl mb-2">{item.business.title}</h3>
                                 <Link href={"/Stores/" + item.business.uuid}
-                                    className="flex justify-center items-center gap-1 bg-white w-fit px-2 rounded-md">
+                                    className="flex items-center justify-center gap-1 px-2 bg-white rounded-md w-fit capitalize">
                                     view
                                     <span className="text-white bg-black rounded-md">
                                         <GoArrowUpRight size={18} />
@@ -70,9 +69,9 @@ const Panner = () => {
             })}
 
             {/*<SliderBtns/>*/}
-            <div className="absolute bottom-0 left-0 w-100 z-10 flex items-center px-10 mb-3 w-full">
+            <div className="absolute bottom-0 left-0 z-10 flex items-center w-full px-10 mb-3 w-100">
                 <div className={`swiper-pagination flex gap-2 swiper-paginationPage ${classes["swiper-paginationPage"]}`}></div>
-                <span className="text-white flex items-center justify-end gap-10 w-full">
+                <span className="flex items-center justify-end w-full gap-10 text-white">
                     <div
                         className={`swiper-prev ${classes["swiper-prev"]} border rounded-full !w-[40px] h-[40px] flex items-center justify-center cursor-pointer`}><FaArrowLeftLong
                             size={25} /></div>

@@ -1,9 +1,10 @@
 import Link from "next/link";
 import {Button, Divider, Input} from "@nextui-org/react";
-import {IoLogoFacebook, IoLogoTwitter, IoLogoVimeo} from "react-icons/io";
-import {FaYoutube} from "react-icons/fa";
+import {IoLogoFacebook} from "react-icons/io";
+import {FaInstagram, FaYoutube} from "react-icons/fa6";
 import Logo from "@/modules/layout/navBar/components/logo";
 import {strings} from "@/utilis/Localization";
+import {FaXTwitter} from "react-icons/fa6";
 const Footer = () => {
   return (
     <footer className="container" dir={strings.getLanguage() === "ar" ? "rtl" : "ltr"}>
@@ -27,18 +28,18 @@ const Footer = () => {
                     <Link href="/" className="font-[400] text-lg">{strings.Nearest}</Link>
                     <Link href="/" className="font-[400] text-lg">{strings.New}</Link>
                 </div>
-                <div className="flex gap-5">
-                    <Link href="/">
-                        <IoLogoFacebook size={24} />
+                <div className="flex items-center gap-5">
+                    <Link href="/" className={"text-[#4267B2]"}>
+                        <IoLogoFacebook size={26} />
+                    </Link>
+                    <Link href="/" className={"text-[#14171A]"}>
+                        <FaXTwitter size={24} />
                     </Link>
                     <Link href="/">
-                        <IoLogoTwitter size={24} />
+                        <FaInstagram size={24} />
                     </Link>
-                    <Link href="/">
-                        <IoLogoVimeo size={24} />
-                    </Link>
-                    <Link href="/">
-                        <FaYoutube size={24} />
+                    <Link href="/" className={"text-[#FF0000]"}>
+                        <FaYoutube size={26} />
                     </Link>
                 </div>
             </div>
@@ -52,6 +53,7 @@ const Footer = () => {
             <p className="text-end flex gap-3 md:justify-end font-[400] text-[14px]">
                 <Link href="/">{strings.PrivacyPolicy}</Link>
                 <Link href="/">{strings.TermsOfUse}</Link>
+                <Link href={"/"}>{strings.AboutUs}</Link>
             </p>
         </div>
     </footer>

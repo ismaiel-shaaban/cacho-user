@@ -1,7 +1,8 @@
-export const signupUser = async (name, phone, password, password_confirmation, avatar) => {
+export const signupUser = async (name,email, phone, password, password_confirmation, avatar) => {
     const formDataApi = new FormData();
     formDataApi.append("avatar", avatar);
     formDataApi.append("name", name);
+    formDataApi.append("email", email);
     formDataApi.append("phone", phone);
     formDataApi.append("password", password);
     formDataApi.append("password_confirmation", password_confirmation);

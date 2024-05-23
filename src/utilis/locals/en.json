@@ -91,5 +91,6 @@
   "CreateNewAccount": "Create New Account!!",
   "WelcomeBack": "Welcome back!",
   "PasswordError": "Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, one number.",
-  "PhoneError": "Please enter a valid Saudi phone number."
+  "PhoneError": "Please enter a valid Saudi phone number.",
+  "Email": "Email"
 }

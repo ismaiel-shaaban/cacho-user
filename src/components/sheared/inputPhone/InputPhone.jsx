@@ -47,7 +47,7 @@ const InputPhone = ({ onPhoneChange }) => {
             value={phone}
             onChange={handleValidation}
             size={"lg"}
-            placeholder="0000"
+            placeholder="5xxxx"
             type={"tel"}
             id="phone"
             label={strings.Phone}
