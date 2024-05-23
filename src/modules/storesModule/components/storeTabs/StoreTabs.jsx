@@ -98,7 +98,7 @@ const StoreTabs = ({mainData, aboutUs, categories, isServiceProvider}) => {
                 classNames={{content: "bg-[--rate-color] text-white"}}
             >
                 <Button
-                    isDisabled={!mainData.chatEnabled}
+                    // isDisabled={!mainData.chatEnabled}
                     isIconOnly
                     onClick={handleChatWithStore}
                     className="p-[15px] bg-[--rate-color] rounded-[10px] !w-[50px] !h-[50px] cursor-pointer !md:w-[54px] !md:h-[54px]"

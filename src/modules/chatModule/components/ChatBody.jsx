@@ -8,6 +8,8 @@ import {useRouter} from "next/router";
 import {strings} from "@/utilis/Localization";
 import {IoMdSend} from "react-icons/io";
 import {VscSend} from "react-icons/vsc";
+import Pusher from "pusher-js";
+import {pusherClient} from "@/lib/pusher";
 
 
 const ChatBody = ({selectedChatData}) => {
@@ -49,6 +51,22 @@ const ChatBody = ({selectedChatData}) => {
         }
     };
 
+    useEffect(() => {
+        subscribeToChatChannel();
+        return () => {
+            pusherClient.unsubscribe('chats');
+        };
+    }, []);
+
+    const subscribeToChatChannel = () => {
+        const channel = pusherClient.subscribe('chats');
+        console.log("channel" , channel)
+        channel.bind('messageCreated', (data) => {
+            // Add the new message to the state
+            console.log("data =>" , data)
+            setMessages((prevMessages) => [...prevMessages, data]);
+        });
+    };
     const handleMessageSend = async () => {
         const token = await getCookie("token")
         await fetch(`https://caco-dev.mimusoft.com/api/customer/chats/${chatId}/messages`, {
@@ -59,6 +77,7 @@ const ChatBody = ({selectedChatData}) => {
                 content: message,
             }),
         });
+        setMessages([ { content: message, senderType: 'user' } ,...messages]);
         setMessage(''); // Clear the message input after sending
     };
 
