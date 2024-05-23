@@ -1,6 +1,6 @@
 import MessageItem from "@/modules/chatModule/components/MessageItem";
 import {Button, Divider, Input, Spinner} from "@nextui-org/react";
-import {useEffect, useState} from "react";
+import {useEffect, useRef, useState} from "react";
 import {getCookie} from "cookies-next";
 import {fetcher} from "@/utilis/fetcherFUN";
 import useSWRInfinite from "swr/infinite";
@@ -9,11 +9,12 @@ import {strings} from "@/utilis/Localization";
 import {IoMdSend} from "react-icons/io";
 import {VscSend} from "react-icons/vsc";
 import Pusher from "pusher-js";
-import {pusherClient} from "@/lib/pusher";
+// import {pusherClient} from "@/lib/pusher";
 
 
 const ChatBody = ({selectedChatData}) => {
     const {query} = useRouter();
+    const scrollRef = useRef(null); // Create a ref for the scrollable container
     const {chatId} = query
     const [messages, setMessages] = useState([]);
     const [selectedChat, setSelectedChat] = useState(chatId);
@@ -35,49 +36,71 @@ const ChatBody = ({selectedChatData}) => {
         }
     }, [data]);
 
+    useEffect(()=>{
+        if (messages.length <= 10) {
+            if (scrollRef.current) {
+                scrollRef.current.scrollTop = scrollRef.current.scrollHeight; // Scroll to bottom
+            }
+        }
+
+    } , [messages ,chatId])
+
     const handleLoadMore = () => {
         if (!data || data.length === 0) return; // If data is not yet loaded or empty, do nothing
 
         const lastPage = data[data.length - 1].response.meta.last_page;
         if (lastPage > size) {
             setSize((size) => size + 1);
+            if (scrollRef.current) {
+                scrollRef.current.scrollTop = scrollRef.current.scrollTop + 1000; // Scroll to bottom
+                console.log(scrollRef.current.scrollTop)
+            }
         }
+
     };
+
 
     const handleScroll = (e) => {
         const {scrollTop, clientHeight, scrollHeight} = e.target;
         if (scrollTop === 0) {
             handleLoadMore(); // Call onLoadMore when scroll position is at the top
         }
+
     };
 
     useEffect(() => {
-        subscribeToChatChannel();
+        const pusherClient = new Pusher("f63ea3d75d76c809ee46", {
+            secret: `1a4f5d2c362150a804f5`, cluster: `eu`,
+        })
+        const channel = pusherClient.subscribe('chats');
+       setTimeout(()=>{
+           console.log(query)
+           channel.bind('messageCreated', (data) => {
+               console.log(scrollRef.current)
+               if (scrollRef.current) {
+                   console.log(scrollRef.current.scrollHeight)
+                   console.log(scrollRef.current.scrollTop)
+                   scrollRef.current.scrollTop = scrollRef.current.scrollHeight; // Scroll to bottom
+                   console.log(scrollRef.current.scrollTop)
+               }
+               data.chatUuid === chatId &&
+               setMessages((prevMessages) => [data,...prevMessages])
+           });
+       } , 1000)
         return () => {
             pusherClient.unsubscribe('chats');
         };
-    }, []);
+    }, [chatId]);
 
-    const subscribeToChatChannel = () => {
-        const channel = pusherClient.subscribe('chats');
-        console.log("channel" , channel)
-        channel.bind('messageCreated', (data) => {
-            // Add the new message to the state
-            console.log("data =>" , data)
-            setMessages((prevMessages) => [...prevMessages, data]);
-        });
-    };
     const handleMessageSend = async () => {
         const token = await getCookie("token")
         await fetch(`https://caco-dev.mimusoft.com/api/customer/chats/${chatId}/messages`, {
             method: 'POST', headers: {
-                'Content-Type': 'application/json',
-                "Authorization": "Bearer " + token
+                'Content-Type': 'application/json', "Authorization": "Bearer " + token
             }, body: JSON.stringify({
                 content: message,
             }),
         });
-        setMessages([ { content: message, senderType: 'user' } ,...messages]);
         setMessage(''); // Clear the message input after sending
     };
 
@@ -100,8 +123,13 @@ const ChatBody = ({selectedChatData}) => {
             </div>
             <Divider className="my-2"/>
             <div className="flex flex-col justify-between h-[calc(100%-65px)]">
-                <div className="overflow-y-scroll"
+                <div
+                    // className="overflow-y-auto"
+                    style={{
+                        overflow: "scroll"
+                    }}
                      onScroll={handleScroll}
+                     ref={scrollRef}
                 >
                     {isLoading && <div className="w-full flex justify-center">
                         <Spinner/>
@@ -111,7 +139,6 @@ const ChatBody = ({selectedChatData}) => {
                         content={message.content}
                         sender={message.senderType}
                     />))}
-
                 </div>
                 <div className="flex items-center gap-2 mt-[20px]">
                     <Button
