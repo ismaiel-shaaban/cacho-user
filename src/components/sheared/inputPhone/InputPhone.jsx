@@ -21,7 +21,7 @@ const InputPhone = ({ onPhoneChange }) => {
 
         // Set new debounce timer
         const newDebounceTimer = setTimeout(() => {
-            const cleanedValue = value.replace(/\D/g, ''); // Remove non-numeric characters
+            const cleanedValue = value.replace(/\D/g, '');
             let isValidPhone = true;
 
             // Only validate if the phone number is not empty
@@ -40,12 +40,21 @@ const InputPhone = ({ onPhoneChange }) => {
         setDebounceTimer(newDebounceTimer);
     };
 
+    const handleKeyPress = (e) => {
+        const charCode = e.charCode;
+        // Allow only numeric characters (0-9) and backspace (8)
+        if (charCode < 48 || charCode > 57) {
+            e.preventDefault();
+        }
+    };
+
     return (
         <Input
             dir={"ltr"}
             isRequired={true}
             value={phone}
             onChange={handleValidation}
+            onKeyPress={handleKeyPress}
             size={"lg"}
             placeholder="5xxxx"
             type={"tel"}

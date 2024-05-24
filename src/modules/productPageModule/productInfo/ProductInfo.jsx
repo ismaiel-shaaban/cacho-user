@@ -60,20 +60,22 @@ const ProductInfo = ({info, images}) => {
 
             <div className="flex items-center justify-between mt-3">
                 <div className="flex items-center text-[32px] gap-3 md:gap-[25px]">
-                    <span className="font-[600]">
+                    {info?.priceAfterDiscount === 0 || info?.priceAfterDiscount === null ? null :
+                        <span className="font-[600]">
                         {info?.priceAfterDiscount}
-                        <span className="text-[10px] text-gray-400 font-normal leading-5">{strings.egp}</span>
-                    </span>
-                    {info?.price !== info?.priceAfterDiscount && info?.price > info?.priceAfterDiscount && <>
-                    <span className="font-[600] text-gray-400">
-                        <span className="line-through">{info?.price}</span>
+                            <span className="text-[10px] text-gray-400 font-normal leading-5">{strings.egp}</span>
+                    </span>}
+
+                    <span className={`font-[600] ${info?.priceAfterDiscount === 0 || info?.priceAfterDiscount === null ? null : "text-gray-400"}`}>
+                        <span className={`${ info?.priceAfterDiscount === 0 || info?.priceAfterDiscount === null ? "" : "line-through"}`}>{info?.price}</span>
                         <span
                             className="text-[10px] text-gray-400 font-normal leading-5 no-underline">{strings.egp}</span>
                     </span>
-                        <Chip size="md" className="bg-[--red] text-white px-3 rounded-[10px]">
+                    {
+                        info?.priceAfterDiscount === 0 || info?.priceAfterDiscount === null ? null : <Chip size="md" className="bg-[--red] text-white px-3 rounded-[10px]">
                             {discountPercentage}% {strings.off}
                         </Chip>
-                    </>}
+                    }
                 </div>
             </div>
             <div>

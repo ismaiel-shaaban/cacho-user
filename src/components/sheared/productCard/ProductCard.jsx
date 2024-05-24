@@ -1,14 +1,14 @@
-import { useEffect, useState } from "react";
-import { Button, Card, CardBody } from "@nextui-org/react";
-import { strings } from "@/utilis/Localization";
+import {useEffect, useState} from "react";
+import {Button, Card, CardBody} from "@nextui-org/react";
+import {strings} from "@/utilis/Localization";
 import Link from "next/link";
 import classes from "./productCard.module.css";
 import BookMark from "@/utilis/Icons/BookMark";
 import Rating from "@/components/sheared/rateing/Rating";
 import Image from "next/image";
-import { calculateDiscountPercentage } from "@/utilis/calculateDiscountPercentage";
+import {calculateDiscountPercentage} from "@/utilis/calculateDiscountPercentage";
 
-const ProductCard = ({ product }) => {
+const ProductCard = ({product}) => {
     const [lang, setLang] = useState("en");
 
     useEffect(() => {
@@ -19,7 +19,7 @@ const ProductCard = ({ product }) => {
 
     if (!product) return <div>Loading...</div>;
 
-    const { images, priceAfterDiscount, price, name, uuid } = product;
+    const {images, priceAfterDiscount, price, name, uuid} = product;
 
     const discount = calculateDiscountPercentage(price, priceAfterDiscount);
 
@@ -47,7 +47,7 @@ const ProductCard = ({ product }) => {
                         src={images[0]}
                         alt={name}
                         className='object-cover w-full'
-                        style={{ height: "inherit" }}
+                        style={{height: "inherit"}}
                     />
                 </div>
                 <div className={`absolute right-0 top-0 mt-[15px] mr-[15px]`}>
@@ -57,15 +57,16 @@ const ProductCard = ({ product }) => {
                         isSaved={product.isFavourite}
                     />
                 </div>
-                {priceAfterDiscount !== price && price > priceAfterDiscount && (
+                {priceAfterDiscount === 0 || priceAfterDiscount === null  ? null : (
                     <div
                         className={`${classes.discount} absolute -rotate-45 ${discountClass} text-white w-[300px] h-[50px] text-center flex items-center justify-center text-[14px]`}
                     >
                         {discountLabel}
                     </div>
                 )}
-                <div className='p-[15px]'>
-                    <div className='flex justify-between items-center mb-[5px]'>
+                <div className='p-[15px] h-full flex flex-col justify-between'>
+                    <div>
+                        <div className='flex justify-between items-center mb-[5px]'>
                         <span className='text-sm text-gray-400'>
                             <span>{strings.by} </span>
                             <span className='text-[--primary-color]'>
@@ -74,28 +75,32 @@ const ProductCard = ({ product }) => {
                                 </Link>
                             </span>
                         </span>
-                        <Rating
-                            ratingCount={product.reviewsCount}
-                            rating={product.rating}
-                        />
+                            <Rating
+                                ratingCount={product.reviewsCount}
+                                rating={product.rating}
+                            />
+                        </div>
+                        <h3 className='text-md font-medium mb-[10px] leading-7'>{name}</h3>
                     </div>
-                    <h3 className='text-md font-medium mb-[10px] leading-7'>{name}</h3>
                     <div className='flex items-center justify-between'>
                         <div className='flex items-center gap-2'>
-                            <span className='font-[600] text-[20px]'>
+                            {
+                                priceAfterDiscount === 0 || priceAfterDiscount === null ? null :
+                                    <span className='font-[600] text-[24px]'>
                                 {priceAfterDiscount}
-                                <span className='text-[10px] text-gray-400 font-normal leading-5'>
+                                        <span className='text-[10px] text-gray-400 font-normal leading-5'>
                                     {strings.egp}
                                 </span>
                             </span>
-                            {priceAfterDiscount !== price && price > priceAfterDiscount && (
-                                <span className='font-[600] text-[20px] text-red-500'>
-                                    <span className='line-through'>{price}</span>
-                                    <span className='text-[10px] font-normal leading-5 no-underline'>
-                                        {strings.egp}
-                                    </span>
+                            }
+
+                            <span
+                                className={`font-[600] text-[20px] ${priceAfterDiscount === 0 || priceAfterDiscount === null ? "" : "text-red-500"}`}>
+                                <span className={`${ priceAfterDiscount === 0 || priceAfterDiscount === null ? "" : "line-through"}`}>{price}</span>
+                                <span className='text-[10px] font-normal leading-5 no-underline'>
+                                    {strings.egp}
                                 </span>
-                            )}
+                            </span>
                         </div>
                         <Button
                             variant={"ghost"}

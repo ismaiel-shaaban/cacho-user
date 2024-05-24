@@ -14,6 +14,7 @@ import {FaArrowLeft, FaArrowRight} from "react-icons/fa";
 import LogoImage from "../../../public/logo-2.svg";
 import classes from "./SignupModule.module.css";
 import {strings} from "@/utilis/Localization";
+import {Checkbox} from "@nextui-org/checkbox";
 
 const SignupModule = () => {
     const {isOpen, onOpen, onOpenChange} = useDisclosure();
@@ -28,6 +29,7 @@ const SignupModule = () => {
         password: {value: "", isValid: false},
         confirmPassword: {value: "", isValid: false},
         userImage: null,
+        privacyPolicyAndTermsOfUseChecked:false
     });
 
     const handleImageChange = (file) => {
@@ -153,20 +155,26 @@ const SignupModule = () => {
                                                    value, isValid
                                                })}/>
                             </div>
-                            <div className="text-[15px] mt-4 flex justify-between items-center">
+                            <div className="text-[15px] mt-4 flex gap-2 justify-between flex-col" dir={strings.getLanguage() === "ar" ? "rtl" : "ltr"}>
                                 <div>{strings.AlreadyHaveAnAccount} <Link href={"/login"}
                                                                           className="underline text-[--primary-color] font-bold">{strings.LogIn}</Link>
                                 </div>
-                                <div className={"flex gap-2 font-semibold text-[--primary-color] underline"}>
-                                    <Link href={"/"}>{strings.PrivacyPolicy}</Link>
-                                    <Link href={"/"}>{strings.TermsOfUse}</Link>
+                                <div className={"flex gap-2 font-semibold text-[--primary-color]"}>
+                                    {strings.YouAgreeToOur}
+                                    <Link className={"underline"} href={"/"}>{strings.PrivacyPolicy}</Link>
+                                    {strings.And}
+                                    <Link href={"/"} className={"underline"}>{strings.TermsOfUse}</Link>
+                                    {strings.ByCheckingTheBox}
+                                    <Checkbox isSelected={formData.privacyPolicyAndTermsOfUseChecked} onChange={
+                                        (e) => handleChange("privacyPolicyAndTermsOfUseChecked", e.target.checked)
+                                    }/>
                                 </div>
                             </div>
                         </div>
                         {error && <div className="text-[14px] text-red-500 mt-[10px]">{error}</div>}
                         <div className="w-full mt-5">
                             <Button
-                                isDisabled={!formData.phone.isValid || !formData.password.isValid || !formData.confirmPassword.isValid || formData.name.length < 3}
+                                isDisabled={!formData.phone.isValid || !formData.password.isValid || !formData.confirmPassword.isValid || formData.name.length < 3 || formData.privacyPolicyAndTermsOfUseChecked === false}
                                 className="w-full bg-[#095FAC] text-white"
                                 isLoading={isLoading}
                                 // onPress={onOpen}
