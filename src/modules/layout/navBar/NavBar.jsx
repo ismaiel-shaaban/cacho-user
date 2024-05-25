@@ -131,7 +131,9 @@ const NavBar = ({userLocation}) => {
             <div className="flex justify-around gap-3 flex-wrap">
                 <NavbarMenuItem>
                     <Link href={"/chat"}>
-                        <MessagesIcon/>
+                        {isNotification ? <Badge content="" color="success" shape="circle" placement="top-right">
+                            <MessagesIcon/>
+                        </Badge>  :  <MessagesIcon/> }
                     </Link>
                 </NavbarMenuItem>
                 <NavbarMenuItem>

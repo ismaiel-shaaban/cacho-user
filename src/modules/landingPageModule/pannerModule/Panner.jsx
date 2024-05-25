@@ -40,7 +40,7 @@ const Panner = () => {
             {data?.response?.data.map((item) => {
                 return <SwiperSlide key={item.uuid}>
                     <div
-                        className="relative h-[calc(100dvh-84px)] w-full"
+                        className="relative h-[calc(65dvh-84px)] md:h-[calc(100dvh-84px)] w-full"
                     >
                         <Image alt="panner" src={item.image} priority={true}
                             layout="fill" sizes={"(max-width: 640px) 100vw, (max-width: 768px) 100vw, (max-width: 1024px) 100vw, 100vw"}

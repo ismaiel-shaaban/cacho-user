@@ -59,10 +59,10 @@ const LoginModule = () => {
     const textInEnglish = () => {
         return (
             <>
+                The
                 <span
-                    className="text-[--primary-color] bg-white inline-block px-1 h-fit">Need</span> to market your
-                products or open new
-                <span className="text-[--primary-color] bg-white inline-block px-1 h-fit">Business</span>
+                    className="text-[--primary-color] bg-white inline-block px-1 h-fit">Marketing</span> Commercial
+                <span className="text-[--primary-color] bg-white inline-block px-1 h-fit">Directory</span>
             </>
         )
     }
@@ -71,9 +71,8 @@ const LoginModule = () => {
         return (
             <>
                 <span
-                    className="text-[--primary-color] bg-white inline-block px-1 h-fit">تحتاج</span> إلى تسويق منتجاتك أو فتح
-                <span className="text-[--primary-color] bg-white inline-block px-1 h-fit">أعمال</span>
-                تجارية جديدة
+                    className="text-[--primary-color] bg-white inline-block px-1 h-fit">الدليل</span> التجاري
+                <span className="text-[--primary-color] bg-white inline-block px-1 h-fit">التسويقي</span>
             </>
         )
     }

@@ -19,6 +19,7 @@ import BookMark from "@/utilis/Icons/BookMark";
 import {CiDeliveryTruck} from "react-icons/ci";
 import {formatPhoneNumber} from "@/utilis/formatPhoneNumber";
 import {BiLinkExternal} from "react-icons/bi";
+import Image from "next/image";
 
 const StoreTabs = ({mainData, aboutUs, categories, isServiceProvider}) => {
     const router = useRouter();
@@ -133,6 +134,9 @@ const StoreTabs = ({mainData, aboutUs, categories, isServiceProvider}) => {
                         as={Link}
                         title={item.name}
                         endContent={<BiLinkExternal/>}
+                        startContent={<>
+                        <Image src={item.image} alt={item.name} height={50} width={50} />
+                        </>}
                     />)}
                 </DropdownMenu>
             </Dropdown>
