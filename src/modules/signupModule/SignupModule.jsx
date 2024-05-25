@@ -161,9 +161,9 @@ const SignupModule = () => {
                                 </div>
                                 <div className={"flex gap-2 font-semibold text-[--primary-color]"}>
                                     {strings.YouAgreeToOur}
-                                    <Link className={"underline"} href={"/"}>{strings.PrivacyPolicy}</Link>
+                                    <Link className={"underline"} href={"/privacy-policy"}>{strings.PrivacyPolicy}</Link>
                                     {strings.And}
-                                    <Link href={"/"} className={"underline"}>{strings.TermsOfUse}</Link>
+                                    <Link href={"/terms-of-use"} className={"underline"}>{strings.TermsOfUse}</Link>
                                     {strings.ByCheckingTheBox}
                                     <Checkbox isSelected={formData.privacyPolicyAndTermsOfUseChecked} onChange={
                                         (e) => handleChange("privacyPolicyAndTermsOfUseChecked", e.target.checked)

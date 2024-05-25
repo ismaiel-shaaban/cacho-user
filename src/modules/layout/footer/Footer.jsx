@@ -51,9 +51,9 @@ const Footer = () => {
             <Logo />
             </div>
             <p className="text-end flex gap-3 md:justify-end font-[400] text-[14px]">
-                <Link href="/">{strings.PrivacyPolicy}</Link>
-                <Link href="/">{strings.TermsOfUse}</Link>
-                <Link href={"/"}>{strings.AboutUs}</Link>
+                <Link href="/privacy-policy">{strings.PrivacyPolicy}</Link>
+                <Link href="/terms-of-use">{strings.TermsOfUse}</Link>
+                <Link href={"/about-us"}>{strings.AboutUs}</Link>
             </p>
         </div>
     </footer>
