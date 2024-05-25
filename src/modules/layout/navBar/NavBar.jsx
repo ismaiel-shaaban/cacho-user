@@ -1,6 +1,7 @@
 import {strings} from '@/utilis/Localization';
 import {useEffect, useMemo, useState} from 'react';
 import {
+    Badge,
     Button, Divider, Navbar, NavbarContent, NavbarItem, NavbarMenu, NavbarMenuItem, NavbarMenuToggle,
 } from "@nextui-org/react";
 import UserInfo from "@/modules/layout/navBar/components/userInfo/UserInfo";
@@ -12,6 +13,7 @@ import Link from "next/link";
 import {getCookie} from "cookies-next";
 import Image from "next/image";
 import savedLink from "../../../../public/savedLink.svg"
+import Pusher from "pusher-js";
 
 
 const NavBar = ({userLocation}) => {
@@ -19,12 +21,32 @@ const NavBar = ({userLocation}) => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isLogin, setIsLogin] = useState(false);
     const tokenData = getCookie('token');
+    const [isNotification, setIsNotification] = useState(false);
 
     useEffect(() => {
         if (tokenData !== null && tokenData !== "" && tokenData !== undefined) {
             setIsLogin(true);
         }
     }, [tokenData]);
+
+    useEffect(() => {
+        const pusherClient = new Pusher("f63ea3d75d76c809ee46", {
+            secret: `1a4f5d2c362150a804f5`, cluster: `eu`,
+        })
+
+        const channel = pusherClient.subscribe('chats');
+        channel.bind('messageCreated', (data) => {
+            const userData = JSON.parse(localStorage.getItem("userData"));
+            const {uuid} = userData;
+            const receiverUuid = data.receiver.uuid
+            if (data && uuid === receiverUuid) {
+                setIsNotification(true);
+            }
+        });
+        return () => {
+            pusherClient.unsubscribe('chats');
+        };
+    }, []);
 
     useEffect(() => {
         const savedDarkMode = localStorage.getItem('darkMode');
@@ -68,8 +90,10 @@ const NavBar = ({userLocation}) => {
             </NavbarItem>
             {isLogin ? <>
                 <NavbarItem>
-                    <Link href={"/chat"}>
-                        <MessagesIcon/>
+                    <Link href={"/chat"} onClick={()=>(setIsNotification(false))}>
+                        {isNotification ? <Badge content="" color="success" shape="circle" placement="top-right">
+                            <MessagesIcon/>
+                        </Badge>  :  <MessagesIcon/> }
                     </Link>
                 </NavbarItem>
                 <NavbarItem>

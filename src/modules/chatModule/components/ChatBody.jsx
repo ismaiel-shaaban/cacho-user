@@ -6,10 +6,10 @@ import {fetcher} from "@/utilis/fetcherFUN";
 import useSWRInfinite from "swr/infinite";
 import {useRouter} from "next/router";
 import {strings} from "@/utilis/Localization";
-import {IoMdSend} from "react-icons/io";
 import {VscSend} from "react-icons/vsc";
 import Pusher from "pusher-js";
-// import {pusherClient} from "@/lib/pusher";
+import User from "./../../../../public/User.png"
+import Image from "next/image";
 
 
 const ChatBody = ({selectedChatData}) => {
@@ -23,7 +23,7 @@ const ChatBody = ({selectedChatData}) => {
         setSelectedChat(chatId)
     }, [chatId])
 
-    const {data, isLoading, error, size, setSize} = useSWRInfinite((index) => {
+    const {data, isLoading,isValidating, error, size, setSize} = useSWRInfinite((index) => {
         if (!selectedChat) return null; // Return null if selectedChat is null or undefined
         return `https://caco-dev.mimusoft.com/api/customer/chats/${selectedChat}/messages?page=${index + 1}`;
     }, fetcher);
@@ -36,14 +36,14 @@ const ChatBody = ({selectedChatData}) => {
         }
     }, [data]);
 
-    useEffect(()=>{
+    useEffect(() => {
         if (messages.length <= 10) {
             if (scrollRef.current) {
                 scrollRef.current.scrollTop = scrollRef.current.scrollHeight; // Scroll to bottom
             }
         }
 
-    } , [messages ,chatId])
+    }, [messages, chatId])
 
     const handleLoadMore = () => {
         if (!data || data.length === 0) return; // If data is not yet loaded or empty, do nothing
@@ -73,20 +73,16 @@ const ChatBody = ({selectedChatData}) => {
             secret: `1a4f5d2c362150a804f5`, cluster: `eu`,
         })
         const channel = pusherClient.subscribe('chats');
-       setTimeout(()=>{
-           console.log(query)
-           channel.bind('messageCreated', (data) => {
-               console.log(scrollRef.current)
-               if (scrollRef.current) {
-                   console.log(scrollRef.current.scrollHeight)
-                   console.log(scrollRef.current.scrollTop)
-                   scrollRef.current.scrollTop = scrollRef.current.scrollHeight; // Scroll to bottom
-                   console.log(scrollRef.current.scrollTop)
-               }
-               data.chatUuid === chatId &&
-               setMessages((prevMessages) => [data,...prevMessages])
-           });
-       } , 1000)
+        const isAtBottom = scrollRef.current.scrollHeight - scrollRef.current.scrollTop === scrollRef.current.clientHeight;
+            channel.bind('messageCreated', (data) => {
+                data.chatUuid === chatId &&
+                setMessages((prevMessages) => [data, ...prevMessages])
+                if (isAtBottom) {
+                    setTimeout(() => {
+                        scrollRef.current.scrollTop = scrollRef.current.scrollHeight; // Scroll to bottom
+                    }, 100);
+                }
+            });
         return () => {
             pusherClient.unsubscribe('chats');
         };
@@ -108,8 +104,9 @@ const ChatBody = ({selectedChatData}) => {
         <div className="h-full">
             <div className="flex gap-4 items-center">
                 <div className="w-[50px] h-[50px]">
-                    <img
-                        src={selectedChatData?.business?.image}
+                    <Image
+                        width={50} height={50}
+                        src={selectedChatData?.business?.image ? selectedChatData?.business?.image : User}
                         alt="User"
                         className="rounded-md w-full object-cover"
                     />
@@ -128,10 +125,10 @@ const ChatBody = ({selectedChatData}) => {
                     style={{
                         overflow: "scroll"
                     }}
-                     onScroll={handleScroll}
-                     ref={scrollRef}
+                    onScroll={handleScroll}
+                    ref={scrollRef}
                 >
-                    {isLoading && <div className="w-full flex justify-center">
+                    {isValidating && <div className="w-full flex justify-center">
                         <Spinner/>
                     </div>}
                     {messages.length > 0 && messages.slice().reverse().map((message, index) => (<MessageItem

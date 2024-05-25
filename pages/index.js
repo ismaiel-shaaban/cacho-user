@@ -13,7 +13,7 @@ export default function Home() {
     return (
         <>
             <Head>
-                Home
+                <title>Home</title>
             </Head>
             <DynamicPanner />
             <DynamicCategories />
