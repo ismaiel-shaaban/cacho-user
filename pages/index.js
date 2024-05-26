@@ -14,11 +14,14 @@ export default function Home() {
         <>
             <Head>
                 <title>Home</title>
+                <meta name="google" content="nositelinkssearchbox" key="sitelinks"/>
+                <meta name="google" content="notranslate" key="notranslate"/>
+                <meta name="googlebot" content="noindex,nofollow"/>
             </Head>
-            <DynamicPanner />
-            <DynamicCategories />
-            <DynamicHotOffers />
-            <DynamicNearest />
+            <DynamicPanner/>
+            <DynamicCategories/>
+            <DynamicHotOffers/>
+            <DynamicNearest/>
             <DynamicBannerJoin />
             <DynamicNewStores />
             <DynamicSpecialOffers />
