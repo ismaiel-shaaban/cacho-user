@@ -2,7 +2,7 @@ import SignupModule from "@/modules/signupModule/SignupModule";
 import {Navbar, NavbarBrand, NavbarContent} from "@nextui-org/react";
 import Link from "next/link";
 import Image from "next/image";
-import LogoImage from "../../public/logo-2.svg";
+import LogoImage from "../../public/logo.svg";
 import Head from "next/head";
 import SelectLang from "@/modules/layout/navBar/components/selectLang/SelectLang";
 

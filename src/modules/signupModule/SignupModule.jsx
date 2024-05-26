@@ -11,10 +11,11 @@ import ImageUpload from "@/components/sheared/imageUpload/ImageUpload";
 import ConfirmPhoneModal from "@/modules/modalsModule/ConfirmPhoneModal";
 import {signupUser} from "@/modules/signupModule/signupUser";
 import {FaArrowLeft, FaArrowRight} from "react-icons/fa";
-import LogoImage from "../../../public/logo-2.svg";
+import LogoImage from "../../../public/logo.svg";
 import classes from "./SignupModule.module.css";
 import {strings} from "@/utilis/Localization";
 import {Checkbox} from "@nextui-org/checkbox";
+import LogoImage2 from "../../../public/logo-w.svg";
 
 const SignupModule = () => {
     const {isOpen, onOpen, onOpenChange} = useDisclosure();
@@ -99,7 +100,7 @@ const SignupModule = () => {
     return (<div className="grid grid-cols-1 md:grid-cols-2">
         <div dir={strings.getLanguage() === "ar" ? "rtl" : "ltr"}>
             <div
-                className={`${classes["signup-banner"]} z-10 h-[calc(100dvh-64px)] relative bg-gradient-to-b from-[#50489E] to-[#3F3D4D] hidden md:flex flex-col justify-between`}>
+                className={`${classes["signup-banner"]} z-10 h-[calc(100dvh-64px)] relative bg-gradient-to-b from-[#50489E] to-[#3F3D4D] hidden md:flex flex-col justify-around`}>
                 <div className="pt-20 ps-10 flex flex-col gap-14">
                     <h2 className="text-[56px] font-bold mb-[20px]">{strings.getLanguage() === 'ar' ? textInArabic() : textInEnglish()}</h2>
                     <Button as={Link} href={"/login"}
@@ -109,7 +110,7 @@ const SignupModule = () => {
                     </Button>
                 </div>
                 <div className="flex justify-center p-3">
-                    <Image src={LogoImage} alt={"Join Now"} className="block w-full h-full object-cover"/>
+                    <Image src={LogoImage2} alt={"Join Now"} className="block w-[60%] h-full object-cover"/>
                 </div>
             </div>
         </div>
@@ -122,7 +123,7 @@ const SignupModule = () => {
                              className="flex justify-between w-full">
                             <h2 className="text-[24px] font-[600] mt-[20px]">{strings.CreateNewAccount}</h2>
                             <div>
-                                <Link href={"/"}><Image src={LogoImage} alt={"Logo"}/></Link>
+                                <Link href={"/"} className={"flex justify-center items-center"}><Image src={LogoImage} className={"w-[70%] h-full object-contain"} alt={"Logo"}/></Link>
                             </div>
                         </div>
                         <div className="w-full">

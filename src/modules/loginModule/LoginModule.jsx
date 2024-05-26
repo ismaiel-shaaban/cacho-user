@@ -12,6 +12,7 @@ import {loginUser} from "@/modules/loginModule/loginUser";
 import {FaArrowLeft, FaArrowRight} from "react-icons/fa";
 import {fetchUserData} from "@/utilis/getUserData";
 import LogoImage from "../../../public/logo.svg";
+import LogoImage2 from "../../../public/logo-w.svg";
 import classes from "./LoginModule.module.css";
 
 const LoginModule = () => {
@@ -82,7 +83,7 @@ const LoginModule = () => {
         <div className="grid grid-cols-1 md:grid-cols-2">
             <div dir={strings.getLanguage() === "ar" ? "rtl" : "ltr"}>
                 <div
-                    className={`${classes["login-banner"]} z-10 h-[calc(100dvh-64px)] relative bg-gradient-to-b from-[#50489E] to-[#3F3D4D] hidden md:flex flex-col justify-between`}>
+                    className={`${classes["login-banner"]} z-10 h-[calc(100dvh-64px)] relative bg-gradient-to-b from-[#50489E] to-[#3F3D4D] hidden md:flex flex-col justify-around`}>
                     <div className="pt-20 ps-10 flex flex-col gap-14">
                         <h2 className="text-[56px] font-bold mb-[20px]">{
                             strings.getLanguage() === 'ar' ? textInArabic() : textInEnglish()
@@ -92,8 +93,8 @@ const LoginModule = () => {
                             {strings.SignUpFree} {strings.getLanguage() === 'ar' ? <FaArrowLeft size={20} className="ms-2"/> : <FaArrowRight size={20} className="ms-2"/>}
                         </Button>
                     </div>
-                    <div className="flex justify-center p-3">
-                        <Image src={LogoImage} alt={"Join Now"} className="block w-full h-full object-cover"/>
+                    <div className="flex justify-center items-center p-3">
+                        <Image src={LogoImage2} alt={"Join Now"} className="block w-[60%] h-full object-cover"/>
                     </div>
                 </div>
             </div>
