@@ -8,9 +8,7 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import { FaArrowLeftLong, FaArrowRightLong } from "react-icons/fa6";
 import classes from './Panner.module.css'
-import StoreImage from "@/components/sheared/storeImage/StoreImage";
 import useSWR from "swr";
-import { Spinner } from "@nextui-org/react";
 import SkeletonPanner from "@/modules/landingPageModule/pannerModule/components/SkeletonPanner";
 
 const fetcher = (url) => fetch(url).then((res) => res.json())
@@ -23,6 +21,8 @@ const Panner = () => {
         <SkeletonPanner />
     </div>
     if (error) return <div>{error}</div>
+
+    console.log("data" ,data)
     return (<section className="panner container mt-[20px]">
 
         <Swiper
@@ -55,13 +55,15 @@ const Panner = () => {
                             className="absolute flex items-center justify-center gap-3 text-center transform bottom-unit-28 left-unit-10">
                             <div>
                                 <h3 className="text-white font-[500] text-2xl mb-2">{item.business.title}</h3>
-                                <Link href={"/Stores/" + item.business.uuid}
-                                    className="flex items-center justify-center gap-1 px-2 bg-white rounded-md w-fit capitalize">
-                                    view
-                                    <span className="text-white bg-black rounded-md">
+                                { item.url &&
+                                    <Link href={`${item.url}`}
+                                          className="flex items-center justify-center gap-1 px-2 bg-white rounded-md w-fit capitalize">
+                                        view
+                                        <span className="text-white bg-black rounded-md">
                                         <GoArrowUpRight size={18} />
                                     </span>
-                                </Link>
+                                    </Link>
+                                }
                             </div>
                         </div>
                     </div>

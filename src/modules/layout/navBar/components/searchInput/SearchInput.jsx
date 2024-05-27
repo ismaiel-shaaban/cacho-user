@@ -28,7 +28,7 @@ const SearchInput = () => {
         }, 300);
     };
 
-    return (<div className="relative">
+    return (<div className="relative w-full">
         <Input
             aria-label={strings.searchPlaceholder}
             className="w-[95%]"
@@ -43,14 +43,13 @@ const SearchInput = () => {
             startContent={<Select
                 dir={"ltr"}
                 defaultSelectedKeys={["categories"]}
-                className="w-fit"
                 startContent={<HiOutlineSquares2X2 size={30} />}
                 size="sm"
                 onChange={handleCategoryChange}
                 aria-label={"Select a category"}
             >
-                <SelectItem key="categories" value="categories">{strings.Categories}</SelectItem>
                 <SelectItem key="stores" value="stores">{strings.Stores}</SelectItem>
+                <SelectItem key="categories" value="categories">{strings.InternalClassification}</SelectItem>
                 <SelectItem key="products" value="products">{strings.Products}</SelectItem>
                 <SelectItem key="service" value="service">{strings.Services}</SelectItem>
             </Select>}

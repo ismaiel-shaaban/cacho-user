@@ -80,7 +80,7 @@ const NavBar = ({userLocation}) => {
             <NavbarItem>
                 <Logo/>
             </NavbarItem>
-            <NavbarItem className="grow min-w-full hidden md:flex">
+            <NavbarItem className="min-w-full hidden md:flex">
                 <SearchInput/>
             </NavbarItem>
         </NavbarContent>
