@@ -1,5 +1,4 @@
 import Image from "next/image";
-import { useEffect, useState } from "react";
 import SectionTitle from "@/modules/landingPageModule/components/sectionTitle/SectionTitle";
 import { strings } from "@/utilis/Localization";
 import useSWR from "swr";
@@ -20,7 +19,7 @@ const SpecialOffers = () => {
                 {data?.response?.data.slice(0, 3).map((offer, index) => (
                     <div key={index} className="rounded-md overflow-hidden cursor-pointer"
                          onClick={() => router.push(`/Stores/${offer?.business?.uuid}`)}>
-                        <img src={offer?.image} alt={"Special Offers"} className="object-cover w-full h-full"/>
+                        <Image width={200} height={200} src={offer?.image} alt={"Special Offers"} className="object-cover w-full h-full"/>
                     </div>
                 ))}
             </div>

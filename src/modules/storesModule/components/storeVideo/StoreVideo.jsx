@@ -1,6 +1,6 @@
-// import store from "../../../../../public/store.mp4"
 import ReactPlayer from 'react-player'
-import {useEffect, useState} from "react";
+import {useEffect, useState} from "react"
+import Image from "next/image";
 
 const StoreVideo = ({video ,image}) => {
     const [isLoaded, setIsLoaded] = useState(false)
@@ -17,7 +17,7 @@ const StoreVideo = ({video ,image}) => {
                                    volume={0.5}
                                    playing={true}
                                    controls={false}
-            /> : <img src={image} alt={"Store Image"} className={"block w-full h-full object-cover"} />}
+            /> : <Image src={image} width={400} height={400} alt={"Store Image"} className={"block w-full h-full object-cover"} />}
         </div>
     </>);
 }
