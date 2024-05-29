@@ -96,5 +96,6 @@
   "YouAgreeToOur": "أنت توافق على",
   "And": "و",
   "ByCheckingTheBox": "الخاصة بنا عن طريق تحديد الخانة.",
-  "InternalClassification": "التصنيف الداخلي"
+  "InternalClassification": "التصنيف الداخلي",
+  "errorLogin" : "حدث خطأ أثناء تسجيل الدخول. حاول مرة اخرى."
 }

@@ -51,7 +51,7 @@ const LoginModule = () => {
                 setError("Invalid phone number or password.");
             }
         } catch (error) {
-            setError("An error occurred during login. Please try again.");
+            setError(`${strings.errorLogin}`);
             setIsLoading(false);
             console.error("Login failed:", error.message);
         }

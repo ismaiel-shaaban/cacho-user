@@ -49,30 +49,32 @@ const InputPhone = ({ onPhoneChange }) => {
     };
 
     return (
-        <Input
-            dir={"ltr"}
-            isRequired={true}
-            value={phone}
-            onChange={handleValidation}
-            onKeyPress={handleKeyPress}
-            size={"lg"}
-            placeholder="5xxxx"
-            type={"tel"}
-            id="phone"
-            label={strings.Phone}
-            name="Phone"
-            labelPlacement={"outside"}
-            classNames={{ label: "!text-[--gray-2] di", inputWrapper: "bg-[--gray]" }}
-            isInvalid={!isValid}
-            errorMessage={!isValid && error}
-            startContent={
-                <div className="flex items-center gap-[6px]">
-                    <span><Image width={35} height={40} src={saudi} alt={"saudi"} /></span>
-                    <span className="text-[16px] font[400]">+966</span>
-                    <span className="text-[20px] text-gray-300">|</span>
-                </div>
-            }
-        />
+        <div>
+            <Input
+                dir={"ltr"}
+                isRequired={true}
+                value={phone}
+                onChange={handleValidation}
+                onKeyPress={handleKeyPress}
+                size={"lg"}
+                placeholder="5xxxx"
+                type={"tel"}
+                id="phone"
+                label={strings.Phone}
+                name="Phone"
+                labelPlacement={"outside"}
+                classNames={{ label: "!text-[--gray-2] di", inputWrapper: "bg-[--gray]" }}
+                isInvalid={!isValid}
+                startContent={
+                    <div className="flex items-center gap-[6px]">
+                        <span><Image width={35} height={40} src={saudi} alt={"saudi"} /></span>
+                        <span className="text-[16px] font[400]">+966</span>
+                        <span className="text-[20px] text-gray-300">|</span>
+                    </div>
+                }
+            />
+            {error && <div dir={strings.getLanguage() === "ar" ? "rtl" : "ltr"} className="text-tiny text-danger">{error}</div>}
+        </div>
     );
 };
 

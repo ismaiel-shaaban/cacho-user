@@ -5,6 +5,9 @@ import {FaInstagram, FaYoutube} from "react-icons/fa6";
 import Logo from "@/modules/layout/navBar/components/logo";
 import {strings} from "@/utilis/Localization";
 import {FaXTwitter} from "react-icons/fa6";
+import googleLogo from "../../../../public/googlePlay.png";
+import appStoreLogo from "../../../../public/download-on-the-app-store-apple-logo-svgrepo-com.png";
+import Image from "next/image";
 const Footer = () => {
   return (
     <footer className="container" dir={strings.getLanguage() === "ar" ? "rtl" : "ltr"}>
@@ -46,7 +49,7 @@ const Footer = () => {
         </div>
         <Divider className="h-[2px] my-2 w-full" />
         <div className="mt-[40px] pb-[20px] grid grid-cols-2 justify-between items-center md:grid-cols-3">
-            <p className="text-[#666] text-lg">{strings.CopyRight}</p>
+            <p className="text-[#666] my-auto">{strings.CopyRight}</p>
             <div className="flex justify-center">
             <Logo />
             </div>
@@ -55,6 +58,14 @@ const Footer = () => {
                 <Link href="/terms-of-use">{strings.TermsOfUse}</Link>
                 <Link href={"/about-us"}>{strings.AboutUs}</Link>
             </p>
+        </div>
+        <div className={"flex justify-center flex-col items-center gap-4 sm:flex-row md:w-6/12 lg:w-5/12 mx-auto"}>
+            <Link href={"/"}>
+                <Image src={googleLogo} width={350} height={150} alt={"Google Store"}/>
+            </Link>
+            <Link href={"/"}>
+                <Image src={appStoreLogo}  width={350} height={150} alt={"appStoreLogo"}/>
+            </Link>
         </div>
     </footer>
   )

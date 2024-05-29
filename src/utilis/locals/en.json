@@ -96,5 +96,6 @@
   "YouAgreeToOur": "You agree to our",
   "And": "and",
   "ByCheckingTheBox": "by checking the box.",
-  "InternalClassification": "Internal Classification"
+  "InternalClassification": "Internal Classification",
+  "errorLogin" : "An error occurred during login. Please try again."
 }
