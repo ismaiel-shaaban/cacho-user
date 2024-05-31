@@ -2,7 +2,6 @@ import Link from "next/link";
 import Image from "next/image";
 import {useState} from "react";
 import {setCookie} from "cookies-next";
-import {useRouter} from "next/router";
 import {fetchUserData} from "@/utilis/getUserData";
 import InputPhone from "@/components/sheared/inputPhone/InputPhone";
 import InputPassword from "@/components/sheared/inputPassword/InputPassword";
@@ -19,7 +18,6 @@ import LogoImage2 from "../../../public/logo-w.svg";
 
 const SignupModule = () => {
     const {isOpen, onOpen, onOpenChange} = useDisclosure();
-    const router = useRouter();
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(null);
 
@@ -55,13 +53,23 @@ const SignupModule = () => {
             } = await signupUser(formData.name, formData.email, "+966" + formData.phone.value, formData.password.value, formData.confirmPassword.value, formData.userImage);
             if (code === 200) {
                 const userData = await fetchUserData(token);
-                if (userData) {
-                    // Save user data to localStorage
-                    localStorage.setItem("userData", JSON.stringify(userData));
-                    setCookie("token", token);
-                    setIsLoading(false);
-                    await router.push('/');
-                } else {
+                localStorage.setItem("userData", JSON.stringify(userData));
+                setCookie("token", token);
+                if (userData?.needVerification === true) {
+                    const sendCode = await fetch("https://caco-dev.mimusoft.com/api/customer/auth/code/send", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify({
+                            "username": userData.email
+                        })
+                    });
+                    if(sendCode.status === 200){
+                    onOpen();
+                    }
+                }
+                else {
                     setIsLoading(false);
                     setError("Failed to fetch user data.");
                 }
@@ -100,7 +108,7 @@ const SignupModule = () => {
     return (<div className="grid grid-cols-1 md:grid-cols-2">
         <div dir={strings.getLanguage() === "ar" ? "rtl" : "ltr"}>
             <div
-                className={`${classes["signup-banner"]} z-10 h-[calc(100dvh-64px)] relative bg-gradient-to-b from-[#50489E] to-[#3F3D4D] hidden md:flex flex-col justify-around`}>
+                className={`${classes["signup-banner"]} z-10 min-h-[calc(100dvh-64px)] relative bg-gradient-to-b from-[#50489E] to-[#3F3D4D] hidden md:flex flex-col justify-around`}>
                 <div className="pt-20 ps-10 flex flex-col gap-14">
                     <h2 className="text-[56px] font-bold mb-[20px]">{strings.getLanguage() === 'ar' ? textInArabic() : textInEnglish()}</h2>
                     <Button as={Link} href={"/login"}
@@ -117,7 +125,7 @@ const SignupModule = () => {
         <div>
             <form onSubmit={handleSignUp}>
                 <div
-                    className="h-[calc(100dvh-64px)] bg-white flex flex-col justify-center items-center px-8 md:px-[57px]">
+                    className=" min-h-[calc(100dvh-64px)] bg-white flex flex-col justify-center items-center px-8 md:px-[57px]">
                     <div className="flex flex-col items-center justify-evenly w-full h-full py-8">
                         <div dir={strings.getLanguage() === "ar" ? "rtl" : "ltr"}
                              className="flex justify-between w-full">
@@ -130,7 +138,7 @@ const SignupModule = () => {
                             <div className="flex justify-center mb-[49px]">
                                 <ImageUpload onChange={handleImageChange}/>
                             </div>
-                            <div className="mt-4 w-full grid grid-cols-1 gap-3 sm:grid-cols-2">
+                            <div className="mt-4 w-full grid grid-cols-1 gap-3 md:grid-cols-2">
                                 <Input
                                     type="text"
                                     label={strings.Name}
@@ -146,8 +154,9 @@ const SignupModule = () => {
                                 <Input type="email" label={strings.Email} placeholder={strings.EnterYourEmail}
                                        onChange={(e) => handleChange("email", e.target.value)}
                                        classNames={{label: "!text-[--gray-2]"}}
+                                       isRequired={true}
                                        labelPlacement="outside" size={"lg"}/>
-                                <div className={"col-span-2"}><InputPhone
+                                <div className={"md:col-span-2"}><InputPhone
                                     onPhoneChange={(value, isValid) => handleChange("phone", {value, isValid})}/></div>
                                 <InputPassword label={strings.Password} placeholder={strings.Password}
                                                onPasswordChange={(value, isValid) => handleChange("password", {
@@ -162,7 +171,7 @@ const SignupModule = () => {
                                 <div>{strings.AlreadyHaveAnAccount} <Link href={"/login"}
                                                                           className="underline text-[--primary-color] font-bold">{strings.LogIn}</Link>
                                 </div>
-                                <div className={"flex gap-2 font-semibold text-[--primary-color]"}>
+                                <div className={"flex gap-2 flex-wrap font-semibold text-[--primary-color]"}>
                                     {strings.YouAgreeToOur}
                                     <Link className={"underline"} href={"/privacy-policy"}>{strings.PrivacyPolicy}</Link>
                                     {strings.And}
@@ -184,7 +193,7 @@ const SignupModule = () => {
                                 size="lg" type="submit">
                                 {strings.SignUp}
                             </Button>
-                            <ConfirmPhoneModal phone={formData.phone} isOpen={isOpen} onOpenChange={onOpenChange}/>
+                            <ConfirmPhoneModal email={formData.email} isOpen={isOpen} onOpenChange={onOpenChange}/>
                         </div>
                     </div>
                 </div>

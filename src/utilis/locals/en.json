@@ -97,5 +97,13 @@
   "And": "and",
   "ByCheckingTheBox": "by checking the box.",
   "InternalClassification": "Internal Classification",
-  "errorLogin" : "An error occurred during login. Please try again."
+  "errorLogin" : "An error occurred during login. Please try again.",
+  "PasswordsDoNotMatch": "Passwords do not match",
+  "Continue": "Continue",
+  "checkOTP": "Please check your email for the OTP code and enter it below:",
+  "NewPassword": "New Password",
+  "EnterYourNewPassword": "Enter your new password",
+  "SetNewPassword": "Set New Password",
+  "SomethingWrong" : "Something went wrong please try again",
+  "PasswordChangeSuccessfully": "Password Change Successfully"
 }

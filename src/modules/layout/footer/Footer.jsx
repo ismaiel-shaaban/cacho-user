@@ -59,7 +59,7 @@ const Footer = () => {
                 <Link href={"/about-us"}>{strings.AboutUs}</Link>
             </p>
         </div>
-        <div className={"flex justify-center flex-col items-center gap-4 sm:flex-row md:w-6/12 lg:w-5/12 mx-auto"}>
+        <div className={"flex justify-center flex-coll items-center gap-4 sm:flex-row md:4/12 lg:w-3/12 mx-auto"}>
             <Link href={"/"}>
                 <Image src={googleLogo} width={350} height={150} alt={"Google Store"}/>
             </Link>

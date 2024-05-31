@@ -19,7 +19,7 @@ const CodeInput = ({ placeholder , onChange}) => {
             value={inputValue}
             classNames={{
                 inputWrapper: "md:w-[83px] md:h-[83px] sm:w-[40px] sm:h-[40px] bg-[--gray]",
-                input: "text-center text-[40px] !text-[--primary-color] placeholder:font-bold placeholder:text-2xl placeholder:text-[--gray-2]",
+                input: "text-center text-[40px] text-2xl sm:text-3xl font-bold !text-[--primary-color] placeholder:font-bold placeholder:text-2xl placeholder:text-[--gray-2]",
                 base: "w-fit",
                 label: "!text-[--gray-2]"
             }}

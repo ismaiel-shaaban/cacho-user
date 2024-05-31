@@ -97,5 +97,13 @@
   "And": "و",
   "ByCheckingTheBox": "الخاصة بنا عن طريق تحديد الخانة.",
   "InternalClassification": "التصنيف الداخلي",
-  "errorLogin" : "حدث خطأ أثناء تسجيل الدخول. حاول مرة اخرى."
+  "errorLogin" : "حدث خطأ أثناء تسجيل الدخول. حاول مرة اخرى.",
+  "PasswordsDoNotMatch": "كلمة المرور غير مطابقة",
+  "Continue": "أستمر",
+  "checkOTP": "يرجى التحقق من بريدك الإلكتروني للحصول على رمز OTP وإدخاله أدناه:",
+  "NewPassword": "كلمة المرور الجديدة",
+  "EnterYourNewPassword": "أدخل كلمة المرور الجديدة",
+  "SetNewPassword": "تعيين كلمة مرور جديدة",
+  "SomethingWrong" : "حدث خطأ ما. أعد المحاولة من فضلك",
+  "PasswordChangeSuccessfully": "تم تغيير كلمة المرور بنجاح"
 }

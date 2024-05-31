@@ -75,3 +75,7 @@ body::-webkit-scrollbar-thumb {
     opacity: 1;
     transition: opacity 0.3s ease;
 }
+
+.video .html5-video-player .html5-video-player:not:first-child{
+    display: none !important;
+}

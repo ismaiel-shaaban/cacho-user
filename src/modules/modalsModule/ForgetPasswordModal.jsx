@@ -6,29 +6,33 @@ import {Modal, ModalBody, ModalContent} from "@nextui-org/react";
 
 const ForgetPasswordModal = ({isOpen, onOpenChange}) => {
     const [isCodeValid, setIsCodeValid] = useState(false);
-    const [phone, setPhone] = useState({
-        value: "",
-        isValid: false
-    });
+    const [isChangePassword, setIsChangePassword] = useState(false);
+    const [email, setEmail] = useState("");
+    const [code, setCode] = useState("");
 
-    const handlePhoneChange = (value, isValid) => {
-        setPhone({value, isValid});
+    const handlePhoneChange = (email) => {
+        setEmail(email);
+        setIsChangePassword(true)
+    }
+
+    const handelCodeValidation = (valid , verificationCode)=>{
+        setIsCodeValid(valid)
+        setCode(verificationCode)
     }
 
     return (
-        <Modal size={"5xl"} isOpen={isOpen} onOpenChange={onOpenChange}>
+        <Modal size={"5xl"} isOpen={isOpen} placement={"center"} onOpenChange={onOpenChange}>
             <ModalContent>
                 <ModalBody>
                     <>
                         {
-                            !phone.isValid && <EnterPhoneNumber onPhoneChange={handlePhoneChange}/>
+                            !email && <EnterPhoneNumber onPhoneChange={handlePhoneChange}/>
                         }
                         {
-                            phone.isValid && !isCodeValid && <VerifyPhoneNumber phone={phone.value} isValidPhone={phone.isValid}
-                                                                setIsCodeValid={setIsCodeValid}/>
+                            email && !isCodeValid && <VerifyPhoneNumber email={email} isChangePassword={isChangePassword} passIsValidCode={handelCodeValidation}/>
                         }
                         {
-                            isCodeValid && <SetNewPassword/>
+                            isCodeValid && <SetNewPassword code={code} email={email}/>
                         }
                     </>
                 </ModalBody>
