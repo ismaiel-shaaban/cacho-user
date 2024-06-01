@@ -105,5 +105,6 @@
   "EnterYourNewPassword": "أدخل كلمة المرور الجديدة",
   "SetNewPassword": "تعيين كلمة مرور جديدة",
   "SomethingWrong" : "حدث خطأ ما. أعد المحاولة من فضلك",
-  "PasswordChangeSuccessfully": "تم تغيير كلمة المرور بنجاح"
+  "PasswordChangeSuccessfully": "تم تغيير كلمة المرور بنجاح",
+  "InvalidVerificationCode": "رمز التحقق غير صالح"
 }

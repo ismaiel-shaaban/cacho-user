@@ -13,7 +13,7 @@ const StorePage = () => {
                     {title}
                 </title>
             </Head>
-            <section className="container">
+            <section>
                 <StoreModule passTitle={handlePassTitle}/>
             </section>
         </>)

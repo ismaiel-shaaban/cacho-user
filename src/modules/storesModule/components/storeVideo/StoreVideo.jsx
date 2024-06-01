@@ -11,7 +11,7 @@ const StoreVideo = ({video, image}) => {
         setIsLoaded(true)
     }, [])
     return (<>
-        <div className={`w-full h-[68vh] video`}>
+        <div className={`video w-full h-[calc(100vh-64px)] aspect-video`}>
             {video && isLoaded ? <ReactPlayer url={video}
                                               width='100%'
                                               height='100%'

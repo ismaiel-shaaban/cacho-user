@@ -13,6 +13,7 @@ const VerifyPhoneNumber = ({ email ,isChangePassword ,passIsValidCode }) => {
     const [code, setCode] = useState(Array.from({ length: 6 }, () => ""));
     const [verificationCode, setVerificationCode] = useState("");
     const [isLoading, setIsLoading] = useState(false);
+    const [error , setError] = useState("");
 
     useEffect(() => {
         setVerificationCode(code.join(""));
@@ -22,6 +23,7 @@ const VerifyPhoneNumber = ({ email ,isChangePassword ,passIsValidCode }) => {
         e.preventDefault()
         if (verificationCode.length === 6) {
             setIsLoading(true)
+            setError("")
             const verify = await fetch("https://caco-dev.mimusoft.com/api/customer/auth/verify" ,{
                 method:"POST",
                 headers: {
@@ -41,11 +43,15 @@ const VerifyPhoneNumber = ({ email ,isChangePassword ,passIsValidCode }) => {
                     } else {
                         await router.push('/');
                     }
+                } else {
+                    setIsLoading(false)
+                    setError("Invalid verification code");
                 }
             } else {
                 const errorResponse = await verify.json();
+                setIsLoading(false)
+                setError(`${strings.InvalidVerificationCode}`);
                 console.error("Verification failed", errorResponse);
-                // Handle verification failure here
             }
         }
     }
@@ -65,8 +71,11 @@ const VerifyPhoneNumber = ({ email ,isChangePassword ,passIsValidCode }) => {
         <div className="flex justify-center">
             <form className="mt-8" >
                 <CodeVerifyInputs setCode={setCode} />
-                <Button isLoading={isLoading} size={"lg"} isDisabled={verificationCode.length !== 6} onClick={handleVerifyEmail}
-                    className="w-full bg-[--primary-color] text-white mt-8">{strings.Continue}</Button>
+                <div className={"flex flex-col items-center gap-3"}>
+                    <Button isLoading={isLoading} size={"lg"} isDisabled={verificationCode.length !== 6} onClick={handleVerifyEmail}
+                            className="w-full bg-[--primary-color] text-white mt-8">{strings.Continue}</Button>
+                    {error &&<p className={"text-sm text-danger"}>{error}</p>}
+                </div>
             </form>
         </div>
     </div>);

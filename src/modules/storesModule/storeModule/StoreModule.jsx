@@ -27,10 +27,12 @@ const StoreModule = ({ passTitle }) => {
     }, [data]);
     if (isLoading) return <SkeletonProducts col={2} />
     if (error) return <ErrorFetch />;
-    return (<section>
+    return (<>
         <StoreVideo video={data?.response?.video} image={data?.response?.image} />
+        <div className={"container"}>
         <StoreTabs mainData={mainData} aboutUs={aboutUs} categories={data?.response?.businessType?.categories} isServiceProvider={data?.response?.isServiceProvider} />
-    </section>);
+        </div>
+    </>);
 };
 
 export default StoreModule;

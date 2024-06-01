@@ -105,5 +105,6 @@
   "EnterYourNewPassword": "Enter your new password",
   "SetNewPassword": "Set New Password",
   "SomethingWrong" : "Something went wrong please try again",
-  "PasswordChangeSuccessfully": "Password Change Successfully"
+  "PasswordChangeSuccessfully": "Password Change Successfully",
+  "InvalidVerificationCode": "Invalid verification code"
 }
