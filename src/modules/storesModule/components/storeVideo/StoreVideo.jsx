@@ -1,17 +1,16 @@
+"use client"
 import ReactPlayer from 'react-player/youtube'
-import {useEffect, useState} from "react"
+import {useEffect, useRef, useState} from "react"
 import Image from "next/image";
+import {FaPlay} from "react-icons/fa";
 
 const StoreVideo = ({video, image}) => {
     const [isLoaded, setIsLoaded] = useState(false)
-
-
-
     useEffect(() => {
-        setIsLoaded(true)
-    }, [])
+        setIsLoaded(true);
+    }, []);
     return (<>
-        <div className={`video w-full h-[calc(100vh-64px)] aspect-video`}>
+        <div className={`video w-full h-[calc(90vh-64px)] aspect-video [&>.ytp-chrome-top]:hidden relative`}>
             {video && isLoaded ? <ReactPlayer url={video}
                                               width='100%'
                                               height='100%'
@@ -19,7 +18,7 @@ const StoreVideo = ({video, image}) => {
                                               volume={0.5}
                                               playing={true}
                                               controls={false}
-                                              playIcon={<span>ooo</span>}
+                                              playIcon={<FaPlay size={30} />}
                                               config={{
                                                   youtube: {
                                                       playerVars: {
@@ -31,6 +30,7 @@ const StoreVideo = ({video, image}) => {
                                               }}
             /> : <Image src={image} width={400} height={400} alt={"Store Image"}
                         className={"block w-full h-full object-cover"}/>}
+            <div className={"absolute top-0 start-0 w-full h-full z-10"}/>
         </div>
     </>);
 }

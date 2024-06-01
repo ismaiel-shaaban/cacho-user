@@ -16,7 +16,8 @@ const OfferCard = ({ offer }) => {
 
     const discountLabel = offer.discountType !== "amount" ? (lang === "ar" ? `${strings.off} % ${parseInt(offer.discount)}` : `${parseInt(offer.discount)} % ${strings.off}`) : (lang === "ar" ? `${strings.off} ${parseInt(offer.discount)} ${strings.egp}` : `${strings.off} ${parseInt(offer.discount)} ${strings.egp} `);
     return (
-        <Card dir={lang === "ar" ? "rtl" : "ltr"} className={`shadow-none !transition !duration-300 hover:shadow-xl`}>
+        <Card dir={lang === "ar" ? "rtl" : "ltr"} className={`shadow-none !transition !duration-300 hover:shadow-xl`} as={Link}
+              href={`/offers/${offer.uuid}`}>
             <CardBody className="p-0 overflow-hidden relative">
                 <div className="h-[190px]">
                     <Image width={292} height={190} src={offer.image} alt={offer.title} className="object-cover w-full"

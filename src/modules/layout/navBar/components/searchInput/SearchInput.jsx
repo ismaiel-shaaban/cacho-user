@@ -42,14 +42,13 @@ const SearchInput = () => {
             endContent={<FiSearch size={30} />}
             startContent={<Select
                 dir={"ltr"}
-                defaultSelectedKeys={["categories"]}
+                defaultSelectedKeys={["stores"]}
                 startContent={<HiOutlineSquares2X2 size={30} />}
                 size="sm"
                 onChange={handleCategoryChange}
                 aria-label={"Select a category"}
             >
                 <SelectItem key="stores" value="stores">{strings.Stores}</SelectItem>
-                <SelectItem key="categories" value="categories">{strings.InternalClassification}</SelectItem>
                 <SelectItem key="products" value="products">{strings.Products}</SelectItem>
                 <SelectItem key="service" value="service">{strings.Services}</SelectItem>
             </Select>}

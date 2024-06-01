@@ -25,6 +25,8 @@ const StoreTabs = ({mainData, aboutUs, categories, isServiceProvider}) => {
     const router = useRouter();
     const {id} = router.query;
     const {isOpen, onOpen, onOpenChange} = useDisclosure();
+    const message = encodeURIComponent(`Hello, I am contacting you from CACHOO`);
+
     const handleChatWithStore = async () => {
         const token = getCookie("token");
         try {
@@ -51,8 +53,8 @@ const StoreTabs = ({mainData, aboutUs, categories, isServiceProvider}) => {
     };
 
     if (mainData === null) return <Spinner/>;
-    return (<div className="my-[20px] relative">
-        <Tabs aria-label="Store Data" variant={"bordered"} dir={strings.getLanguage() === "ar" ? "rtl" : "ltr"}
+    return (<div className="my-[20px] relative" dir={strings.getLanguage() === "ar" ? "rtl" : "ltr"}>
+        <Tabs aria-label="Store Data" variant={"bordered"} defaultSelectedKey={strings.Products}
               classNames={{
                   base: "bg-[#AD732E1A] rounded-md",
                   tabList: "shadow-none border-none flex-wrap w-fit justify-center items-center",
@@ -75,7 +77,7 @@ const StoreTabs = ({mainData, aboutUs, categories, isServiceProvider}) => {
                 <Reviews/>
             </Tab>
         </Tabs>
-        <div className={`absolute right-0 me-2 flex rounded-md gap-2 md:gap-2 ${classes.icons}`}>
+        <div className={`absolute end-0 me-2 flex rounded-md gap-2 md:gap-2 ${classes.icons}`}>
             <Tooltip content={strings.SaveStore}>
                 <Button isIconOnly
                         className="p-[15px] border-2 rounded-md bg-transparent !w-[50px] !h-[50px] cursor-pointer !md:w-[54px] !md:h-[54px]">
@@ -87,7 +89,7 @@ const StoreTabs = ({mainData, aboutUs, categories, isServiceProvider}) => {
                 classNames={{content: "bg-[--green] text-white"}}
                 onClick={handleChatWithStore}
             >
-                <Button isIconOnly as={Link} href={`https://wa.me/${formatPhoneNumber(mainData?.whatsapp)}`}
+                <Button isIconOnly as={Link} href={`https://wa.me/${formatPhoneNumber(mainData?.whatsapp)}?text=${message}`}
                         target={"_blank"}
                         isDisabled={!mainData.whatsappEnabled || !mainData.whatsapp}
                         className="p-[15px] bg-[--green] rounded-[10px] !w-[50px] !h-[50px] cursor-pointer !md:w-[54px] !md:h-[54px]">
@@ -99,7 +101,7 @@ const StoreTabs = ({mainData, aboutUs, categories, isServiceProvider}) => {
                 classNames={{content: "bg-[--rate-color] text-white"}}
             >
                 <Button
-                    // isDisabled={!mainData.chatEnabled}
+                    isDisabled={!mainData.chatEnabled}
                     isIconOnly
                     onClick={handleChatWithStore}
                     className="p-[15px] bg-[--rate-color] rounded-[10px] !w-[50px] !h-[50px] cursor-pointer !md:w-[54px] !md:h-[54px]"
@@ -117,29 +119,33 @@ const StoreTabs = ({mainData, aboutUs, categories, isServiceProvider}) => {
                 </Button>
             </Tooltip>
 
-            <Dropdown backdrop={"opaque"} dir={strings.getLanguage() === "ar" ? "rtl" : "ltr"}>
-                <DropdownTrigger>
-                    <Button
-                        isIconOnly
-                        isDisabled={mainData.deliveryCompaniesCount === 0}
-                        className="p-[15px] bg-blue-600 shadow-xl rounded-[10px] !w-[50px] !h-[50px] cursor-pointer !md:w-[54px] !md:h-[54px]">
-                        <CiDeliveryTruck size={24} className={"text-white"}/>
-                    </Button>
-                </DropdownTrigger>
-                <DropdownMenu variant="faded" aria-label="Static Actions" color={"secondary"}
-                              items={mainData.deliveryCompanies}>
-                    {(item) => (<DropdownItem
-                        key={item.name}
-                        href={item.link}
-                        as={Link}
-                        title={item.name}
-                        endContent={<BiLinkExternal/>}
-                        startContent={<>
-                        <Image src={item.image} alt={item.name} height={50} width={50} />
-                        </>}
-                    />)}
-                </DropdownMenu>
-            </Dropdown>
+            <Tooltip  content={strings.DeliveryCompanies} classNames={{
+                content: "bg-blue-600 text-white"
+            }}>
+                <div><Dropdown backdrop={"opaque"} dir={strings.getLanguage() === "ar" ? "rtl" : "ltr"}>
+                    <DropdownTrigger>
+                        <Button
+                            isIconOnly
+                            isDisabled={mainData.deliveryCompaniesCount === 0}
+                            className="p-[15px] bg-blue-600 shadow-xl rounded-[10px] !w-[50px] !h-[50px] cursor-pointer !md:w-[54px] !md:h-[54px]">
+                            <CiDeliveryTruck size={24} className={"text-white"}/>
+                        </Button>
+                    </DropdownTrigger>
+                    <DropdownMenu variant="faded" aria-label="Static Actions" color={"secondary"}
+                                  items={mainData.deliveryCompanies}>
+                        {(item) => (<DropdownItem
+                            key={item.name}
+                            href={item.link}
+                            as={Link}
+                            title={item.name}
+                            endContent={<BiLinkExternal/>}
+                            startContent={<>
+                                <Image src={item.image} alt={item.name} height={50} width={50}/>
+                            </>}
+                        />)}
+                    </DropdownMenu>
+                </Dropdown></div>
+            </Tooltip>
         </div>
         <SuggestLoginModal isOpen={isOpen} onOpenChange={onOpenChange}/>
     </div>)

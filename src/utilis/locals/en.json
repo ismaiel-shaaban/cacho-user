@@ -106,5 +106,6 @@
   "SetNewPassword": "Set New Password",
   "SomethingWrong" : "Something went wrong please try again",
   "PasswordChangeSuccessfully": "Password Change Successfully",
-  "InvalidVerificationCode": "Invalid verification code"
+  "InvalidVerificationCode": "Invalid verification code",
+  "DeliveryCompanies": "Delivery Companies"
 }

@@ -18,16 +18,16 @@ const AboutUs = ({aboutUs}) => {
     const {data , error , isLoading} = useSWR(`https://caco-dev.mimusoft.com/api/customer/businesses/${aboutUs.uuid}/products` , fetcher)
     useEffect(() => {
         if (data?.response?.data.length > 0) {
-            const images = []
-            data.response.data.forEach(item => {
+            let images = data.response.data.flat().reduce((acc, item) => {
                 if (item.images) {
-                    images.push(item.images)
+                    acc.push(...item.images);
                 }
-            })
-            setProductsImages(images)
+                return acc;
+            }, []);
+            setProductsImages(images);
         }
-
     }, [data]);
+
 
     return (<div dir={strings.getLanguage() === "ar" ? "rtl" : "ltr"}>
         <div className="flex items-end gap-2 mt-5 md:mt-10 lg:mt-5 md:gap-[40px]">
@@ -53,7 +53,7 @@ const AboutUs = ({aboutUs}) => {
         </div>
         <div>
             <h3 className="text-[20px] font-[600] my-[20px]">{strings.Images}
-                <span className="text-[14px] font-[400]"> ({productsImages[0] && productsImages[0].length})</span>
+                <span className="text-[14px] font-[400]"> ({productsImages.length})</span>
             </h3>
             <Swiper
                 modules={[Autoplay, FreeMode]}
@@ -89,15 +89,15 @@ const AboutUs = ({aboutUs}) => {
                     ))
                 ) : (
                         <Fragment>
-                            {productsImages.map((innerArray) => (
-                                innerArray.map((image, index) => (
+                            {
+                                productsImages.map((image, index) => (
                                     <SwiperSlide key={`${index}`}>
                                         <div>
                                             <Image width={150} height={150} src={image} alt="product" className="object-cover w-full h-full" />
                                         </div>
                                     </SwiperSlide>
                                 ))
-                            ))}
+                            }
                         </Fragment>
                 )}
             </Swiper>

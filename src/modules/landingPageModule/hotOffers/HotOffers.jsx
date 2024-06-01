@@ -14,7 +14,7 @@ const HotOffers = () => {
     </div>
     if (error) return <ErrorFetch/>;
     return (
-        <section className="container mx-auto mt-[30px]">
+        <section className="container mx-auto mt-[30px]"  dir={strings.getLanguage() === "ar" ? "rtl" : "ltr"}>
             <SectionTitle title={strings.HotOffers} link="/offers"/>
             <HotOfferList hotOffers={data.response.data} count={8}/>
         </section>

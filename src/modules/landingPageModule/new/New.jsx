@@ -18,7 +18,7 @@ const NewStores = () => {
     </div>;
     if (error) return <ErrorFetch/>
     return (
-        <section className="container mt-[30px]">
+        <section className="container mt-[30px]"  dir={strings.getLanguage() === "ar" ? "rtl" : "ltr"}>
             <SectionTitle title={strings.New} link="/Stores" />
             <div
                 className="grid grid-cols-1 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 md:gap-[24px] gap-2 mt-[25px]">

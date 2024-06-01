@@ -3,7 +3,7 @@
   "searchPlaceholder": "ما الذي تبحث عنه؟",
   "details": "تفاصيل",
   "by": "بواسطة",
-  "HotOffers": "تريند العروض",
+  "HotOffers": "ترند العروض",
   "Categories": "الأقسام",
   "viewAll": "عرض الكل",
   "off": "خصم",
@@ -106,5 +106,6 @@
   "SetNewPassword": "تعيين كلمة مرور جديدة",
   "SomethingWrong" : "حدث خطأ ما. أعد المحاولة من فضلك",
   "PasswordChangeSuccessfully": "تم تغيير كلمة المرور بنجاح",
-  "InvalidVerificationCode": "رمز التحقق غير صالح"
+  "InvalidVerificationCode": "رمز التحقق غير صالح",
+  "DeliveryCompanies": "شركات التوصيل"
 }

@@ -25,7 +25,7 @@ const ProductCategoryTab = ({categoryId}) => {
     };
 return (
     <div>
-        <div className="flex justify-end">
+        <div className="flex justify-start">
             <SearchProductsInput searchProducts={handleSearch}/>
         </div>
         <ProductsStoreList fetchUrl={url} passMeta={(meta) => {

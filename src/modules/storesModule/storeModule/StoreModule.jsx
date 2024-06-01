@@ -5,6 +5,7 @@ import { useStoreData } from "@/modules/storesModule/hooks/getStore";
 import StoreTabs from "@/modules/storesModule/components/storeTabs/StoreTabs";
 import SkeletonProducts from "@/components/sheared/skeletonProducts/SkeletonProducts";
 import ErrorFetch from "@/components/sheared/erorrFetch/ErrorFetch";
+import {strings} from "@/utilis/Localization";
 
 const StoreModule = ({ passTitle }) => {
     const router = useRouter();
@@ -27,12 +28,12 @@ const StoreModule = ({ passTitle }) => {
     }, [data]);
     if (isLoading) return <SkeletonProducts col={2} />
     if (error) return <ErrorFetch />;
-    return (<>
+    return (<div>
         <StoreVideo video={data?.response?.video} image={data?.response?.image} />
         <div className={"container"}>
         <StoreTabs mainData={mainData} aboutUs={aboutUs} categories={data?.response?.businessType?.categories} isServiceProvider={data?.response?.isServiceProvider} />
         </div>
-    </>);
+    </div>);
 };
 
 export default StoreModule;
