@@ -10,7 +10,7 @@ const StoreVideo = ({video, image}) => {
         setIsLoaded(true);
     }, []);
     return (<>
-        <div className={`video w-full aspect-video [&>.ytp-chrome-top]:hidden relative`}>
+        <div className={`video w-full lg:h-[calc(85dvh-64px)] aspect-video [&>.ytp-chrome-top]:hidden relative`}>
             {video && isLoaded ? <ReactPlayer url={video}
                                               width='100%'
                                               height='100%'
@@ -30,7 +30,7 @@ const StoreVideo = ({video, image}) => {
                                               }}
             /> : <Image src={image} width={400} height={400} alt={"Store Image"}
                         className={"block w-full h-full object-cover"}/>}
-            <div className={"absolute top-0 start-0 w-full h-full z-10"}/>
+            {/*<div className={"absolute top-0 start-0 w-full h-full z-10"}/>*/}
         </div>
     </>);
 }
