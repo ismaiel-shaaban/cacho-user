@@ -67,7 +67,7 @@ const SearchInput = () => {
                                 {result.name ? result.name : result.title}
                             </span>
                             <span className="w-[40px] h-[40px] rounded-md overflow-hidden">
-                                <Image width={40} height={40} src={result.image || result.images[0]}
+                                <Image quality={100} width={40} height={40} src={result.image || result.images[0]}
                                     alt={result.name || result.title}
                                     className="w-full h-full object-cover"
                                 />

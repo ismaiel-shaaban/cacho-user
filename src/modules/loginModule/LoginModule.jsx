@@ -94,7 +94,7 @@ const LoginModule = () => {
                         </Button>
                     </div>
                     <div className="flex justify-center items-center p-3">
-                        <Image src={LogoImage2} alt={"Join Now"} className="block w-[60%] h-full object-cover"/>
+                        <Image quality={100} src={LogoImage2} alt={"Join Now"} className="block w-[60%] h-full object-cover"/>
                     </div>
                 </div>
             </div>
@@ -102,7 +102,7 @@ const LoginModule = () => {
                 <div
                     className="h-[calc(100dvh-64px)] bg-white flex flex-col justify-center items-center px-8 md:px-[57px]">
                     <div className="text-[3rem] font-bold mb-[30px] text-black w-[200px]">
-                        <Image src={LogoImage} alt={"Cachoo"}/>
+                        <Image quality={100} src={LogoImage} alt={"Cachoo"}/>
                     </div>
                     <span className="text-[24px] text-[#3F3D4D] font-[600] my-10 place-self-start w-full" dir={strings.getLanguage() === "ar" ? "rtl" : "ltr"}>{strings.WelcomeBack}</span>
                     <form className="w-full" onSubmit={handleLogin}>

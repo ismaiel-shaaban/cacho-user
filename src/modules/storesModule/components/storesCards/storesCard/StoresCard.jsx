@@ -13,7 +13,7 @@ const StoresCard = ({ store }) => {
         <Card as={Link} href={`/Stores/${store.uuid}`} dir={strings.getLanguage() === "ar" ? "rtl" : "ltr"} className="shadow-none !transition !duration-300 hover:shadow-xl">
             <CardBody className="p-0 overflow-hidden relative">
                 <div className="h-[190px] relative">
-                    <Image fill src={store.image} alt={store.title} className="object-cover w-full h-full" />
+                    <Image quality={100} fill src={store.image} alt={store.title} className="object-cover w-full h-full" />
                     <div className="absolute bottom-[15px] right-1/2 translate-x-1/2 w-full px-3 bg-white">
                         {store?.businessType &&
                             <span className="text-xl me-3 text-nowrap">{store?.businessType?.name}</span>}

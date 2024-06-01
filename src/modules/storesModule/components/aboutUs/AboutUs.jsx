@@ -32,7 +32,7 @@ const AboutUs = ({aboutUs}) => {
     return (<div dir={strings.getLanguage() === "ar" ? "rtl" : "ltr"}>
         <div className="flex items-end gap-2 mt-5 md:mt-10 lg:mt-5 md:gap-[40px]">
             <div className="flex gap-2">
-                <Image width={60} height={60} src={aboutUs.image} alt={aboutUs.title}
+                <Image quality={100} width={60} height={60} src={aboutUs.image} alt={aboutUs.title}
                        className="block w-[60px] object-cover h-[60px] rounded-md overflow-hidden"/>
                 <span className="flex flex-col justify-between">
                     <span className="text-[20px] font-[500]">{aboutUs.title}</span>
@@ -93,7 +93,7 @@ const AboutUs = ({aboutUs}) => {
                                 productsImages.map((image, index) => (
                                     <SwiperSlide key={`${index}`}>
                                         <div>
-                                            <Image width={150} height={150} src={image} alt="product" className="object-cover w-full h-full" />
+                                            <Image quality={100} width={150} height={150} src={image} alt="product" className="object-cover w-full h-full" />
                                         </div>
                                     </SwiperSlide>
                                 ))

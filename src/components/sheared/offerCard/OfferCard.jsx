@@ -20,7 +20,7 @@ const OfferCard = ({ offer }) => {
               href={`/offers/${offer.uuid}`}>
             <CardBody className="p-0 overflow-hidden relative">
                 <div className="h-[190px]">
-                    <Image width={292} height={190} src={offer.image} alt={offer.title} className="object-cover w-full"
+                    <Image quality={100} width={292} height={190} src={offer.image} alt={offer.title} className="object-cover w-full"
                         style={{ height: "inherit" }} />
                 </div>
                 {discountLabel && <div

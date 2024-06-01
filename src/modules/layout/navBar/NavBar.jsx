@@ -98,7 +98,7 @@ const NavBar = ({userLocation}) => {
                 </NavbarItem>
                 <NavbarItem>
                     <Link href={"/saved"}>
-                        <Image src={savedLink} alt={"bookmark"} width={24} height={24}/>
+                        <Image quality={100} src={savedLink} alt={"bookmark"} width={24} height={24}/>
                     </Link>
                 </NavbarItem>
                 <NavbarItem>
@@ -138,7 +138,7 @@ const NavBar = ({userLocation}) => {
                 </NavbarMenuItem>
                 <NavbarMenuItem>
                     <Link href={"/saved"}>
-                        <Image src={savedLink} alt={"bookmark"} width={24} height={24}/>
+                        <Image quality={100} src={savedLink} alt={"bookmark"} width={24} height={24}/>
                     </Link>
                 </NavbarMenuItem>
                 <NavbarMenuItem>

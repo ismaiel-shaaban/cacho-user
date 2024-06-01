@@ -7,6 +7,7 @@ import { useRouter } from "next/router";
 import useSWR from "swr";
 import Head from "next/head";
 import { fetcher } from "@/utilis/fetcherFUN";
+import {strings} from "@/utilis/Localization";
 
 const ProductPage = () => {
     const router = useRouter()
@@ -22,7 +23,7 @@ const ProductPage = () => {
             <Head>
                 <title>{data?.response?.name}</title>
             </Head>
-            <section className="container">
+            <section className="container" dir={strings.getLanguage() === "ar" ? "rtl" : "ltr"}>
                 {data?.response ? <div className="grid gap-5 grid-cols-12 md:gap-[30px] mt-6">
                     <ProductSlider slides={data?.response?.images} />
                     <ProductInfo info={data?.response} images={data?.response?.images} />

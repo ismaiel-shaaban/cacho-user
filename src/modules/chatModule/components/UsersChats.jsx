@@ -74,6 +74,7 @@ const UsersChats = ({onSelectChat}) => {
                     >
                         <div className="bg-gray-300 w-[50px] h-[50px] rounded-full overflow-hidden flex items-center justify-center">
                             <Image
+                                quality={100}
                                 src={chat.business.image}
                                 alt="User"
                                 width={50}

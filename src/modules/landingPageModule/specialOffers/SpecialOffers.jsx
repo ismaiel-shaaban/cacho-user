@@ -19,7 +19,7 @@ const SpecialOffers = () => {
                 {data?.response?.data.slice(0, 3).map((offer, index) => (
                     <div key={index} className="rounded-md overflow-hidden cursor-pointer"
                          onClick={() => router.push(`/Stores/${offer?.business?.uuid}`)}>
-                        <Image width={200} height={200} src={offer?.image} alt={"Special Offers"} className="object-cover w-full h-full"/>
+                        <Image width={200} height={200} src={offer?.image} alt={"Special Offers"} className="object-cover w-full h-full" quality={100}/>
                     </div>
                 ))}
             </div>

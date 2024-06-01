@@ -15,7 +15,7 @@ const Login = () => {
             <Navbar position={"static"} maxWidth={"2xl"} >
                 <NavbarBrand>
                     <Link href={"/"} >
-                        <Image src={LogoImage} width={130} alt={"Logo"} />
+                        <Image quality={100} src={LogoImage} width={130} alt={"Logo"} />
                     </Link>
                 </NavbarBrand>
                 <NavbarContent justify="end">

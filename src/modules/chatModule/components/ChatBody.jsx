@@ -105,6 +105,7 @@ const ChatBody = ({selectedChatData}) => {
             <div className="flex gap-4 items-center">
                 <div className="w-[50px] h-[50px]">
                     <Image
+                        quality={100}
                         width={50} height={50}
                         src={selectedChatData?.business?.image ? selectedChatData?.business?.image : User}
                         alt="User"

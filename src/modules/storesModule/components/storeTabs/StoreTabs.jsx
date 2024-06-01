@@ -140,7 +140,7 @@ const StoreTabs = ({mainData, aboutUs, categories, isServiceProvider}) => {
                             title={item.name}
                             endContent={<BiLinkExternal/>}
                             startContent={<>
-                                <Image src={item.image} alt={item.name} height={50} width={50}/>
+                                <Image quality={100} src={item.image} alt={item.name} height={50} width={50}/>
                             </>}
                         />)}
                     </DropdownMenu>

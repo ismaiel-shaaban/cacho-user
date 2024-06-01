@@ -42,6 +42,7 @@ const ProductCard = ({product}) => {
             <CardBody className='relative p-0 overflow-hidden'>
                 <div className='h-[190px]'>
                     <Image
+                        quality={100}
                         width={292}
                         height={190}
                         src={images[0]}

@@ -13,7 +13,7 @@ const ChangePasswordContent = () => {
             <div>
                 <h4 className="text-2xl font-medium mb-12">change password</h4>
                 <div>
-                    <Image src={ChangePasswordImage} width={240} height={240} alt={"Change Password"} />
+                    <Image quality={100} src={ChangePasswordImage} width={240} height={240} alt={"Change Password"} />
                 </div>
             </div>
             <div className="flex flex-col items-center gap-[16px] w-full md:w-4/6">
