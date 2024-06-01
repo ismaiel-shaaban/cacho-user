@@ -25,7 +25,7 @@ const StoreTabs = ({mainData, aboutUs, categories, isServiceProvider}) => {
     const router = useRouter();
     const {id} = router.query;
     const {isOpen, onOpen, onOpenChange} = useDisclosure();
-    const message = encodeURIComponent(`Hello, I am contacting you from CACHOO`);
+    const message = encodeURIComponent(`${strings.WhatsAppMessage}`);
 
     const handleChatWithStore = async () => {
         const token = getCookie("token");
