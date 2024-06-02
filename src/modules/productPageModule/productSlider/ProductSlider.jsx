@@ -6,6 +6,7 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import Image from "next/image";
+import {strings} from "@/utilis/Localization";
 
 const ProductSlider = ({slides}) => {
     const [thumbsSwiper, setThumbsSwiper] = useState(null);
@@ -34,8 +35,8 @@ const ProductSlider = ({slides}) => {
                 </div>
             </SwiperSlide>))}
             <div
-                className="absolute bottom-0 left-0 w-100 z-10 flex items-center justify-end px-10 mb-3 w-full">
-                <span className="text-white flex items-center justify-center gap-8">
+                className="absolute bottom-0 left-0 w-100 z-10 flex items-center justify-end px-10 mb-3 w-full" dir={"ltr"}>
+                <span className={`text-white flex items-center justify-center gap-8`}>
                     <div
                         className={`swiper-prev bg-white text-black border rounded-full !w-[40px] h-[40px] flex items-center justify-center cursor-pointer`}>
                         <MdKeyboardArrowLeft size={25}/></div>
