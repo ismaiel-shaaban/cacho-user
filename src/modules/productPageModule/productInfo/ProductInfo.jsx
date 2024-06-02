@@ -138,7 +138,7 @@ const ProductInfo = ({info, images}) => {
 
         </div>
         {isOpen && needVerification === false && <SuggestLoginModal isOpen={isOpen} onOpenChange={onOpenChange}/>}
-        {isOpen && <ConfirmPhoneModal email={email} isOpen={isOpen} onOpenChange={onOpenChange}/>}
+        {isOpen &&  needVerification === true && <ConfirmPhoneModal email={email} isOpen={isOpen} onOpenChange={onOpenChange}/>}
     </>);
 };
 
