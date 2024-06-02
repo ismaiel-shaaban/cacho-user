@@ -11,20 +11,58 @@ const SpecialOffers = () => {
         revalidateOnFocus : false,
     })
 
+    const renderImages = () => {
+        const numImages = data?.response?.data.length;
+        console.log("numImages" ,numImages)
+        if (numImages === 1) {
+            return (
+                <div className="w-full h-full rounded-md overflow-hidden cursor-pointer"
+                     onClick={() => router.push(`/Stores/${data?.response?.data[0]?.business?.uuid}`)}>
+                    <Image width={400} height={400} src={data?.response?.data[0]?.image} alt={"Special Offers"} className="object-cover w-full h-full" quality={100}/>
+                </div>
+            );
+        } else if (numImages === 2) {
+            return data?.response?.data.map((offer, index) => (
+                <div key={index} className="w-full h-[50%] md:w-[50%] rounded-md overflow-hidden cursor-pointer"
+                     onClick={() => router.push(`/Stores/${offer?.business?.uuid}`)}>
+                    <Image width={200} height={200} src={offer?.image} alt={"Special Offers"} className="object-cover w-full h-full" quality={100}/>
+                </div>
+            ));
+        } else if (numImages === 3) {
+            return (
+                <>
+                    <div className="w-[66.67%] h-full md:w-[50%] rounded-md overflow-hidden cursor-pointer"
+                         onClick={() => router.push(`/Stores/${data?.response?.data[0]?.business?.uuid}`)}>
+                        <Image width={200} height={200} src={data?.response?.data[0]?.image} alt={"Special Offers"} className="object-cover w-full h-full" quality={100}/>
+                    </div>
+                    <div className="w-[33.33%] h-[50%] md:w-[50%] rounded-md overflow-hidden cursor-pointer"
+                         onClick={() => router.push(`/Stores/${data?.response?.data[1]?.business?.uuid}`)}>
+                        <Image width={200} height={200} src={data?.response?.data[1]?.image} alt={"Special Offers"} className="object-cover w-full h-full" quality={100}/>
+                    </div>
+                    <div className="w-[33.33%] h-[50%] md:w-[50%] rounded-md overflow-hidden cursor-pointer"
+                         onClick={() => router.push(`/Stores/${data?.response?.data[2]?.business?.uuid}`)}>
+                        <Image width={200} height={200} src={data?.response?.data[2]?.image} alt={"Special Offers"} className="object-cover w-full h-full" quality={100}/>
+                    </div>
+                </>
+            );
+        } else if (numImages === 4) {
+            return data?.response?.data.map((offer, index) => (
+                <div key={index} className="w-[50%] h-[50%] md:w-[25%] rounded-md overflow-hidden cursor-pointer"
+                     onClick={() => router.push(`/Stores/${offer?.business?.uuid}`)}>
+                    <Image width={200} height={200} src={offer?.image} alt={"Special Offers"} className="object-cover w-full h-full" quality={100}/>
+                </div>
+            ));
+        }
+    };
 
     return (
         <section className="container mt-[30px]">
             <SectionTitle title={strings.SpecialOffers}/>
-            <div className="flex flex-col md:grid md:grid-cols-2 gap-[20px] md:h-[570px] mt-[25px]">
-                {data?.response?.data.slice(0, 3).map((offer, index) => (
-                    <div key={index} className="rounded-md overflow-hidden cursor-pointer"
-                         onClick={() => router.push(`/Stores/${offer?.business?.uuid}`)}>
-                        <Image width={200} height={200} src={offer?.image} alt={"Special Offers"} className="object-cover w-full h-full" quality={100}/>
-                    </div>
-                ))}
+            <div className=" w-full h-[calc(100dvh-180px)] gap-[20px] mt-[25px]">
+                {renderImages()}
             </div>
         </section>
     )
 }
 
-export default SpecialOffers
+export default SpecialOffers;

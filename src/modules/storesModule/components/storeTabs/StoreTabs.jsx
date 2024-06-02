@@ -77,7 +77,7 @@ const StoreTabs = ({mainData, aboutUs, categories, isServiceProvider}) => {
                 <Reviews/>
             </Tab>
         </Tabs>
-        <div className={`absolute end-0 me-2 flex rounded-md gap-2 md:gap-2 ${classes.icons}`}>
+        <div className={`absolute end-0 flex rounded-md justify-evenly w-full gap-2 md:gap-2 md:w-auto md:justify-normal ${classes.icons}`}>
             <Tooltip content={strings.SaveStore}>
                 <Button isIconOnly
                         className="p-[15px] border-2 rounded-md bg-transparent !w-[50px] !h-[50px] cursor-pointer !md:w-[54px] !md:h-[54px]">

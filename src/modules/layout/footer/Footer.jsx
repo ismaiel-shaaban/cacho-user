@@ -19,7 +19,7 @@ const Footer = () => {
                 classNames={{
                     inputWrapper: '!rounded-[10px] p-[8px]',
                 }}
-                       endContent={<Button className="bg-[--rate-color] text-white rounded-md px-[16px]">{strings.SubscribeNow}</Button>}
+                       endContent={<Button as={Link} href={"https://caco-dev.mimusoft.com/ar/vendors-hub/auth/login"} className="bg-[--rate-color] text-white rounded-md px-[16px]">{strings.SubscribeNow}</Button>}
                 />
             </span>
         </div>
