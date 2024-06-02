@@ -18,7 +18,7 @@ const ProductsStoreList = ({fetchUrl ,passMeta}) => {
     }, [fetchUrl]);
 
     const {data, error, isLoading} = useSWR(url, fetcher, {
-        revalidateOnFocus: false,
+        revalidateOnFocus: true,
         dedupingInterval: 60000, // 1 minute
     });
 

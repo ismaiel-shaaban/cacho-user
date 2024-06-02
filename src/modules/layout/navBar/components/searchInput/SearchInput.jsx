@@ -9,7 +9,7 @@ import Image from "next/image";
 
 const SearchInput = () => {
     const [searchQuery, setSearchQuery] = useState("");
-    const [selectedCategory, setSelectedCategory] = useState("categories");
+    const [selectedCategory, setSelectedCategory] = useState("stores");
     const { data, isLoading, error } = useSearch(searchQuery, selectedCategory);
     const [isFocus, setIsFocus] = useState(false)
 

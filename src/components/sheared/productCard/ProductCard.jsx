@@ -34,13 +34,11 @@ const ProductCard = ({product}) => {
 
     return (
         <Card
-            dir={lang === "ar" ? "rtl" : "ltr"}
+            dir={strings.getLanguage() === "ar" ? "rtl" : "ltr" }
             className={`shadow-none !transition !duration-300 hover:shadow-xl`}
-            as={Link}
-            href={`/product/${uuid}`}
         >
             <CardBody className='relative p-0 overflow-hidden'>
-                <div className='h-[190px]'>
+                <Link href={`/product/${uuid}`} className='h-[190px]'>
                     <Image
                         quality={100}
                         width={292}
@@ -50,7 +48,7 @@ const ProductCard = ({product}) => {
                         className='object-cover w-full'
                         style={{height: "inherit"}}
                     />
-                </div>
+                </Link>
                 <div className={`absolute right-0 top-0 mt-[15px] mr-[15px]`}>
                     <BookMark
                         productId={uuid}
@@ -65,7 +63,7 @@ const ProductCard = ({product}) => {
                         {discountLabel}
                     </div>
                 )}
-                <div className='p-[15px] h-full flex flex-col justify-between'>
+                <Link href={`/product/${uuid}`} className='p-[15px] h-full flex flex-col justify-between'>
                     <div>
                         <div className='flex justify-between items-center mb-[5px]'>
                         <span className='text-sm text-gray-400'>
@@ -81,7 +79,7 @@ const ProductCard = ({product}) => {
                                 rating={product.rating}
                             />
                         </div>
-                        <h3 className='text-md font-medium mb-[10px] leading-7'>{name}</h3>
+                        <h3 className='text-md font-medium mb-[10px] leading-7 text-start' dir={strings.getLanguage() === "ar" ? "rtl" : "ltr" }>{name}</h3>
                     </div>
                     <div className='flex items-center justify-between'>
                         <div className='flex items-center gap-2'>
@@ -112,7 +110,7 @@ const ProductCard = ({product}) => {
                             {strings.details}
                         </Button>
                     </div>
-                </div>
+                </Link>
             </CardBody>
         </Card>
     );

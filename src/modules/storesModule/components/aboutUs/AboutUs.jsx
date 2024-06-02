@@ -12,10 +12,15 @@ import {Fragment, useEffect, useState} from "react";
 import {fetcher} from "@/utilis/fetcherFUN";
 import CategoriesSkeleton from "@/modules/landingPageModule/categories/components/CategoriesSkeleton";
 import Image from "next/image";
+// import "./AboutUs.css"
 
 const AboutUs = ({aboutUs}) => {
     const [productsImages, setProductsImages] = useState([]);
-    const {data , error , isLoading} = useSWR(`https://caco-dev.mimusoft.com/api/customer/businesses/${aboutUs.uuid}/products` , fetcher)
+    const {
+        data,
+        error,
+        isLoading
+    } = useSWR(`https://caco-dev.mimusoft.com/api/customer/businesses/${aboutUs.uuid}/products`, fetcher)
     useEffect(() => {
         if (data?.response?.data.length > 0) {
             let images = data.response.data.flat().reduce((acc, item) => {
@@ -42,9 +47,10 @@ const AboutUs = ({aboutUs}) => {
             </div>
             <div className="flex items-center gap-[20px]">
                 <Chip
-                      classNames={{base: `text-white ${aboutUs.isOpen ? "bg-success" : "bg-[--red]"}`}}
-                      endContent={aboutUs.isOpen ? <GoDotFill/> : null}>{aboutUs.isOpen ? strings.Open : strings.Closed}</Chip>
-                { aboutUs.workingDays &&
+                    classNames={{base: `text-white ${aboutUs.isOpen ? "bg-success" : "bg-[--red]"}`}}
+                    endContent={aboutUs.isOpen ?
+                        <GoDotFill/> : null}>{aboutUs.isOpen ? strings.Open : strings.Closed}</Chip>
+                {aboutUs.workingDays &&
                     <Chip variant="bordered" classNames={{
                         base: "border-[--primary-color] text-[--primary-color]"
                     }}>{aboutUs.workingDays}</Chip>
@@ -57,9 +63,10 @@ const AboutUs = ({aboutUs}) => {
             </h3>
             <Swiper
                 modules={[Autoplay, FreeMode]}
+                className={`about-swiper`}
                 slidesPerView={7}
                 freeMode={true}
-                spaceBetween={20}
+                spaceBetween={10}
                 centeredSlides={false}
                 autoplay={{
                     delay: 3000,
@@ -67,8 +74,12 @@ const AboutUs = ({aboutUs}) => {
                 }}
                 loop={true}
                 breakpoints={{
-                    320: {
+                    319:{
                         slidesPerView: 2,
+                        spaceBetween: 10,
+                    },
+                    425: {
+                        slidesPerView: 3,
                         spaceBetween: 10,
                     },
                     768: {
@@ -84,21 +95,22 @@ const AboutUs = ({aboutUs}) => {
                 {isLoading ? (
                     [...Array(8)].map((_, index) => (
                         <SwiperSlide key={index}>
-                            <CategoriesSkeleton />
+                            <CategoriesSkeleton/>
                         </SwiperSlide>
                     ))
                 ) : (
-                        <Fragment>
-                            {
-                                productsImages.map((image, index) => (
-                                    <SwiperSlide key={`${index}`}>
-                                        <div>
-                                            <Image quality={100} width={150} height={150} src={image} alt="product" className="object-cover w-full h-full" />
-                                        </div>
-                                    </SwiperSlide>
-                                ))
-                            }
-                        </Fragment>
+                    <Fragment>
+                        {
+                            productsImages.map((image, index) => (
+                                <SwiperSlide key={`${index}`}>
+
+                                    <Image quality={100} width={150} height={150} src={image} alt="product"
+                                           className="object-cover !w-[160px] !h-[160px] rounded"/>
+
+                                </SwiperSlide>
+                            ))
+                        }
+                    </Fragment>
                 )}
             </Swiper>
         </div>

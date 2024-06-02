@@ -30,7 +30,7 @@ const Reviews = () => {
     const {
         data, error, size, setSize, isLoading, isValidating
     } = useSWRInfinite(getKey, fetcher, {
-        revalidateOnFocus: false, dedupingInterval: 60000, // 1 minute
+        revalidateOnFocus: true, dedupingInterval: 60000, // 1 minute
     });
 
     const handleShowMore = () => {

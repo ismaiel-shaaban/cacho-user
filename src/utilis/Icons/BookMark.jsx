@@ -3,35 +3,54 @@ import {getCookie} from "cookies-next";
 import {fetchUserData} from "@/utilis/getUserData";
 import {useDisclosure} from "@nextui-org/react";
 import SuggestLoginModal from "@/modules/modalsModule/SuggestLoginModal";
+import ConfirmPhoneModal from "@/modules/modalsModule/ConfirmPhoneModal";
 
 const BookMark = ({productId, isSaved, isProduct}) => {
     const {isOpen, onOpen, onOpenChange} = useDisclosure();
     const [isSavedState, setIsSavedState] = useState(isSaved);
+    const [needVerification, setNeedVerification] = useState(false);
+    const [email, setEmail] = useState("");
 
     const handleClick = async () => {
 
         const token = getCookie('token')
-        const userData = await fetchUserData(token)
-
-        if (userData) {
-            try {
-                await fetch(`https://caco-dev.mimusoft.com/api/customer/${isProduct ? "products" : "businesses"}/${productId}/favourite`, {
-                    method: isSavedState ? "DELETE" : "POST", headers: {
-                        "Content-Type": "application/json", "Authorization": `Bearer ${token}`
-                    },
-                });
-                console.log("Operation Successful", isSavedState ? "Removed from favorites" : "Added to favorites");
-                setIsSavedState(!isSavedState);
-            } catch (e) {
-                console.log(e);
+        try {
+            const userData = await fetchUserData(token)
+            if (userData) {
+                setEmail(userData.email)
+                if (userData.needVerification === true) {
+                    setNeedVerification(true)
+                    const sendCode = await fetch("https://caco-dev.mimusoft.com/api/customer/auth/code/send", {
+                        method: "POST", headers: {
+                            "Content-Type": "application/json"
+                        }, body: JSON.stringify({
+                            "username": email
+                        })
+                    });
+                    const res = await sendCode.json()
+                    if (res.code === 200 || res.code === 401) {
+                        onOpen()
+                    }
+                } else {
+                    await fetch(`https://caco-dev.mimusoft.com/api/customer/${isProduct ? "products" : "businesses"}/${productId}/favourite`, {
+                        method: isSavedState ? "DELETE" : "POST", headers: {
+                            "Content-Type": "application/json", "Authorization": `Bearer ${token}`
+                        },
+                    });
+                    console.log("Operation Successful", isSavedState ? "Removed from favorites" : "Added to favorites");
+                    setIsSavedState(!isSavedState);
+                }
+            } else {
+                onOpen()
             }
-        } else {
-            onOpen()
+        } catch (e) {
+            console.log(e);
         }
+
     };
 
     return (<>
-        <div onClick={handleClick} className="p-2 backdrop-blur-md bg-white/85 rounded-md cursor-pointer">
+        <div onClick={handleClick} className="p-2 backdrop-blur-md bg-white/85 rounded-md cursor-pointer z-10">
             {isSavedState === false ? <span>
            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M6.9375 6.78711C8.2725 7.27461 9.7275 7.27461 11.0625 6.78711" stroke="#8E8E93" strokeWidth="1.125"
@@ -52,7 +71,8 @@ const BookMark = ({productId, isSaved, isProduct}) => {
             </svg>
         </span>}
         </div>
-        <SuggestLoginModal isOpen={isOpen} onOpenChange={onOpenChange}/>
+        {isOpen && needVerification === false && <SuggestLoginModal isOpen={isOpen} onOpenChange={onOpenChange}/>}
+        {isOpen && <ConfirmPhoneModal email={email} isOpen={isOpen} onOpenChange={onOpenChange}/>}
     </>)
 }
 

@@ -9,7 +9,7 @@ import {strings} from "@/utilis/Localization";
 
 const ProductOfferTab = ({offerId}) => {
     const {data, error, isLoading} = useSWR(`https://caco-dev.mimusoft.com/api/customer/offers/${offerId}/products?with=business`, fetcher, {
-        revalidateOnFocus: false, dedupingInterval: 60000, // 1 minute
+        revalidateOnFocus: true, dedupingInterval: 60000, // 1 minute
     });
     if (isLoading) return <SkeletonProducts col={3}/>;
     if (error) return <ErrorFetch/>;

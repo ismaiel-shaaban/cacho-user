@@ -22,7 +22,7 @@ const Nearest = () => {
     const {
         data, error, isLoading
     } = useSWR(`https://caco-dev.mimusoft.com/api/customer/businesses?with=businessType&[lat]=${location.lat}&[lng]=${location.long}`, fetcher, {
-        revalidateOnFocus: false, dedupingInterval: 60000, // 1 minute
+        revalidateOnFocus: true, dedupingInterval: 60000, // 1 minute
     })
     if (isLoading) return <div className="container mt-[40px]">
         <SkeletonProducts col={4}/>

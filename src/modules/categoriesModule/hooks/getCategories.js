@@ -6,7 +6,7 @@ export const useCategoriesData = () => {
     const url = `https://caco-dev.mimusoft.com/api/customer/business-types`;
 
     const { data, error , isLoading } = useSWR(url, fetcher, {
-        revalidateOnFocus: false,
+        revalidateOnFocus: true,
         dedupingInterval: 60000, // 1 minute
     });
 

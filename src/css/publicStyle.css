@@ -79,3 +79,7 @@ body::-webkit-scrollbar-thumb {
 .video .html5-video-player .html5-video-player:not:first-child{
     display: none !important;
 }
+
+.about-swiper .swiper-wrapper {
+    align-items: center;
+}

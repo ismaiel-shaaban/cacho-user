@@ -33,7 +33,7 @@ const OfferCard = ({ offer }) => {
                                     <span>{strings.by} </span>
                                     <span className="text-[--primary-color]">{offer.business.title}</span>
                                 </span>
-                                <h3 className="text-md font-medium mb-[10px] leading-7">{offer.title}</h3>
+                                <h3 className="text-md font-medium mb-[10px] leading-7 text-start">{offer.title}</h3>
                             </div>
                             {!offer.isUnlimited && <span className="text-sm">
                                 <div>

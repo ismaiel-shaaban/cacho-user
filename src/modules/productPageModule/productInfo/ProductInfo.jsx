@@ -1,10 +1,8 @@
 import {useState} from "react";
 import {Button, Chip, useDisclosure} from "@nextui-org/react";
 import {strings} from "@/utilis/Localization";
-import classes from "./ProductInfo.module.css";
 import BookMark from "@/utilis/Icons/BookMark";
 import TextMessageIcon from "@/utilis/Icons/TextMessageIcon";
-import SaveIcon from "@/utilis/Icons/SaveIcon";
 import Link from "next/link";
 import {FaWhatsapp} from "react-icons/fa";
 import {calculateDiscountPercentage} from "@/utilis/calculateDiscountPercentage";
@@ -13,10 +11,13 @@ import {fetchUserData} from "@/utilis/getUserData";
 import SuggestLoginModal from "@/modules/modalsModule/SuggestLoginModal";
 import {useRouter} from "next/router";
 import {formatPhoneNumber} from "@/utilis/formatPhoneNumber";
+import ConfirmPhoneModal from "@/modules/modalsModule/ConfirmPhoneModal";
 
 const ProductInfo = ({info, images}) => {
     const router = useRouter()
     const {isOpen, onOpen, onOpenChange} = useDisclosure();
+    const [needVerification, setNeedVerification] = useState(false);
+    const [email, setEmail] = useState("");
 
 
     const handleChatWithStore = async () => {
@@ -24,17 +25,36 @@ const ProductInfo = ({info, images}) => {
         try {
             const userData = await fetchUserData(token)
             if (userData) {
-                const response = await fetch(`https://caco-dev.mimusoft.com/api/customer/businesses/${info.business.uuid}/chats`, {
-                    method: "POST", headers: {
-                        "Authorization": "Bearer " + token, "Content-Type": "application/json"
+                setEmail(userData.email)
+                if (userData.needVerification === true) {
+                    setNeedVerification(true)
+                    const sendCode = await fetch("https://caco-dev.mimusoft.com/api/customer/auth/code/send", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify({
+                            "username":email
+                        })
+                    });
+                    const res = await sendCode.json()
+                    if (res.code === 200 || res.code === 401) {
+                        onOpen()
                     }
-                });
-                const data = await response.json();
-                const chatId = data.response.uuid; // Adjust this based on your API response structure
+                } else {
+                    setNeedVerification(false)
+                    const response = await fetch(`https://caco-dev.mimusoft.com/api/customer/businesses/${info.business.uuid}/chats`, {
+                        method: "POST", headers: {
+                            "Authorization": "Bearer " + token, "Content-Type": "application/json"
+                        }
+                    });
+                    const data = await response.json();
+                    const chatId = data.response.uuid; // Adjust this based on your API response structure
 
-                router.push({
-                    pathname: "/chat", query: {chatId: chatId},
-                });
+                    router.push({
+                        pathname: "/chat", query: {chatId: chatId},
+                    })
+                }
             } else {
                 onOpen()
             }
@@ -66,16 +86,17 @@ const ProductInfo = ({info, images}) => {
                             <span className="text-[10px] text-gray-400 font-normal leading-5">{strings.egp}</span>
                     </span>}
 
-                    <span className={`font-[600] ${info?.priceAfterDiscount === 0 || info?.priceAfterDiscount === null ? null : "text-gray-400"}`}>
-                        <span className={`${ info?.priceAfterDiscount === 0 || info?.priceAfterDiscount === null ? "" : "line-through"}`}>{info?.price}</span>
+                    <span
+                        className={`font-[600] ${info?.priceAfterDiscount === 0 || info?.priceAfterDiscount === null ? null : "text-gray-400"}`}>
+                        <span
+                            className={`${info?.priceAfterDiscount === 0 || info?.priceAfterDiscount === null ? "" : "line-through"}`}>{info?.price}</span>
                         <span
                             className="text-[10px] text-gray-400 font-normal leading-5 no-underline">{strings.egp}</span>
                     </span>
-                    {
-                        info?.priceAfterDiscount === 0 || info?.priceAfterDiscount === null ? null : <Chip size="md" className="bg-[--red] text-white px-3 rounded-[10px]">
+                    {info?.priceAfterDiscount === 0 || info?.priceAfterDiscount === null ? null :
+                        <Chip size="md" className="bg-[--red] text-white px-3 rounded-[10px]">
                             {discountPercentage}% {strings.off}
-                        </Chip>
-                    }
+                        </Chip>}
                 </div>
             </div>
             <div>
@@ -116,7 +137,8 @@ const ProductInfo = ({info, images}) => {
 
 
         </div>
-        <SuggestLoginModal isOpen={isOpen} onOpenChange={onOpenChange}/>
+        {isOpen && needVerification === false && <SuggestLoginModal isOpen={isOpen} onOpenChange={onOpenChange}/>}
+        {isOpen && <ConfirmPhoneModal email={email} isOpen={isOpen} onOpenChange={onOpenChange}/>}
     </>);
 };
 

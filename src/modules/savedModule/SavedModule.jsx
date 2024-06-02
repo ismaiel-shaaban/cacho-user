@@ -15,7 +15,7 @@ const SavedModule = () => {
     const {
         data, isLoading, error
     } = useSWR(`https://caco-dev.mimusoft.com/api/customer/favourites?with=business`, fetcher, {
-        revalidateOnFocus: false,
+        revalidateOnFocus: true,
     });
     useEffect(() => {
         if (data) {
