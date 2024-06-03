@@ -31,7 +31,7 @@ const StoresCard = ({store}) => {
                     {store.isOpen ? strings.Open : strings.Closed}
                 </div>
                 <Link href={`/Stores/${store.uuid}`}
-                      className={`p-[15px] flex items-center ${strings.getLanguage() === "ar" && "justify-between"} gap-3`}>
+                      className={`p-[15px] flex items-center justify-between gap-3`}>
                     <div className={"flex flex-col"}>
                         <h3 className="text-md font-medium mb-[10px] leading-7 text-start">
                             <Link href={`/Stores/${store.uuid}`}>{store.title}</Link>
