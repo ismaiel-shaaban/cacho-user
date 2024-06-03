@@ -6,7 +6,6 @@ import { strings } from '@/utilis/Localization';
 import NavBar from "@/modules/layout/navBar/NavBar";
 import Footer from "@/modules/layout/footer/Footer";
 import { fetchLocation } from "@/utilis/getUserLocation";
-import { getCookie } from "cookies-next";
 import { useRouter } from 'next/router';
 
 const cairo = Cairo({

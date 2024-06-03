@@ -31,7 +31,7 @@ const StoreModule = ({ passTitle }) => {
     return (<div>
         <StoreVideo video={data?.response?.video} image={data?.response?.image} />
         <div className={"container"}>
-        <StoreTabs mainData={mainData} aboutUs={aboutUs} categories={data?.response?.businessType?.categories} isServiceProvider={data?.response?.isServiceProvider} />
+        <StoreTabs mainData={mainData} aboutUs={aboutUs} categories={data?.response?.categories} isServiceProvider={data?.response?.isServiceProvider} />
         </div>
     </div>);
 };
