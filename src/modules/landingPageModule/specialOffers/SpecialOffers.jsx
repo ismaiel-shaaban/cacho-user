@@ -13,7 +13,6 @@ const SpecialOffers = () => {
 
     const renderImages = () => {
         const numImages = data?.response?.data.length;
-        console.log("numImages" ,numImages)
         if (numImages === 1) {
             return (
                 <div className="w-full h-full rounded-md overflow-hidden cursor-pointer"

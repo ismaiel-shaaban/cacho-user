@@ -5,13 +5,10 @@ import Rating from "@/components/sheared/rateing/Rating";
 import StoreImage from "@/components/sheared/storeImage/StoreImage";
 import {strings} from "@/utilis/Localization";
 import Image from "next/image";
-import {PiEyeLight} from "react-icons/pi";
 import {FaRegEye} from "react-icons/fa";
 
 const StoresCard = ({store}) => {
     const statusColor = store.isOpen ? "bg-[--green]" : "bg-[--red]";
-
-    console.log(store)
     return (<Card dir={strings.getLanguage() === "ar" ? "rtl" : "ltr"}
                   className="shadow-none !transition !duration-300 hover:shadow-xl">
             <CardBody className="p-0 overflow-hidden relative justify-between">

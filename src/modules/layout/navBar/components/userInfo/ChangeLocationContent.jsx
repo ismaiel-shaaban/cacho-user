@@ -3,8 +3,9 @@ import GooglePlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-goo
 import { memo, useCallback, useEffect, useState } from "react";
 import { fetchLocation } from "@/utilis/getUserLocation";
 import { strings } from "@/utilis/Localization";
+import {Button} from "@nextui-org/react";
 
-const ChangeLocationContent = ({ onLocationChange }) => {
+const ChangeLocationContent = ({ onLocationChange ,onClose }) => {
     const [userLocation, setUserLocation] = useState("");
     const [value, setValue] = useState(null);
     const { isLoaded } = useJsApiLoader({
@@ -42,7 +43,6 @@ const ChangeLocationContent = ({ onLocationChange }) => {
         });
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [center]);
-    console.log("Value", value)
     useEffect(() => {
         if (value) {
             geocodeByAddress(value.value.description)
@@ -58,39 +58,41 @@ const ChangeLocationContent = ({ onLocationChange }) => {
 
     }
 
-    return (<div className="p-5 mb-5 relative">
-        <button className="px-[100px] py-4 absolute  bottom-0 z-2 left-[25%] bg-blue-500 text-white rounded-2"> confirm</button>
-        {isLoaded ? (<GoogleMap
-            id="marker-example"
-            zoom={10}
-            mapContainerStyle={{ height: "400px", width: "100%" }}
-            onLoad={onLoad}
-            onUnmount={onUnmount}
-            center={center}
-            onClick={(event) => { placeMarker(event.latLng.toJSON()); }}
-            options={{
-                mapTypeControl: false, // Disable map type control
-            }}
-        >
-            <div className='w-[65%] mx-auto mt-[20px]' dir={strings.getLanguage() === "ar" ? "rtl " : "ltr"}>
-                <GooglePlacesAutocomplete
-                    apiKey={"AIzaSyBhs9awrQC82lygPiy4Cq91xyX9s3WUjUI"} selectProps={{
+    return (<div className="p-5 relative">
+            {isLoaded ? (<GoogleMap
+                id="marker-example"
+                zoom={10}
+                mapContainerStyle={{height: "400px", width: "100%"}}
+                onLoad={onLoad}
+                onUnmount={onUnmount}
+                center={center}
+                onClick={(event) => {
+                    placeMarker(event.latLng.toJSON());
+                }}
+                options={{
+                    mapTypeControl: false, // Disable map type control
+                }}
+            >
+                <div className='w-[65%] mx-auto mt-[20px]' dir={strings.getLanguage() === "ar" ? "rtl " : "ltr"}>
+                    <GooglePlacesAutocomplete
+                        apiKey={"AIzaSyBhs9awrQC82lygPiy4Cq91xyX9s3WUjUI"} selectProps={{
                         value, onChange: setValue,
                     }}
+                    />
+
+                </div>
+
+
+                <Marker position={center}
+                        draggable={true}
+                        onDragEnd={(e) => {
+                            setCenter({lat: e.latLng.lat(), lng: e.latLng.lng()})
+                        }}
                 />
 
-            </div>
-
-
-            <Marker position={center}
-                draggable={true}
-                onDragEnd={(e) => {
-                    setCenter({ lat: e.latLng.lat(), lng: e.latLng.lng() })
-                }}
-            />
-
-        </GoogleMap>) : null}
-    </div>
+            </GoogleMap>) : null}
+            <div className={"flex justify-center"}><Button onClick={onClose} className={"bg-[--primary-color] text-white mt-3"}>{strings.Save}</Button></div>
+        </div>
 
     );
 }

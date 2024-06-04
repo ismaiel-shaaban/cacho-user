@@ -103,7 +103,7 @@ const UserInfo = ({userLocation}) => {
                     {token && <DropdownItem onClick={handelLogout} key="logout" color="danger">
                         <div className="flex items-center justify-start gap-2">
                             <span><LogoutIcon/></span>
-                            <span>Logout</span>
+                            <span>{strings.Logout}</span>
                         </div>
                     </DropdownItem>}
                 </DropdownMenu>

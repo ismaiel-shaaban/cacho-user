@@ -1,4 +1,4 @@
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {getCookie} from "cookies-next";
 import {fetchUserData} from "@/utilis/getUserData";
 import {useDisclosure} from "@nextui-org/react";
@@ -10,6 +10,10 @@ const BookMark = ({productId, isSaved, isProduct}) => {
     const [isSavedState, setIsSavedState] = useState(isSaved);
     const [needVerification, setNeedVerification] = useState(false);
     const [email, setEmail] = useState("");
+
+    useEffect(() => {
+        setIsSavedState(isSaved)
+    }, [isSaved]);
 
     const handleClick = async () => {
 
@@ -37,7 +41,6 @@ const BookMark = ({productId, isSaved, isProduct}) => {
                             "Content-Type": "application/json", "Authorization": `Bearer ${token}`
                         },
                     });
-                    console.log("Operation Successful", isSavedState ? "Removed from favorites" : "Added to favorites");
                     setIsSavedState(!isSavedState);
                 }
             } else {

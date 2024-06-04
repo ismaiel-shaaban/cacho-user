@@ -108,5 +108,14 @@
   "PasswordChangeSuccessfully": "Password Change Successfully",
   "InvalidVerificationCode": "Invalid verification code",
   "DeliveryCompanies": "Delivery Companies",
-  "WhatsAppMessage": "Hello, I am contacting you from CACHOO"
+  "WhatsAppMessage": "Hello, I am contacting you from CACHOO",
+  "Save": "Save",
+  "SelectChat": "Choose the Chat",
+  "ProfileUpdate": "Profile updated successfully",
+  "EditProfile": "Edit Profile",
+  "Edit": "Edit",
+  "Logout": "Logout",
+  "ChangePassword": "Change Password",
+  "ChangeLocation": "Change Location",
+  "OldPassword": "Old Password"
 }

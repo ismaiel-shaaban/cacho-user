@@ -4,6 +4,7 @@ import {Button, Input} from "@nextui-org/react";
 import {getCookie} from "cookies-next";
 import {mutate} from "swr";
 import {useRouter} from "next/router";
+import {strings} from "@/utilis/Localization";
 
 const EditProfileContent = () => {
     const [isLoading, setIsLoading] = useState(false);
@@ -49,22 +50,22 @@ const EditProfileContent = () => {
 
     return (<form onSubmit={handleSubmit}>
         <div className="flex flex-col justify-center items-center gap-6">
-            <h4 className="font-medium text-[24px]">Edit Profile</h4>
+            <h4 className="font-medium text-[24px]">{strings.EditProfile}</h4>
 
             <ImageUpload onChange={handleImageChange}/>
 
-            <Input size={"lg"} type={"text"} placeholder={"Name"}
+            <Input size={"lg"} type={"text"} placeholder={strings.Name}
                    className={"w-4/6"}
                    labelPlacement={"outside"}
-                   label={"Name"}
+                   label={strings.Name}
                    onChange={(e) => setFormData({...formData, name: e.target.value})}
                    classNames={{"label": "!text-[--gray-2]"}}
             />
             <Button className={"w-4/6 text-white bg-[--green]"} size={"lg"}
                     type={"submit"} isLoading={isLoading}
-            >Edit</Button>
+            >{strings.Edit}</Button>
             {error && <p className={"text-red-500"}>{error}</p>}
-            {isSuccess && <p className={"text-green-500"}>Profile updated successfully</p>}
+            {isSuccess && <p className={"text-green-500"}>{strings.ProfileUpdate}</p>}
         </div>
     </form>)
 }

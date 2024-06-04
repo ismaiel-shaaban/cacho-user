@@ -71,13 +71,14 @@ const NavBar = ({userLocation}) => {
         return <UserInfo userLocation={userLocation}/>;
     }, [userLocation]);
 
-    return (<Navbar onMenuOpenChange={setIsMenuOpen} className="p-0"
+
+    return (<Navbar onMenuOpenChange={setIsMenuOpen} isMenuOpen={isMenuOpen} className="p-0"
                     maxWidth={"xl"}
         // classNames={{wrapper: "!md:container"}}
                     aria-label="Main navigation"
                     dir={strings.getLanguage() === 'ar' ? 'rtl' : 'ltr'}>
         <NavbarContent justify="start" className={"gap-2 md:w-2/3"}>
-            <NavbarItem>
+            <NavbarItem onClick={()=>{setIsMenuOpen(false)}} >
                 <Logo/>
             </NavbarItem>
             <NavbarItem className="min-w-full hidden md:flex">
@@ -89,14 +90,14 @@ const NavBar = ({userLocation}) => {
                 <SelectLang/>
             </NavbarItem>
             {isLogin ? <>
-                <NavbarItem>
+                <NavbarItem onClick={()=>{setIsMenuOpen(false)}} >
                     <Link href={"/chat"} onClick={()=>(setIsNotification(false))}>
                         {isNotification ? <Badge content="" color="success" shape="circle" placement="top-right">
                             <MessagesIcon/>
                         </Badge>  :  <MessagesIcon/> }
                     </Link>
                 </NavbarItem>
-                <NavbarItem>
+                <NavbarItem onClick={()=>{setIsMenuOpen(false)}} >
                     <Link href={"/saved"}>
                         <Image quality={100} src={savedLink} alt={"bookmark"} width={24} height={24}/>
                     </Link>
@@ -108,7 +109,7 @@ const NavBar = ({userLocation}) => {
                     {memoizedUserInfo}
                 </NavbarItem>
             </> : <>
-                <NavbarItem>
+                <NavbarItem onClick={()=>{setIsMenuOpen(false)}} >
                     <Button className="bg-[--primary-color] text-white" as={Link}
                             href={"/login"}>{strings.LogIn}</Button>
                 </NavbarItem>
@@ -119,7 +120,7 @@ const NavBar = ({userLocation}) => {
         </NavbarContent>
         <NavbarContent className="flex lg:hidden" justify="end">
             <NavbarItem>
-                <NavbarMenuToggle
+                <NavbarMenuToggle className={"h-[24px]"}
                     aria-label={isMenuOpen ? "Close menu" : "Open menu"}
                 />
             </NavbarItem>
@@ -129,14 +130,14 @@ const NavBar = ({userLocation}) => {
                 <SearchInput/>
             </NavbarMenuItem>
             <div className="flex justify-around gap-3 flex-wrap">
-                <NavbarMenuItem>
+                <NavbarMenuItem onClick={()=>{setIsMenuOpen(false)}} >
                     <Link href={"/chat"}>
                         {isNotification ? <Badge content="" color="success" shape="circle" placement="top-right">
                             <MessagesIcon/>
                         </Badge>  :  <MessagesIcon/> }
                     </Link>
                 </NavbarMenuItem>
-                <NavbarMenuItem>
+                <NavbarMenuItem onClick={()=>{setIsMenuOpen(false)}} >
                     <Link href={"/saved"}>
                         <Image quality={100} src={savedLink} alt={"bookmark"} width={24} height={24}/>
                     </Link>
@@ -144,9 +145,12 @@ const NavBar = ({userLocation}) => {
                 <NavbarMenuItem>
                     {memoizedUserInfo}
                 </NavbarMenuItem>
+                <NavbarMenuItem>
+                    <SelectLang/>
+                </NavbarMenuItem>
             </div>
             {!isLogin && <div className="flex justify-center items-center gap-2 md:w-2/3">
-                <NavbarMenuItem>
+                <NavbarMenuItem onClick={()=>{setIsMenuOpen(false)}} >
                     <Button className="bg-[--primary-color] text-white" as={Link}
                             href={"/login"}>{strings.LogIn}</Button>
                 </NavbarMenuItem>

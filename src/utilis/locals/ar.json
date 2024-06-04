@@ -108,5 +108,14 @@
   "PasswordChangeSuccessfully": "تم تغيير كلمة المرور بنجاح",
   "InvalidVerificationCode": "رمز التحقق غير صالح",
   "DeliveryCompanies": "شركات التوصيل",
-  "WhatsAppMessage": "مرحبًا، أنا أتواصل معك من كاتشو"
+  "WhatsAppMessage": "مرحبًا، أنا أتواصل معك من كاتشو",
+  "Save": "حفظ",
+  "SelectChat": "أختر المحادثة",
+  "ProfileUpdate": "تم تحديث الملف الشخصي بنجاح",
+  "EditProfile": "تعديل الملف الشخصي",
+  "Edit": "تعديل",
+  "Logout": "تسجيل خروج",
+  "ChangePassword": "تعديل كلمة السر",
+  "ChangeLocation": "تعديل الموقع",
+  "OldPassword": "كلمة السر القديمة"
 }

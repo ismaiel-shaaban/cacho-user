@@ -103,21 +103,21 @@ const ChatBody = ({selectedChatData}) => {
     return (<div className=" bg-white h-[88vh] rounded-e-xl p-[24px] col-span-9 md:col-span-8">
         <div className="h-full">
             <div className="flex gap-4 items-center">
-                <div className="w-[50px] h-[50px]">
-                    <Image
-                        quality={100}
-                        width={50} height={50}
-                        src={selectedChatData?.business?.image ? selectedChatData?.business?.image : User}
-                        alt="User"
-                        className="rounded-md w-full object-cover"
-                    />
-                </div>
-                <div>
-                    <h3 className="text-[20px] font-medium">{selectedChatData?.business?.title}</h3>
-                    <p className="text-green-500 text-[14px] font-medium">
-                        Online <span className="text-gray-400">12:55 am</span>
-                    </p>
-                </div>
+                {selectedChatData !== null ? <><div className="w-[50px] h-[50px]">
+                        <Image
+                            quality={100}
+                            width={50} height={50}
+                            src={selectedChatData?.business?.image ? selectedChatData?.business?.image : User}
+                            alt="User"
+                            className="rounded-md w-full object-cover"
+                        />
+                    </div>
+                    <div>
+                        <h3 className="text-[20px] font-medium">{selectedChatData?.business?.title}</h3>
+                        <p className="text-green-500 text-[14px] font-medium">
+                            Online <span className="text-gray-400">12:55 am</span>
+                        </p>
+                    </div></> : <p>{strings.SelectChat}</p>}
             </div>
             <Divider className="my-2"/>
             <div className="flex flex-col justify-between h-[calc(100%-65px)]">
@@ -142,6 +142,8 @@ const ChatBody = ({selectedChatData}) => {
                     <Button
                         onClick={handleMessageSend}
                         className="bg-blue-500 text-white px-4 py-2 rounded-md"
+                        isDisabled={selectedChatData === null}
+
                     >
                         <VscSend size={20}/>
                     </Button>
@@ -153,6 +155,7 @@ const ChatBody = ({selectedChatData}) => {
                         className="p-[10px] w-full border-gray-300"
                         value={message}
                         onValueChange={setMessage}
+                        isDisabled={selectedChatData === null}
                     />
                 </div>
             </div>
