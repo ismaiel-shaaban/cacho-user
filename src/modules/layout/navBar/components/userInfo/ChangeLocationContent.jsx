@@ -58,7 +58,7 @@ const ChangeLocationContent = ({ onLocationChange ,onClose }) => {
 
     }
 
-    return (<div className="pt-4 relative">
+    return (<div className="mt-8 relative">
             {isLoaded ? (<GoogleMap
                 id="marker-example"
                 zoom={10}
@@ -91,7 +91,7 @@ const ChangeLocationContent = ({ onLocationChange ,onClose }) => {
                 />
 
             </GoogleMap>) : null}
-            <div className={"flex justify-center"}><Button onClick={onClose} className={"bg-[--primary-color] text-white mt-3"}>{strings.Save}</Button></div>
+            <div className={"flex justify-center"}><Button onClick={onClose} className={"bg-[--primary-color] text-white mt-3 w-full sm:w-auto"}>{strings.Save}</Button></div>
         </div>
 
     );

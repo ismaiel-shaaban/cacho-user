@@ -11,6 +11,7 @@ const SidebarStoresContent = ({dataCount}) => {
     const [values, setValues] = useState([]);
     const [oldIsSelected, setOldIsSelected] = useState(false)
     const [newIsSelected, setNewIsSelected] = useState(true)
+    const [nearestIsSelected, setNearestIsSelected] = useState(router.query.nearest)
 
     useEffect(() => {
         if(filter){
@@ -36,6 +37,11 @@ const SidebarStoresContent = ({dataCount}) => {
             setNewIsSelected(e.target.checked);
             if (e.target.checked) {
                 setOldIsSelected(false); // Uncheck the 'Old' checkbox if 'New' is checked
+            }
+        }else if (type === "location"){
+            setNearestIsSelected(e.target.checked);
+            if (e.target.checked) {
+                setNearestIsSelected(e.target.checked);
             }
         }
 
@@ -100,7 +106,7 @@ const SidebarStoresContent = ({dataCount}) => {
                     <Checkbox color={"primary"} className="my-2 text-[12px] text-[--gray-2]"
                               isSelected={newIsSelected} onChange={(e) => handleCheckbox(e, 'new')}
                               classNames={{label: "text-[12px] text-[--gray-2] font-[500] text-uppercase"}}>{strings.New}</Checkbox>
-                    <Checkbox color={"primary"} className="text-[12px] text-[--gray-2]" onChange={(e)=> handleCheckbox(e, 'location')}
+                    <Checkbox color={"primary"} isSelected={nearestIsSelected} className="text-[12px] text-[--gray-2]" onChange={(e)=> handleCheckbox(e, 'location')}
                               classNames={{label: "text-[12px] text-[--gray-2] font-[500]"}}>{strings.Nearest}</Checkbox>
                 </div>
             </div>

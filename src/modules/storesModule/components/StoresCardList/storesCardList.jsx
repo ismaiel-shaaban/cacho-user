@@ -17,7 +17,7 @@ const StoresCardList = ({page , filter ,passMetadata ,sort ,passDataCount ,neare
     if (error) return <p>Error</p>
     return (<div dir={strings.getLanguage() === "ar" ? "rtl" : "ltr"}
         className={`grid grid-cols-1 col-span-12 h-fit md:col-span-9 lg:grid-cols-3 sm:grid-cols-2 md:gap-[24px] gap-2 mt-[40px]`}>
-        {data?.response?.data.map((store) => (<StoresCard key={store.uuid} store={store}/>))}
+        {data?.response?.data.map((store,i) => (<StoresCard key={i} store={store}/>))}
         {data?.response?.data.length === 0 && <NotFound title={strings.NoStoresFound}/>}
     </div>);
 };
