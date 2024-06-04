@@ -58,7 +58,7 @@ const ChangeLocationContent = ({ onLocationChange ,onClose }) => {
 
     }
 
-    return (<div className="p-5 relative">
+    return (<div className="pt-4 relative">
             {isLoaded ? (<GoogleMap
                 id="marker-example"
                 zoom={10}

@@ -12,7 +12,7 @@ const UserModal = ({isOpen, onOpenChange, modalContent, passLocation}) => {
             <ModalContent>
                 {
                     (onClose) => (
-                        <ModalBody>
+                        <ModalBody className={"p-3"}>
                             {modalContent === "Edit Profile" && <EditProfileContent/>}
                             {modalContent === "Change Password" && <ChangePasswordContent/>}
                             {modalContent === "Change Location" &&
