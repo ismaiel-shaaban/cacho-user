@@ -50,7 +50,7 @@ const Reviews = () => {
     if (error) return <div>Error</div>;
     return (
         <>
-            <div className="grid grid-cols-1 gap-3 lg:grid-cols-3 sm:grid-cols-2"
+            <div className="grid grid-cols-1 gap-3 mt-12 md:mt-0 lg:grid-cols-3 sm:grid-cols-2"
                  dir={strings.getLanguage() === "ar" ? "rtl" : "ltr"}
             >
                 <div onClick={handleAddReview} className="cursor-pointer">
