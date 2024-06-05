@@ -8,7 +8,7 @@
 }
 @media (min-width: 354px) {
     .icons{
-        top: 88px
+        top: 114px
     }
 }
 @media (min-width: 768px) {
@@ -18,6 +18,6 @@
 }
 @media screen and (min-width: 1024px) {
     .icons{
-        top: 0px
+        top: 0
     }
 }

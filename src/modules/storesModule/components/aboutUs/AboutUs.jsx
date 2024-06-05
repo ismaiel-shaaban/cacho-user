@@ -35,7 +35,7 @@ const AboutUs = ({aboutUs}) => {
 
 
     return (<div dir={strings.getLanguage() === "ar" ? "rtl" : "ltr"}>
-        <div className="flex items-end gap-2 mt-5 md:mt-10 lg:mt-5 md:gap-[40px]">
+        <div className="flex items-end gap-2 mt-10 md:mt-10 lg:mt-0 md:gap-[40px]">
             <div className="flex gap-2">
                 <Image quality={100} width={60} height={60} src={aboutUs.image} alt={aboutUs.title}
                        className="block w-[60px] object-cover h-[60px] rounded-md overflow-hidden"/>

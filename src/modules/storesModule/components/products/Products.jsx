@@ -7,11 +7,12 @@ const Products = ({categories}) => {
     return (
         <Tabs variant={"light"} fullWidth={true} disallowEmptySelection={true}
               dir={strings.getLanguage() === "ar" ? "rtl" : "ltr"}
-              className={"md:mt-7"} classNames={{
+              classNames={{
             tabContent: "group-data-[selected=true]:text-[--primary-color] text-[--gray-2] text-[18px] font-[500]",
             tab:"bg-[--gray-in] w-fit rounded-md px-[12px] py-[6px]",
             cursor: "group-data-[selected=true]:bg-white rounded-md w-full",
             tabList: "gap-[20px]",
+            base:"mt-[47px] md:mt-0"
         }}>
             <Tab title={strings.All} key={"all"} >
                 <AllProductsTab/>
