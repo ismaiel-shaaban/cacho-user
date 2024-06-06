@@ -38,14 +38,15 @@ const ProductCard = ({product}) => {
             className={`shadow-none !transition !duration-300 hover:shadow-xl`}
         >
             <CardBody className='relative p-0 overflow-hidden'>
-                <Link href={`/product/${uuid}`} className='h-[190px]'>
+                <Link href={`/product/${uuid}`} className='h-[190px]' passHref>
                     <Image
                         quality={100}
                         width={292}
                         height={190}
                         src={images[0]}
+                        priority
                         alt={name}
-                        className='object-cover w-full'
+                        className='object-cover w-full h-full'
                         style={{height: "inherit"}}
                     />
                 </Link>

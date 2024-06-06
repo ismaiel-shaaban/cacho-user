@@ -16,7 +16,7 @@ const Offers = ()=>{
         </div>
     </Skeleton>;
     if (error) return <ErrorFetch/>;
-    if (data?.response?.data.length === 0) return <NotFound title={strings.NoItemsFound}/>;
+    if (data?.response?.data.length === 0) return <div className={"mt-8"}><NotFound title={strings.NoItemsFound}/></div>;
     return(
         <Tabs variant={"light"} fullWidth={true} className={"mt-5"}
               dir={strings.getLanguage() === "ar" ? "rtl" : "ltr"}

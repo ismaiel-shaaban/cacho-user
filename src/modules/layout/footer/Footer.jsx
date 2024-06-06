@@ -61,7 +61,7 @@ const Footer = () => {
         </div>
         <div className={"flex justify-center flex-coll items-center gap-4 sm:flex-row md:4/12 lg:w-3/12 mx-auto"}>
             <Link href={"/"}>
-                <Image quality={100} src={googleLogo} width={350} height={150} alt={"Google Store"}/>
+                <Image quality={100} src={googleLogo} priority width={350} height={150} alt={"Google Store"}/>
             </Link>
             <Link href={"/"}>
                 <Image quality={100} src={appStoreLogo}  width={350} height={150} alt={"appStoreLogo"}/>

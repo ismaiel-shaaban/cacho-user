@@ -14,21 +14,22 @@ const Nearest = () => {
         const long = localStorage.getItem('longitude');
         if (lat && long) {
             setLocation({
-                lat: lat,
-                long: long
+                lat,
+                long
             });
         }
     }, []);
     const {
         data, error, isLoading
-    } = useSWR(`https://caco-dev.mimusoft.com/api/customer/businesses?with=businessType&location[lat]=${location.lat}&location[lng]=${location.long}`, fetcher, {
-        revalidateOnFocus: true,revalidateOnMount:true ,revalidateIfStale:true
+    } = useSWR(`https://caco-dev.mimusoft.com/api/customer/businesses?with=businessType${location.lat && location.long ? `&location[lat]=${location.lat}&location[lng]=${location.long}` : ''}`, fetcher, {
+        revalidateOnFocus: true,
+        revalidateIfStale: true
     })
+
     if (isLoading) return <div className="container mt-[40px]">
         <SkeletonProducts col={4}/>
     </div>;
     if (error) return <ErrorFetch/>
-    console.log("data" ,data)
     return (
         <section className="container mt-[30px]"  dir={strings.getLanguage() === "ar" ? "rtl" : "ltr"}>
             <SectionTitle title={strings.Nearest} link={"/Stores?nearest=1&page=1"} select={true}/>
