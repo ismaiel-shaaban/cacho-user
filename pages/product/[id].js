@@ -7,12 +7,12 @@ import { useRouter } from "next/router";
 import useSWR from "swr";
 import Head from "next/head";
 import { fetcher } from "@/utilis/fetcherFUN";
-import {strings} from "@/utilis/Localization";
+import { strings } from "@/utilis/Localization";
 
 const ProductPage = () => {
     const router = useRouter()
     const { id } = router.query
-    const { data, error, isLoading } = useSWR(`https://caco-dev.mimusoft.com/api/customer/products/${id}?with=business`, fetcher, {
+    const { data, error, isLoading } = useSWR(`https://cachooapp.com/api/customer/products/${id}?with=business`, fetcher, {
         revalidateOnFocus: true,
         revalidateIfStale: false
     })

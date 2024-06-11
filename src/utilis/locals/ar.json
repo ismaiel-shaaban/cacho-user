@@ -51,7 +51,7 @@
   "Offers": "العروض",
   "Reviews": "التقييمات",
   "AddYourReview": "أضف تقييمك",
-  "SignUpFree": "سجل مجانا",
+  "SignUpFree": "سجل الآن",
   "Hi": "مرحبا",
   "Submit": "تقديم",
   "AddAComment": "أضف تعليق",
@@ -117,5 +117,6 @@
   "Logout": "تسجيل خروج",
   "ChangePassword": "تعديل كلمة السر",
   "ChangeLocation": "تعديل الموقع",
-  "OldPassword": "كلمة السر القديمة"
+  "OldPassword": "كلمة السر القديمة",
+  "FailedToLoadOffers": "فشل تحميل العروض."
 }

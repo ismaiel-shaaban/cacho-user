@@ -1,14 +1,14 @@
-import {useState} from "react";
-import {Button, Input} from "@nextui-org/react";
+import { useState } from "react";
+import { Button, Input } from "@nextui-org/react";
 import ForgetHeader from "@/modules/modalsModule/components/forgetHeader/ForgetHeader";
-import {strings} from "@/utilis/Localization";
+import { strings } from "@/utilis/Localization";
 
-const EnterPhoneNumber = ({onPhoneChange}) => {
+const EnterPhoneNumber = ({ onPhoneChange }) => {
     const [email, setEmail] = useState("");
     const [isEmailValid, setIsEmailValid] = useState(false);
     const [errorMessage, setErrorMessage] = useState("");
-    const [timer , setTimer] = useState(0) // Declare timer variable here
-    const [isLoading , setIsLoading] = useState(false);
+    const [timer, setTimer] = useState(0) // Declare timer variable here
+    const [isLoading, setIsLoading] = useState(false);
 
     const handleEmailChange = (e) => {
         const { value } = e.target;
@@ -28,13 +28,13 @@ const EnterPhoneNumber = ({onPhoneChange}) => {
     const handleContinue = async () => {
         setIsLoading(true)
         if (isEmailValid) {
-            const sendCode = await fetch("https://caco-dev.mimusoft.com/api/customer/auth/code/send", {
+            const sendCode = await fetch("https://cachooapp.com/api/customer/auth/code/send", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
                 },
                 body: JSON.stringify({
-                    "username":email
+                    "username": email
                 })
             });
             const response = await sendCode.json();
@@ -52,14 +52,14 @@ const EnterPhoneNumber = ({onPhoneChange}) => {
 
     return (
         <div className="flex flex-col gap-[34px] w-full mx-auto sm:w-2/3 md:p-9" dir={strings.getLanguage() === "ar" ? "rtl" : "ltr"}>
-            <ForgetHeader/>
+            <ForgetHeader />
             <div className={"flex flex-col gap-3 justify-between"}>
                 <Input
                     type="email"
                     label={strings.Email} placeholder={strings.EnterYourEmail}
                     labelPlacement="outside"
                     value={email}
-                    classNames={{label: "!text-[--gray-2]"}}
+                    classNames={{ label: "!text-[--gray-2]" }}
                     onChange={handleEmailChange}
                     isRequired={true}
                     size="lg"
@@ -70,7 +70,7 @@ const EnterPhoneNumber = ({onPhoneChange}) => {
             </div>
             <div>
                 <Button size="lg" isLoading={isLoading} isDisabled={!isEmailValid} className="bg-[--primary-color] text-white w-full"
-                        onClick={handleContinue}>{strings.Continue}</Button>
+                    onClick={handleContinue}>{strings.Continue}</Button>
             </div>
         </div>
     );

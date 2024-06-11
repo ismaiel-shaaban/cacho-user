@@ -1,41 +1,41 @@
-import {useEffect, useState} from "react";
-import {useRouter} from "next/router";
-import {deleteCookie, getCookie} from "cookies-next";
-import {Dropdown, DropdownItem, DropdownMenu, DropdownTrigger, useDisclosure, User} from "@nextui-org/react";
-import {LogoutIcon} from "@/utilis/Icons/LogoutIcon";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
+import { deleteCookie, getCookie } from "cookies-next";
+import { Dropdown, DropdownItem, DropdownMenu, DropdownTrigger, useDisclosure, User } from "@nextui-org/react";
+import { LogoutIcon } from "@/utilis/Icons/LogoutIcon";
 import EditProfile from "@/modules/layout/navBar/components/userInfo/EditProfile";
 import ChangePassword from "@/modules/layout/navBar/components/userInfo/ChangePassword";
 import ChangeLocation from "@/modules/layout/navBar/components/userInfo/ChangeLocation";
 import UserModal from "@/modules/modalsModule/UserModal";
-import {strings} from "@/utilis/Localization";
-import {useUserData} from "@/utilis/getUserData";
+import { strings } from "@/utilis/Localization";
+import { useUserData } from "@/utilis/getUserData";
 
-const UserInfo = ({userLocation}) => {
+const UserInfo = ({ userLocation }) => {
     const router = useRouter();
-    const {isOpen, onOpen, onOpenChange} = useDisclosure();
+    const { isOpen, onOpen, onOpenChange } = useDisclosure();
     const [modalContent, setModalContent] = useState(null);
     const [userLocationData, setUserLocationData] = useState(null);
     const [userData, setUserData] = useState({
-        name:"",
-        imageUrl:""
+        name: "",
+        imageUrl: ""
     });
     const token = getCookie("token")
-    const {data , error , isLoading} = useUserData(token)
+    const { data, error, isLoading } = useUserData(token)
     useEffect(() => {
-        if(data){
-            setUserData({imageUrl: data.avatar, name: strings.Hi + " " + data.name})
+        if (data) {
+            setUserData({ imageUrl: data.avatar, name: strings.Hi + " " + data.name })
         }
-        if(isLoading){
+        if (isLoading) {
             setUserData(strings.Loading)
         }
-        if (error){
+        if (error) {
             setUserData(strings.Error)
         }
-    }, [data , isLoading , error]);
+    }, [data, isLoading, error]);
 
-    useEffect(()=>{
+    useEffect(() => {
         setUserLocationData(userLocation)
-    },[userLocation])
+    }, [userLocation])
 
 
     const handleActionClick = (action) => {
@@ -44,7 +44,7 @@ const UserInfo = ({userLocation}) => {
     };
     const handelLogout = async () => {
         try {
-            const response = await fetch('https://caco-dev.mimusoft.com/api/customer/auth/logout', {
+            const response = await fetch('https://cachooapp.com/api/customer/auth/logout', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -70,7 +70,7 @@ const UserInfo = ({userLocation}) => {
                     <User
                         as="button"
                         avatarProps={{
-                        src:`${userData.imageUrl}`
+                            src: `${userData.imageUrl}`
                         }}
                         aria-label="User Info"
                         className="transition-transform"
@@ -87,22 +87,22 @@ const UserInfo = ({userLocation}) => {
                         token && <DropdownItem key="Edit Profile">
                             <EditProfile onClick={
                                 () => handleActionClick("Edit Profile")
-                            }/>
+                            } />
                         </DropdownItem>
                     }
                     {token && <DropdownItem key="Change Password">
                         <ChangePassword onClick={
                             () => handleActionClick("Change Password")
-                        }/>
+                        } />
                     </DropdownItem>}
                     <DropdownItem key="Change location">
                         <ChangeLocation onClick={
                             () => handleActionClick("Change Location")
-                        }/>
+                        } />
                     </DropdownItem>
                     {token && <DropdownItem onClick={handelLogout} key="logout" color="danger">
                         <div className="flex items-center justify-start gap-2">
-                            <span><LogoutIcon/></span>
+                            <span><LogoutIcon /></span>
                             <span>{strings.Logout}</span>
                         </div>
                     </DropdownItem>}
@@ -110,7 +110,7 @@ const UserInfo = ({userLocation}) => {
             </Dropdown>
             <UserModal isOpen={isOpen} onOpenChange={onOpenChange} modalContent={modalContent} passLocation={
                 (location) => setUserLocationData(location)
-            }/>
+            } />
         </>
     );
 }

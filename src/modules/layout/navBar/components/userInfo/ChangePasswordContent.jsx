@@ -1,10 +1,10 @@
 import Image from "next/image";
-import {useState} from "react";
+import { useState } from "react";
 import InputPassword from "@/components/sheared/inputPassword/InputPassword";
 import ChangePasswordImage from "../../../../../../public/changePassword.svg"
-import {Button} from "@nextui-org/react";
-import {strings} from "@/utilis/Localization";
-import {getCookie} from "cookies-next";
+import { Button } from "@nextui-org/react";
+import { strings } from "@/utilis/Localization";
+import { getCookie } from "cookies-next";
 
 const ChangePasswordContent = () => {
     const [isSuccess, setIsSuccess] = useState(false);
@@ -17,7 +17,7 @@ const ChangePasswordContent = () => {
         e.preventDefault();
         const token = getCookie("token")
         setIsLoading(true)
-        const req = await fetch("https://caco-dev.mimusoft.com/api/customer/profile", {
+        const req = await fetch("https://cachooapp.com/api/customer/profile", {
             method: "POST", headers: {
                 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`
             }, body: JSON.stringify({
@@ -38,29 +38,29 @@ const ChangePasswordContent = () => {
         <div>
             <h4 className="text-2xl font-medium mb-12">{strings.ChangePassword}</h4>
             <div>
-                <Image quality={100} src={ChangePasswordImage} width={240} height={240} alt={"Change Password"}/>
+                <Image quality={100} src={ChangePasswordImage} width={240} height={240} alt={"Change Password"} />
             </div>
         </div>
         <form onSubmit={handleSubmit}
-              className="flex flex-col items-center gap-[16px] w-full md:w-4/6 [&>div]:w-full">
+            className="flex flex-col items-center gap-[16px] w-full md:w-4/6 [&>div]:w-full">
             <InputPassword
                 label={strings.OldPassword}
                 placeholder={strings.OldPassword}
                 onPasswordChange={(value, isValid) => {
-                    setFormData({...formData, oldPassword: value});
+                    setFormData({ ...formData, oldPassword: value });
                 }}
             />
 
             <InputPassword label={strings.NewPassword} placeholder={strings.NewPassword}
-                           onPasswordChange={(value, isValid) => {
-                               setFormData({...formData, newPassword: value});
-                           }}/>
+                onPasswordChange={(value, isValid) => {
+                    setFormData({ ...formData, newPassword: value });
+                }} />
             <InputPassword label={strings.ConfirmPassword} placeholder={strings.ConfirmPassword}
-                           onPasswordChange={(value, isValid) => {
-                               setFormData({...formData, confirmPassword: value});
-                           }}/>
+                onPasswordChange={(value, isValid) => {
+                    setFormData({ ...formData, confirmPassword: value });
+                }} />
             <Button size={"lg"} type={"submit"} isLoading={isLoading}
-                    className="w-full text-white bg-[--primary-color] mt-[24px]">{strings.Save}</Button>
+                className="w-full text-white bg-[--primary-color] mt-[24px]">{strings.Save}</Button>
             {isSuccess && isLoading === false && <p className={"text-success"}>{strings.PasswordChangeSuccessfully}</p>}
             {error && isLoading === false && <p className={"text-red-500"}>{error}</p>}
         </form>

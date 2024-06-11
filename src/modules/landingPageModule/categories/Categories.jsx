@@ -6,27 +6,26 @@ import "swiper/css/pagination";
 import Card from "@/modules/categoriesModule/components/cards/card/Card";
 import SectionTitle from "@/modules/landingPageModule/components/sectionTitle/SectionTitle";
 import { strings } from "@/utilis/Localization";
-import {Fragment, useEffect, useState} from "react";
+import { Fragment, useEffect, useState } from "react";
 import CategoriesSkeleton from "@/modules/landingPageModule/categories/components/CategoriesSkeleton";
 import ErrorFetch from "@/components/sheared/erorrFetch/ErrorFetch";
-import {fetcher} from "@/utilis/fetcherFUN";
-import {getCookie} from "cookies-next";
+import { fetcher } from "@/utilis/fetcherFUN";
 
 
 const Categories = () => {
     const [categories, setCategories] = useState([]);
-    const { data, error , isLoading} = useSWR("https://caco-dev.mimusoft.com/api/customer/business-types", fetcher ,{
-        revalidateIfStale : false,
-        revalidateOnFocus : false,
+    const { data, error, isLoading } = useSWR("https://cachooapp.com/api/customer/business-types", fetcher, {
+        revalidateIfStale: false,
+        revalidateOnFocus: false,
     });
 
     useEffect(() => {
         if (data) {
-            setCategories(data.response.data );
+            setCategories(data.response.data);
         }
     }, [data]);
 
-    if (error) return <ErrorFetch/>;
+    if (error) return <ErrorFetch />;
 
     return (
         <section className="business-types container mt-[30px]">
@@ -69,7 +68,7 @@ const Categories = () => {
                             [...Array(3)].map((_, index) => (
                                 <Fragment key={index}>
                                     {categories.map((item) => (
-                                        <SwiperSlide key={item.uuid+index}>
+                                        <SwiperSlide key={item.uuid + index}>
                                             <Card item={item} />
                                         </SwiperSlide>
                                     ))}

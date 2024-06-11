@@ -13,7 +13,7 @@ import SkeletonPanner from "@/modules/landingPageModule/pannerModule/components/
 
 const fetcher = (url) => fetch(url).then((res) => res.json())
 const Panner = () => {
-    const { data, error, isLoading } = useSWR('https://caco-dev.mimusoft.com/api/customer/banners', fetcher, {
+    const { data, error, isLoading } = useSWR('https://cachooapp.com/api/customer/banners', fetcher, {
         revalidateOnFocus: true,
         revalidateIfStale: false
     })
@@ -22,7 +22,7 @@ const Panner = () => {
     </div>
     if (error) return <div>{error}</div>
 
-    console.log("data" ,data)
+    console.log("data", data)
     return (<section className="panner container mt-[20px]">
 
         <Swiper
@@ -42,7 +42,7 @@ const Panner = () => {
                     <div
                         className="relative h-[calc(65dvh-84px)] md:h-[calc(96dvh-84px)] w-full"
                     >
-                        <Image  alt="panner" src={item.image} priority={true} quality={100}
+                        <Image alt="panner" src={item.image} priority={true} quality={100}
                             layout="fill" sizes={"(max-width: 640px) 100vw, (max-width: 768px) 100vw, (max-width: 1024px) 100vw, 100vw"}
                             className="block h-[calc(100dvh-84px)] w-100 object-cover rounded-md" />
                         {/*<div*/}
@@ -55,13 +55,13 @@ const Panner = () => {
                             className="absolute flex items-center justify-center gap-3 text-center transform bottom-unit-28 left-unit-10">
                             <div>
                                 <h3 className="text-white font-[500] text-2xl mb-2">{item.business.title}</h3>
-                                { item.url &&
+                                {item.url &&
                                     <Link href={`${item.url}`}
-                                          className="flex items-center justify-center gap-1 px-2 bg-white rounded-md w-fit capitalize">
+                                        className="flex items-center justify-center gap-1 px-2 bg-white rounded-md w-fit capitalize">
                                         view
                                         <span className="text-white bg-black rounded-md">
-                                        <GoArrowUpRight size={18} />
-                                    </span>
+                                            <GoArrowUpRight size={18} />
+                                        </span>
                                     </Link>
                                 }
                             </div>

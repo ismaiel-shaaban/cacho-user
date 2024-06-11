@@ -51,7 +51,7 @@
   "Offers": "Offers",
   "Reviews": "Reviews",
   "AddYourReview": "Add Your Review",
-  "SignUpFree": "Sign Up Free",
+  "SignUpFree": "Sign Up Now",
   "Hi": "Hi",
   "Submit" : "Submit",
   "AddAComment": "Add a Comment",
@@ -117,5 +117,6 @@
   "Logout": "Logout",
   "ChangePassword": "Change Password",
   "ChangeLocation": "Change Location",
-  "OldPassword": "Old Password"
+  "OldPassword": "Old Password",
+  "FailedToLoadOffers": "Failed to load offers."
 }

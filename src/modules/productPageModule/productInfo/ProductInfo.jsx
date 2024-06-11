@@ -1,21 +1,21 @@
-import {useState} from "react";
-import {Button, Chip, useDisclosure} from "@nextui-org/react";
-import {strings} from "@/utilis/Localization";
+import { useState } from "react";
+import { Button, Chip, useDisclosure } from "@nextui-org/react";
+import { strings } from "@/utilis/Localization";
 import BookMark from "@/utilis/Icons/BookMark";
 import TextMessageIcon from "@/utilis/Icons/TextMessageIcon";
 import Link from "next/link";
-import {FaWhatsapp} from "react-icons/fa";
-import {calculateDiscountPercentage} from "@/utilis/calculateDiscountPercentage";
-import {getCookie} from "cookies-next";
-import {fetchUserData} from "@/utilis/getUserData";
+import { FaWhatsapp } from "react-icons/fa";
+import { calculateDiscountPercentage } from "@/utilis/calculateDiscountPercentage";
+import { getCookie } from "cookies-next";
+import { fetchUserData } from "@/utilis/getUserData";
 import SuggestLoginModal from "@/modules/modalsModule/SuggestLoginModal";
-import {useRouter} from "next/router";
-import {formatPhoneNumber} from "@/utilis/formatPhoneNumber";
+import { useRouter } from "next/router";
+import { formatPhoneNumber } from "@/utilis/formatPhoneNumber";
 import ConfirmPhoneModal from "@/modules/modalsModule/ConfirmPhoneModal";
 
-const ProductInfo = ({info, images}) => {
+const ProductInfo = ({ info, images }) => {
     const router = useRouter()
-    const {isOpen, onOpen, onOpenChange} = useDisclosure();
+    const { isOpen, onOpen, onOpenChange } = useDisclosure();
     const [needVerification, setNeedVerification] = useState(false);
     const [email, setEmail] = useState("");
 
@@ -28,13 +28,13 @@ const ProductInfo = ({info, images}) => {
                 setEmail(userData.email)
                 if (userData.needVerification === true) {
                     setNeedVerification(true)
-                    const sendCode = await fetch("https://caco-dev.mimusoft.com/api/customer/auth/code/send", {
+                    const sendCode = await fetch("https://cachooapp.com/api/customer/auth/code/send", {
                         method: "POST",
                         headers: {
                             "Content-Type": "application/json"
                         },
                         body: JSON.stringify({
-                            "username":email
+                            "username": email
                         })
                     });
                     const res = await sendCode.json()
@@ -43,7 +43,7 @@ const ProductInfo = ({info, images}) => {
                     }
                 } else {
                     setNeedVerification(false)
-                    const response = await fetch(`https://caco-dev.mimusoft.com/api/customer/businesses/${info.business.uuid}/chats`, {
+                    const response = await fetch(`https://cachooapp.com/api/customer/businesses/${info.business.uuid}/chats`, {
                         method: "POST", headers: {
                             "Authorization": "Bearer " + token, "Content-Type": "application/json"
                         }
@@ -52,7 +52,7 @@ const ProductInfo = ({info, images}) => {
                     const chatId = data.response.uuid; // Adjust this based on your API response structure
 
                     router.push({
-                        pathname: "/chat", query: {chatId: chatId},
+                        pathname: "/chat", query: { chatId: chatId },
                     })
                 }
             } else {
@@ -70,11 +70,11 @@ const ProductInfo = ({info, images}) => {
 
     return (<>
         <div className="col-span-12 lg:col-span-4 md:col-span-6"
-             dir={strings.getLanguage() === "ar" ? "rtl" : "ltr"}>
+            dir={strings.getLanguage() === "ar" ? "rtl" : "ltr"}>
             <p className="text-gray-400">
                 {strings.by} <span className="text-[--primary-color]">
-                <Link href={`/Stores/${info?.business?.uuid}`}>{info?.business?.title}</Link>
-            </span>
+                    <Link href={`/Stores/${info?.business?.uuid}`}>{info?.business?.title}</Link>
+                </span>
             </p>
             <h3 className="text-[32px] font-[600]">{info?.name}</h3>
 
@@ -82,9 +82,9 @@ const ProductInfo = ({info, images}) => {
                 <div className="flex items-center text-[32px] gap-3 md:gap-[25px]">
                     {info?.priceAfterDiscount === 0 || info?.priceAfterDiscount === null ? null :
                         <span className="font-[600]">
-                        {info?.priceAfterDiscount}
+                            {info?.priceAfterDiscount}
                             <span className="text-[10px] text-gray-400 font-normal leading-5">{strings.egp}</span>
-                    </span>}
+                        </span>}
 
                     <span
                         className={`font-[600] ${info?.priceAfterDiscount === 0 || info?.priceAfterDiscount === null ? null : "text-gray-400"}`}>
@@ -104,21 +104,21 @@ const ProductInfo = ({info, images}) => {
             </div>
             <div className="flex mt-2 gap-2">
                 <div className="w-1/6 h-[54px] flex items-center justify-center border-3 rounded-md">
-                    <BookMark isProduct={true} productId={info?.uuid} isSaved={info?.isFavourite}/>
+                    <BookMark isProduct={true} productId={info?.uuid} isSaved={info?.isFavourite} />
                 </div>
                 <Button onClick={handleChatWithStore}
-                        className="w-5/6 py-[16px] px-[10px] bg-[--rate-color] text-white h-[54px]"
-                        startContent={<TextMessageIcon/>}>
+                    className="w-5/6 py-[16px] px-[10px] bg-[--rate-color] text-white h-[54px]"
+                    startContent={<TextMessageIcon />}>
                     Chat
                 </Button>
             </div>
             {info.business.whatsapp && <div className={"w-5/6 ms-auto flex gap-2"}>
                 <span></span>
                 <Button as={Link} target={"_blank"}
-                        href={`https://wa.me/${formatPhoneNumber(info.business.whatsapp)}/?text=${encodedMessage}`}
-                        size={"lg"}
-                        startContent={<FaWhatsapp size={24}/>}
-                        className={"w-full mt-2 py-[16px] bg-[--green] px-[10px] text-white h-[54px]"}>
+                    href={`https://wa.me/${formatPhoneNumber(info.business.whatsapp)}/?text=${encodedMessage}`}
+                    size={"lg"}
+                    startContent={<FaWhatsapp size={24} />}
+                    className={"w-full mt-2 py-[16px] bg-[--green] px-[10px] text-white h-[54px]"}>
                     Whatsapp
                 </Button>
             </div>}
@@ -128,17 +128,17 @@ const ProductInfo = ({info, images}) => {
                     <div className={"flex gap-2 flex-wrap"}>
                         {info.details[key].map((detail, subIndex) => (
                             <Button key={`${key}-${subIndex}`} radius={"sm"} size={"sm"} isIconOnly
-                                    className={`${key !== "colors" && "border-[--rate-color]"} !p-0 w-[33px] h-[33px] text-[--rate-color] cursor-auto`}
-                                    variant="bordered"
-                                    style={{backgroundColor: detail}}>{key !== "colors" && detail}</Button>))}
+                                className={`${key !== "colors" && "border-[--rate-color]"} !p-0 w-[33px] h-[33px] text-[--rate-color] cursor-auto`}
+                                variant="bordered"
+                                style={{ backgroundColor: detail }}>{key !== "colors" && detail}</Button>))}
                     </div>
                 </div>))}
             </div>)}
 
 
         </div>
-        {isOpen && needVerification === false && <SuggestLoginModal isOpen={isOpen} onOpenChange={onOpenChange}/>}
-        {isOpen &&  needVerification === true && <ConfirmPhoneModal email={email} isOpen={isOpen} onOpenChange={onOpenChange}/>}
+        {isOpen && needVerification === false && <SuggestLoginModal isOpen={isOpen} onOpenChange={onOpenChange} />}
+        {isOpen && needVerification === true && <ConfirmPhoneModal email={email} isOpen={isOpen} onOpenChange={onOpenChange} />}
     </>);
 };
 

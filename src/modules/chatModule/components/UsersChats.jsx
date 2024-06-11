@@ -1,22 +1,22 @@
-import {useRouter} from "next/router";
-import {useEffect, useState} from "react";
-import {Input, Spinner} from "@nextui-org/react";
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
+import { Input, Spinner } from "@nextui-org/react";
 import useSWR from "swr";
 import { CiSearch } from "react-icons/ci";
-import {fetcher} from "@/utilis/fetcherFUN";
-import {strings} from "@/utilis/Localization";
+import { fetcher } from "@/utilis/fetcherFUN";
+import { strings } from "@/utilis/Localization";
 import Image from "next/image";
 
-const UsersChats = ({onSelectChat}) => {
+const UsersChats = ({ onSelectChat }) => {
     const router = useRouter();
     const [chats, setChats] = useState([]);
     const [selectedChat, setSelectedChat] = useState(null);
     const { data, isLoading, error } = useSWR(
-        "https://caco-dev.mimusoft.com/api/customer/chats?with=business",
+        "https://cachooapp.com/api/customer/chats?with=business",
         fetcher
     );
     useEffect(() => {
-        if (data){
+        if (data) {
             setChats(data.response.data);
         }
     }, [data]);
@@ -40,12 +40,12 @@ const UsersChats = ({onSelectChat}) => {
         const selectedChatData = chats.find((chat) => chat.uuid === chatId)
         setSelectedChat(chatId);
         router.push({
-            pathname:  router.pathname, query: {...router.query, chatId: chatId}
+            pathname: router.pathname, query: { ...router.query, chatId: chatId }
         })
         onSelectChat(selectedChatData)
     }
-    if (isLoading) return <Spinner/>
-    if(error) return <p>failed to load</p>
+    if (isLoading) return <Spinner />
+    if (error) return <p>failed to load</p>
     return (
         <div className="col-span-4 bg-white rounded-s-xl p-[24px] h-full">
             <div className="flex mb-[20px] flex-col">
@@ -68,9 +68,8 @@ const UsersChats = ({onSelectChat}) => {
                     <div
                         key={chat.uuid}
                         onClick={() => handleSelectChat(chat.uuid)}
-                        className={`chat-item flex items-center gap-[10px] p-[10px] rounded-md cursor-pointer ${
-                            selectedChat === chat.uuid ? "bg-gray-100" : ""
-                        }`}
+                        className={`chat-item flex items-center gap-[10px] p-[10px] rounded-md cursor-pointer ${selectedChat === chat.uuid ? "bg-gray-100" : ""
+                            }`}
                     >
                         <div className="bg-gray-300 w-[50px] h-[50px] rounded-full overflow-hidden flex items-center justify-center">
                             <Image

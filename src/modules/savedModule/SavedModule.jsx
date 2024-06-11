@@ -1,10 +1,10 @@
-import {Tab, Tabs} from "@nextui-org/react";
-import {ProductsTab} from "@/modules/savedModule/components/ProductsTab";
+import { Tab, Tabs } from "@nextui-org/react";
+import { ProductsTab } from "@/modules/savedModule/components/ProductsTab";
 import BusinessTab from "@/modules/savedModule/components/BusinessTab";
-import {strings} from "@/utilis/Localization";
+import { strings } from "@/utilis/Localization";
 import useSWR from "swr";
-import {fetcher} from "@/utilis/fetcherFUN";
-import {useEffect, useState} from "react";
+import { fetcher } from "@/utilis/fetcherFUN";
+import { useEffect, useState } from "react";
 import SkeletonProducts from "@/components/sheared/skeletonProducts/SkeletonProducts";
 
 
@@ -14,7 +14,7 @@ const SavedModule = () => {
     const [services, setServices] = useState([])
     const {
         data, isLoading, error
-    } = useSWR(`https://caco-dev.mimusoft.com/api/customer/favourites?with=business`, fetcher, {
+    } = useSWR(`https://cachooapp.com/api/customer/favourites?with=business`, fetcher, {
         revalidateOnFocus: true,
     });
     useEffect(() => {
@@ -45,18 +45,18 @@ const SavedModule = () => {
     return (<section className="container">
         <div>
             <Tabs aria-label="Options" variant={"underlined"}
-                  classNames={{
-                      base: "w-full justify-center",
-                  }}
+                classNames={{
+                    base: "w-full justify-center",
+                }}
             >
                 <Tab key="products" title={strings.Products}>
-                    {isLoading ? <SkeletonProducts col={2}/> : <ProductsTab products={products}/>}
+                    {isLoading ? <SkeletonProducts col={2} /> : <ProductsTab products={products} />}
                 </Tab>
                 <Tab key="services" title={strings.Services}>
-                    {isLoading ? <SkeletonProducts col={2}/> : <ProductsTab products={services}/>}
+                    {isLoading ? <SkeletonProducts col={2} /> : <ProductsTab products={services} />}
                 </Tab>
                 <Tab key="business" title={strings.Stores}>
-                    {isLoading ? <SkeletonProducts col={2}/> : <BusinessTab stores={stores}/>}
+                    {isLoading ? <SkeletonProducts col={2} /> : <BusinessTab stores={stores} />}
                 </Tab>
             </Tabs>
         </div>

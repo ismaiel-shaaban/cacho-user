@@ -1,13 +1,13 @@
-import {useState} from "react";
-import {Button, Modal, ModalBody, ModalContent, Textarea} from "@nextui-org/react";
+import { useState } from "react";
+import { Button, Modal, ModalBody, ModalContent, Textarea } from "@nextui-org/react";
 import StarGrayIcon from "@/utilis/Icons/StarGrayIcon";
 import ReactStars from "react-rating-stars-component";
-import {getCookie} from "cookies-next";
-import {strings} from "@/utilis/Localization";
+import { getCookie } from "cookies-next";
+import { strings } from "@/utilis/Localization";
 
-const AddReviewModal = ({isOpen, onOpenChange , id , isProduct = false}) => {
+const AddReviewModal = ({ isOpen, onOpenChange, id, isProduct = false }) => {
     const [rateForm, setRateForm] = useState({
-        rating: 1, comment: "", isAnonymous :false
+        rating: 1, comment: "", isAnonymous: false
     });
     const ratingChanged = (newRating) => {
         setRateForm({
@@ -19,10 +19,10 @@ const AddReviewModal = ({isOpen, onOpenChange , id , isProduct = false}) => {
         e.preventDefault();
         const token = await getCookie('token');
         let url
-        if (isProduct){
-            url = `https://caco-dev.mimusoft.com/api/customer/products/${id}/reviews`
+        if (isProduct) {
+            url = `https://cachooapp.com/api/customer/products/${id}/reviews`
         } else {
-            url = `https://caco-dev.mimusoft.com/api/customer/businesses/${id}/reviews`
+            url = `https://cachooapp.com/api/customer/businesses/${id}/reviews`
         }
         const res = await fetch(url, {
             method: 'POST',
@@ -35,16 +35,16 @@ const AddReviewModal = ({isOpen, onOpenChange , id , isProduct = false}) => {
         if (res.ok) {
             onOpenChange(false);
             setRateForm({
-                rating: 1, comment: "", isAnonymous :false
+                rating: 1, comment: "", isAnonymous: false
             })
         }
     };
 
     return (<Modal isOpen={isOpen}
-                   dir={strings.getLanguage() === "en" ? "ltr" : "rtl"}
-                   size={"3xl"} onOpenChange={onOpenChange} classNames={{
-        base: "p-[20px]",
-    }}>
+        dir={strings.getLanguage() === "en" ? "ltr" : "rtl"}
+        size={"3xl"} onOpenChange={onOpenChange} classNames={{
+            base: "p-[20px]",
+        }}>
         <ModalContent>
             <ModalBody>
                 <form onSubmit={handelSubmit}>
@@ -53,8 +53,8 @@ const AddReviewModal = ({isOpen, onOpenChange , id , isProduct = false}) => {
                         <ReactStars
                             count={5}
                             value={rateForm.rating}
-                            emptyIcon={<StarGrayIcon/>}
-                            fullIcon={<StarGrayIcon/>}
+                            emptyIcon={<StarGrayIcon />}
+                            fullIcon={<StarGrayIcon />}
                             onChange={ratingChanged}
                             isHalf={false}
                             edit={true}
@@ -77,8 +77,8 @@ const AddReviewModal = ({isOpen, onOpenChange , id , isProduct = false}) => {
                     </div>
                     <div className="flex justify-center mt-3">
                         <Button size={"lg"} isDisabled={rateForm.comment === ""}
-                                type={"submit"}
-                                className="bg-[--primary-color] text-white mx-auto md:w-1/2">{strings.Submit}</Button>
+                            type={"submit"}
+                            className="bg-[--primary-color] text-white mx-auto md:w-1/2">{strings.Submit}</Button>
                     </div>
                 </form>
             </ModalBody>

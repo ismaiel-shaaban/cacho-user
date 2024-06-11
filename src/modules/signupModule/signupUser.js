@@ -1,4 +1,4 @@
-export const signupUser = async (name,email, phone, password, password_confirmation, avatar) => {
+export const signupUser = async (name, email, phone, password, password_confirmation, avatar) => {
     const formDataApi = new FormData();
     formDataApi.append("avatar", avatar);
     formDataApi.append("name", name);
@@ -7,7 +7,7 @@ export const signupUser = async (name,email, phone, password, password_confirmat
     formDataApi.append("password", password);
     formDataApi.append("password_confirmation", password_confirmation);
 
-    const response = await fetch('https://caco-dev.mimusoft.com/api/customer/auth/register', {
+    const response = await fetch('https://cachooapp.com/api/customer/auth/register', {
         method: 'POST',
         body: formDataApi
     });

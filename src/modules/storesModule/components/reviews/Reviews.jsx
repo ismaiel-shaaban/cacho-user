@@ -1,4 +1,4 @@
-import {Fragment, useState} from "react";
+import { Fragment, useState } from "react";
 import { Button, Card, CardBody, useDisclosure } from "@nextui-org/react";
 import { useRouter } from "next/router";
 import Image from "next/image";
@@ -11,8 +11,8 @@ import StarGrayIcon from "@/utilis/Icons/StarGrayIcon";
 import messageQuestion from "../../../../../public/message-question.svg";
 import SuggestLoginModal from "@/modules/modalsModule/SuggestLoginModal";
 import { strings } from "@/utilis/Localization";
-import {getCookie} from "cookies-next";
-import {fetchUserData} from "@/utilis/getUserData";
+import { getCookie } from "cookies-next";
+import { fetchUserData } from "@/utilis/getUserData";
 
 const fetcher = (...args) => fetch(...args).then(res => res.json());
 
@@ -24,7 +24,7 @@ const Reviews = () => {
 
     const getKey = (pageIndex, previousPageData) => {
         if (previousPageData && !previousPageData.response.data.length) return null;
-        return `https://caco-dev.mimusoft.com/api/customer/businesses/${id}/reviews?with=customer&page=${pageIndex + 1}`;
+        return `https://cachooapp.com/api/customer/businesses/${id}/reviews?with=customer&page=${pageIndex + 1}`;
     };
 
     const {
@@ -51,7 +51,7 @@ const Reviews = () => {
     return (
         <>
             <div className="grid grid-cols-1 gap-3 mt-12 md:mt-0 lg:grid-cols-3 sm:grid-cols-2"
-                 dir={strings.getLanguage() === "ar" ? "rtl" : "ltr"}
+                dir={strings.getLanguage() === "ar" ? "rtl" : "ltr"}
             >
                 <div onClick={handleAddReview} className="cursor-pointer">
                     <Card classNames={{
