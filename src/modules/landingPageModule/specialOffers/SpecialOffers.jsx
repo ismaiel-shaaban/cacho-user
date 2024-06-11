@@ -49,8 +49,8 @@ const SpecialOffers = () => {
     );
 
     const renderThreeImages = (items) => (
-        <div className="flex w-full h-full gap-4">
-            <div className="w-1/2 h-full rounded-md overflow-hidden cursor-pointer"
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="rounded-md overflow-hidden cursor-pointer"
                  onClick={() => handleImageClick(items[0]?.business?.uuid)}>
                 <Image
                     width={200}
@@ -61,9 +61,9 @@ const SpecialOffers = () => {
                     quality={100}
                 />
             </div>
-            <div className="flex flex-col w-1/2 h-full gap-4">
+            <div className="grid grid-cols-1 gap-4">
                 {items.slice(1).map((item, index) => (
-                    <div key={index} className="w-full h-1/2 rounded-md overflow-hidden cursor-pointer"
+                    <div key={index} className="w-full h-full rounded-md overflow-hidden cursor-pointer"
                          onClick={() => handleImageClick(item?.business?.uuid)}>
                         <Image
                             width={200}
@@ -127,7 +127,7 @@ const SpecialOffers = () => {
     return (
         <section className="container mt-[30px]">
             <SectionTitle title={strings.SpecialOffers} />
-            <div className="w-full h-[calc(100dvh-180px)] gap-[20px] mt-[25px]">
+            <div className="w-full gap-[20px] mt-[25px]">
                 {renderImages()}
             </div>
         </section>
