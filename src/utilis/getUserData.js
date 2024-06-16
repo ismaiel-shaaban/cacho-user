@@ -7,7 +7,7 @@ export async function fetchUserData(token) {
             // If there is no token, return null
             return null;
         }
-        const res = await fetch('https://cachooapp.com/api/customer/profile', {
+        const res = await fetch('https://management.cachooapp.com/api/customer/profile', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -25,7 +25,7 @@ export async function fetchUserData(token) {
 }
 
 export const useUserData = (token) => {
-    const { data, error, isLoading } = useSWR(token ? 'https://cachooapp.com/api/customer/profile' : null, fetcher);
+    const { data, error, isLoading } = useSWR(token ? 'https://management.cachooapp.com/api/customer/profile' : null, fetcher);
     return {
         data,
         error,

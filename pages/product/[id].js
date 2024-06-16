@@ -12,7 +12,7 @@ import { strings } from "@/utilis/Localization";
 const ProductPage = () => {
     const router = useRouter()
     const { id } = router.query
-    const { data, error, isLoading } = useSWR(`https://cachooapp.com/api/customer/products/${id}?with=business`, fetcher, {
+    const { data, error, isLoading } = useSWR(`https://management.cachooapp.com/api/customer/products/${id}?with=business`, fetcher, {
         revalidateOnFocus: true,
         revalidateIfStale: false
     })

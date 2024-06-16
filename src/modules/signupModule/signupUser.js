@@ -7,7 +7,7 @@ export const signupUser = async (name, email, phone, password, password_confirma
     formDataApi.append("password", password);
     formDataApi.append("password_confirmation", password_confirmation);
 
-    const response = await fetch('https://cachooapp.com/api/customer/auth/register', {
+    const response = await fetch('https://management.cachooapp.com/api/customer/auth/register', {
         method: 'POST',
         body: formDataApi
     });

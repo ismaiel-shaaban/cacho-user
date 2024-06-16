@@ -25,7 +25,7 @@ const EditProfileContent = () => {
             const formDataApi = new FormData();
             formDataApi.append("avatar", formData.avatar); // Append the file to the FormData object
             formDataApi.append("name", formData.name); // Append other form data fields
-            const res = await fetch("https://cachooapp.com/api/customer/profile", {
+            const res = await fetch("https://management.cachooapp.com/api/customer/profile", {
                 method: "POST",
                 headers: {
                     "Authorization": "Bearer " + tokenData
@@ -36,7 +36,7 @@ const EditProfileContent = () => {
             if (res.ok) {
                 setIsSuccess(true);
                 const newUserData = await res.json();
-                mutate("https://cachooapp.com/api/customer/profile", newUserData, false);
+                mutate("https://management.cachooapp.com/api/customer/profile", newUserData, false);
             } else {
                 setIsSuccess(false);
             }

@@ -44,7 +44,7 @@ const UserInfo = ({ userLocation }) => {
     };
     const handelLogout = async () => {
         try {
-            const response = await fetch('https://cachooapp.com/api/customer/auth/logout', {
+            const response = await fetch('https://management.cachooapp.com/api/customer/auth/logout', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

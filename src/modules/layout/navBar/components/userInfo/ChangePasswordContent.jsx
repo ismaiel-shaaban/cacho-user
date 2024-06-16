@@ -17,7 +17,7 @@ const ChangePasswordContent = () => {
         e.preventDefault();
         const token = getCookie("token")
         setIsLoading(true)
-        const req = await fetch("https://cachooapp.com/api/customer/profile", {
+        const req = await fetch("https://management.cachooapp.com/api/customer/profile", {
             method: "POST", headers: {
                 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`
             }, body: JSON.stringify({

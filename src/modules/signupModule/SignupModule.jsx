@@ -56,7 +56,7 @@ const SignupModule = () => {
                 localStorage.setItem("userData", JSON.stringify(userData));
                 setCookie("token", token);
                 if (userData?.needVerification === true) {
-                    const sendCode = await fetch("https://cachooapp.com/api/customer/auth/code/send", {
+                    const sendCode = await fetch("https://management.cachooapp.com/api/customer/auth/code/send", {
                         method: "POST",
                         headers: {
                             "Content-Type": "application/json"

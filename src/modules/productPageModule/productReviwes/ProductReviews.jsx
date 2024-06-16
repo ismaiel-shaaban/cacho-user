@@ -24,7 +24,7 @@ const ProductReviews = ({ reviewsCount, rating }) => {
     const { isOpen, onOpenChange } = useDisclosure();
     const [showLoginModal, setShowLoginModal] = useState(false);
     const { id } = router.query
-    const { data, error, isLoading } = useSWR(`https://cachooapp.com/api/customer/products/${id}/reviews?with=customer`, fetcher)
+    const { data, error, isLoading } = useSWR(`https://management.cachooapp.com/api/customer/products/${id}/reviews?with=customer`, fetcher)
     const handleAddReview = async () => {
         const token = getCookie('token')
         const userData = await fetchUserData(token)

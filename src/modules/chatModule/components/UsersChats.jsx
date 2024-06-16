@@ -12,9 +12,10 @@ const UsersChats = ({ onSelectChat }) => {
     const [chats, setChats] = useState([]);
     const [selectedChat, setSelectedChat] = useState(null);
     const { data, isLoading, error } = useSWR(
-        "https://cachooapp.com/api/customer/chats?with=business",
+        "https://management.cachooapp.com/api/customer/chats?with=business",
         fetcher
     );
+
     useEffect(() => {
         if (data) {
             setChats(data.response.data);
@@ -22,30 +23,29 @@ const UsersChats = ({ onSelectChat }) => {
     }, [data]);
 
     useEffect(() => {
-        setSelectedChat(router.query.chatId)
-    }, [router.query.chatId]);
-
-    useEffect(() => {
-        const chatIdFromUrl = router.query.chatId;
-        if (chatIdFromUrl) {
-            const selectedChatData = chats.find((chat) => chat.uuid === chatIdFromUrl);
+        const chatId = router.query.chatId;
+        if (chatId) {
+            const selectedChatData = chats.find(chat => chat.uuid === chatId);
             if (selectedChatData) {
-                setSelectedChat(chatIdFromUrl);
+                setSelectedChat(chatId);
                 onSelectChat(selectedChatData);
             }
         }
     }, [router.query.chatId, chats, onSelectChat]);
 
     const handleSelectChat = (chatId) => {
-        const selectedChatData = chats.find((chat) => chat.uuid === chatId)
+        const selectedChatData = chats.find(chat => chat.uuid === chatId);
         setSelectedChat(chatId);
         router.push({
-            pathname: router.pathname, query: { ...router.query, chatId: chatId }
-        })
-        onSelectChat(selectedChatData)
-    }
-    if (isLoading) return <Spinner />
-    if (error) return <p>failed to load</p>
+            pathname: router.pathname,
+            query: { ...router.query, chatId }
+        });
+        onSelectChat(selectedChatData);
+    };
+
+    if (isLoading) return <Spinner />;
+    if (error) return <p>Failed to load</p>;
+
     return (
         <div className="col-span-4 bg-white rounded-s-xl p-[24px] h-full">
             <div className="flex mb-[20px] flex-col">
@@ -64,12 +64,11 @@ const UsersChats = ({ onSelectChat }) => {
                 />
             </div>
             <div className="overflow-y-auto h-[calc(100%-65px)]">
-                {chats.map((chat) => (
+                {chats.map(chat => (
                     <div
                         key={chat.uuid}
                         onClick={() => handleSelectChat(chat.uuid)}
-                        className={`chat-item flex items-center gap-[10px] p-[10px] rounded-md cursor-pointer ${selectedChat === chat.uuid ? "bg-gray-100" : ""
-                            }`}
+                        className={`chat-item flex items-center gap-[10px] p-[10px] rounded-md cursor-pointer ${selectedChat === chat.uuid ? "bg-gray-100" : ""}`}
                     >
                         <div className="bg-gray-300 w-[50px] h-[50px] rounded-full overflow-hidden flex items-center justify-center">
                             <Image
@@ -83,7 +82,6 @@ const UsersChats = ({ onSelectChat }) => {
                         </div>
                         <div className="chat-info">
                             <h4 className="text-[18px] font-medium">{chat.business.title}</h4>
-                            {/*<p className="text-gray-500">{lastMessage?.content}</p>*/}
                         </div>
                     </div>
                 ))}

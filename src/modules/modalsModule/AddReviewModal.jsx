@@ -20,9 +20,9 @@ const AddReviewModal = ({ isOpen, onOpenChange, id, isProduct = false }) => {
         const token = await getCookie('token');
         let url
         if (isProduct) {
-            url = `https://cachooapp.com/api/customer/products/${id}/reviews`
+            url = `https://management.cachooapp.com/api/customer/products/${id}/reviews`
         } else {
-            url = `https://cachooapp.com/api/customer/businesses/${id}/reviews`
+            url = `https://management.cachooapp.com/api/customer/businesses/${id}/reviews`
         }
         const res = await fetch(url, {
             method: 'POST',

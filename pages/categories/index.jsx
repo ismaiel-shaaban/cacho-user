@@ -10,7 +10,7 @@ import { fetcher } from "@/utilis/fetcherFUN";
 
 const Categories = () => {
   const [categories, setCategories] = useState([]);
-  const { data, error } = useSWR("https://cachooapp.com/api/customer/business-types", fetcher, {
+  const { data, error } = useSWR("https://management.cachooapp.com/api/customer/business-types", fetcher, {
     revalidateOnFocus: false,
     revalidateIfStale: false
   });

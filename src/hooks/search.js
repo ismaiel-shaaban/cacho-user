@@ -6,16 +6,16 @@ const useSearch = (search, type) => {
 
     switch (type) {
         case "stores":
-            url = `https://cachooapp.com/api/customer/businesses?businesses_search=${search}`;
+            url = `https://management.cachooapp.com/api/customer/businesses?businesses_search=${search}`;
             break;
         case "products":
-            url = `https://cachooapp.com/api/customer/products?products_search=${search}&isService=0`;
+            url = `https://management.cachooapp.com/api/customer/products?products_search=${search}&isService=0`;
             break;
         case "categories":
-            url = `https://cachooapp.com/api/customer/business-types?business_types_search=${search}`;
+            url = `https://management.cachooapp.com/api/customer/business-types?business_types_search=${search}`;
             break;
         case "service":
-            url = `https://cachooapp.com/api/customer/products?products_search=${search}&isService=1`;
+            url = `https://management.cachooapp.com/api/customer/products?products_search=${search}&isService=1`;
             break;
         default:
             // Handle default case or throw an error

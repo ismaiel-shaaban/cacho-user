@@ -20,7 +20,7 @@ const AboutUs = ({ aboutUs }) => {
         data,
         error,
         isLoading
-    } = useSWR(`https://cachooapp.com/api/customer/businesses/${aboutUs.uuid}/products`, fetcher)
+    } = useSWR(`https://management.cachooapp.com/api/customer/businesses/${aboutUs.uuid}/products`, fetcher)
     useEffect(() => {
         if (data?.response?.data.length > 0) {
             let images = data.response.data.flat().reduce((acc, item) => {

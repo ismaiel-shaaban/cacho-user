@@ -8,7 +8,7 @@ import NotFound from "@/components/sheared/NotFound";
 import { strings } from "@/utilis/Localization";
 
 const ProductOfferTab = ({ offerId }) => {
-    const { data, error, isLoading } = useSWR(`https://cachooapp.com/api/customer/offers/${offerId}/products?with=business`, fetcher, {
+    const { data, error, isLoading } = useSWR(`https://management.cachooapp.com/api/customer/offers/${offerId}/products?with=business`, fetcher, {
         revalidateOnFocus: true, dedupingInterval: 60000, // 1 minute
     });
     if (isLoading) return <SkeletonProducts col={3} />;

@@ -25,7 +25,7 @@ const ChatBody = ({ selectedChatData }) => {
 
     const { data, isLoading, isValidating, error, size, setSize } = useSWRInfinite((index) => {
         if (!selectedChat) return null; // Return null if selectedChat is null or undefined
-        return `https://cachooapp.com/api/customer/chats/${selectedChat}/messages?page=${index + 1}`;
+        return `https://management.cachooapp.com/api/customer/chats/${selectedChat}/messages?page=${index + 1}`;
     }, fetcher);
 
     useEffect(() => {
@@ -90,7 +90,7 @@ const ChatBody = ({ selectedChatData }) => {
 
     const handleMessageSend = async () => {
         const token = await getCookie("token")
-        await fetch(`https://cachooapp.com/api/customer/chats/${chatId}/messages`, {
+        await fetch(`https://management.cachooapp.com/api/customer/chats/${chatId}/messages`, {
             method: 'POST', headers: {
                 'Content-Type': 'application/json', "Authorization": "Bearer " + token
             }, body: JSON.stringify({

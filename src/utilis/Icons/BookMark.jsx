@@ -24,7 +24,7 @@ const BookMark = ({ productId, isSaved, isProduct }) => {
                 setEmail(userData.email)
                 if (userData.needVerification === true) {
                     setNeedVerification(true)
-                    const sendCode = await fetch("https://cachooapp.com/api/customer/auth/code/send", {
+                    const sendCode = await fetch("https://management.cachooapp.com/api/customer/auth/code/send", {
                         method: "POST", headers: {
                             "Content-Type": "application/json"
                         }, body: JSON.stringify({
@@ -36,7 +36,7 @@ const BookMark = ({ productId, isSaved, isProduct }) => {
                         onOpen()
                     }
                 } else {
-                    await fetch(`https://cachooapp.com/api/customer/${isProduct ? "products" : "businesses"}/${productId}/favourite`, {
+                    await fetch(`https://management.cachooapp.com/api/customer/${isProduct ? "products" : "businesses"}/${productId}/favourite`, {
                         method: isSavedState ? "DELETE" : "POST", headers: {
                             "Content-Type": "application/json", "Authorization": `Bearer ${token}`
                         },

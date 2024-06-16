@@ -1,12 +1,9 @@
 import {useRouter} from "next/router";
-import {useEffect, useState} from "react";
+import { useState} from "react";
 import {strings} from "@/utilis/Localization";
-import {useStoresData} from "@/modules/storesModule/hooks/getStores";
 import StoresCardList from "@/modules/storesModule/components/StoresCardList/storesCardList";
 import SidebarStoresFilter from "@/modules/storesModule/components/saidbarStores/SidebarStoresFilter";
 import PaginationPages from "@/components/sheared/paginationPage/PaginationPage";
-import {Spinner} from "@nextui-org/react";
-import {useCategoriesData} from "@/modules/categoriesModule/hooks/getCategories";
 
 const StoresCards = () => {
     const router = useRouter();

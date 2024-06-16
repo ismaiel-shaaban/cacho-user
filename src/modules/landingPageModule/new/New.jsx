@@ -12,7 +12,7 @@ const NewStores = () => {
     const isSmallScreen = useMediaQuery(640);
     const {
         data, error, isLoading
-    } = useSWR(`https://cachooapp.com/api/customer/businesses?with=businessType`, fetcher, {
+    } = useSWR(`https://management.cachooapp.com/api/customer/businesses?with=businessType`, fetcher, {
         revalidateOnFocus: true, dedupingInterval: 60000, // 1 minute
     })
     if (isLoading) return <div className="container mt-[40px]">
@@ -27,7 +27,7 @@ const NewStores = () => {
             <SectionTitle title={strings.New} link="/Stores" />
             <div
                 className="grid grid-cols-1 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 md:gap-[24px] gap-2 mt-[25px]">
-                {itemsToDisplay.slice(0, 8).map((store) => (<StoresCard key={store.uuid} store={store} />))}
+                {itemsToDisplay.slice(0, 8).map((store) => (store ? <StoresCard key={store?.uuid} store={store} /> : null))}
             </div>
         </section>
 

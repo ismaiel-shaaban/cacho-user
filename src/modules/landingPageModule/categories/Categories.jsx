@@ -14,7 +14,7 @@ import { fetcher } from "@/utilis/fetcherFUN";
 
 const Categories = () => {
     const [categories, setCategories] = useState([]);
-    const { data, error, isLoading } = useSWR("https://cachooapp.com/api/customer/business-types", fetcher, {
+    const { data, error, isLoading } = useSWR("https://management.cachooapp.com/api/customer/business-types", fetcher, {
         revalidateIfStale: false,
         revalidateOnFocus: false,
     });

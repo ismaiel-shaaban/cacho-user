@@ -22,7 +22,7 @@ const SetNewPassword = ({ code, email }) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const req = await fetch("https://cachooapp.com/api/customer/auth/password/reset", {
+        const req = await fetch("https://management.cachooapp.com/api/customer/auth/password/reset", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"

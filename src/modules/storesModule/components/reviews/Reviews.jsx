@@ -24,7 +24,7 @@ const Reviews = () => {
 
     const getKey = (pageIndex, previousPageData) => {
         if (previousPageData && !previousPageData.response.data.length) return null;
-        return `https://cachooapp.com/api/customer/businesses/${id}/reviews?with=customer&page=${pageIndex + 1}`;
+        return `https://management.cachooapp.com/api/customer/businesses/${id}/reviews?with=customer&page=${pageIndex + 1}`;
     };
 
     const {

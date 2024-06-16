@@ -13,7 +13,7 @@ const ProductCategoryTab = ({ categoryId }) => {
     const [meta, setMeta] = useState({});
     useEffect(() => {
         if (id) {
-            setUrl(`https://cachooapp.com/api/customer/businesses/${id}/categories/${categoryId}/products?page=${page}&products_search=${search}&with=business`);
+            setUrl(`https://management.cachooapp.com/api/customer/businesses/${id}/categories/${categoryId}/products?page=${page}&products_search=${search}&with=business`);
         }
     }, [page, search, id, categoryId]);
     const handlePageChange = (page) => {

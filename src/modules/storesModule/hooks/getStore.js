@@ -3,7 +3,7 @@ import { fetcher } from "@/utilis/fetcherFUN";
 
 
 export const useStoreData = (id) => {
-    const url = id && `https://cachooapp.com/api/customer/businesses/${id}?with=categories,deliveryCompanies`;
+    const url = id && `https://management.cachooapp.com/api/customer/businesses/${id}?with=categories,deliveryCompanies`;
 
     const { data, error, isLoading } = useSWR(url, fetcher, {
         revalidateOnFocus: false,

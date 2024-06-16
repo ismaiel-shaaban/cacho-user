@@ -32,7 +32,7 @@ const StoreTabs = ({ mainData, aboutUs, categories, isServiceProvider }) => {
         try {
             const userData = await fetchUserData(token);
             if (userData) {
-                const response = await fetch(`https://cachooapp.com/api/customer/businesses/${id}/chats`, {
+                const response = await fetch(`https://management.cachooapp.com/api/customer/businesses/${id}/chats`, {
                     method: "POST", headers: {
                         "Authorization": "Bearer " + token, "Content-Type": "application/json"
                     }

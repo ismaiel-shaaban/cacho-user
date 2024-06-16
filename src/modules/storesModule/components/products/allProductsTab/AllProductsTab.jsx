@@ -15,7 +15,7 @@ const AllProductsTab = () => {
 
     useEffect(() => {
         if (storeId) {
-            setUrl(`https://cachooapp.com/api/customer/businesses/${storeId}/products?page=${page}&products_search=${search}&with=business`);
+            setUrl(`https://management.cachooapp.com/api/customer/businesses/${storeId}/products?page=${page}&products_search=${search}&with=business`);
         }
     }, [page, search, storeId]);
 

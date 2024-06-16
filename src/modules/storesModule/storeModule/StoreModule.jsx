@@ -5,7 +5,6 @@ import { useStoreData } from "@/modules/storesModule/hooks/getStore";
 import StoreTabs from "@/modules/storesModule/components/storeTabs/StoreTabs";
 import SkeletonProducts from "@/components/sheared/skeletonProducts/SkeletonProducts";
 import ErrorFetch from "@/components/sheared/erorrFetch/ErrorFetch";
-import {strings} from "@/utilis/Localization";
 
 const StoreModule = ({ passTitle }) => {
     const router = useRouter();

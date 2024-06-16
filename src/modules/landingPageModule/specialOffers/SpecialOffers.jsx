@@ -8,7 +8,7 @@ import { Skeleton } from "@nextui-org/react";
 
 const SpecialOffers = () => {
     const router = useRouter();
-    const { data, isLoading, error } = useSWR("https://cachooapp.com/api/customer/offers?isSpecial=1&with=business", fetcher, {
+    const { data, isLoading, error } = useSWR("https://management.cachooapp.com/api/customer/offers?isSpecial=1&with=business", fetcher, {
         revalidateOnFocus: false,
     });
 
@@ -18,7 +18,7 @@ const SpecialOffers = () => {
 
     const renderSingleImage = (item) => (
         <div className="w-full h-full rounded-md overflow-hidden cursor-pointer"
-             onClick={() => handleImageClick(item?.business?.uuid)}>
+            onClick={() => handleImageClick(item?.business?.uuid)}>
             <Image
                 width={400}
                 height={400}
@@ -34,7 +34,7 @@ const SpecialOffers = () => {
         <div className="flex w-full h-full gap-4">
             {items.map((item, index) => (
                 <div key={index} className="w-1/2 h-full rounded-md overflow-hidden cursor-pointer"
-                     onClick={() => handleImageClick(item?.business?.uuid)}>
+                    onClick={() => handleImageClick(item?.business?.uuid)}>
                     <Image
                         width={200}
                         height={200}
@@ -51,7 +51,7 @@ const SpecialOffers = () => {
     const renderThreeImages = (items) => (
         <div className="flex flex-col md:flex-row h-full gap-4">
             <div className="md:w-1/2 md:h-full rounded-md overflow-hidden cursor-pointer"
-                 onClick={() => handleImageClick(items[0]?.business?.uuid)}>
+                onClick={() => handleImageClick(items[0]?.business?.uuid)}>
                 <Image
                     width={200}
                     height={200}
@@ -64,7 +64,7 @@ const SpecialOffers = () => {
             <div className="flex flex-col  md:w-1/2 md:h-full gap-4">
                 {items.slice(1).map((item, index) => (
                     <div key={index} className="w-full h-1/2 rounded-md overflow-hidden cursor-pointer"
-                         onClick={() => handleImageClick(item?.business?.uuid)}>
+                        onClick={() => handleImageClick(item?.business?.uuid)}>
                         <Image
                             width={200}
                             height={200}

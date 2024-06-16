@@ -3,7 +3,7 @@ import { fetcher } from "@/utilis/fetcherFUN";
 
 
 const useGetOffersData = (page, isSpecial) => {
-    const { data, error, isLoading } = useSWR(`https://cachooapp.com/api/customer/offers?with=business${page ? `&page=${page}` : ""}${isSpecial ? `&isSpecial=1` : `&isSpecial=0`}`, fetcher, {
+    const { data, error, isLoading } = useSWR(`https://management.cachooapp.com/api/customer/offers?with=business${page ? `&page=${page}` : ""}${isSpecial ? `&isSpecial=1` : `&isSpecial=0`}`, fetcher, {
         revalidateOnFocus: false,
         revalidateIfStale: false
     });

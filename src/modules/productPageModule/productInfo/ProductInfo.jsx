@@ -28,7 +28,7 @@ const ProductInfo = ({ info, images }) => {
                 setEmail(userData.email)
                 if (userData.needVerification === true) {
                     setNeedVerification(true)
-                    const sendCode = await fetch("https://cachooapp.com/api/customer/auth/code/send", {
+                    const sendCode = await fetch("https://management.cachooapp.com/api/customer/auth/code/send", {
                         method: "POST",
                         headers: {
                             "Content-Type": "application/json"
@@ -43,7 +43,7 @@ const ProductInfo = ({ info, images }) => {
                     }
                 } else {
                     setNeedVerification(false)
-                    const response = await fetch(`https://cachooapp.com/api/customer/businesses/${info.business.uuid}/chats`, {
+                    const response = await fetch(`https://management.cachooapp.com/api/customer/businesses/${info.business.uuid}/chats`, {
                         method: "POST", headers: {
                             "Authorization": "Bearer " + token, "Content-Type": "application/json"
                         }

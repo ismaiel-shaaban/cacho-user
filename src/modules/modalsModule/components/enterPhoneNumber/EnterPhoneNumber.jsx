@@ -28,7 +28,7 @@ const EnterPhoneNumber = ({ onPhoneChange }) => {
     const handleContinue = async () => {
         setIsLoading(true)
         if (isEmailValid) {
-            const sendCode = await fetch("https://cachooapp.com/api/customer/auth/code/send", {
+            const sendCode = await fetch("https://management.cachooapp.com/api/customer/auth/code/send", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"

@@ -24,7 +24,7 @@ const Nearest = () => {
     }, []);
 
     const { data, error, isLoading } = useSWR(
-        `https://cachooapp.com/api/customer/businesses?with=businessType${location.lat && location.long ? `&location[lat]=${location.lat}&location[lng]=${location.long}` : ''}`,
+        `https://management.cachooapp.com/api/customer/businesses?with=businessType${location.lat && location.long ? `&location[lat]=${location.lat}&location[lng]=${location.long}` : ''}`,
         fetcher,
         { revalidateOnFocus: true, revalidateIfStale: true }
     );
@@ -46,7 +46,7 @@ const Nearest = () => {
             <SectionTitle title={strings.Nearest} link={"/Stores?nearest=1&page=1"} select={true} />
             <div className="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 gap-2 md:gap-[20px] mt-[25px]">
                 {itemsToDisplay?.map((store, i) => (
-                    <StoresCard key={store?.uuid + i} store={store} />
+                    store ? <StoresCard key={store?.uuid + i} store={store} /> : null
                 ))}
             </div>
         </section>

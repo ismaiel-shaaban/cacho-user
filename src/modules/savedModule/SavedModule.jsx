@@ -14,7 +14,7 @@ const SavedModule = () => {
     const [services, setServices] = useState([])
     const {
         data, isLoading, error
-    } = useSWR(`https://cachooapp.com/api/customer/favourites?with=business`, fetcher, {
+    } = useSWR(`https://management.cachooapp.com/api/customer/favourites?with=business`, fetcher, {
         revalidateOnFocus: true,
     });
     useEffect(() => {

@@ -24,7 +24,7 @@ const VerifyPhoneNumber = ({ email, isChangePassword, passIsValidCode }) => {
         if (verificationCode.length === 6) {
             setIsLoading(true)
             setError("")
-            const verify = await fetch("https://cachooapp.com/api/customer/auth/verify", {
+            const verify = await fetch("https://management.cachooapp.com/api/customer/auth/verify", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
