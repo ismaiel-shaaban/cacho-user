@@ -1,6 +1,5 @@
 import LoginModule from "@/modules/loginModule/LoginModule";
-import {Navbar, NavbarBrand, NavbarContent} from "@nextui-org/react";
-import Image from "next/image";
+import { Navbar, NavbarBrand, NavbarContent } from "@nextui-org/react";
 import LogoImage from "../../public/logo.svg";
 import Link from "next/link";
 import Head from "next/head";
@@ -15,11 +14,11 @@ const Login = () => {
             <Navbar position={"static"} maxWidth={"2xl"} >
                 <NavbarBrand>
                     <Link href={"/"} >
-                        <Image quality={100} src={LogoImage} width={130} alt={"Logo"} />
+                        <img lazy src={LogoImage} alt={"Logo"} />
                     </Link>
                 </NavbarBrand>
                 <NavbarContent justify="end">
-                    <SelectLang/>
+                    <SelectLang />
                 </NavbarContent>
             </Navbar>
             <LoginModule />

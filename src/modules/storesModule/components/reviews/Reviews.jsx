@@ -1,7 +1,6 @@
 import { Fragment, useState } from "react";
 import { Button, Card, CardBody, useDisclosure } from "@nextui-org/react";
 import { useRouter } from "next/router";
-import Image from "next/image";
 import useSWRInfinite from "swr/infinite";
 import ReactStars from "react-rating-stars-component";
 import ReviewCard from "@/components/sheared/reviewCard/ReviewCard";
@@ -13,6 +12,7 @@ import SuggestLoginModal from "@/modules/modalsModule/SuggestLoginModal";
 import { strings } from "@/utilis/Localization";
 import { getCookie } from "cookies-next";
 import { fetchUserData } from "@/utilis/getUserData";
+import Image from 'next/image';
 
 const fetcher = (...args) => fetch(...args).then(res => res.json());
 
@@ -58,7 +58,7 @@ const Reviews = () => {
                         base: "h-full shadow-none rounded-md bg-transparent border-2 border-[--gray-2]",
                     }}>
                         <CardBody>
-                            <div className="flex gap-2 items-center mb-3">
+                            <div className="flex items-center gap-2 mb-3">
                                 <Image src={messageQuestion} alt={"Message Icon"} width={24} height={24} />
                                 <h3 className="text-[18px] font-[600] text-[gray]">{strings.AddYourReview}</h3>
                             </div>

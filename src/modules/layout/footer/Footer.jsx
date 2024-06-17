@@ -5,7 +5,7 @@ import { FaInstagram, FaYoutube } from "react-icons/fa6";
 import Logo from "@/modules/layout/navBar/components/logo";
 import { strings } from "@/utilis/Localization";
 import { FaXTwitter } from "react-icons/fa6";
-import googleLogo from "../../../../public/googlePlay.png";
+import googleLogo from "./../../../../public/googlePlay.png";
 import appStoreLogo from "../../../../public/download-on-the-app-store-apple-logo-svgrepo-com.png";
 import Image from "next/image";
 const Footer = () => {
@@ -25,7 +25,7 @@ const Footer = () => {
                 </div>
             </div>
             <div className="py-10">
-                <div className="flex items-center flex-wrap justify-center md:justify-between gap-5">
+                <div className="flex flex-wrap items-center justify-center gap-5 md:justify-between">
                     <div className="flex gap-5">
                         <Link href="/offers" className="font-[400] text-lg">{strings.HotOffers}</Link>
                         <Link href="/Stores?nearest=1&page=1" className="font-[400] text-lg">{strings.Nearest}</Link>

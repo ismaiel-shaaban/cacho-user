@@ -1,4 +1,4 @@
-import Image from "next/image";
+
 import { useEffect, useState } from "react";
 import ForgetHeader from "@/modules/modalsModule/components/forgetHeader/ForgetHeader";
 import EmailImage from "../../../../../public/Email-1.svg";
@@ -64,7 +64,7 @@ const VerifyPhoneNumber = ({ email, isChangePassword, passIsValidCode }) => {
                 <p className="text-[--primary-color]">{email}</p>
             </div>
             <div className="w-1/2 h-[282px] hidden sm:block">
-                <Image src={EmailImage} alt={"Email"}
+                <img lazy src={EmailImage} alt={"Email"}
                     className="object-contain w-full h-full" />
             </div>
         </div>

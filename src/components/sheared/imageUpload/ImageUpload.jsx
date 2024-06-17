@@ -1,5 +1,4 @@
 import { useState } from "react";
-import Image from "next/image";
 import cameraImage from "../../../../public/camera1.svg";
 
 const ImageUpload = ({ onChange }) => {
@@ -17,9 +16,9 @@ const ImageUpload = ({ onChange }) => {
             <input type="file" className="hidden" id="userImage" onChange={handleFileChange} />
             <label htmlFor="userImage" className="w-[100px] h-[100px] rounded-full bg-[#E5E5E5] flex justify-center items-center cursor-pointer sm:w-[150px] sm:h-[150px]">
                 {image ? (
-                    <Image quality={100} width={50} height={50} src={image} className="w-full h-full rounded-full object-cover" alt={"User Image"} />
+                    <img lazy src={image} className="object-cover w-full h-full rounded-full" alt={"User Image"} />
                 ) : (
-                    <Image quality={100} src={cameraImage} className="w-[50px] h-[50px] sm:w-[95px] sm:h-[95px]" alt={"Camera Icon"} />
+                    <img lazy src={cameraImage} className="w-[50px] h-[50px] sm:w-[95px] sm:h-[95px]" alt={"Camera Icon"} />
                 )}
             </label>
         </div>

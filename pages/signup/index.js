@@ -1,7 +1,6 @@
 import SignupModule from "@/modules/signupModule/SignupModule";
-import {Navbar, NavbarBrand, NavbarContent} from "@nextui-org/react";
+import { Navbar, NavbarBrand, NavbarContent } from "@nextui-org/react";
 import Link from "next/link";
-import Image from "next/image";
 import LogoImage from "../../public/logo.svg";
 import Head from "next/head";
 import SelectLang from "@/modules/layout/navBar/components/selectLang/SelectLang";
@@ -15,11 +14,11 @@ const SignupPage = () => {
             <Navbar position={"static"} maxWidth={"2xl"} >
                 <NavbarBrand>
                     <Link href={"/"} >
-                        <Image quality={100} src={LogoImage} width={130} alt={"Logo"} />
+                        <img lazy src={LogoImage} alt={"Logo"} />
                     </Link>
                 </NavbarBrand>
                 <NavbarContent justify="end">
-                    <SelectLang/>
+                    <SelectLang />
                 </NavbarContent>
             </Navbar>
             <SignupModule />

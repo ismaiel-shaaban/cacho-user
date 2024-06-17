@@ -9,7 +9,7 @@ import 'swiper/css/navigation';
 import ReviewCard from "@/components/sheared/reviewCard/ReviewCard";
 import { useRouter } from "next/router";
 import useSWR from "swr";
-import Image from "next/image";
+
 import messageQuestion from "../../../../public/message-question.svg";
 import { strings } from "@/utilis/Localization";
 import { getCookie } from "cookies-next";
@@ -54,8 +54,8 @@ const ProductReviews = ({ reviewsCount, rating }) => {
                                 base: "h-full shadow-none rounded-md bg-transparent border-2 border-[--gray-2]",
                             }}>
                                 <CardBody>
-                                    <div className="flex gap-2 items-center mb-3">
-                                        <Image src={messageQuestion} alt={"Message Icon"} width={24} height={24} />
+                                    <div className="flex items-center gap-2 mb-3">
+                                        <img lazy src={messageQuestion} alt={"Message Icon"} />
                                         <h3 className="text-[18px] font-[600] text-[gray]">{strings.AddYourReview}</h3>
                                     </div>
                                     <ReactStars

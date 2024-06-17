@@ -19,7 +19,7 @@ import BookMark from "@/utilis/Icons/BookMark";
 import { CiDeliveryTruck } from "react-icons/ci";
 import { formatPhoneNumber } from "@/utilis/formatPhoneNumber";
 import { BiLinkExternal } from "react-icons/bi";
-import Image from "next/image";
+
 
 const StoreTabs = ({ mainData, aboutUs, categories, isServiceProvider }) => {
     const router = useRouter();
@@ -61,7 +61,7 @@ const StoreTabs = ({ mainData, aboutUs, categories, isServiceProvider }) => {
                 tabContent: "group-data-[selected=true]:text-white text-[--gray-2] px-[30px] py-[10px] w-full text-[18px] font-[500]",
                 cursor: "group-data-[selected=true]:bg-[--rate-color] rounded-md w-full",
                 tab: "w-fit",
-                panel: "mt-[50px] md:mt-[20px]"
+                panel: "mt-[50px] md:mt-[60px]"
             }}
         >
             <Tab key={strings.AboutUs} title={strings.AboutUs}>
@@ -140,7 +140,7 @@ const StoreTabs = ({ mainData, aboutUs, categories, isServiceProvider }) => {
                             title={item.name}
                             endContent={<BiLinkExternal />}
                             startContent={<>
-                                <Image quality={100} src={item.image} alt={item.name} height={50} width={50} />
+                                <img lazy src={item.image} alt={item.name} className="w-[50px] [h-50px]" />
                             </>}
                         />)}
                     </DropdownMenu>

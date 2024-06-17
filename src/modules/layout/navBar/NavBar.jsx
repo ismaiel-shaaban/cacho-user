@@ -1,22 +1,22 @@
-import {strings} from '@/utilis/Localization';
-import {useEffect, useMemo, useState} from 'react';
+import { strings } from '@/utilis/Localization';
+import { useEffect, useMemo, useState } from 'react';
 import {
     Badge,
     Button, Divider, Navbar, NavbarContent, NavbarItem, NavbarMenu, NavbarMenuItem, NavbarMenuToggle,
 } from "@nextui-org/react";
 import UserInfo from "@/modules/layout/navBar/components/userInfo/UserInfo";
 import SearchInput from "@/modules/layout/navBar/components/searchInput/SearchInput";
-import {MessagesIcon} from "@/utilis/Icons/MessagesIcon";
+import { MessagesIcon } from "@/utilis/Icons/MessagesIcon";
 import SelectLang from "@/modules/layout/navBar/components/selectLang/SelectLang";
 import Logo from "@/modules/layout/navBar/components/logo";
 import Link from "next/link";
-import {getCookie} from "cookies-next";
-import Image from "next/image";
+import { getCookie } from "cookies-next";
+
 import savedLink from "../../../../public/savedLink.svg"
 import Pusher from "pusher-js";
 
 
-const NavBar = ({userLocation}) => {
+const NavBar = ({ userLocation }) => {
     const [isDarkMode, setIsDarkMode] = useState(false);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isLogin, setIsLogin] = useState(false);
@@ -37,7 +37,7 @@ const NavBar = ({userLocation}) => {
         const channel = pusherClient.subscribe('chats');
         channel.bind('messageCreated', (data) => {
             const userData = JSON.parse(localStorage.getItem("userData"));
-            const {uuid} = userData;
+            const { uuid } = userData;
             const receiverUuid = data.receiver.uuid
             if (data && uuid === receiverUuid) {
                 setIsNotification(true);
@@ -68,50 +68,50 @@ const NavBar = ({userLocation}) => {
     };
 
     const memoizedUserInfo = useMemo(() => {
-        return <UserInfo userLocation={userLocation}/>;
+        return <UserInfo userLocation={userLocation} />;
     }, [userLocation]);
 
 
     return (<Navbar onMenuOpenChange={setIsMenuOpen} isMenuOpen={isMenuOpen} className="p-0"
-                    maxWidth={"xl"}
+        maxWidth={"xl"}
         // classNames={{wrapper: "!md:container"}}
-                    aria-label="Main navigation"
-                    dir={strings.getLanguage() === 'ar' ? 'rtl' : 'ltr'}>
+        aria-label="Main navigation"
+        dir={strings.getLanguage() === 'ar' ? 'rtl' : 'ltr'}>
         <NavbarContent justify="start" className={"gap-2 md:w-2/3"}>
-            <NavbarItem onClick={()=>{setIsMenuOpen(false)}} >
-                <Logo/>
+            <NavbarItem onClick={() => { setIsMenuOpen(false) }} >
+                <Logo />
             </NavbarItem>
             <NavbarItem className="min-w-full hidden md:flex">
-                <SearchInput/>
+                <SearchInput />
             </NavbarItem>
         </NavbarContent>
         <NavbarContent className="hidden gap-2 lg:flex md:w-1/3" justify="end">
             <NavbarItem>
-                <SelectLang/>
+                <SelectLang />
             </NavbarItem>
             {isLogin ? <>
-                <NavbarItem onClick={()=>{setIsMenuOpen(false)}} >
-                    <Link href={"/chat"} onClick={()=>(setIsNotification(false))}>
+                <NavbarItem onClick={() => { setIsMenuOpen(false) }} >
+                    <Link href={"/chat"} onClick={() => (setIsNotification(false))}>
                         {isNotification ? <Badge content="" color="success" shape="circle" placement="top-right">
-                            <MessagesIcon/>
-                        </Badge>  :  <MessagesIcon/> }
+                            <MessagesIcon />
+                        </Badge> : <MessagesIcon />}
                     </Link>
                 </NavbarItem>
-                <NavbarItem onClick={()=>{setIsMenuOpen(false)}} >
+                <NavbarItem onClick={() => { setIsMenuOpen(false) }} >
                     <Link href={"/saved"}>
-                        <Image quality={100} src={savedLink} alt={"bookmark"} width={24} height={24}/>
+                        <img lazy src={savedLink} alt={"bookmark"} />
                     </Link>
                 </NavbarItem>
                 <NavbarItem>
-                    <Divider orientation="vertical" className="w-[1px] h-[44px]"/>
+                    <Divider orientation="vertical" className="w-[1px] h-[44px]" />
                 </NavbarItem>
                 <NavbarItem>
                     {memoizedUserInfo}
                 </NavbarItem>
             </> : <>
-                <NavbarItem onClick={()=>{setIsMenuOpen(false)}} >
+                <NavbarItem onClick={() => { setIsMenuOpen(false) }} >
                     <Button className="bg-[--primary-color] text-white" as={Link}
-                            href={"/login"}>{strings.LogIn}</Button>
+                        href={"/login"}>{strings.LogIn}</Button>
                 </NavbarItem>
                 <NavbarItem>
                     {memoizedUserInfo}
@@ -127,32 +127,32 @@ const NavBar = ({userLocation}) => {
         </NavbarContent>
         <NavbarMenu>
             <NavbarMenuItem className="flex justify-center">
-                <SearchInput/>
+                <SearchInput />
             </NavbarMenuItem>
             <div className="flex justify-around gap-3 flex-wrap">
-                <NavbarMenuItem onClick={()=>{setIsMenuOpen(false)}} >
+                <NavbarMenuItem onClick={() => { setIsMenuOpen(false) }} >
                     <Link href={"/chat"}>
                         {isNotification ? <Badge content="" color="success" shape="circle" placement="top-right">
-                            <MessagesIcon/>
-                        </Badge>  :  <MessagesIcon/> }
+                            <MessagesIcon />
+                        </Badge> : <MessagesIcon />}
                     </Link>
                 </NavbarMenuItem>
-                <NavbarMenuItem onClick={()=>{setIsMenuOpen(false)}} >
+                <NavbarMenuItem onClick={() => { setIsMenuOpen(false) }} >
                     <Link href={"/saved"}>
-                        <Image quality={100} src={savedLink} alt={"bookmark"} width={24} height={24}/>
+                        <img lazy src={savedLink} alt={"bookmark"} />
                     </Link>
                 </NavbarMenuItem>
                 <NavbarMenuItem>
                     {memoizedUserInfo}
                 </NavbarMenuItem>
                 <NavbarMenuItem>
-                    <SelectLang/>
+                    <SelectLang />
                 </NavbarMenuItem>
             </div>
             {!isLogin && <div className="flex justify-center items-center gap-2 md:w-2/3">
-                <NavbarMenuItem onClick={()=>{setIsMenuOpen(false)}} >
+                <NavbarMenuItem onClick={() => { setIsMenuOpen(false) }} >
                     <Button className="bg-[--primary-color] text-white" as={Link}
-                            href={"/login"}>{strings.LogIn}</Button>
+                        href={"/login"}>{strings.LogIn}</Button>
                 </NavbarMenuItem>
             </div>}
         </NavbarMenu>
