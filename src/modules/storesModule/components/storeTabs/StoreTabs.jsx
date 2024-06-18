@@ -61,7 +61,7 @@ const StoreTabs = ({ mainData, aboutUs, categories, isServiceProvider }) => {
                 tabContent: "group-data-[selected=true]:text-white text-[--gray-2] px-[30px] py-[10px] w-full text-[18px] font-[500]",
                 cursor: "group-data-[selected=true]:bg-[--rate-color] rounded-md w-full",
                 tab: "w-fit",
-                panel: "mt-[50px] md:mt-[20px]"
+                panel: "mt-[50px] md:mt-[60px]"
             }}
         >
             <Tab key={strings.AboutUs} title={strings.AboutUs}>
