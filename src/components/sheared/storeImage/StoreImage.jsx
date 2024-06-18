@@ -2,7 +2,7 @@ import Image from 'next/image'
 const StoreImage = ({ image, alt }) => {
     return (
         <div>
-            <img lazy src={image} alt={alt} className="block aspect-square rounded-md overflow-hidden w-[80px] h-[80px]" />
+            <Image quality={100} src={image} alt={alt} width={80} height={80} className="block aspect-square rounded-md overflow-hidden" />
         </div>
     )
 }

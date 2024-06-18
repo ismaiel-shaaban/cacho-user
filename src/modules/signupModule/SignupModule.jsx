@@ -1,5 +1,5 @@
 import Link from "next/link";
-
+import Image from "next/image";
 import { useState } from "react";
 import { setCookie } from "cookies-next";
 import { fetchUserData } from "@/utilis/getUserData";
@@ -118,7 +118,7 @@ const SignupModule = () => {
                     </Button>
                 </div>
                 <div className="flex justify-center p-3">
-                    <img lazy src={LogoImage2} alt={"Join Now"} className="block w-[60%] h-full object-cover" />
+                    <Image src={LogoImage2} alt={"Join Now"} className="block w-[60%] h-full object-cover" />
                 </div>
             </div>
         </div>
@@ -131,12 +131,12 @@ const SignupModule = () => {
                             className="flex justify-between w-full">
                             <h2 className="text-[24px] font-[600] mt-[20px]">{strings.CreateNewAccount}</h2>
                             <div>
-                                <Link href={"/"} className={"flex justify-center items-center"}><img lazy src={LogoImage} className={"w-[70%] h-full object-contain"} alt={"Logo"} /></Link>
+                                <Link href={"/"} className={"flex justify-center items-center"}><Image src={LogoImage} className={"w-[70%] h-full object-contain"} alt={"Logo"} /></Link>
                             </div>
                         </div>
                         <div className="w-full">
                             <div className="flex justify-center mb-[49px]">
-                                <img lazy Upload onChange={handleImageChange} />
+                                <ImageUpload onChange={handleImageChange} />
                             </div>
                             <div className="mt-4 w-full grid grid-cols-1 gap-3 md:grid-cols-2">
                                 <Input

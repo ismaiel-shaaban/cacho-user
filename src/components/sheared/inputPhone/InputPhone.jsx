@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+import Image from "next/image";
 import saudi from "../../../../public/saudi-arabia-flag-icon.svg";
 import { Input } from "@nextui-org/react";
 import { strings } from "@/utilis/Localization";
@@ -67,7 +67,7 @@ const InputPhone = ({ onPhoneChange }) => {
                 isInvalid={!isValid}
                 startContent={
                     <div className="flex items-center gap-[6px]">
-                        <span><img lazy src={saudi} alt={"saudi"} /></span>
+                        <span><Image quality={100} width={35} height={40} src={saudi} alt={"saudi"} /></span>
                         <span className="text-[16px] font[400]">+966</span>
                         <span className="text-[20px] text-gray-300">|</span>
                     </div>

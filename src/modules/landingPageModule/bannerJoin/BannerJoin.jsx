@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { strings } from "@/utilis/Localization";
-
+import Image from "next/image";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import { Button } from "@nextui-org/react";
 import Logo from "../../../../public/logo-w.svg"
@@ -37,7 +37,7 @@ const BannerJoin = () => {
             </div>
             <div
                 className={"h-full flex items-center justify-center py-8 z-10 md:w-2/5 md:pe-5 md:absolute md:end-0 md:bottom-0"}>
-                <img lazy src={Logo} alt={"Join Now"} className="h-full w-full" />
+                <Image quality={100} src={Logo} alt={"Join Now"} className="h-full w-full" />
 
             </div>
         </div>

@@ -49,7 +49,7 @@ const EditProfileContent = () => {
 
 
     return (<form onSubmit={handleSubmit}>
-        <div className="flex flex-col items-center justify-center gap-6">
+        <div className="flex flex-col justify-center items-center gap-6">
             <h4 className="font-medium text-[24px]">{strings.EditProfile}</h4>
 
             <ImageUpload onChange={handleImageChange} />

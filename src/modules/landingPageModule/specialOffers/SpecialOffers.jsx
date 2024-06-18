@@ -1,4 +1,4 @@
-
+import Image from "next/image";
 import SectionTitle from "@/modules/landingPageModule/components/sectionTitle/SectionTitle";
 import { strings } from "@/utilis/Localization";
 import useSWR from "swr";
@@ -19,11 +19,13 @@ const SpecialOffers = () => {
     const renderSingleImage = (item) => (
         <div className="w-full h-full rounded-md overflow-hidden cursor-pointer"
             onClick={() => handleImageClick(item?.business?.uuid)}>
-            <img lazy
+            <Image
+                width={400}
+                height={400}
                 src={item?.image}
                 alt={"Special Offers"}
                 className="object-cover w-full h-full"
-
+                quality={100}
             />
         </div>
     );
@@ -33,12 +35,13 @@ const SpecialOffers = () => {
             {items.map((item, index) => (
                 <div key={index} className="w-1/2 h-full rounded-md overflow-hidden cursor-pointer"
                     onClick={() => handleImageClick(item?.business?.uuid)}>
-                    <img lazy
-
+                    <Image
+                        width={200}
+                        height={200}
                         src={item?.image}
                         alt={"Special Offers"}
                         className="object-cover w-full h-full"
-
+                        quality={100}
                     />
                 </div>
             ))}
@@ -49,24 +52,26 @@ const SpecialOffers = () => {
         <div className="flex flex-col md:flex-row h-full gap-4">
             <div className="md:w-1/2 md:h-full rounded-md overflow-hidden cursor-pointer"
                 onClick={() => handleImageClick(items[0]?.business?.uuid)}>
-                <img lazy
-
+                <Image
+                    width={200}
+                    height={200}
                     src={items[0]?.image}
                     alt={"Special Offers"}
                     className="object-cover w-full h-full"
-
+                    quality={100}
                 />
             </div>
             <div className="flex flex-col  md:w-1/2 md:h-full gap-4">
                 {items.slice(1).map((item, index) => (
                     <div key={index} className="w-full h-1/2 rounded-md overflow-hidden cursor-pointer"
                         onClick={() => handleImageClick(item?.business?.uuid)}>
-                        <img lazy
-
+                        <Image
+                            width={200}
+                            height={200}
                             src={item?.image}
                             alt={"Special Offers"}
                             className="object-cover w-full h-full"
-
+                            quality={100}
                         />
                     </div>
                 ))}

@@ -5,7 +5,7 @@ import useSWR from "swr";
 import { CiSearch } from "react-icons/ci";
 import { fetcher } from "@/utilis/fetcherFUN";
 import { strings } from "@/utilis/Localization";
-
+import Image from "next/image";
 
 const UsersChats = ({ onSelectChat }) => {
     const router = useRouter();
@@ -71,9 +71,12 @@ const UsersChats = ({ onSelectChat }) => {
                         className={`chat-item flex items-center gap-[10px] p-[10px] rounded-md cursor-pointer ${selectedChat === chat.uuid ? "bg-gray-100" : ""}`}
                     >
                         <div className="bg-gray-300 w-[50px] h-[50px] rounded-full overflow-hidden flex items-center justify-center">
-                            <img lazy
+                            <Image
+                                quality={100}
                                 src={chat.business.image}
                                 alt="User"
+                                width={50}
+                                height={50}
                                 className="h-full w-full object-cover"
                             />
                         </div>

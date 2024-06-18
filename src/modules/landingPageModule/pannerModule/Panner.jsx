@@ -42,7 +42,9 @@ const Panner = () => {
                     <div
                         className="relative h-[calc(65dvh-84px)] md:h-[calc(96dvh-84px)] w-full"
                     >
-                        <img lazy alt="panner" src={item.image} className="block h-[calc(100dvh-84px)] w-full object-cover rounded-md" />
+                        <Image alt="panner" src={item.image} priority={true} quality={100}
+                            layout="fill" sizes={"(max-width: 640px) 100vw, (max-width: 768px) 100vw, (max-width: 1024px) 100vw, 100vw"}
+                            className="block h-[calc(100dvh-84px)] w-100 object-cover rounded-md" />
                         {/*<div*/}
                         {/*    className="absolute text-center transform md:top-unit-28 md:right-unit-20 right-unit-10 top-unit-14 ">*/}
                         {/*    <h2 className="font-[500] md:text-[8rem] text-[4rem] text-white">{item.discount} <span*/}
@@ -55,7 +57,7 @@ const Panner = () => {
                                 <h3 className="text-white font-[500] text-2xl mb-2">{item.business.title}</h3>
                                 {item.url &&
                                     <Link href={`${item.url}`}
-                                        className="flex items-center justify-center gap-1 px-2 capitalize bg-white rounded-md w-fit">
+                                        className="flex items-center justify-center gap-1 px-2 bg-white rounded-md w-fit capitalize">
                                         view
                                         <span className="text-white bg-black rounded-md">
                                             <GoArrowUpRight size={18} />
