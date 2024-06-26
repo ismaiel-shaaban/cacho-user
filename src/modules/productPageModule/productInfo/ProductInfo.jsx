@@ -127,8 +127,8 @@ const ProductInfo = ({ info, images }) => {
                     <h2 className="font-[600] text-[16px] text-black mb-2">{strings[key]}</h2>
                     <div className={"flex gap-2 flex-wrap"}>
                         {info.details[key].map((detail, subIndex) => (
-                            <Button key={`${key}-${subIndex}`} radius={"sm"} size={"sm"} isIconOnly
-                                className={`${key !== "colors" && "border-[--rate-color]"} !p-0 w-[33px] h-[33px] text-[--rate-color] cursor-auto`}
+                            <Button key={`${key}-${subIndex}`} radius={"sm"} size={"md"} isIconOnly
+                                className={`${key !== "colors" && "border-[--rate-color]"} w-fit !p-0 !px-1 h-[33px] text-[--rate-color] cursor-auto`}
                                 variant="bordered"
                                 style={{ backgroundColor: detail }}>{key !== "colors" && detail}</Button>))}
                     </div>
