@@ -19,10 +19,7 @@ const InputPassword = ({ onPasswordChange, label, placeholder }) => {
 
         const newTimeout = setTimeout(() => {
             const isValid =
-                value.length >= 8 && // At least 8 characters
-                /[a-z]/.test(value) && // Contains lowercase letters
-                /[A-Z]/.test(value) && // Contains uppercase letters
-                /\d/.test(value); // Contains numbers
+                value.length >= 8
 
             onPasswordChange(value, isValid);
             setValid(isValid)
