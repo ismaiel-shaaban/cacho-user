@@ -8,6 +8,7 @@ import { FaXTwitter } from "react-icons/fa6";
 import googleLogo from "../../../../public/googlePlay.png";
 import appStoreLogo from "../../../../public/download-on-the-app-store-apple-logo-svgrepo-com.png";
 import Image from "next/image";
+import {FaWhatsapp} from "react-icons/fa";
 const Footer = () => {
     return (
         <footer className="container" dir={strings.getLanguage() === "ar" ? "rtl" : "ltr"}>
@@ -19,7 +20,7 @@ const Footer = () => {
                             classNames={{
                                 inputWrapper: '!rounded-[10px] p-[8px]',
                             }}
-                            endContent={<Button as={Link} href={"https://cachooapp.com/ar/vendors-hub/auth/login"} className="bg-[--rate-color] text-white rounded-md px-[16px]">{strings.SubscribeNow}</Button>}
+                            endContent={<Button as={Link} href={"https://management.cachooapp.com/ar/vendors-hub/auth/login"} className="bg-[--rate-color] text-white rounded-md px-[16px]">{strings.SubscribeNow}</Button>}
                         />
                     </span>
                 </div>
@@ -32,17 +33,20 @@ const Footer = () => {
                         <Link href="/Stores" className="font-[400] text-lg">{strings.New}</Link>
                     </div>
                     <div className="flex items-center gap-5">
-                        <Link href="/" className={"text-[#4267B2]"}>
+                        <Link href="https://www.facebook.com/profile.php?id=61553168891303" target={"_blank"} className={"text-[#4267B2]"}>
                             <IoLogoFacebook size={26} />
                         </Link>
-                        <Link href="/" className={"text-[#14171A]"}>
+                        <Link href="https://x.com/cachoo_fa?s=09" className={"text-[#14171A]"} target={"_blank"}>
                             <FaXTwitter size={24} />
                         </Link>
-                        <Link href="/">
+                        <Link href="https://instagram.com/cachoo_fa?igshid=MzNlNGNkZWQ4Mg==" target={"_blank"}>
                             <FaInstagram size={24} />
                         </Link>
-                        <Link href="/" className={"text-[#FF0000]"}>
+                        <Link href="https://youtube.com/@cachoo_fa?si=WwEGb3ZNEXkywQfn" target={"_blank"} className={"text-[#FF0000]"}>
                             <FaYoutube size={26} />
+                        </Link>
+                        <Link href="https://wa.me/message/TYENRPTK5IFIP1" target={"_blank"} className={"text-[#25D366]"}>
+                            <FaWhatsapp size={26} />
                         </Link>
                     </div>
                 </div>
@@ -60,10 +64,10 @@ const Footer = () => {
                 </p>
             </div>
             <div className={"flex justify-center flex-coll items-center gap-4 sm:flex-row md:4/12 lg:w-3/12 mx-auto"}>
-                <Link href={"/"}>
+                <Link href={"https://play.google.com/store/apps/details?id=com.cachooapp.user"} target={"_blank"}>
                     <Image quality={100} src={googleLogo} priority width={350} height={150} alt={"Google Store"} />
                 </Link>
-                <Link href={"/"}>
+                <Link href={"https://apps.apple.com/app/id6504716287"} target={"_blank"}>
                     <Image quality={100} src={appStoreLogo} width={350} height={150} alt={"appStoreLogo"} />
                 </Link>
             </div>

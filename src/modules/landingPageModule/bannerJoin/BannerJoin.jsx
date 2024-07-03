@@ -33,7 +33,7 @@ const BannerJoin = () => {
                 <h2 className="text-[40px] font-bold mb-[20px]">{
                     strings.getLanguage() === 'ar' ? textInArabic() : textInEnglish()
                 }</h2>
-                <Button as={Link} href={"https://cachooapp.com/ar/vendors-hub/auth/register"} className="w-fit rounded-md text-white text-[20px] leading-6 tracking-wide font-[700] bg-[--primary-color] flex items-center mt-[24px]">{strings.SignUpFree}{strings.getLanguage() !== "ar" ? <FaArrowRight size={20} className="ms-2" /> : <FaArrowLeft size={20} className="ms-2" />}</Button>
+                <Button as={Link} href={"https://management.cachooapp.com/ar/vendors-hub/auth/login"} className="w-fit rounded-md text-white text-[20px] leading-6 tracking-wide font-[700] bg-[--primary-color] flex items-center mt-[24px]">{strings.SignUpFree}{strings.getLanguage() !== "ar" ? <FaArrowRight size={20} className="ms-2" /> : <FaArrowLeft size={20} className="ms-2" />}</Button>
             </div>
             <div
                 className={"h-full flex items-center justify-center py-8 z-10 md:w-2/5 md:pe-5 md:absolute md:end-0 md:bottom-0"}>
