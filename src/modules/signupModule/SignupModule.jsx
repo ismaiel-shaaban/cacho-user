@@ -78,7 +78,7 @@ const SignupModule = () => {
                 setError("Invalid phone number or password.");
             }
         } catch (error) {
-            setError(error.message);
+            setError("Failed to fetch user data.");
             setIsLoading(false)
             console.error("Login failed:", error.message);
         }
