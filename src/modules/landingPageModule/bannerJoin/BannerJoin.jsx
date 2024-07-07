@@ -28,7 +28,7 @@ const BannerJoin = () => {
     }
     return (<section className="banner-join container mt-[46px]" dir={strings.getLanguage() === "ar" ? "rtl" : "ltr"}>
         <div
-            className="bg-gradient-to-b from-[#50489E] to-[#3F3D4D] rounded-[20px] relative overflow-visible">
+            className="bg-gradient-to-b from-[#004693] to-[#3F3D4D] rounded-[20px] relative overflow-visible">
             <div className="h-full text-white py-[15px] px-[20px] md:py-[40px] md:px-[55px] md:w-3/5">
                 <h2 className="text-[40px] font-bold mb-[20px]">{
                     strings.getLanguage() === 'ar' ? textInArabic() : textInEnglish()

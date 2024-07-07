@@ -108,7 +108,7 @@ const SignupModule = () => {
     return (<div className="grid grid-cols-1 md:grid-cols-2">
         <div dir={strings.getLanguage() === "ar" ? "rtl" : "ltr"}>
             <div
-                className={`${classes["signup-banner"]} z-10 min-h-[calc(100dvh-64px)] relative bg-gradient-to-b from-[#50489E] to-[#3F3D4D] hidden md:flex flex-col justify-around`}>
+                className={`${classes["signup-banner"]} z-10 min-h-[calc(100dvh-64px)] relative bg-gradient-to-b from-[#004693] to-[#3F3D4D] hidden md:flex flex-col justify-around`}>
                 <div className="pt-20 ps-10 flex flex-col gap-14">
                     <h2 className="text-[56px] font-bold mb-[20px]">{strings.getLanguage() === 'ar' ? textInArabic() : textInEnglish()}</h2>
                     <Button as={Link} href={"/login"}
