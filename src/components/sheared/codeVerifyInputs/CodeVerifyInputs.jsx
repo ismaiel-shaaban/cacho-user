@@ -9,7 +9,7 @@ const CodeVerifyInputs = ({setCode}) => {
         });
     };
 
-    return (<div className="flex items-center justify-between gap-2 md:gap-[31px]">
+    return (<div dir={"ltr"} className="flex items-center justify-between gap-2 md:gap-[31px]">
             {Array.from({length: 6}).map((_, index) => (
                 <CodeInput key={index} placeholder={"-"} onChange={(value) => handleChange(index, value)}/>))}
         </div>);
