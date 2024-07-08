@@ -20,29 +20,50 @@ import { CiDeliveryTruck } from "react-icons/ci";
 import { formatPhoneNumber } from "@/utilis/formatPhoneNumber";
 import { BiLinkExternal } from "react-icons/bi";
 import Image from "next/image";
+import {useState} from "react";
+import ConfirmPhoneModal from "@/modules/modalsModule/ConfirmPhoneModal";
 
 const StoreTabs = ({ mainData, aboutUs, categories, isServiceProvider }) => {
     const router = useRouter();
     const { id } = router.query;
     const { isOpen, onOpen, onOpenChange } = useDisclosure();
     const message = encodeURIComponent(`${strings.WhatsAppMessage}`);
+    const [needVerification, setNeedVerification] = useState(false);
+    const [email, setEmail] = useState("");
 
     const handleChatWithStore = async () => {
         const token = getCookie("token");
         try {
             const userData = await fetchUserData(token);
             if (userData) {
-                const response = await fetch(`https://management.cachooapp.com/api/customer/businesses/${id}/chats`, {
-                    method: "POST", headers: {
-                        "Authorization": "Bearer " + token, "Content-Type": "application/json"
-                    }
-                });
-                const data = await response.json();
-                const chatId = data.response.uuid; // Adjust this based on your API response structure
+                setEmail(userData.email)
+               if (userData.needVerification === true){
+                   setNeedVerification(true)
+                   const sendCode = await fetch("https://management.cachooapp.com/api/customer/auth/code/send", {
+                       method: "POST", headers: {
+                           "Content-Type": "application/json",
+                           "Accept": "application/json"
+                       }, body: JSON.stringify({
+                           "username": email
+                       })
+                   });
+                   const res = await sendCode.json()
+                   if (res.code === 200 || res.code === 401) {
+                       onOpen()
+                   }
+               }else {
+                   const response = await fetch(`https://management.cachooapp.com/api/customer/businesses/${id}/chats`, {
+                       method: "POST", headers: {
+                           "Authorization": "Bearer " + token, "Content-Type": "application/json"
+                       }
+                   });
+                   const data = await response.json();
+                   const chatId = data.response.uuid; // Adjust this based on your API response structure
 
-                router.push({
-                    pathname: "/chat", query: { chatId: chatId }
-                });
+                   router.push({
+                       pathname: "/chat", query: { chatId: chatId }
+                   });
+               }
             } else {
                 onOpen();
             }
@@ -147,7 +168,8 @@ const StoreTabs = ({ mainData, aboutUs, categories, isServiceProvider }) => {
                 </Dropdown></div>
             </Tooltip>
         </div>
-        <SuggestLoginModal isOpen={isOpen} onOpenChange={onOpenChange} />
+        {isOpen && needVerification === false && <SuggestLoginModal isOpen={isOpen} onOpenChange={onOpenChange} />}
+        {isOpen && needVerification === true && <ConfirmPhoneModal email={email} isOpen={isOpen} onOpenChange={onOpenChange} />}
     </div>)
 }
 

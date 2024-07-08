@@ -4,7 +4,6 @@ import ForgetHeader from "@/modules/modalsModule/components/forgetHeader/ForgetH
 import EmailImage from "../../../../../public/Email-1.svg";
 import { Button } from "@nextui-org/react";
 import CodeVerifyInputs from "@/components/sheared/codeVerifyInputs/CodeVerifyInputs";
-import { fetchUserData } from "@/utilis/getUserData";
 import { useRouter } from "next/router";
 import { strings } from "@/utilis/Localization";
 
@@ -37,8 +36,8 @@ const VerifyPhoneNumber = ({ email, isChangePassword, passIsValidCode }) => {
             if (verify.ok) {
                 const response = await verify.json();
                 if (response.code === 200) {
-                    if (isChangePassword) {
                         setIsLoading(false)
+                    if (isChangePassword) {
                         passIsValidCode(true, verificationCode)
                     } else {
                         await router.push('/');

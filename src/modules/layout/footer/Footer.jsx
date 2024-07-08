@@ -45,7 +45,7 @@ const Footer = () => {
                         <Link href="https://youtube.com/@cachoo_fa?si=WwEGb3ZNEXkywQfn" target={"_blank"} className={"text-[#FF0000]"}>
                             <FaYoutube size={26} />
                         </Link>
-                        <Link href="https://wa.me/message/TYENRPTK5IFIP1" target={"_blank"} className={"text-[#25D366]"}>
+                        <Link href="https://wa.me/966538428033" target={"_blank"} className={"text-[#25D366]"}>
                             <FaWhatsapp size={26} />
                         </Link>
                     </div>
