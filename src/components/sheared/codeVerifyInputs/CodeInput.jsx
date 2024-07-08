@@ -31,4 +31,6 @@ const CodeInput = forwardRef(({ placeholder, onChange, onKeyDown }, ref) => {
     );
 });
 
+CodeInput.displayName = "CodeInput";
+
 export default CodeInput;
