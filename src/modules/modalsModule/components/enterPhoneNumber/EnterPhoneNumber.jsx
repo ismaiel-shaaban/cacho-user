@@ -31,7 +31,8 @@ const EnterPhoneNumber = ({ onPhoneChange }) => {
             const sendCode = await fetch("https://management.cachooapp.com/api/customer/auth/code/send", {
                 method: "POST",
                 headers: {
-                    "Content-Type": "application/json"
+                    "Content-Type": "application/json",
+                    "Accept": "application/json"
                 },
                 body: JSON.stringify({
                     "username": email

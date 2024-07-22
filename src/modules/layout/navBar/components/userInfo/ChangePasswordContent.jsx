@@ -19,7 +19,7 @@ const ChangePasswordContent = () => {
         setIsLoading(true)
         const req = await fetch("https://management.cachooapp.com/api/customer/profile", {
             method: "POST", headers: {
-                'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`
+                'Content-Type': 'application/json', "Accept": "application/json", 'Authorization': `Bearer ${token}`
             }, body: JSON.stringify({
                 oldPassword: formData.oldPassword,
                 newPassword: formData.newPassword,
@@ -36,7 +36,7 @@ const ChangePasswordContent = () => {
     }
     return (<div className="flex items-center flex-col p-2 md:flex-row md:gap-10 md:p-[50px]">
         <div>
-            <h4 className="text-2xl font-medium mb-12">{strings.ChangePassword}</h4>
+            <h4 className="mb-12 text-2xl font-medium">{strings.ChangePassword}</h4>
             <div>
                 <Image quality={100} src={ChangePasswordImage} width={240} height={240} alt={"Change Password"} />
             </div>

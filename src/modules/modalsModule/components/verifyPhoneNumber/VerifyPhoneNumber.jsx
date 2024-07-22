@@ -26,7 +26,8 @@ const VerifyPhoneNumber = ({ email, isChangePassword, passIsValidCode }) => {
             const verify = await fetch("https://management.cachooapp.com/api/customer/auth/verify", {
                 method: "POST",
                 headers: {
-                    "Content-Type": "application/json"
+                    "Content-Type": "application/json",
+                    "Accept": "application/json"
                 },
                 body: JSON.stringify({
                     "username": email,
@@ -36,7 +37,7 @@ const VerifyPhoneNumber = ({ email, isChangePassword, passIsValidCode }) => {
             if (verify.ok) {
                 const response = await verify.json();
                 if (response.code === 200) {
-                        setIsLoading(false)
+                    setIsLoading(false)
                     if (isChangePassword) {
                         passIsValidCode(true, verificationCode)
                     } else {
@@ -57,7 +58,7 @@ const VerifyPhoneNumber = ({ email, isChangePassword, passIsValidCode }) => {
 
 
     return (<div>
-        <div className="flex justify-between p-2 w-full md:p-9" dir={strings.getLanguage() === "ar" ? "rtl" : "ltr"}>
+        <div className="flex justify-between w-full p-2 md:p-9" dir={strings.getLanguage() === "ar" ? "rtl" : "ltr"}>
             <div>
                 <ForgetHeader />
                 <p className="text-[--primary-color]">{email}</p>

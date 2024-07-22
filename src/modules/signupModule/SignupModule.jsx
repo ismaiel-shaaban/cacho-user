@@ -59,7 +59,8 @@ const SignupModule = () => {
                     const sendCode = await fetch("https://management.cachooapp.com/api/customer/auth/code/send", {
                         method: "POST",
                         headers: {
-                            "Content-Type": "application/json"
+                            "Content-Type": "application/json",
+                            "Accept": "application/json"
                         },
                         body: JSON.stringify({
                             "username": userData.email
@@ -109,7 +110,7 @@ const SignupModule = () => {
         <div dir={strings.getLanguage() === "ar" ? "rtl" : "ltr"}>
             <div
                 className={`${classes["signup-banner"]} z-10 min-h-[calc(100dvh-64px)] relative bg-gradient-to-b from-[#004693] to-[#3F3D4D] hidden md:flex flex-col justify-around`}>
-                <div className="pt-20 ps-10 flex flex-col gap-14">
+                <div className="flex flex-col pt-20 ps-10 gap-14">
                     <h2 className="text-[56px] font-bold mb-[20px]">{strings.getLanguage() === 'ar' ? textInArabic() : textInEnglish()}</h2>
                     <Button as={Link} href={"/login"}
                         className="w-fit rounded-md text-white text-[20px] leading-6 tracking-wide font-[700] bg-[#095DA8] flex items-center mt-[24px]">
@@ -126,7 +127,7 @@ const SignupModule = () => {
             <form onSubmit={handleSignUp}>
                 <div
                     className=" min-h-[calc(100dvh-64px)] bg-white flex flex-col justify-center items-center px-8 md:px-[57px]">
-                    <div className="flex flex-col items-center justify-evenly w-full h-full py-8">
+                    <div className="flex flex-col items-center w-full h-full py-8 justify-evenly">
                         <div dir={strings.getLanguage() === "ar" ? "rtl" : "ltr"}
                             className="flex justify-between w-full">
                             <h2 className="text-[24px] font-[600] mt-[20px]">{strings.CreateNewAccount}</h2>
@@ -138,7 +139,7 @@ const SignupModule = () => {
                             <div className="flex justify-center mb-[49px]">
                                 <ImageUpload onChange={handleImageChange} />
                             </div>
-                            <div className="mt-4 w-full grid grid-cols-1 gap-3 md:grid-cols-2">
+                            <div className="grid w-full grid-cols-1 gap-3 mt-4 md:grid-cols-2">
                                 <Input
                                     type="text"
                                     label={strings.Name}

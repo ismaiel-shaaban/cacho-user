@@ -92,7 +92,7 @@ const ChatBody = ({ selectedChatData }) => {
         const token = await getCookie("token")
         await fetch(`https://management.cachooapp.com/api/customer/chats/${chatId}/messages`, {
             method: 'POST', headers: {
-                'Content-Type': 'application/json', "Authorization": "Bearer " + token
+                'Content-Type': 'application/json', "Accept": "application/json", "Authorization": "Bearer " + token
             }, body: JSON.stringify({
                 content: message,
             }),
@@ -102,14 +102,14 @@ const ChatBody = ({ selectedChatData }) => {
 
     return (<div className=" bg-white h-[88vh] rounded-e-xl p-[24px] col-span-9 md:col-span-8">
         <div className="h-full">
-            <div className="flex gap-4 items-center">
+            <div className="flex items-center gap-4">
                 {selectedChatData !== null ? <><div className="w-[50px] h-[50px]">
                     <Image
                         quality={100}
                         width={50} height={50}
                         src={selectedChatData?.business?.image ? selectedChatData?.business?.image : User}
                         alt="User"
-                        className="rounded-md w-full object-cover"
+                        className="object-cover w-full rounded-md"
                     />
                 </div>
                     <div>
@@ -129,7 +129,7 @@ const ChatBody = ({ selectedChatData }) => {
                     onScroll={handleScroll}
                     ref={scrollRef}
                 >
-                    {isValidating && <div className="w-full flex justify-center">
+                    {isValidating && <div className="flex justify-center w-full">
                         <Spinner />
                     </div>}
                     {messages.length > 0 && messages.slice().reverse().map((message, index) => (<MessageItem
@@ -141,7 +141,7 @@ const ChatBody = ({ selectedChatData }) => {
                 <div className="flex items-center gap-2 mt-[20px]">
                     <Button
                         onClick={handleMessageSend}
-                        className="bg-blue-500 text-white px-4 py-2 rounded-md"
+                        className="px-4 py-2 text-white bg-blue-500 rounded-md"
                         isDisabled={selectedChatData === null}
 
                     >

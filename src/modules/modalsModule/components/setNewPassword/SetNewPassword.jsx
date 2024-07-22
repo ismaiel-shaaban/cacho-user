@@ -25,7 +25,8 @@ const SetNewPassword = ({ code, email }) => {
         const req = await fetch("https://management.cachooapp.com/api/customer/auth/password/reset", {
             method: "POST",
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                "Accept": "application/json"
             },
             body: JSON.stringify({
                 "password": password.value,
@@ -59,7 +60,7 @@ const SetNewPassword = ({ code, email }) => {
                     <InputPassword label={strings.ConfirmPassword} placeholder={strings.ConfirmPassword}
                         onPasswordChange={(value, isValid) => setConfirmPassword({ value, isValid })} />
                 </div>
-                <div className="flex flex-col gap-3 justify-center mt-8 mx-auto md:w-1/2">
+                <div className="flex flex-col justify-center gap-3 mx-auto mt-8 md:w-1/2">
                     <Button size={"lg"} onClick={handleSubmit} className={`w-full bg-[--primary-color] text-white`}
                         isDisabled={!isPasswordValid}>
                         {strings.SetNewPassword}

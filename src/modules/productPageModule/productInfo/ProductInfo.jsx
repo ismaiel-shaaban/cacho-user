@@ -31,7 +31,8 @@ const ProductInfo = ({ info, images }) => {
                     const sendCode = await fetch("https://management.cachooapp.com/api/customer/auth/code/send", {
                         method: "POST",
                         headers: {
-                            "Content-Type": "application/json"
+                            "Content-Type": "application/json",
+                            "Accept": "application/json"
                         },
                         body: JSON.stringify({
                             "username": email
@@ -102,7 +103,7 @@ const ProductInfo = ({ info, images }) => {
             <div>
                 <h3 className="mt-2">{info?.description}</h3>
             </div>
-            <div className="flex mt-2 gap-2">
+            <div className="flex gap-2 mt-2">
                 <div className="w-1/6 h-[54px] flex items-center justify-center border-3 rounded-md">
                     <BookMark isProduct={true} productId={info?.uuid} isSaved={info?.isFavourite} />
                 </div>

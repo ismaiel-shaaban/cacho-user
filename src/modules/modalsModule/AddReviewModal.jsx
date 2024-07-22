@@ -28,7 +28,8 @@ const AddReviewModal = ({ isOpen, onOpenChange, id, isProduct = false }) => {
             method: 'POST',
             headers: {
                 'Authorization': 'Bearer ' + token,
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                "Accept": "application/json"
             },
             body: JSON.stringify(rateForm)
         });
@@ -48,7 +49,7 @@ const AddReviewModal = ({ isOpen, onOpenChange, id, isProduct = false }) => {
         <ModalContent>
             <ModalBody>
                 <form onSubmit={handelSubmit}>
-                    <div className="flex flex-col justify-center items-center">
+                    <div className="flex flex-col items-center justify-center">
                         <h2 className="text-[20px] font-medium">{strings.GiveYourRating}</h2>
                         <ReactStars
                             count={5}

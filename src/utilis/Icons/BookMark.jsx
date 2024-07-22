@@ -26,7 +26,8 @@ const BookMark = ({ productId, isSaved, isProduct }) => {
                     setNeedVerification(true)
                     const sendCode = await fetch("https://management.cachooapp.com/api/customer/auth/code/send", {
                         method: "POST", headers: {
-                            "Content-Type": "application/json"
+                            "Content-Type": "application/json",
+                            "Accept": "application/json"
                         }, body: JSON.stringify({
                             "username": email
                         })
@@ -38,7 +39,7 @@ const BookMark = ({ productId, isSaved, isProduct }) => {
                 } else {
                     await fetch(`https://management.cachooapp.com/api/customer/${isProduct ? "products" : "businesses"}/${productId}/favourite`, {
                         method: isSavedState ? "DELETE" : "POST", headers: {
-                            "Content-Type": "application/json", "Authorization": `Bearer ${token}`
+                            "Content-Type": "application/json", "Accept": "application/json", "Authorization": `Bearer ${token}`
                         },
                     });
                     setIsSavedState(!isSavedState);
@@ -53,7 +54,7 @@ const BookMark = ({ productId, isSaved, isProduct }) => {
     };
 
     return (<>
-        <div onClick={handleClick} className="p-2 backdrop-blur-md bg-white/85 rounded-md cursor-pointer z-10">
+        <div onClick={handleClick} className="z-10 p-2 rounded-md cursor-pointer backdrop-blur-md bg-white/85">
             {isSavedState === false ? <span>
                 <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M6.9375 6.78711C8.2725 7.27461 9.7275 7.27461 11.0625 6.78711" stroke="#8E8E93" strokeWidth="1.125"

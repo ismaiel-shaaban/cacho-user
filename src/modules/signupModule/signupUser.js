@@ -9,8 +9,9 @@ export const signupUser = async (name, email, phone, password, password_confirma
             password,
             password_confirmation
         }),
-        headers:{
-            "Content-Type": "application/json"
+        headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json"
         }
     });
 

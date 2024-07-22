@@ -11,6 +11,7 @@ export async function fetchUserData(token) {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
+                "Accept": "application/json",
                 'Authorization': `Bearer ${token}`
             },
         });
