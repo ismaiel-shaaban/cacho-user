@@ -34,8 +34,9 @@ const MyApp = ({ Component, pageProps }) => {
                     font-family: ${cairo.style.fontFamily};
                 }
             `}</style>
+            <link rel="shortcut icon" href="/favicon.ico" />
             {shouldShowNavAndFooter && <NavBar userLocation={userLocation} />}
-            <Component {...pageProps}/>
+            <Component {...pageProps} />
             {shouldShowNavAndFooter && <Footer />}
         </NextUIProvider>
     );
