@@ -8,6 +8,8 @@ import ErrorFetch from "@/components/sheared/erorrFetch/ErrorFetch";
 
 const StoreModule = ({ passTitle }) => {
     const router = useRouter();
+    console.log("router" , router);
+    
     const [mainData, setMainData] = useState(null);
     const [aboutUs, setAboutUs] = useState(null);
     const [i , setI] = useState(undefined)
