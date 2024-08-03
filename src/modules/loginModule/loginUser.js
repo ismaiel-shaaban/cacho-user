@@ -3,13 +3,10 @@ export const loginUser = async (username, password) => {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-            "Accept": "application/json"
+            "Accept": "application/json",
+            "X-APP-LOCALE": localStorage.getItem("lang") || "en"
         },
         body: JSON.stringify({ username, password }),
     });
-
-    if (!response.ok) {
-        throw new Error('Login failed');
-    }
     return response.json();
 }

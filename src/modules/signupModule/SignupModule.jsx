@@ -47,9 +47,8 @@ const SignupModule = () => {
             setError("Passwords do not match.");
             return;
         }
-        try {
             const {
-                code, token
+                code, token ,errors
             } = await signupUser(formData.name, formData.email, "+966" + formData.phone.value, formData.password.value, formData.confirmPassword.value, formData.userImage);
             if (code === 200) {
                 const userData = await fetchUserData(token);
@@ -72,18 +71,18 @@ const SignupModule = () => {
                 }
                 else {
                     setIsLoading(false);
-                    setError("Failed to fetch user data.");
+                    setError("Failed to fetch user data");
                 }
             } else {
                 setIsLoading(false);
-                setError("Invalid phone number or password.");
+                handleErrors(errors)
             }
-        } catch (error) {
-            setError("Failed to fetch user data.");
-            setIsLoading(false)
-            console.error("Login failed:", error.message);
-        }
     };
+    
+    const handleErrors = (errors) => {
+    const errorMessages = Object.keys(errors).map((key) => `${errors[key]}`);
+    setError(errorMessages.join(" "));
+};
 
     const textInEnglish = () => {
         return (

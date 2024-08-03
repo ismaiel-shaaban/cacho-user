@@ -11,13 +11,10 @@ export const signupUser = async (name, email, phone, password, password_confirma
         }),
         headers: {
             "Content-Type": "application/json",
-            "Accept": "application/json"
+            "Accept": "application/json",
+            "X-APP-LOCALE": localStorage.getItem("lang") || "en"
         }
     });
-
-    if (!response.ok) {
-        throw new Error('Signup failed');
-    }
 
     return response.json();
 }

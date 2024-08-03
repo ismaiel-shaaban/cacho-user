@@ -29,10 +29,8 @@ const LoginModule = () => {
             setError("Please enter a valid phone number and password.");
             return;
         }
-
-        try {
             setIsLoading(true);
-            const { token, code } = await loginUser("+966" + phone.value, password.value);
+            const { token, code ,message} = await loginUser("+966" + phone.value, password.value);
 
             if (code === 200) {
                 const userData = await fetchUserData(token);
@@ -48,13 +46,8 @@ const LoginModule = () => {
                 }
             } else {
                 setIsLoading(false);
-                setError("Invalid phone number or password.");
+                setError(message);
             }
-        } catch (error) {
-            setError(`${strings.errorLogin}`);
-            setIsLoading(false);
-            console.error("Login failed:", error.message);
-        }
     };
 
     const textInEnglish = () => {
