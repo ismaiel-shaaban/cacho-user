@@ -13,11 +13,11 @@ const SpecialOffers = () => {
     });
 
     const handleImageClick = (uuid) => {
-        router.push(`/Stores/${uuid}`);
+        router.push(`/stores/${uuid}`);
     };
 
     const renderSingleImage = (item) => (
-        <div className="w-full h-full rounded-md overflow-hidden cursor-pointer"
+        <div className="w-full h-full overflow-hidden rounded-md cursor-pointer"
             onClick={() => handleImageClick(item?.business?.uuid)}>
             <Image
                 width={400}
@@ -33,7 +33,7 @@ const SpecialOffers = () => {
     const renderTwoImages = (items) => (
         <div className="flex w-full h-full gap-4">
             {items.map((item, index) => (
-                <div key={index} className="w-1/2 h-full rounded-md overflow-hidden cursor-pointer"
+                <div key={index} className="w-1/2 h-full overflow-hidden rounded-md cursor-pointer"
                     onClick={() => handleImageClick(item?.business?.uuid)}>
                     <Image
                         width={200}
@@ -49,8 +49,8 @@ const SpecialOffers = () => {
     );
 
     const renderThreeImages = (items) => (
-        <div className="flex flex-col md:flex-row h-full gap-4">
-            <div className="md:w-1/2 md:h-full rounded-md overflow-hidden cursor-pointer"
+        <div className="flex flex-col h-full gap-4 md:flex-row">
+            <div className="overflow-hidden rounded-md cursor-pointer md:w-1/2 md:h-full"
                 onClick={() => handleImageClick(items[0]?.business?.uuid)}>
                 <Image
                     width={200}
@@ -61,9 +61,9 @@ const SpecialOffers = () => {
                     quality={100}
                 />
             </div>
-            <div className="flex flex-col  md:w-1/2 md:h-full gap-4">
+            <div className="flex flex-col gap-4 md:w-1/2 md:h-full">
                 {items.slice(1).map((item, index) => (
-                    <div key={index} className="w-full h-1/2 rounded-md overflow-hidden cursor-pointer"
+                    <div key={index} className="w-full overflow-hidden rounded-md cursor-pointer h-1/2"
                         onClick={() => handleImageClick(item?.business?.uuid)}>
                         <Image
                             width={200}
@@ -88,13 +88,13 @@ const SpecialOffers = () => {
                     </Skeleton>
                     <div className="space-y-3">
                         <Skeleton className="w-3/5 rounded-lg">
-                            <div className="h-3 w-3/5 rounded-lg bg-default-200"></div>
+                            <div className="w-3/5 h-3 rounded-lg bg-default-200"></div>
                         </Skeleton>
                         <Skeleton className="w-4/5 rounded-lg">
-                            <div className="h-3 w-4/5 rounded-lg bg-default-200"></div>
+                            <div className="w-4/5 h-3 rounded-lg bg-default-200"></div>
                         </Skeleton>
                         <Skeleton className="w-2/5 rounded-lg">
-                            <div className="h-3 w-2/5 rounded-lg bg-default-300"></div>
+                            <div className="w-2/5 h-3 rounded-lg bg-default-300"></div>
                         </Skeleton>
                     </div>
                 </div>
@@ -102,7 +102,7 @@ const SpecialOffers = () => {
         }
 
         if (error) {
-            return <div className="text-red-500 text-center">{strings.FailedToLoadOffers}</div>;
+            return <div className="text-center text-red-500">{strings.FailedToLoadOffers}</div>;
         }
 
         if (!data || !data.response || !data.response.data) {

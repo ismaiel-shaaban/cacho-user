@@ -70,7 +70,7 @@ const ProductCard = ({product}) => {
                         <span className='text-sm text-gray-400'>
                             <span>{strings.by} </span>
                             <span className='text-[--primary-color]'>
-                                <Link href={`/Stores/${product?.business?.uuid}`}>
+                                <Link href={`/stores/${product?.business?.uuid}`}>
                                     {product?.business?.title}
                                 </Link>
                             </span>

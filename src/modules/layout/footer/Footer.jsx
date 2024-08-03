@@ -26,11 +26,11 @@ const Footer = () => {
                 </div>
             </div>
             <div className="py-10">
-                <div className="flex items-center flex-wrap justify-center md:justify-between gap-5">
+                <div className="flex flex-wrap items-center justify-center gap-5 md:justify-between">
                     <div className="flex gap-5">
                         <Link href="/offers" className="font-[400] text-lg">{strings.HotOffers}</Link>
-                        <Link href="/Stores?nearest=1&page=1" className="font-[400] text-lg">{strings.Nearest}</Link>
-                        <Link href="/Stores" className="font-[400] text-lg">{strings.New}</Link>
+                        <Link href="/stores?nearest=1&page=1" className="font-[400] text-lg">{strings.Nearest}</Link>
+                        <Link href="/stores" className="font-[400] text-lg">{strings.New}</Link>
                     </div>
                     <div className="flex items-center gap-5">
                         <Link href="https://www.facebook.com/profile.php?id=61553168891303" target={"_blank"} className={"text-[#4267B2]"}>

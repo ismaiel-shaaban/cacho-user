@@ -53,7 +53,7 @@ const SearchInput = () => {
                 <SelectItem key="service" value="service">{strings.Services}</SelectItem>
             </Select>}
         />
-        <div className="absolute top-full left-0 w-full bg-white shadow-md z-10 rounded-md">
+        <div className="absolute left-0 z-10 w-full bg-white rounded-md shadow-md top-full">
             {isLoading && <Spinner />}
             {error && <div>Error: {error.message}</div>}
             {data?.response?.data?.length > 0 && isFocus && (<Card>
@@ -61,15 +61,15 @@ const SearchInput = () => {
                     {data.response.data.map((result) => (<div key={result.uuid}
                         className="p-2 border-b border-gray-200 text-[--primary-color]">
                         <Link
-                            href={selectedCategory === "stores" ? `/Stores/${result.uuid}` : selectedCategory === "products" ? `/product/${result.uuid}` : `/Stores/?filter=${result.uuid}`}
-                            className="flex justify-between items-center w-full ">
+                            href={selectedCategory === "stores" ? `/stores/${result.uuid}` : selectedCategory === "products" ? `/product/${result.uuid}` : `/stores/?filter=${result.uuid}`}
+                            className="flex items-center justify-between w-full ">
                             <span>
                                 {result.name ? result.name : result.title}
                             </span>
                             <span className="w-[40px] h-[40px] rounded-md overflow-hidden">
                                 <Image quality={100} width={40} height={40} src={result.image || result.images[0]}
                                     alt={result.name || result.title}
-                                    className="w-full h-full object-cover"
+                                    className="object-cover w-full h-full"
                                 />
                             </span>
                         </Link>

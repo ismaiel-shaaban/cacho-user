@@ -24,7 +24,7 @@ const NewStores = () => {
         : data.response.data;
     return (
         <section className="container mt-[30px]" dir={strings.getLanguage() === "ar" ? "rtl" : "ltr"}>
-            <SectionTitle title={strings.New} link="/Stores" />
+            <SectionTitle title={strings.New} link="/stores" />
             <div
                 className="grid grid-cols-1 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 md:gap-[24px] gap-2 mt-[25px]">
                 {itemsToDisplay.slice(0, 8).map((store) => (store ? <StoresCard key={store?.uuid} store={store} /> : null))}

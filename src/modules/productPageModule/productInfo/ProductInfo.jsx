@@ -74,7 +74,7 @@ const ProductInfo = ({ info, images }) => {
             dir={strings.getLanguage() === "ar" ? "rtl" : "ltr"}>
             <p className="text-gray-400">
                 {strings.by} <span className="text-[--primary-color]">
-                    <Link href={`/Stores/${info?.business?.uuid}`}>{info?.business?.title}</Link>
+                    <Link href={`/stores/${info?.business?.uuid}`}>{info?.business?.title}</Link>
                 </span>
             </p>
             <h3 className="text-[32px] font-[600]">{info?.name}</h3>

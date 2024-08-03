@@ -43,7 +43,7 @@ const Nearest = () => {
 
     return (
         <section className="container mt-[30px]" dir={strings.getLanguage() === "ar" ? "rtl" : "ltr"}>
-            <SectionTitle title={strings.Nearest} link={"/Stores?nearest=1&page=1"} select={true} />
+            <SectionTitle title={strings.Nearest} link={"/stores?nearest=1&page=1"} select={true} />
             <div className="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 gap-2 md:gap-[20px] mt-[25px]">
                 {itemsToDisplay?.map((store, i) => (
                     store ? <StoresCard key={store?.uuid + i} store={store} /> : null
