@@ -10,9 +10,15 @@ const StoreModule = ({ passTitle }) => {
     const router = useRouter();
     const [mainData, setMainData] = useState(null);
     const [aboutUs, setAboutUs] = useState(null);
+    const [i , setI] = useState(undefined)
     const { id } = router.query;
-    
-    const { data, error, isLoading } = useStoreData(id)
+
+    useEffect(() => {
+        if (id) {
+            setI(id)
+        }
+    },[id])
+    const { data, error, isLoading } = useStoreData(i)
 
      useEffect(() => {
         if (data) {
