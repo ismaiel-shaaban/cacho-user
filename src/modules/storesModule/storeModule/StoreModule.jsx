@@ -11,20 +11,23 @@ const StoreModule = ({ passTitle }) => {
     const [mainData, setMainData] = useState(null);
     const [aboutUs, setAboutUs] = useState(null);
     const { id } = router.query;
+    
     const { data, error, isLoading } = useStoreData(id)
 
-    useEffect(() => {
+     useEffect(() => {
         if (data) {
             const {
-                email, whatsapp, phone, image, title, rating, reviewsCount, status, workingDays, images, about, address, isOpen, isFavourite, chatEnabled, callEnabled, whatsappEnabled, deliveryCompanies, deliveryCompaniesCount, location,uuid
+                email, whatsapp, phone, image, title, rating, reviewsCount, status, workingDays, images, about, address, isOpen, isFavourite, chatEnabled, callEnabled, whatsappEnabled, deliveryCompanies, deliveryCompaniesCount, location, uuid
             } = data.response;
 
             setMainData({ email, whatsapp, phone, chatEnabled, callEnabled, whatsappEnabled, deliveryCompanies, deliveryCompaniesCount, location });
-            setAboutUs({ image, title, rating, reviewsCount, status, workingDays, images, about, address, isOpen, isFavourite ,uuid });
+            setAboutUs({ image, title, rating, reviewsCount, status, workingDays, images, about, address, isOpen, isFavourite, uuid });
             passTitle(title);
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [data]);
+
+    if (!id) return null; // Render nothing if id is not available
     if (isLoading) return <SkeletonProducts col={2} />
     if (error) return <ErrorFetch />;
     return (<div>
