@@ -13,6 +13,10 @@ const StoreModule = ({ passTitle }) => {
     const [i , setI] = useState(undefined)
     const { id } = router.query;
 
+    console.log("id =>" , id);
+    console.log("i =>" , i);
+    
+
     useEffect(() => {
         if (id) {
             setI(id)
