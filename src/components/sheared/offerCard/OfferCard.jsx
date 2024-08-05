@@ -18,7 +18,7 @@ const OfferCard = ({ offer }) => {
     return (
         <Card dir={lang === "ar" ? "rtl" : "ltr"} className={`shadow-none !transition !duration-300 hover:shadow-xl`} as={Link}
               href={`/offers/${offer.uuid}`}>
-            <CardBody className="p-0 overflow-hidden relative">
+            <CardBody className="relative p-0 overflow-hidden">
                 <div className="h-[190px]">
                     <Image quality={100} width={292} height={190} src={offer.image} alt={offer.title} className="object-cover w-full"
                         style={{ height: "inherit" }} />
@@ -27,11 +27,11 @@ const OfferCard = ({ offer }) => {
                     className={`${classes.discount} absolute -rotate-45 bg-[--red] text-white w-[300px] h-[50px] text-center flex items-center justify-center text-[14px]`}>{discountLabel}</div>}
                 <div className="p-[15px]">
                     <div>
-                        <div className="flex justify-between items-center">
+                        <div className="flex items-center justify-between">
                             <div className="flex justify-between flex-col mb-[5px]">
                                 <span className="text-sm text-gray-400 text-start">
                                     <span>{strings.by} </span>
-                                    <span className="text-[--primary-color]">{offer.business.title}</span>
+                                    <span className="text-[--primary-color]">{offer?.business?.title}</span>
                                 </span>
                                 <h3 className="text-md font-medium mb-[10px] leading-7 text-start">{offer.title}</h3>
                             </div>
@@ -46,7 +46,7 @@ const OfferCard = ({ offer }) => {
                         </div>
                     </div>
 
-                    <div className="flex justify-end items-center">
+                    <div className="flex items-center justify-end">
                         <Button variant={"ghost"} as={Link} href={`/offers/${offer.uuid}`}
                                 className="text-[--primary-color] border-[--primary-color] rounded-[10px] hover:!bg-[--primary-color] hover:!text-white">
                             {strings.details}

@@ -20,8 +20,8 @@ const HotOffers = () => {
     if (error) return <ErrorFetch />;
 
     const itemsToDisplay = isSmallScreen
-        ? data.response.data.slice(0, 2)
-        : data.response.data;
+        ? data?.response?.data.slice(0, 2)
+        : data?.response?.data;
 
     return (
         <section className="container mx-auto mt-[30px]" dir={strings.getLanguage() === "ar" ? "rtl" : "ltr"}>
